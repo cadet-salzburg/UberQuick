@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{556AD3B6-9980-3753-8722-ABA443359EB5}</ProjectGuid>
+    <RootNamespace>UberQuick</RootNamespace>
+    <Keyword>Qt4VSv1.0</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <OutputDirectory>release\</OutputDirectory>
+    <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+    <CharacterSet>NotSet</CharacterSet>
+    <ConfigurationType>Application</ConfigurationType>
+    <IntermediateDirectory>release\</IntermediateDirectory>
+    <PrimaryOutput>UberQuick</PrimaryOutput>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <OutputDirectory>debug\</OutputDirectory>
+    <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+    <CharacterSet>NotSet</CharacterSet>
+    <ConfigurationType>Application</ConfigurationType>
+    <IntermediateDirectory>debug\</IntermediateDirectory>
+    <PrimaryOutput>UberQuick</PrimaryOutput>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">UberQuick</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.exe</TargetExt>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IgnoreImportLibrary>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">UberQuick</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>"qtquick2applicationviewer";"..\..\SDK\_2RealDependencies\eigen";"..\_2RealFramework\kernel\src";"..\..\SDK\_2RealDependencies\poco\bin";"..\..\SDK\_2RealDependencies\poco\Foundation\include";"C:\Qt\Qt5.0.1\5.0.1\msvc2010\include";"C:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQuick";"C:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQml";"C:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtNetwork";"C:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtGui";"C:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtCore";"release";C:\Qt\Qt5.0.1\5.0.1\msvc2010\mkspecs\win32-msvc2010;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zm200 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
+      <AssemblerListingLocation>release\</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <Optimization>MaxSpeed</Optimization>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_NO_DEBUG;QT_QUICK_LIB;QT_QML_LIB;QT_NETWORK_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>qtmain.lib;dwmapi.lib;D:/Work/_2RealFramework/kernel/lib/\_2RealFramework_32.lib;D:/Work/UberQuick/../../SDK/_2RealDependencies/poco/lib/\PocoFoundation.lib;$(QTDIR)\lib\Qt5Quick.lib;$(QTDIR)\lib\Qt5Qml.lib;$(QTDIR)\lib\Qt5Network.lib;$(QTDIR)\lib\Qt5Gui.lib;$(QTDIR)\lib\Qt5Core.lib;libEGL.lib;libGLESv2.lib;gdi32.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;D:/Work/_2RealFramework/kernel/lib/;D:/Work/UberQuick/../../SDK/_2RealDependencies/poco/lib/;C:\Qt\Qt5.0.1\5.0.1\msvc2010\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreImportLibrary>true</IgnoreImportLibrary>
+      <LinkIncremental>false</LinkIncremental>
+      <OutputFile>$(OutDir)\UberQuick.exe</OutputFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Link>
+    <Midl>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+      <WarningLevel>0</WarningLevel>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_NO_DEBUG;QT_QUICK_LIB;QT_QML_LIB;QT_NETWORK_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>"qtquick2applicationviewer";"..\..\SDK\_2RealDependencies\eigen";"..\_2RealFramework\kernel\src";"..\..\SDK\_2RealDependencies\poco\bin";"..\..\SDK\_2RealDependencies\poco\Foundation\include";"C:\Qt\Qt5.0.1\5.0.1\msvc2010\include";"C:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQuick";"C:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQml";"C:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtNetwork";"C:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtGui";"C:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtCore";"debug";C:\Qt\Qt5.0.1\5.0.1\msvc2010\mkspecs\win32-msvc2010;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zm200 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
+      <AssemblerListingLocation>debug\</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_QUICK_LIB;QT_QML_LIB;QT_NETWORK_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>qtmaind.lib;dwmapi.lib;D:/Work/_2RealFramework/kernel/lib/\_2RealFramework_32d.lib;D:/Work/UberQuick/../../SDK/_2RealDependencies/poco/lib/\PocoFoundationd.lib;$(QTDIR)\lib\Qt5Quickd.lib;$(QTDIR)\lib\Qt5Qmld.lib;$(QTDIR)\lib\Qt5Networkd.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Cored.lib;libEGLd.lib;libGLESv2d.lib;gdi32.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;D:/Work/_2RealFramework/kernel/lib/;$(POCO_DIR)/lib/;C:\Qt\Qt5.0.1\5.0.1\msvc2010\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreImportLibrary>true</IgnoreImportLibrary>
+      <OutputFile>$(OutDir)\UberQuick.exe</OutputFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Link>
+    <Midl>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+      <WarningLevel>0</WarningLevel>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_QUICK_LIB;QT_QML_LIB;QT_NETWORK_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Debug\moc_qtquick2applicationviewer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_ubblockmodel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_ubconnection.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_ubdockmodel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_ubinlet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_uboutlet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_ubsystemmodel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="qtquick2applicationviewer\qtquick2applicationviewer.cpp" />
+    <ClCompile Include="Release\moc_qtquick2applicationviewer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_ubblockmodel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_ubconnection.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_ubdockmodel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_ubinlet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_uboutlet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_ubsystemmodel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="ubblockmodel.cpp" />
+    <ClCompile Include="ubconnection.cpp" />
+    <ClCompile Include="ubdockmodel.cpp" />
+    <ClCompile Include="ubimage.cpp" />
+    <ClCompile Include="ubinlet.cpp" />
+    <ClCompile Include="uboutlet.cpp" />
+    <ClCompile Include="ubsystem.cpp" />
+    <ClCompile Include="ubsystemmodel.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="qtquick2applicationviewer\qtquick2applicationviewer.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_QUICK_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG "-I.\qtquick2applicationviewer" "-I.\..\..\SDK\_2RealDependencies\eigen" "-I.\..\_2RealFramework\kernel\src" "-I.\..\..\SDK\_2RealDependencies\poco\bin" "-I.\..\..\SDK\_2RealDependencies\poco\Foundation\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQuick" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQml" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtNetwork" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtGui" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtCore" "-I.\release" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\mkspecs\win32-msvc2010"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing qtquick2applicationviewer.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_QUICK_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE "-I.\qtquick2applicationviewer" "-I.\..\..\SDK\_2RealDependencies\eigen" "-I.\..\_2RealFramework\kernel\src" "-I.\..\..\SDK\_2RealDependencies\poco\bin" "-I.\..\..\SDK\_2RealDependencies\poco\Foundation\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQuick" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQml" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtNetwork" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtGui" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtCore" "-I.\debug" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\mkspecs\win32-msvc2010"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing qtquick2applicationviewer.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="ubblockmodel.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_QUICK_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG "-I.\qtquick2applicationviewer" "-I.\..\..\SDK\_2RealDependencies\eigen" "-I.\..\_2RealFramework\kernel\src" "-I.\..\..\SDK\_2RealDependencies\poco\bin" "-I.\..\..\SDK\_2RealDependencies\poco\Foundation\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQuick" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQml" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtNetwork" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtGui" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtCore" "-I.\release" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\mkspecs\win32-msvc2010"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing ubblockmodel.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_QUICK_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE "-I.\qtquick2applicationviewer" "-I.\..\..\SDK\_2RealDependencies\eigen" "-I.\..\_2RealFramework\kernel\src" "-I.\..\..\SDK\_2RealDependencies\poco\bin" "-I.\..\..\SDK\_2RealDependencies\poco\Foundation\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQuick" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQml" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtNetwork" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtGui" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtCore" "-I.\debug" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\mkspecs\win32-msvc2010"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing ubblockmodel.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="ubconnection.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_QUICK_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG "-I.\qtquick2applicationviewer" "-I.\..\..\SDK\_2RealDependencies\eigen" "-I.\..\_2RealFramework\kernel\src" "-I.\..\..\SDK\_2RealDependencies\poco\bin" "-I.\..\..\SDK\_2RealDependencies\poco\Foundation\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQuick" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQml" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtNetwork" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtGui" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtCore" "-I.\release" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\mkspecs\win32-msvc2010"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing ubconnection.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_QUICK_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE "-I.\qtquick2applicationviewer" "-I.\..\..\SDK\_2RealDependencies\eigen" "-I.\..\_2RealFramework\kernel\src" "-I.\..\..\SDK\_2RealDependencies\poco\bin" "-I.\..\..\SDK\_2RealDependencies\poco\Foundation\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQuick" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQml" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtNetwork" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtGui" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtCore" "-I.\debug" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\mkspecs\win32-msvc2010"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing ubconnection.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="ubdockmodel.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_QUICK_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG "-I.\qtquick2applicationviewer" "-I.\..\..\SDK\_2RealDependencies\eigen" "-I.\..\_2RealFramework\kernel\src" "-I.\..\..\SDK\_2RealDependencies\poco\bin" "-I.\..\..\SDK\_2RealDependencies\poco\Foundation\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQuick" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQml" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtNetwork" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtGui" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtCore" "-I.\release" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\mkspecs\win32-msvc2010"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing ubdockmodel.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_QUICK_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE "-I.\qtquick2applicationviewer" "-I.\..\..\SDK\_2RealDependencies\eigen" "-I.\..\_2RealFramework\kernel\src" "-I.\..\..\SDK\_2RealDependencies\poco\bin" "-I.\..\..\SDK\_2RealDependencies\poco\Foundation\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQuick" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQml" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtNetwork" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtGui" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtCore" "-I.\debug" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\mkspecs\win32-msvc2010"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing ubdockmodel.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="ubimage.h" />
+    <CustomBuild Include="ubinlet.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_QUICK_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG "-I.\qtquick2applicationviewer" "-I.\..\..\SDK\_2RealDependencies\eigen" "-I.\..\_2RealFramework\kernel\src" "-I.\..\..\SDK\_2RealDependencies\poco\bin" "-I.\..\..\SDK\_2RealDependencies\poco\Foundation\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQuick" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQml" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtNetwork" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtGui" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtCore" "-I.\release" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\mkspecs\win32-msvc2010"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing ubinlet.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_QUICK_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE "-I.\qtquick2applicationviewer" "-I.\..\..\SDK\_2RealDependencies\eigen" "-I.\..\_2RealFramework\kernel\src" "-I.\..\..\SDK\_2RealDependencies\poco\bin" "-I.\..\..\SDK\_2RealDependencies\poco\Foundation\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQuick" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQml" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtNetwork" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtGui" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtCore" "-I.\debug" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\mkspecs\win32-msvc2010"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing ubinlet.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="uboutlet.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_QUICK_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG "-I.\qtquick2applicationviewer" "-I.\..\..\SDK\_2RealDependencies\eigen" "-I.\..\_2RealFramework\kernel\src" "-I.\..\..\SDK\_2RealDependencies\poco\bin" "-I.\..\..\SDK\_2RealDependencies\poco\Foundation\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQuick" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQml" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtNetwork" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtGui" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtCore" "-I.\release" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\mkspecs\win32-msvc2010"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing uboutlet.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_QUICK_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE "-I.\qtquick2applicationviewer" "-I.\..\..\SDK\_2RealDependencies\eigen" "-I.\..\_2RealFramework\kernel\src" "-I.\..\..\SDK\_2RealDependencies\poco\bin" "-I.\..\..\SDK\_2RealDependencies\poco\Foundation\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQuick" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQml" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtNetwork" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtGui" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtCore" "-I.\debug" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\mkspecs\win32-msvc2010"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing uboutlet.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="ubsystem.h" />
+    <CustomBuild Include="ubsystemmodel.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_QUICK_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG "-I.\qtquick2applicationviewer" "-I.\..\..\SDK\_2RealDependencies\eigen" "-I.\..\_2RealFramework\kernel\src" "-I.\..\..\SDK\_2RealDependencies\poco\bin" "-I.\..\..\SDK\_2RealDependencies\poco\Foundation\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQuick" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQml" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtNetwork" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtGui" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtCore" "-I.\release" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\mkspecs\win32-msvc2010"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing ubsystemmodel.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_QUICK_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE "-I.\qtquick2applicationviewer" "-I.\..\..\SDK\_2RealDependencies\eigen" "-I.\..\_2RealFramework\kernel\src" "-I.\..\..\SDK\_2RealDependencies\poco\bin" "-I.\..\..\SDK\_2RealDependencies\poco\Foundation\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQuick" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtQml" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtNetwork" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtGui" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\include\QtCore" "-I.\debug" "-IC:\Qt\Qt5.0.1\5.0.1\msvc2010\mkspecs\win32-msvc2010"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing ubsystemmodel.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties Qt5Version_x0020_Win32="5.0.1" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

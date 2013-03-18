@@ -1,0 +1,37 @@
+#ifndef ITEM_H
+#define ITEM_H
+#include <QObject>
+#include <QPoint>
+#include <QSize>
+
+namespace Uber {
+
+    class Item : public QObject
+    {
+        Q_OBJECT
+        Q_PROPERTY(QPointF position READ position WRITE setPosition)
+        Q_PROPERTY(QSizeF size READ size WRITE setSize)
+    public:
+        Item(QObject *parent = 0);
+        Item(QObject *parent, QPointF position, QSizeF size);
+        Item(const Item &other);
+
+        QPointF             position() const;
+        void                setPosition(const QPointF &position );
+        QSizeF              size() const;
+        void                setSize(const QSizeF &size);
+        QString             getClassName() const
+        {
+            return QString( metaObject()->className());
+        }
+
+    protected:
+
+    private:
+        QPointF             m_Position;
+        QSizeF              m_Size;
+        int                 m_Orientation;
+        //static QString      m_Type;
+    };
+}
+#endif // ITEM_H
