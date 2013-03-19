@@ -71,6 +71,11 @@ Item {
             model: _model;
             delegate: dockDelegate
 //            highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
+            MouseArea {
+                onClicked: {
+                    window.visible = false
+                }
+            }
         }
         Button {
             iconPath:"../../Images/handleAIcon.png"

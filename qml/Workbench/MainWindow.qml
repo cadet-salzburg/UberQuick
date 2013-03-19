@@ -5,33 +5,42 @@ Rectangle {
     width: 100
     height: 62
     color: "#e6e6e6ff"
-    state: "start"
+    state: "hideDock"
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        //propagateComposedEvents: true
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+        onPressed: {
+            //mouse.accepted = false;
+            console.debug("Pressed");
+            if ( workbench.state == "showDock")
+            {
+                workbench.state = "hideDock"
+            }
+        }
 
-    //------------ Custom Delegate Test Starts  ----------------//
-
-//    Component {
-//        id: fruitDelegate
-//        Row {
-//                id: fruit
-//                Text { text: " Fruit: " + name; color: fruit.ListView.view.fruit_color }
-//                Text { text: " Cost: $" + cost }
-//                Text { text: " Language: " + fruit.ListView.view.model.language }
-//        }
-//    }
-    ListView {
+        onDoubleClicked: {
+            if (mouse.button == Qt.LeftButton)
+            {
+                var pos =_system.maptoGlobal(parent)
+                _dockView.setX(pos.x+mouseX-_dockView.width/2)
+                 _dockView.setY(pos.y+mouseY)
+                workbench.state = "showDock"
+            }
+        }
+    }
+    Repeater {
         id: grid
         anchors.fill: parent
-        spacing: 2
         model: _flowmodel;
         delegate: Item {
             id: multidel
             Loader {
                 id: loader
-                //source: _complexDelegate.getDelegate("Uber::Inlet")\
                 source: _complexDelegate.getDelegate(modeltype)
             }
         }
-//            highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
     }
     //------------ Custom Delegate Test Ends ----------------//
 
@@ -49,7 +58,7 @@ Rectangle {
     }
     states: [
         State {
-            name: "start"
+            name: "hideDock"
             PropertyChanges { target: info; opacity: 1 }
             PropertyChanges { target: _dockView; visible: false }
             //_dockView.setVisible: false
@@ -58,21 +67,7 @@ Rectangle {
             name: "showDock"
             PropertyChanges { target: info; opacity: 0 }
             PropertyChanges { target: _dockView; visible: true }
-            PropertyChanges { target: _dockView; x: 100; y: 100 }
-
-
+           // PropertyChanges { target: _dockView; x: 100; y: 100 }
         }
     ]
-    MouseArea {
-        id: mouseArea
-        anchors.fill: parent
-        acceptedButtons: Qt.LeftButton | Qt.RightButton
-        onDoubleClicked: {
-            if (mouse.button == Qt.LeftButton)
-            {
-                workbench.state = "showDock"
-            }
-        }
-    }
-
 }

@@ -17,6 +17,11 @@ namespace Uber {
         Block( const Block &other);
         ~Block();
 
+        QList<Inlet>            getInlets() const;
+        QList<Outlet>           getOutlets() const;
+        //   void                    setPosition( const QPoint &pos );
+        //        QPoint                  getPosition() const;
+
     signals:
     public slots:
     protected:
@@ -26,6 +31,7 @@ namespace Uber {
         QList<OutletRef>    m_Outlets;
     };
     typedef QSharedPointer<Block> BlockRef;
+    QDebug operator<<(QDebug dbg, const Block &block);
     Q_DECLARE_METATYPE(Block)
 }
 #endif // BLOCK_H

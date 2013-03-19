@@ -4,55 +4,36 @@
 
 namespace Uber {
     BlockModel::BlockModel(QObject *parent)
-    :QAbstractItemModel(parent)
+    :QAbstractListModel(parent)
     {
 
     }
+
     BlockModel::~BlockModel()
     {
-    }
 
-    int BlockModel::columnCount(const QModelIndex &parent) const
-    {
-        return 0;
-    }
-
-    QVariant BlockModel::data(const QModelIndex &index, int role) const
-    {
-        return 0;
-    }
-
-    QModelIndex BlockModel::index(int row, int column, const QModelIndex &parent) const
-    {
-        return QModelIndex();
-    }
-
-    QModelIndex BlockModel::parent(const QModelIndex &index) const
-    {
-        return QModelIndex();
     }
 
     int BlockModel::rowCount(const QModelIndex &parent) const
     {
-        return 0;
+        Q_UNUSED(parent);
+        return count();
     }
 
-    QList<Inlet> BlockModel::getInlets() const
+    QVariant BlockModel::data(const QModelIndex &index, int role) const
     {
-        return QList<Inlet>();
+        Q_UNUSED(role)
+        return QVariant::fromValue(m_Entries.at(index.row()));
     }
 
-    QList<Outlet> BlockModel::getOutlets() const
+    void BlockModel::addEntry(Block *block)
     {
-        return QList<Outlet>();
+        m_Entries.push_back(block);
+        emit countChanged();
     }
 
-    void BlockModel::setPosition(const QPoint &pos)
+    int BlockModel::count() const
     {
-    }
-
-    QPoint BlockModel::getPosition() const
-    {
-        return QPoint();
+        return m_Entries.count();
     }
 }

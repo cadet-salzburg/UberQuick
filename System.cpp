@@ -2,8 +2,10 @@
 #include <QDebug>
 #include <QQmlEngine>
 #include <QStringList>
+#include <QQuickWindow>
 #include "System.h"
 #include "Models/DockModel.h"
+
 
 using namespace _2Real;
 using namespace _2Real::app;
@@ -11,7 +13,8 @@ using namespace _2Real::app;
 namespace Uber {
     System* System::m_Instance = nullptr;
     System::System()
-    :m_DockModel(nullptr)
+    :QObject(nullptr)
+    ,m_DockModel(nullptr)
     ,m_Engine(Engine::instance())
     ,m_QmlEngine(new QQmlEngine )
     {
@@ -94,5 +97,13 @@ namespace Uber {
     DockModel* System::getDockModel()
     {
         return m_DockModel;
+    }
+
+    QPointF System::maptoGlobal(QQuickItem *item)
+    {
+        QQuickWindow *win = item->window();
+        QPointF itemRootPos = item->mapToScene(QPoint(item->x(), item->y()));
+        QPointF winPos(win->x(), win->y());
+        return winPos+itemRootPos;
     }
 }

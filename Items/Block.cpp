@@ -1,4 +1,5 @@
 #include "Block.h"
+#include <QDebug>
 namespace Uber {
     Block::Block(QObject *parent)
     :Item(parent)
@@ -11,5 +12,10 @@ namespace Uber {
     Block::~Block()
     {
 
+    }
+    QDebug operator<<(QDebug dbg, const Block &block )
+    {
+        dbg.nospace() << "Block";
+        return dbg.maybeSpace();
     }
 }

@@ -27,8 +27,6 @@ SOURCES += \
     Items/Workbench.cpp \
     Items/ComplexDelegate.cpp \
     Models/DataflowModel.cpp \
-    Models/QObjectListModel.cpp \
-    Models/BlockObjectListModel.cpp \
     Models/GraphModel.cpp
 
 HEADERS += \
@@ -44,14 +42,10 @@ HEADERS += \
     Items/Workbench.h \
     Items/ComplexDelegate.h \
     Models/DataflowModel.h \
-    Models/QObjectListModelT.h \
-    Models/QObjectListModel.h \
-    Models/BlockObjectListModel.h \
     Models/GraphModel.h
 
 OTHER_FILES += \
     qml/Dock/Dock.qml \
-    qml/Block/Block.qml \
     qml/Workbench/TaskBar.qml \
     qml/Workbench/MainWindow.qml \
     qml/UI/Button.qml \
@@ -76,25 +70,25 @@ LIBS += -ldwmapi
 win32 {
     #...
     EXTRA_BINFILES += \
-        $(_2REAL_DEPENDENCIES_DIR)/poco/bin/PocoFoundation.dll \
-        $(_2REAL_DEPENDENCIES_DIR)/poco/bin/PocoFoundationd.dll \
-        $(_2REAL_DEPENDENCIES_DIR)/poco/bin/PocoXML.dll \
-        $(_2REAL_DEPENDENCIES_DIR)/poco/bin/PocoXMLd.dll \
-        $(_2REAL_DEPENDENCIES_DIR)/videoinputlib/lib/videoInput_mtd_32.dll \
-        $(_2REAL_DEPENDENCIES_DIR)/videoinputlib/lib/videoInput_mtd_32d.dll \
-        $(_2REAL_DEPENDENCIES_DIR)/opencv/lib/vc10/bin/opencv_core242.dll \
-        $(_2REAL_DEPENDENCIES_DIR)/opencv/lib/vc10/bin/opencv_core242d.dll \
-        $(_2REAL_DEPENDENCIES_DIR)/opencv/lib/vc10/bin/opencv_imgproc242.dll \
-        $(_2REAL_DEPENDENCIES_DIR)/opencv/lib/vc10/bin/opencv_imgproc242d.dll \
-        $(_2REAL_DEPENDENCIES_DIR)/tbb/bin/tbb.dll \
-        $(_2REAL_DEPENDENCIES_DIR)/tbb/bin/tbb_debug.dll
+	$(_2REAL_DEPENDENCIES_DIR)/poco/bin/PocoFoundation.dll \
+	$(_2REAL_DEPENDENCIES_DIR)/poco/bin/PocoFoundationd.dll \
+	$(_2REAL_DEPENDENCIES_DIR)/poco/bin/PocoXML.dll \
+	$(_2REAL_DEPENDENCIES_DIR)/poco/bin/PocoXMLd.dll \
+	$(_2REAL_DEPENDENCIES_DIR)/videoinputlib/lib/videoInput_mtd_32.dll \
+	$(_2REAL_DEPENDENCIES_DIR)/videoinputlib/lib/videoInput_mtd_32d.dll \
+	$(_2REAL_DEPENDENCIES_DIR)/opencv/lib/vc10/bin/opencv_core242.dll \
+	$(_2REAL_DEPENDENCIES_DIR)/opencv/lib/vc10/bin/opencv_core242d.dll \
+	$(_2REAL_DEPENDENCIES_DIR)/opencv/lib/vc10/bin/opencv_imgproc242.dll \
+	$(_2REAL_DEPENDENCIES_DIR)/opencv/lib/vc10/bin/opencv_imgproc242d.dll \
+	$(_2REAL_DEPENDENCIES_DIR)/tbb/bin/tbb.dll \
+	$(_2REAL_DEPENDENCIES_DIR)/tbb/bin/tbb_debug.dll
 
     EXTRA_BINFILES_WIN = $${EXTRA_BINFILES}
     EXTRA_BINFILES_WIN ~= s,/,\\,g
-        DESTDIR_WIN = $${DESTDIR}
+	DESTDIR_WIN = $${DESTDIR}
     DESTDIR_WIN ~= s,/,\\,g
     for(FILE,EXTRA_BINFILES_WIN){
-                QMAKE_POST_LINK +=$$quote(cmd /c copy /y $${FILE} $${DESTDIR_WIN}$$escape_expand(\n\t))
+		QMAKE_POST_LINK +=$$quote(cmd /c copy /y $${FILE} $${DESTDIR_WIN}$$escape_expand(\n\t))
     }
 }
 

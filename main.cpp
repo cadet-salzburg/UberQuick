@@ -15,6 +15,7 @@
 #include <iostream>
 #include <string>
 #include "Models/DataflowModel.h"
+#include "Models/GraphModel.h"
 #include "Items/ComplexDelegate.h"
 
 using namespace Uber;
@@ -39,22 +40,24 @@ int main(int argc, char *argv[])
     system->loadBundles();
 
     QAbstractItemModel *dockModel = system->getDockModel();
-    DataflowModel *dataflowModel = new DataflowModel();
+    //DataflowModel *dataflowModel = new DataflowModel();
+    GraphModel *dataflowModel = new GraphModel();
 
     //------------Custom Delegate Test Starts ----------------------//
     //qmlRegisterType<IntervalSettings>( "UberQuick", 1, 0, "ComplexDelegate");
 
 
-    Block *m_block = new Block();
-    Inlet *m_inlet = new Inlet();
-    dataflowModel->addEntry(m_block);
-    dataflowModel->addEntry(m_inlet);
+    Block *m_blockA = new Block();
+    Block *m_blockB = new Block();
+    dataflowModel->addEntry(m_blockA);
+    dataflowModel->addEntry(m_blockB);
     system->getQmlEngine()->rootContext()->setContextProperty( "_flowmodel", dataflowModel );
     ComplexDelegate *complexDelegate(new ComplexDelegate());
     //QUrl url = QUrl
-    complexDelegate->addDelegate(QString(m_block->getClassName()),QUrl::fromLocalFile("qml/Workbench/Block.qml"));
-    complexDelegate->addDelegate(QString(m_inlet->getClassName()),QUrl::fromLocalFile("qml/Workbench/Inlet.qml"));
+    complexDelegate->addDelegate(QString(m_blockA->getClassName()),QUrl::fromLocalFile("qml/Workbench/Block.qml"));
+    //complexDelegate->addDelegate(QString(m_inlet->getClassName()),QUrl::fromLocalFile("qml/Workbench/Inlet.qml"));
     system->getQmlEngine()->rootContext()->setContextProperty( "_complexDelegate", complexDelegate );
+    system->getQmlEngine()->rootContext()->setContextProperty("_system", system );
     //------------Custom Delegate Test Ends ----------------------//
     //QQmlEngine *engine = new QQmlEngine;
 

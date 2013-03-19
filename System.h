@@ -2,11 +2,13 @@
 #define SYSTEM_H
 #include <QStringList>
 #include <QQmlEngine>
+#include <QQuickItem>
 #include "Models/DockModel.h"
 #include "_2RealApplication.h"
 namespace Uber {
-    class System
+    class System : public QObject
     {
+        Q_OBJECT
     public:
         inline static System*    getInstance()
         {
@@ -23,6 +25,7 @@ namespace Uber {
         {
             return m_QmlEngine;
         }
+        Q_INVOKABLE QPointF  maptoGlobal(QQuickItem* item);
 
     private:
         System();
