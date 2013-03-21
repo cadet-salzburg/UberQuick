@@ -43,10 +43,12 @@ namespace Uber {
     {
         return m_Entries.count();
     }
+
     QHash<int,QByteArray> GraphModel::roleNames() const
     {
         QHash<int, QByteArray> roles;
         roles[ModelTypeRole] = "modeltype";
+        roles[NameRole] = "name";
         roles[DimRole] = "size";
         return roles;
     }

@@ -57,7 +57,9 @@ Item {
                         cursorShape: Qt.PointingHandCursor
                         anchors.fill: parent
                         onClicked: {
-                            Qt.quit();
+                            //_system.
+                           // _system.
+//                            Qt.quit();
                         }
                     }
                 }
@@ -73,7 +75,7 @@ Item {
 //            highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
             MouseArea {
                 onClicked: {
-                    window.visible = false
+                    window.state = "hideDock"
                 }
             }
         }

@@ -16,7 +16,6 @@ SOURCES += \
     main.cpp \
     Image.cpp \
     System.cpp \
-    Models/SystemModel.cpp \
     Models/DockModel.cpp \
     Models/BlockModel.cpp \
     Items/Outlet.cpp \
@@ -26,12 +25,10 @@ SOURCES += \
     Items/Block.cpp \
     Items/Workbench.cpp \
     Items/ComplexDelegate.cpp \
-    Models/DataflowModel.cpp \
     Models/GraphModel.cpp
 
 HEADERS += \
     System.h \
-    Models/SystemModel.h \
     Models/DockModel.h \
     Models/BlockModel.h \
     Items/Outlet.h \
@@ -41,7 +38,6 @@ HEADERS += \
     Items/Block.h \
     Items/Workbench.h \
     Items/ComplexDelegate.h \
-    Models/DataflowModel.h \
     Models/GraphModel.h
 
 OTHER_FILES += \

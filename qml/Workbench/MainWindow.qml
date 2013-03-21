@@ -20,6 +20,7 @@ Rectangle {
             }
         }
 
+
         onDoubleClicked: {
             if (mouse.button == Qt.LeftButton)
             {

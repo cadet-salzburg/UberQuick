@@ -19,11 +19,11 @@ namespace Uber {
             return QVariant();
         if (role ==  PathRole )
         {
-            return QVariant::fromValue(m_Entries.at(index.row()).getImage());
+            return QVariant::fromValue(m_Entries.at(index.row()).getIconUrl());
         }
         else if (role == NameRole)
         {
-            return QVariant::fromValue(m_Entries.at(index.row()).getName());
+            return QVariant::fromValue(m_Entries.at(index.row()).getBlockName());
         }
         return QVariant();
     }

@@ -3,6 +3,7 @@
 #include <QQmlEngine>
 #include <QStringList>
 #include <QQuickWindow>
+#include <QQmlContext>
 #include "System.h"
 #include "Models/DockModel.h"
 
@@ -15,6 +16,7 @@ namespace Uber {
     System::System()
     :QObject(nullptr)
     ,m_DockModel(nullptr)
+    ,m_GraphModel(nullptr)
     ,m_Engine(Engine::instance())
     ,m_QmlEngine(new QQmlEngine )
     {
@@ -64,12 +66,14 @@ namespace Uber {
                             QString blockName = QString::fromStdString( iter->name );
                             if( blockName != "contextblock")		// don't show or use context blocks in ubercode
                             {
-                                GridEntry entry(blockName);
+                                GridEntry entry;
+                                entry.setBlockName(blockName);
+                                entry.setBundleHandle(bundleHandle);
                                 QFile file(bundleDir.filePath("icon.png"));
                                 if ( file.exists() )
                                 {
                                     QString iconPath = path + QString("/") + QString("icon.png");
-                                    entry.setImage(QUrl::fromLocalFile(iconPath));
+                                    entry.setIconUrl(QUrl::fromLocalFile(iconPath));
                                 }
                                 entries << entry;
                             }
@@ -92,11 +96,22 @@ namespace Uber {
         }
         m_DockModel = new DockModel();
         m_DockModel->addEntries(entries);
+        m_GraphModel = new GraphModel();
+        m_ComplexDelegate = new ComplexDelegate();
+        m_ComplexDelegate->addDelegate(QString("Uber::Block"),QUrl::fromLocalFile("qml/Workbench/Block.qml"));
+        m_QmlEngine->rootContext()->setContextProperty( "_complexDelegate", m_ComplexDelegate );
+        m_QmlEngine->rootContext()->setContextProperty("_system", this );
+        m_QmlEngine->rootContext()->setContextProperty( "_flowmodel", m_GraphModel );
     }
 
     DockModel* System::getDockModel()
     {
         return m_DockModel;
+    }
+
+    GraphModel* System::getGraphModel()
+    {
+        return m_GraphModel;
     }
 
     QPointF System::maptoGlobal(QQuickItem *item)
@@ -105,5 +120,12 @@ namespace Uber {
         QPointF itemRootPos = item->mapToScene(QPoint(item->x(), item->y()));
         QPointF winPos(win->x(), win->y());
         return winPos+itemRootPos;
+    }
+    void System::addBlock( _2Real::app::BundleHandle bundleHandle, QString blockName )
+    {
+        bundleHandle.createBlockInstance(blockName.toUtf8().constData());
+        Block *block = new Block();
+        block->setName( blockName );
+        m_GraphModel->addEntry(block);
     }
 }

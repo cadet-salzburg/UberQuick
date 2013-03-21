@@ -12,6 +12,11 @@ namespace Uber {
     {
         Q_OBJECT
     public:
+        enum ModelRoles {
+            ModelTypeRole = Qt::UserRole + 1,
+            NameRole      = ModelTypeRole + 1,
+            DimRole
+        };
         explicit BlockModel(QObject *parent = 0);
         ~BlockModel();
         virtual int             rowCount(const QModelIndex & parent = QModelIndex()) const;

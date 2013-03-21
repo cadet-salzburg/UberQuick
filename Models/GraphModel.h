@@ -14,6 +14,7 @@ namespace Uber {
     public:
         enum ModelRoles {
             ModelTypeRole = Qt::UserRole + 1,
+            NameRole      = ModelTypeRole + 1,
             DimRole
         };
     explicit                                    GraphModel(QObject *parent = 0);

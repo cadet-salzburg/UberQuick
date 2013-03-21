@@ -17,10 +17,11 @@ namespace Uber {
         Block( const Block &other);
         ~Block();
 
-        QList<Inlet>            getInlets() const;
-        QList<Outlet>           getOutlets() const;
-        //   void                    setPosition( const QPoint &pos );
-        //        QPoint                  getPosition() const;
+        void                setName( QString name );
+        QString             getName();
+
+        QList<Inlet>        getInlets() const;
+        QList<Outlet>       getOutlets() const;
 
     signals:
     public slots:
@@ -29,6 +30,7 @@ namespace Uber {
     private:
         QList<InletRef>     m_Inlets;
         QList<OutletRef>    m_Outlets;
+        QString             m_Name;
     };
     typedef QSharedPointer<Block> BlockRef;
     QDebug operator<<(QDebug dbg, const Block &block);

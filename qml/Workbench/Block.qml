@@ -11,7 +11,15 @@ Rectangle {
         color: "#969696"
         width: 3
     }
-
+    Text {
+        id: info
+        text: "A block"
+        font.family: "Helvetica"
+        font.pointSize: 12
+        color: "dimgray"
+        anchors.horizontalCenter: block.horizontalCenter
+        anchors.verticalCenter: block.verticalCenter
+    }
     MouseArea {
         anchors.fill: block
         property variant previousPosition
@@ -19,6 +27,7 @@ Rectangle {
         onPressed: {
             console.debug("Pressed2")
             previousPosition = Qt.point(mouseX, mouseY)
+            workbench.state = "hideDock"
             //mouse.accepted = false
         }
         onPositionChanged: {

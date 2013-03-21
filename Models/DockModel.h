@@ -6,41 +6,48 @@
 #include <QSize>
 #include <QUrl>
 #include <QDebug>
-
+#include "_2RealApplication.h"
 namespace Uber {
+    typedef QList<class GridEntry> GridEntryList;
     class GridEntry
     {
     public:
         GridEntry()
-        {
-        }
-
-        GridEntry(const QString& name, const QUrl& image = QUrl("../../images/arduino.svg") )
-        :m_Name(name)
-        ,m_Image(image)
+//        :m_BlockName(QString())
+//        ,m_IconUrl(QUrl())
+//        ,m_BundleHandle()
         {
 
         }
 
-        void setName( const QString& name )
+        void setBlockName( const QString& name )
         {
-            m_Name = name;
+            m_BlockName = name;
         }
 
-        QString getName()const
+        QString getBlockName()const
         {
-            return m_Name;
+            return m_BlockName;
         }
 
-        void setImage( const QUrl& img )
+        void setIconUrl( const QUrl& iconUrl )
         {
-            m_Image = img;
-            qDebug() << "image set";
+            m_IconUrl = iconUrl;
         }
 
-        QUrl getImage() const
+        QUrl getIconUrl() const
         {
-            return m_Image;
+            return m_IconUrl;
+        }
+
+        void setBundleHandle( _2Real::app::BundleHandle handle )
+        {
+            m_BundleHandle = handle;
+        }
+
+        _2Real::app::BundleHandle getBundleHandle()
+        {
+            return m_BundleHandle;
         }
 
         QSize getSize() const
@@ -50,11 +57,12 @@ namespace Uber {
         }
 
     private:
-        QString         m_Name;
-        QUrl            m_Image;
+        QString                     m_BlockName;
+        QUrl                        m_IconUrl;
+        _2Real::app::BundleHandle   m_BundleHandle;
     };
 
-    typedef QList<GridEntry> GridEntryList;
+
 
     class DockModel : public QAbstractListModel
     {
@@ -78,7 +86,7 @@ namespace Uber {
         void                    countChanged();
     public slots:
     private:
-        QList<GridEntry>      m_Entries;
+        GridEntryList           m_Entries;
     };
 }
 #endif // DOCKMODEL_H
