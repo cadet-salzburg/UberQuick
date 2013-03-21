@@ -38,7 +38,8 @@ HEADERS += \
     Items/Block.h \
     Items/Workbench.h \
     Items/ComplexDelegate.h \
-    Models/GraphModel.h
+    Models/GraphModel.h \
+    Image.h
 
 OTHER_FILES += \
     qml/Dock/Dock.qml \
