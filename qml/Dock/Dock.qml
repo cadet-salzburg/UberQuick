@@ -57,6 +57,7 @@ Item {
                         cursorShape: Qt.PointingHandCursor
                         anchors.fill: parent
                         onClicked: {
+                            _system.addBlock(index, Qt.point(mouseX, mouseY))
                             //_system.
                            // _system.
 //                            Qt.quit();

@@ -56,7 +56,11 @@ int main(int argc, char *argv[])
     canvas->setSource(QUrl::fromLocalFile("qml/Workbench/MainWindow.qml"));
     //view->setFlags(Qt::Window | Qt::FramelessWindowHint);
 
-    QObject::connect( system->getQmlEngine(), SIGNAL(quit()), QCoreApplication::instance(), SLOT(quit()));
+    //QObject::connect( system->getQmlEngine(), SIGNAL(quit()), QCoreApplication::instance(), SLOT(quit()));
+//    QObject::connect(system->getGraphModel(), SIGNAL(countChanged()),
+//                     canvas, SLOT(update()));
+
+
     //MS-Win code to enable transparent OpenGL windows.
     HWND hWndA = (HWND)dock->winId();
     HWND hWndB = (HWND)canvas->winId();

@@ -28,7 +28,7 @@ namespace Uber {
     public slots:
 
     private:
-        QList< QPair< QModelIndex, QString> >   m_Entries;
+        QList< QPair< QPersistentModelIndex, QString> >   m_Entries;
         BlockModel                              m_BlockModel;
 
     };

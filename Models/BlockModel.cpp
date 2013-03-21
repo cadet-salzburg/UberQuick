@@ -22,14 +22,19 @@ namespace Uber {
 
     QVariant BlockModel::data(const QModelIndex &index, int role) const
     {
-        Q_UNUSED(role)
-        return QVariant::fromValue(m_Entries.at(index.row()));
+        if ( role==NameRole)
+        {
+            return QVariant::fromValue( m_Entries.at(index.row())->getName() );
+        }
+       //return QVariant::fromValue(m_Entries.at(index.row()));
     }
 
     void BlockModel::addEntry(Block *block)
     {
+//        beginInsertRows(QModelIndex(), m_Entries.count(), m_Entries.count());
         m_Entries.push_back(block);
         emit countChanged();
+//        endInsertRows();
     }
 
     int BlockModel::count() const

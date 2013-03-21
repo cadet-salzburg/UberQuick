@@ -30,7 +30,7 @@ namespace Uber {
             return m_QmlEngine;
         }
         Q_INVOKABLE QPointF  maptoGlobal(QQuickItem* item);
-        Q_INVOKABLE void     addBlock( _2Real::app::BundleHandle bundleHandle, QString blockName );
+        Q_INVOKABLE void     addBlock( int index, QPoint pos );
     private:
         System();
         System(System const&);// Don't Implement

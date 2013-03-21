@@ -46,6 +46,17 @@ namespace Uber {
         endInsertRows();
         emit countChanged();
     }
+
+    GridEntry   DockModel::getEntry( int row )
+    {
+        if ( m_Entries.size() >= row+1)
+        {
+            return m_Entries.at(row);
+        } else {
+            return GridEntry();
+        }
+    }
+
     inline int DockModel::count() const
     {
         return m_Entries.count();

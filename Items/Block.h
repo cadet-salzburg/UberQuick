@@ -12,6 +12,7 @@ namespace Uber {
     class Block : public Item
     {
         Q_OBJECT
+        Q_PROPERTY(QString name READ getName WRITE setName)
     public:
         Block(QObject *parent = 0);
         Block( const Block &other);

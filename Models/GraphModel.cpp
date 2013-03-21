@@ -32,9 +32,11 @@ namespace Uber {
     {
         if ( entry->getClassName()=="Uber::Block")
         {
+            beginInsertRows(QModelIndex(), m_Entries.count(), m_Entries.count() );
             int row = m_BlockModel.count();
             m_BlockModel.addEntry(dynamic_cast<Block*>(entry));
-            m_Entries.push_back(qMakePair(m_BlockModel.index(row),QString("Uber::Block")));
+            m_Entries.push_back(qMakePair(QPersistentModelIndex(m_BlockModel.index(row)),QString("Uber::Block")));
+            endInsertRows();
             emit countChanged();
         }
     }

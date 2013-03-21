@@ -7,7 +7,6 @@
 #include "System.h"
 #include "Models/DockModel.h"
 
-
 using namespace _2Real;
 using namespace _2Real::app;
 
@@ -121,11 +120,21 @@ namespace Uber {
         QPointF winPos(win->x(), win->y());
         return winPos+itemRootPos;
     }
-    void System::addBlock( _2Real::app::BundleHandle bundleHandle, QString blockName )
+
+    void System::addBlock( int index, QPoint pos )
     {
-        bundleHandle.createBlockInstance(blockName.toUtf8().constData());
-        Block *block = new Block();
-        block->setName( blockName );
+        //int row = index.row();
+        GridEntry entry = m_DockModel->getEntry(index);
+        entry.getBundleHandle().createBlockInstance(entry.getBlockName().toUtf8().constData());
+        Block* block = new Block();
+        block->setPosition(pos);
+        block->setName(entry.getBlockName());
         m_GraphModel->addEntry(block);
+
+//        m_DockModel-
+//        bundleHandle.createBlockInstance(blockName.toUtf8().constData());
+//        Block *block = new Block();
+//        block->setName( blockName );
+//        m_GraphModel->addEntry(block);
     }
 }

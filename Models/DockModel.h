@@ -62,8 +62,6 @@ namespace Uber {
         _2Real::app::BundleHandle   m_BundleHandle;
     };
 
-
-
     class DockModel : public QAbstractListModel
     {
         Q_OBJECT
@@ -71,14 +69,17 @@ namespace Uber {
     public:
         enum GridEntryRoles {
             PathRole = Qt::UserRole + 1,
-            NameRole
+            NameRole = PathRole + 1
         };
+
         explicit                DockModel(QObject *parent = 0);
         int                     rowCount(const QModelIndex & parent = QModelIndex()) const;
         QVariant                data(const QModelIndex & index, int role = Qt::DecorationRole) const;
 
         void                    addEntry( const GridEntry &entry );
         void                    addEntries( const GridEntryList& entries );
+
+        GridEntry               getEntry( int row );
 
         int                     count() const;
         QHash<int,QByteArray>   roleNames() const;
