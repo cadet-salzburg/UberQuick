@@ -39,6 +39,7 @@ Rectangle {
             id: multidel
             Loader {
                 id: loader
+                onLoaded: console.log(modeltype)
                 source: _complexDelegate.getDelegate(modeltype)
             }
         }

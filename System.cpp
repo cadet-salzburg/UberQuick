@@ -4,6 +4,7 @@
 #include <QStringList>
 #include <QQuickWindow>
 #include <QQmlContext>
+#include "Items/Block.h"
 #include "System.h"
 #include "Models/DockModel.h"
 
@@ -15,7 +16,7 @@ namespace Uber {
     System::System()
     :QObject(nullptr)
     ,m_DockModel(nullptr)
-    ,m_GraphModel(nullptr)
+    ,m_ItemModel(nullptr)
     ,m_Engine(Engine::instance())
     ,m_QmlEngine(new QQmlEngine )
     {
@@ -95,12 +96,13 @@ namespace Uber {
         }
         m_DockModel = new DockModel();
         m_DockModel->addEntries(entries);
-        m_GraphModel = new GraphModel();
+        m_ItemModel = new ItemObjectListModel(0);
         m_ComplexDelegate = new ComplexDelegate();
         m_ComplexDelegate->addDelegate(QString("Uber::Block"),QUrl::fromLocalFile("qml/Workbench/Block.qml"));
         m_QmlEngine->rootContext()->setContextProperty( "_complexDelegate", m_ComplexDelegate );
         m_QmlEngine->rootContext()->setContextProperty("_system", this );
-        m_QmlEngine->rootContext()->setContextProperty( "_flowmodel", m_GraphModel );
+        //m_QmlEngine->rootContext()->setContextProperty( "_flowmodel", m_GraphModel );
+        m_QmlEngine->rootContext()->setContextProperty( "_flowmodel", m_ItemModel );
     }
 
     DockModel* System::getDockModel()
@@ -108,10 +110,15 @@ namespace Uber {
         return m_DockModel;
     }
 
-    GraphModel* System::getGraphModel()
+    ItemObjectListModel*   System::getItemModel()
     {
-        return m_GraphModel;
+        return m_ItemModel;
     }
+
+//    GraphModel* System::getGraphModel()
+//    {
+//        return m_GraphModel;
+//    }
 
     QPointF System::maptoGlobal(QQuickItem *item)
     {
@@ -129,7 +136,8 @@ namespace Uber {
         Block* block = new Block();
         block->setPosition(pos);
         block->setName(entry.getBlockName());
-        m_GraphModel->addEntry(block);
+        //m_GraphModel->addEntry(block);
+        m_ItemModel->append(block);
 
 //        m_DockModel-
 //        bundleHandle.createBlockInstance(blockName.toUtf8().constData());

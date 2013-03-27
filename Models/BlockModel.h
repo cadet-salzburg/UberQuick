@@ -19,11 +19,11 @@ namespace Uber {
         };
         explicit BlockModel(QObject *parent = 0);
         ~BlockModel();
+
         virtual int             rowCount(const QModelIndex & parent = QModelIndex()) const;
         virtual QVariant        data(const QModelIndex & index, int role = Qt::DisplayRole) const;
 
         void                    addEntry( Block* block);
-
         int                     count() const;
 
     private:

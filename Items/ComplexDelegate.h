@@ -15,7 +15,6 @@ namespace Uber {
         Q_INVOKABLE void                setDelegate( QString modelType, QUrl fileUrl );
         Q_INVOKABLE QUrl                getDelegate( QString modelType );
     signals:
-    signals:
         void                            delegateChanged(QString);
     public slots:
     private:

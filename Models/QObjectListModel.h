@@ -44,7 +44,6 @@
 
 #include <QAbstractListModel>
 #include <QQmlEngine>
-class QObjectListModelIndexByName;
 
 /*
 QObjectListModel presents a way to store QObject pointers in a list
@@ -56,7 +55,7 @@ static type checking on the C++ side.
 
 class QObjectListModel : public QAbstractListModel
 {
-    Q_OBJECT;
+    Q_OBJECT
     Q_PROPERTY(int count READ count NOTIFY countChanged)
 public:
     explicit QObjectListModel(QObject *parent = 0);
@@ -71,7 +70,9 @@ public:
     void trackObject(const QObject *obj, const bool on );
 
     //model API
-    enum Roles { ObjectRole = Qt::UserRole+1 };
+    enum Roles {
+        ObjectRole =    Qt::UserRole+1
+    };
 
     int rowCount(const QModelIndex &parent) const;
     QVariant data(const QModelIndex &index, int role) const;
@@ -122,10 +123,17 @@ public:
     void dump() const; // print object names
     void touch(); // issues modelreset
 
+    const QHash<int, QByteArray> roleNames()
+    {
+        QHash<int, QByteArray> roles;
+        roles[QObjectListModel::ObjectRole] = "object";
+        return roles;
+    }
+
     // set up index for objects and their names
     // speeds up contains/indexOf/indexOfName etc...
-    inline bool hasIndexByName() const { return m_indexByName!=nullptr; }
-    void setIndexByName(bool enable);
+    //inline bool hasIndexByName() const { return m_indexByName!=nullptr; }
+    //void setIndexByName(bool enable);
 
 signals:
     void countChanged();
@@ -136,7 +144,7 @@ protected slots:
 protected:
     QList<QObject*> m_objects;
     bool m_tracking;
-    QObjectListModelIndexByName * m_indexByName;
+    //QObjectListModelIndexByName * m_indexByName;
 
 #ifdef _DEBUG
     // to record access patterns to decide if indexing is useful
@@ -144,5 +152,4 @@ protected:
     int m_accessCountIndexOfName;
 #endif
 };
-
 #endif // QOBJECTMODEL_H

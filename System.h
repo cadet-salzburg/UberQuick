@@ -5,7 +5,8 @@
 #include <QQuickItem>
 #include "Items/ComplexDelegate.h"
 #include "Models/DockModel.h"
-#include "Models/GraphModel.h"
+//#include "Models/GraphModel.h"
+#include "Models/ItemObjectListModel.h"
 #include "_2RealApplication.h"
 
 namespace Uber {
@@ -24,7 +25,8 @@ namespace Uber {
         ~System();
         void                            loadBundles();
         DockModel*                      getDockModel();
-        GraphModel*                     getGraphModel();
+        //GraphModel*                     getGraphModel();
+        ItemObjectListModel*            getItemModel();
         inline QQmlEngine*              getQmlEngine()
         {
             return m_QmlEngine;
@@ -38,7 +40,8 @@ namespace Uber {
         static System*                  m_Instance;
         QStringList                     m_BundleFilenames;
         DockModel*                      m_DockModel;
-        GraphModel*                     m_GraphModel;
+        //GraphModel*                     m_GraphModel;
+        ItemObjectListModel*            m_ItemModel;
         _2Real::app::Engine&            m_Engine;
         QQmlEngine*                     m_QmlEngine;
         ComplexDelegate*                m_ComplexDelegate;
