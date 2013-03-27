@@ -71,10 +71,10 @@ int main(int argc, char *argv[])
     bb.fEnable = TRUE;
     DwmEnableBlurBehindWindow(hWndA, &bb);
     DwmEnableBlurBehindWindow(hWndB, &bb);
-    Uber::Item item;
-    Uber::Block blockA, blockB;
-    Uber::Inlet inlet;
-    Uber::Outlet outlet;
+//    Uber::Item item;
+//    Uber::Block blockA, blockB;
+//    Uber::Inlet inlet;
+//    Uber::Outlet outlet;
 //    std::string s("Hello");
 //    std::cout << "_Ba: " << typeid(s).name() << std::endl;
 //    std::cout << "_Item: " << std::string( item.getClassName().toUtf8().constData() ) << std::endl;

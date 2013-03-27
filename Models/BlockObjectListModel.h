@@ -1,15 +1,15 @@
 #ifndef BLOCKOBJECTLISTMODEL_H
 #define BLOCKOBJECTLISTMODEL_H
-
-#include "Models/QObjectListModelT.h"
+#include "QObjectListModelT.h"
+#include "Items/Block.h"
 
 namespace Uber {
-    class BlockObjectListModel : public QObjectListModelT<Block*>
+    class BlockObjectListModel :public QObjectListModelT<Block*>
     {
     public:
-    explicit BlockObjectListModel(QObject *parent = 0);
-    signals:
-    public slots:
+        BlockObjectListModel(QObject *parent);
+        BlockObjectListModel(const QList<Block*> &objects, QObject *parent = 0);
+        BlockObjectListModel(BlockObjectListModel*blockListModel, QObject *parent);
     };
 }
 #endif // BLOCKOBJECTLISTMODEL_H

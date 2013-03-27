@@ -9,6 +9,7 @@ namespace Uber {
     class Item : public QObject
     {
         Q_OBJECT
+        Q_PROPERTY (QString className READ getClassName )
         Q_PROPERTY(QPointF position READ position WRITE setPosition)
         Q_PROPERTY(QSizeF size READ size WRITE setSize)
     public:

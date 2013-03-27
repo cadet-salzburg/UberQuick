@@ -7,6 +7,7 @@
 #include "Models/DockModel.h"
 //#include "Models/GraphModel.h"
 #include "Models/ItemObjectListModel.h"
+#include "Models/QObjectListModel.h"
 #include "_2RealApplication.h"
 
 namespace Uber {
@@ -26,7 +27,7 @@ namespace Uber {
         void                            loadBundles();
         DockModel*                      getDockModel();
         //GraphModel*                     getGraphModel();
-        ItemObjectListModel*            getItemModel();
+        QObjectListModel*            getItemModel();
         inline QQmlEngine*              getQmlEngine()
         {
             return m_QmlEngine;
@@ -41,7 +42,7 @@ namespace Uber {
         QStringList                     m_BundleFilenames;
         DockModel*                      m_DockModel;
         //GraphModel*                     m_GraphModel;
-        ItemObjectListModel*            m_ItemModel;
+        QObjectListModel*            m_ItemModel;
         _2Real::app::Engine&            m_Engine;
         QQmlEngine*                     m_QmlEngine;
         ComplexDelegate*                m_ComplexDelegate;

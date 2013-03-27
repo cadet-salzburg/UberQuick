@@ -37,10 +37,11 @@ Rectangle {
         model: _flowmodel;
         delegate: Item {
             id: multidel
+
+            : console.log(display)
             Loader {
                 id: loader
-                onLoaded: console.log(modeltype)
-                source: _complexDelegate.getDelegate(modeltype)
+                source: _complexDelegate.getDelegate(object.className())
             }
         }
     }

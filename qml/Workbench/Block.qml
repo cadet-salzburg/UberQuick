@@ -1,5 +1,4 @@
 import QtQuick 2.0
-
 Rectangle {
     id: block
     height: 30
@@ -11,6 +10,7 @@ Rectangle {
         color: "#969696"
         width: 3
     }
+
     Text {
         id: info
         text: name

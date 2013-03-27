@@ -26,7 +26,9 @@ SOURCES += \
     Items/Workbench.cpp \
     Items/ComplexDelegate.cpp \
     Models/GraphModel.cpp \
-    Models/QObjectListModel.cpp
+    Models/QObjectListModel.cpp \
+    Models/BlockObjectListModel.cpp \
+    Models/LinkObjectListModel.cpp
 
 HEADERS += \
     System.h \
@@ -44,7 +46,9 @@ HEADERS += \
     Models/QObjectListModelT.h \
     Models/QObjectListModelAttachment.h \
     Models/QObjectListModel.h \
-    Models/ItemObjectListModel.h
+    Models/ItemObjectListModel.h \
+    Models/BlockObjectListModel.h \
+    Models/LinkObjectListModel.h
 
 OTHER_FILES += \
     qml/Dock/Dock.qml \
