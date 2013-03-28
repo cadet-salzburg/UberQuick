@@ -15,8 +15,7 @@
 #include <iostream>
 #include <string>
 #include "Models/DataflowModel.h"
-#include "Models/GraphModel.h"
-#include "Items/ComplexDelegate.h"
+
 
 using namespace Uber;
 int main(int argc, char *argv[])
@@ -30,8 +29,6 @@ int main(int argc, char *argv[])
     canvas->setResizeMode(QQuickView::SizeRootObjectToView);
     canvas->setGeometry(300,200, 640, 480);
     canvas->show();
-
-
 
     QQuickView *dock = new QQuickView(system->getQmlEngine(), 0);
     dock->setResizeMode(QQuickView::SizeRootObjectToView);
@@ -71,18 +68,5 @@ int main(int argc, char *argv[])
     bb.fEnable = TRUE;
     DwmEnableBlurBehindWindow(hWndA, &bb);
     DwmEnableBlurBehindWindow(hWndB, &bb);
-//    Uber::Item item;
-//    Uber::Block blockA, blockB;
-//    Uber::Inlet inlet;
-//    Uber::Outlet outlet;
-//    std::string s("Hello");
-//    std::cout << "_Ba: " << typeid(s).name() << std::endl;
-//    std::cout << "_Item: " << std::string( item.getClassName().toUtf8().constData() ) << std::endl;
-//    std::cout << "_Ba: " << std::string( blockA.getClassName().toUtf8().constData() ) << std::endl;
-//    std::cout << "_Bb: " << std::string( blockB.getClassName().toUtf8().constData() ) << std::endl;
-//    std::cout << "_Inlet: " << std::string( inlet.getClassName().toUtf8().constData() ) << std::endl;
-//    std::cout << "_Outlet: " << std::string( outlet.getClassName().toUtf8().constData() ) << std::endl;
-//    Uber::Item *bl = new Uber::Block;
-//    std::cout << "_Ba: " << std::string( bl->getClassName().toUtf8().constData() ) << std::endl;
     return app.exec();
 }

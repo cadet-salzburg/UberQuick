@@ -139,6 +139,8 @@ QVariant QObjectListModel::data(const QModelIndex &index, int role) const
         return QVariant::fromValue(m_objects.at(index.row()));
     case Qt::DisplayRole:
         return QVariant::fromValue(m_objects.at(index.row())->objectName());
+    case QObjectListModel::TypeRole:
+        return QVariant();
     }
     return QVariant();
 }

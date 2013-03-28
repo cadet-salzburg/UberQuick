@@ -17,11 +17,11 @@ namespace Uber {
         Item(QObject *parent, QPointF position, QSizeF size);
         Item(const Item &other);
 
-        QPointF             position() const;
-        void                setPosition(const QPointF &position );
-        QSizeF              size() const;
-        void                setSize(const QSizeF &size);
-        QString             getClassName() const
+        QPointF                 position() const;
+        void                    setPosition(const QPointF &position );
+        QSizeF                  size() const;
+        void                    setSize(const QSizeF &size);
+        Q_INVOKABLE QString     getClassName() const
         {
             return QString( metaObject()->className());
         }

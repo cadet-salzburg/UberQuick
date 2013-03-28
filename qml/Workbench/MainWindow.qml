@@ -1,5 +1,4 @@
 import QtQuick 2.0
-
 Rectangle {
     id: workbench
     width: 100
@@ -31,17 +30,32 @@ Rectangle {
             }
         }
     }
+//    Item {
+//    width: 300; height: 200
+//    Ellipse {
+//    x: 50; y: 50
+//    width: 200; height: 100
+//    }
+//    }
+//    Item {
+//    width: 200; height: 150
+//    Rectt {
+//    x: 50; y: 50
+//    width: 200; height: 100
+//    }
+//    }
+
+
+
     Repeater {
         id: grid
         anchors.fill: parent
         model: _flowmodel;
         delegate: Item {
             id: multidel
-
-            : console.log(display)
             Loader {
                 id: loader
-                source: _complexDelegate.getDelegate(object.className())
+                source: _complexDelegate.getDelegate(getClassName())
             }
         }
     }

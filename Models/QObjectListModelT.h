@@ -35,7 +35,7 @@
 ****************************************************************************/
 #ifndef QObjectListModelT_H
 #define QObjectListModelT_H
-#include "Models/QObjectListModel.h"
+#include "QObjectListModel.h"
 /*
 subclass QObjectListModelT<T> to work with a typed QObjectListModel,
 e.g.

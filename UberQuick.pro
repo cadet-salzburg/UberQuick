@@ -17,7 +17,6 @@ SOURCES += \
     Image.cpp \
     System.cpp \
     Models/DockModel.cpp \
-    Models/BlockModel.cpp \
     Items/Outlet.cpp \
     Items/Item.cpp \
     Items/Inlet.cpp \
@@ -25,15 +24,13 @@ SOURCES += \
     Items/Block.cpp \
     Items/Workbench.cpp \
     Items/ComplexDelegate.cpp \
-    Models/GraphModel.cpp \
     Models/QObjectListModel.cpp \
     Models/BlockObjectListModel.cpp \
-    Models/LinkObjectListModel.cpp
+    Models/ItemObjectListModel.cpp
 
 HEADERS += \
     System.h \
     Models/DockModel.h \
-    Models/BlockModel.h \
     Items/Outlet.h \
     Items/Item.h \
     Items/Inlet.h \
@@ -41,14 +38,12 @@ HEADERS += \
     Items/Block.h \
     Items/Workbench.h \
     Items/ComplexDelegate.h \
-    Models/GraphModel.h \
     Image.h \
     Models/QObjectListModelT.h \
     Models/QObjectListModelAttachment.h \
     Models/QObjectListModel.h \
     Models/ItemObjectListModel.h \
-    Models/BlockObjectListModel.h \
-    Models/LinkObjectListModel.h
+    Models/BlockObjectListModel.h
 
 OTHER_FILES += \
     qml/Dock/Dock.qml \

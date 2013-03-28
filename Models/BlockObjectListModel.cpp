@@ -6,7 +6,7 @@ namespace Uber {
     {
 
     }
-    BlockObjectListModel::BlockObjectListModel(const QList<Block*> &objects, QObject *parent = 0)
+    BlockObjectListModel::BlockObjectListModel(const QList<Block*> &objects, QObject *parent)
     :QObjectListModelT<Block*>(objects, parent)
     {
 

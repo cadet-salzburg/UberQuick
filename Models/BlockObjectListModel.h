@@ -1,7 +1,7 @@
 #ifndef BLOCKOBJECTLISTMODEL_H
 #define BLOCKOBJECTLISTMODEL_H
 #include "QObjectListModelT.h"
-#include "Items/Block.h"
+#include "../Items/Block.h"
 
 namespace Uber {
     class BlockObjectListModel :public QObjectListModelT<Block*>

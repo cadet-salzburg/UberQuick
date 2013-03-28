@@ -96,13 +96,11 @@ namespace Uber {
         }
         m_DockModel = new DockModel();
         m_DockModel->addEntries(entries);
-        //m_ItemModel = new ItemObjectListModel(0);
-        m_ItemModel = new QObjectListModel();
+        m_ItemModel = new ItemObjectListModel(0);
         m_ComplexDelegate = new ComplexDelegate();
         m_ComplexDelegate->addDelegate(QString("Uber::Block"),QUrl::fromLocalFile("qml/Workbench/Block.qml"));
         m_QmlEngine->rootContext()->setContextProperty( "_complexDelegate", m_ComplexDelegate );
         m_QmlEngine->rootContext()->setContextProperty("_system", this );
-        //m_QmlEngine->rootContext()->setContextProperty( "_flowmodel", m_GraphModel );
         m_QmlEngine->rootContext()->setContextProperty( "_flowmodel", m_ItemModel );
     }
 
@@ -111,7 +109,7 @@ namespace Uber {
         return m_DockModel;
     }
 //  ItemObjectListModel*   System::getItemModel()
-    QObjectListModel*   System::getItemModel()
+    ItemObjectListModel*   System::getItemModel()
     {
         return m_ItemModel;
     }
