@@ -13,7 +13,7 @@ Rectangle {
 
     Text {
         id: info
-        text: name
+        text: display.name
         font.family: "Helvetica"
         font.pointSize: 12
         color: "dimgray"

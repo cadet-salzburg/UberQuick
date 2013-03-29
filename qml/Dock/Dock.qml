@@ -25,8 +25,8 @@ Item {
                 if (pressedButtons == Qt.LeftButton) {
                     var dx = mouseX - previousPosition.x
                     var dy = mouseY - previousPosition.y
-                    _dockView.x = _dockView.x + dx
-                    _dockView.y = _dockView.y + dy
+                    DockView.x = DockView.x + dx
+                    DockView.y = DockView.y + dy
                 }
             }
         }
@@ -57,7 +57,7 @@ Item {
                         cursorShape: Qt.PointingHandCursor
                         anchors.fill: parent
                         onClicked: {
-                            _system.addBlock(index, Qt.point(mouseX, mouseY))
+                            System.addBlock(index, Qt.point(mouseX, mouseY))
                             //_system.
                            // _system.
 //                            Qt.quit();
@@ -71,7 +71,7 @@ Item {
             anchors.fill: parent
             anchors.margins: parent.radius
             cellWidth: 40; cellHeight: 40
-            model: _model;
+            model: DockModel;
             delegate: dockDelegate
 //            highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
             MouseArea {

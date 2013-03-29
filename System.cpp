@@ -16,7 +16,7 @@ namespace Uber {
     System::System()
     :QObject(nullptr)
     ,m_DockModel(nullptr)
-    ,m_ItemModel(nullptr)
+    ,m_BlockModel(new BlockObjectListModel(0))
     ,m_Engine(Engine::instance())
     ,m_QmlEngine(new QQmlEngine )
     {
@@ -96,29 +96,21 @@ namespace Uber {
         }
         m_DockModel = new DockModel();
         m_DockModel->addEntries(entries);
-        m_ItemModel = new ItemObjectListModel(0);
         m_ComplexDelegate = new ComplexDelegate();
         m_ComplexDelegate->addDelegate(QString("Uber::Block"),QUrl::fromLocalFile("qml/Workbench/Block.qml"));
-        m_QmlEngine->rootContext()->setContextProperty( "_complexDelegate", m_ComplexDelegate );
-        m_QmlEngine->rootContext()->setContextProperty("_system", this );
-        m_QmlEngine->rootContext()->setContextProperty( "_flowmodel", m_ItemModel );
+        m_QmlEngine->rootContext()->setContextProperty( "ComplexDelegate", m_ComplexDelegate );
+        m_QmlEngine->rootContext()->setContextProperty("System", this );
+        m_QmlEngine->rootContext()->setContextProperty( "BlockModel", m_BlockModel );
     }
 
     DockModel* System::getDockModel()
     {
         return m_DockModel;
     }
-//  ItemObjectListModel*   System::getItemModel()
-    ItemObjectListModel*   System::getItemModel()
+    BlockObjectListModel*   System::getBlockModel()
     {
-        return m_ItemModel;
+        return m_BlockModel;
     }
-
-//    GraphModel* System::getGraphModel()
-//    {
-//        return m_GraphModel;
-//    }
-
     QPointF System::maptoGlobal(QQuickItem *item)
     {
         QQuickWindow *win = item->window();
@@ -136,13 +128,6 @@ namespace Uber {
         block->setPosition(pos);
 
         block->setName(entry.getBlockName());
-        //m_GraphModel->addEntry(block);
-        m_ItemModel->append(block);
-
-//        m_DockModel-
-//        bundleHandle.createBlockInstance(blockName.toUtf8().constData());
-//        Block *block = new Block();
-//        block->setName( blockName );
-//        m_GraphModel->addEntry(block);
+        m_BlockModel->append(block);
     }
 }

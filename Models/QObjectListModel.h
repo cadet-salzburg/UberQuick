@@ -71,8 +71,7 @@ public:
 
     //model API
     enum Roles {
-        ObjectRole =    Qt::UserRole+1,
-        TypeRole = ObjectRole +1
+        ObjectRole =    Qt::UserRole+1
     };
 
     int rowCount(const QModelIndex &parent) const;
@@ -127,8 +126,7 @@ public:
     const QHash<int, QByteArray> roleNames()
     {
         QHash<int, QByteArray> roles;
-        roles[QObjectListModel::ObjectRole] = "object";
-        roles[QObjectListModel::TypeRole] = "type";
+        roles[ObjectRole] = "object";
         return roles;
     }
 

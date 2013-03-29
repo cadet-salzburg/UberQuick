@@ -1,4 +1,5 @@
 import QtQuick 2.0
+
 Rectangle {
     id: workbench
     width: 100
@@ -18,49 +19,29 @@ Rectangle {
                 workbench.state = "hideDock"
             }
         }
-
-
         onDoubleClicked: {
             if (mouse.button == Qt.LeftButton)
             {
-                var pos =_system.maptoGlobal(parent)
-                _dockView.setX(pos.x+mouseX-_dockView.width/2)
-                 _dockView.setY(pos.y+mouseY)
+                var pos = System.maptoGlobal(parent)
+                DockView.setX(pos.x+mouseX-DockView.width/2)
+                 DockView.setY(pos.y+mouseY)
                 workbench.state = "showDock"
             }
         }
     }
-//    Item {
-//    width: 300; height: 200
-//    Ellipse {
-//    x: 50; y: 50
-//    width: 200; height: 100
-//    }
-//    }
-//    Item {
-//    width: 200; height: 150
-//    Rectt {
-//    x: 50; y: 50
-//    width: 200; height: 100
-//    }
-//    }
-
-
-
     Repeater {
         id: grid
         anchors.fill: parent
-        model: _flowmodel;
+        model: BlockModel
         delegate: Item {
             id: multidel
             Loader {
                 id: loader
-                source: _complexDelegate.getDelegate(getClassName())
+                source: ComplexDelegate.getDelegate(display.getClassName())
             }
         }
     }
     //------------ Custom Delegate Test Ends ----------------//
-
     Text {
         id: info
         text: "Double-click to make a new object"
@@ -77,13 +58,13 @@ Rectangle {
         State {
             name: "hideDock"
             PropertyChanges { target: info; opacity: 1 }
-            PropertyChanges { target: _dockView; visible: false }
+            PropertyChanges { target: DockView; visible: false }
             //_dockView.setVisible: false
         },
         State {
             name: "showDock"
             PropertyChanges { target: info; opacity: 0 }
-            PropertyChanges { target: _dockView; visible: true }
+            PropertyChanges { target: DockView; visible: true }
            // PropertyChanges { target: _dockView; x: 100; y: 100 }
         }
     ]

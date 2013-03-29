@@ -14,7 +14,8 @@
 #include "Items/Inlet.h"
 #include <iostream>
 #include <string>
-#include "Models/DataflowModel.h"
+#include "Models/BlockObjectListModel.h"
+#include "Models/QObjectListModel.h"
 
 
 using namespace Uber;
@@ -35,8 +36,12 @@ int main(int argc, char *argv[])
     dock->setGeometry(300,200, 400, 150);
     dock->show();
 
-    system->getQmlEngine()->rootContext()->setContextProperty( "_model", dockModel );
-    system->getQmlEngine()->rootContext()->setContextProperty("_dockView", dock );
+    system->getQmlEngine()->rootContext()->setContextProperty( "DockModel", dockModel );
+    system->getQmlEngine()->rootContext()->setContextProperty("DockView", dock );
+    qmlRegisterType<Uber::Item>();
+    qmlRegisterType<Uber::Block>();
+    qmlRegisterType<BlockObjectListModel>();
+    qmlRegisterType<QObjectListModel>();
 
     QSurfaceFormat surfaceFormat;
     surfaceFormat.setAlphaBufferSize(8);
@@ -68,5 +73,6 @@ int main(int argc, char *argv[])
     bb.fEnable = TRUE;
     DwmEnableBlurBehindWindow(hWndA, &bb);
     DwmEnableBlurBehindWindow(hWndB, &bb);
-    return app.exec();
+    int res =  app.exec();
+    return res;
 }
