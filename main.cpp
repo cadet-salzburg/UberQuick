@@ -16,6 +16,7 @@
 #include <string>
 #include "Models/BlockObjectListModel.h"
 #include "Models/QObjectListModel.h"
+#include "QmlLine.h"
 
 
 using namespace Uber;
@@ -42,6 +43,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<Uber::Block>();
     qmlRegisterType<BlockObjectListModel>();
     qmlRegisterType<QObjectListModel>();
+    qmlRegisterType<Uber::QmlLine>("UberComponents", 0, 1, "Line");
 
     QSurfaceFormat surfaceFormat;
     surfaceFormat.setAlphaBufferSize(8);

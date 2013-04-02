@@ -101,10 +101,9 @@ Item {
                     if (pressedButtons == Qt.LeftButton) {
                         var dx = mouseX - previousPosition.x
                         var dy = mouseY - previousPosition.y
-                        _dockView.width = _dockView.width + dx
-                        _dockView.height = _dockView.height + dy
+                        DockView.width = DockView.width + dx
+                        DockView.height = DockView.height + dy
                     }
-
                 }
             }
         }

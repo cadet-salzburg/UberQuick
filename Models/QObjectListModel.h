@@ -123,10 +123,10 @@ public:
     void dump() const; // print object names
     void touch(); // issues modelreset
 
-    const QHash<int, QByteArray> roleNames()
+    QHash<int, QByteArray> roleNames() const
     {
         QHash<int, QByteArray> roles;
-        roles[ObjectRole] = "object";
+        roles[QObjectListModel::ObjectRole] = "object";
         return roles;
     }
 

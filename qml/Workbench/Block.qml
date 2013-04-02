@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import UberComponents 0.1
 Rectangle {
     id: block
     height: 30
@@ -10,10 +11,18 @@ Rectangle {
         color: "#969696"
         width: 3
     }
+    //Inlets
+
+    Line {
+        width: 500
+        thickness: 300
+        color: "black"
+        y: -10
+    }
 
     Text {
         id: info
-        text: display.name
+        text: object.name
         font.family: "Helvetica"
         font.pointSize: 12
         color: "dimgray"
@@ -25,7 +34,6 @@ Rectangle {
         property variant previousPosition
         //propagateComposedEvents: true
         onPressed: {
-            console.debug("Pressed2")
             previousPosition = Qt.point(mouseX, mouseY)
             workbench.state = "hideDock"
             //mouse.accepted = false

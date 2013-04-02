@@ -26,7 +26,8 @@ SOURCES += \
     Items/ComplexDelegate.cpp \
     Models/QObjectListModel.cpp \
     Models/BlockObjectListModel.cpp \
-    Models/ItemObjectListModel.cpp
+    Models/ItemObjectListModel.cpp \
+    QmlLine.cpp
 
 HEADERS += \
     System.h \
@@ -43,7 +44,8 @@ HEADERS += \
     Models/QObjectListModelAttachment.h \
     Models/QObjectListModel.h \
     Models/ItemObjectListModel.h \
-    Models/BlockObjectListModel.h
+    Models/BlockObjectListModel.h \
+    QmlLine.h
 
 OTHER_FILES += \
     qml/Dock/Dock.qml \

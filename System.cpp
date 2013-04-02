@@ -94,6 +94,7 @@ namespace Uber {
                 }
             }
         }
+
         m_DockModel = new DockModel();
         m_DockModel->addEntries(entries);
         m_ComplexDelegate = new ComplexDelegate();
@@ -107,10 +108,12 @@ namespace Uber {
     {
         return m_DockModel;
     }
+
     BlockObjectListModel*   System::getBlockModel()
     {
         return m_BlockModel;
     }
+
     QPointF System::maptoGlobal(QQuickItem *item)
     {
         QQuickWindow *win = item->window();
@@ -123,8 +126,8 @@ namespace Uber {
     {
         //int row = index.row();
         GridEntry entry = m_DockModel->getEntry(index);
-        entry.getBundleHandle().createBlockInstance(entry.getBlockName().toUtf8().constData());
-        Block* block = new Block();
+        BlockHandle handle = entry.getBundleHandle().createBlockInstance(entry.getBlockName().toUtf8().constData());
+        Block* block = new Block( handle );
         block->setPosition(pos);
 
         block->setName(entry.getBlockName());

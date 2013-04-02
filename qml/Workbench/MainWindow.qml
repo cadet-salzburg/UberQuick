@@ -37,7 +37,7 @@ Rectangle {
             id: multidel
             Loader {
                 id: loader
-                source: ComplexDelegate.getDelegate(display.getClassName())
+                source: ComplexDelegate.getDelegate(object.getClassName())
             }
         }
     }
