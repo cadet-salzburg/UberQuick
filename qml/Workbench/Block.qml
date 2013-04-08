@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import UberComponents 0.1
+
 Rectangle {
     id: block
     height: 30
@@ -12,14 +12,13 @@ Rectangle {
         width: 3
     }
     //Inlets
-
-    Line {
-        width: 500
-        thickness: 300
-        color: "black"
-        y: -10
+    Repeater {
+        id: inlets
+        model: object.getInletModel()
+        delegate: Inlet {
+            color: "#ffffff"
+        }
     }
-
     Text {
         id: info
         text: object.name

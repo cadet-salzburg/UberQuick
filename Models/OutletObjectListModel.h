@@ -1,0 +1,15 @@
+#ifndef OUTLETOBJECTLISTMODEL_H
+#define OUTLETOBJECTLISTMODEL_H
+#include "QObjectListModelT.h"
+#include "../Items/Outlet.h"
+
+namespace Uber {
+    class OutletObjectListModel : public QObjectListModelT<Outlet*>
+    {
+    public:
+        OutletObjectListModel(QObject *parent);
+        OutletObjectListModel(const QList<Outlet*> &objects, QObject *parent = 0);
+        OutletObjectListModel(OutletObjectListModel *outletListModel, QObject *parent);
+    };
+}
+#endif // OUTLETOBJECTLISTMODEL_H

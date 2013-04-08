@@ -4,6 +4,8 @@ namespace Uber {
 
     Block::Block()
     :Item(0)
+    ,m_InletModel(nullptr)
+    ,m_OutletModel(nullptr)
     {
 
     }
@@ -11,6 +13,8 @@ namespace Uber {
     Block::Block( const BlockHandle& handle )
     :Item(0)
     ,m_BlockHandle(handle)
+    ,m_InletModel(nullptr)
+    ,m_OutletModel(nullptr)
     {
         initialize();
     }
@@ -18,6 +22,8 @@ namespace Uber {
     Block::Block(const Block &other)
     :Item(other.parent(), other.position(), other.size())
     ,m_BlockHandle(other.getBlockHandle())
+    ,m_InletModel(other.getInletModel())
+    ,m_OutletModel(other.getOutletModel())
     {
         initialize();
     }
@@ -48,36 +54,49 @@ namespace Uber {
         return m_BlockHandle;
     }
 
-    QList<InletRef> Block::getInlets() const
+//    InletObjectListModel*   Block::getInletModel()
+//    {
+//        return m_InletModel;
+//    }
+
+//    OutletObjectListModel*  Block::getOutletModel()
+//    {
+//        return m_OutletModel;
+//    }
+
+    InletObjectListModel*   Block::getInletModel() const
     {
-        return m_Inlets;
+        return m_InletModel;
     }
 
-    QList<OutletRef> Block::getOutlets() const
+    OutletObjectListModel*  Block::getOutletModel() const
     {
-        return m_Outlets;
+        return m_OutletModel;
     }
 
     void Block::initialize()
     {
         if ( m_BlockHandle.isValid() )
         {
-            m_Inlets.clear();
-            m_Outlets.clear();
+            delete m_InletModel;
+            delete m_OutletModel;
+
+            m_InletModel = new InletObjectListModel(0);
+            m_OutletModel = new OutletObjectListModel(0);
 
             BlockHandle::InletHandles  inlets = m_BlockHandle.getAllInletHandles();
             BlockHandle::OutletHandles outlets = m_BlockHandle.getAllOutletHandles();
             BlockHandle::InletHandleIterator iterIn = inlets.begin();
             for ( ;iterIn!=inlets.end(); ++iterIn )
             {
-                InletRef currentInlet( new Inlet(*iterIn) );
-                m_Inlets.push_back(currentInlet);
+                Inlet *currentInlet( new Inlet(*iterIn) );
+                m_InletModel->append(currentInlet);
             }
             BlockHandle::OutletHandleIterator iterOut = outlets.begin();
             for ( ;iterOut!=outlets.end(); ++iterOut )
             {
-                OutletRef currentOutlet( new Outlet(*iterOut));
-                m_Outlets.push_back(currentOutlet);
+                Outlet *currentOutlet( new Outlet(*iterOut));
+                m_OutletModel->append(currentOutlet);
             }
         }
     }

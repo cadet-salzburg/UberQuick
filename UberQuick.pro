@@ -27,7 +27,9 @@ SOURCES += \
     Models/QObjectListModel.cpp \
     Models/BlockObjectListModel.cpp \
     Models/ItemObjectListModel.cpp \
-    QmlLine.cpp
+    QmlLine.cpp \
+    Models/InletObjectListModel.cpp \
+    Models/OutletObjectListModel.cpp
 
 HEADERS += \
     System.h \
@@ -45,7 +47,9 @@ HEADERS += \
     Models/QObjectListModel.h \
     Models/ItemObjectListModel.h \
     Models/BlockObjectListModel.h \
-    QmlLine.h
+    QmlLine.h \
+    Models/InletObjectListModel.h \
+    Models/OutletObjectListModel.h
 
 OTHER_FILES += \
     qml/Dock/Dock.qml \
@@ -53,7 +57,8 @@ OTHER_FILES += \
     qml/Workbench/MainWindow.qml \
     qml/UI/Button.qml \
     qml/Workbench/Block.qml \
-    qml/Workbench/Inlet.qml
+    qml/Workbench/Inlet.qml \
+    qml/UI/Tooltip.qml
 
 
 #Includes

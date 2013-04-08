@@ -15,17 +15,47 @@
 #include <iostream>
 #include <string>
 #include "Models/BlockObjectListModel.h"
+#include "Models/InletObjectListModel.h"
+#include "Models/OutletObjectListModel.h"
 #include "Models/QObjectListModel.h"
 #include "QmlLine.h"
 
-
 using namespace Uber;
+
+void registerQmlTypes()
+{
+    qmlRegisterType<Inlet>();
+    qmlRegisterType<Outlet>();
+    qmlRegisterType<Uber::InletObjectListModel>();
+    qmlRegisterType<OutletObjectListModel>();
+
+
+    //    qmlRegisterType<Item>();
+    //    qmlRegisterType<Block>();
+    //    qmlRegisterType<BlockObjectListModel>();
+
+    //    qmlRegisterType<OutletObjectListModel>();
+    //    qmlRegisterType<QObjectListModel>();
+    //    qmlRegisterType<BlockObjectListModel>();
+
+    //    qmlRegisterType<Block>();
+    //    qmlRegisterType<Inlet>();
+         //qmlRegisterType<QCppItem,1>("MyModule", 1, 1, "CppItem")
+    //    qmlRegisterType<Uber::QmlLine>("UberComponents", 0, 1, "Line");
+
+
+    //    qmlRegisterExtendedType()
+}
+
 int main(int argc, char *argv[])
 {
+
+    registerQmlTypes();
     QGuiApplication app(argc, argv);
     System *system = System::getInstance();
     system->loadBundles();
     QAbstractItemModel *dockModel = system->getDockModel();
+
 
     QQuickView *canvas = new QQuickView( system->getQmlEngine(), 0);
     canvas->setResizeMode(QQuickView::SizeRootObjectToView);
@@ -39,15 +69,14 @@ int main(int argc, char *argv[])
 
     system->getQmlEngine()->rootContext()->setContextProperty( "DockModel", dockModel );
     system->getQmlEngine()->rootContext()->setContextProperty("DockView", dock );
-    qmlRegisterType<Uber::Item>();
-    qmlRegisterType<Uber::Block>();
-    qmlRegisterType<BlockObjectListModel>();
-    qmlRegisterType<QObjectListModel>();
-    qmlRegisterType<Uber::QmlLine>("UberComponents", 0, 1, "Line");
+
+
+
+
 
     QSurfaceFormat surfaceFormat;
     surfaceFormat.setAlphaBufferSize(8);
-    surfaceFormat.setRenderableType(QSurfaceFormat::OpenGLES);
+    //surfaceFormat.setRenderableType(QSurfaceFormat::OpenGLES);
     dock->setFormat(surfaceFormat);
     dock->setClearBeforeRendering(true);
     dock->setColor(Qt::transparent);
@@ -76,5 +105,8 @@ int main(int argc, char *argv[])
     DwmEnableBlurBehindWindow(hWndA, &bb);
     DwmEnableBlurBehindWindow(hWndB, &bb);
     int res =  app.exec();
+    delete dock;
+    delete canvas;
+    delete system;
     return res;
 }

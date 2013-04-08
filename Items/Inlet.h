@@ -18,6 +18,7 @@ namespace Uber {
         ~Inlet();
         void            setInletHandle(const InletHandle& handle );
         InletHandle     getInletHandle() const;
+
     private:
         InletHandle     m_InletHandle;
     signals:
