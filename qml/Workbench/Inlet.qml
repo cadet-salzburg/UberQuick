@@ -5,5 +5,5 @@ Rectangle {
     y: 0
     width: 10
     height: 3
-    color: "lightsteelblue"
+    color: "black"
 }

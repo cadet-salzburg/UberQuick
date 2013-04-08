@@ -12,13 +12,22 @@ Rectangle {
         width: 3
     }
     //Inlets
-    Repeater {
-        id: inlets
-        model: object.getInletModel()
-        delegate: Inlet {
-            color: "#ffffff"
+    Row {
+        x: 30
+        y: 0
+        spacing: 4
+        Repeater {
+            id: inlets
+            model: object.getInletModel()
+            delegate: Inlet {
+                color: "#ffffff"
+            }
         }
+        height: 4
+        anchors.left: parent.left
+        anchors.leftMargin: parent.radius
     }
+
     Text {
         id: info
         text: object.name
