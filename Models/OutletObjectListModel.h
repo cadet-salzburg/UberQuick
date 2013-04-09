@@ -6,8 +6,9 @@
 namespace Uber {
     class OutletObjectListModel : public QObjectListModelT<Outlet*>
     {
+        Q_OBJECT
     public:
-        OutletObjectListModel(QObject *parent);
+        OutletObjectListModel(QObject *parent = nullptr);
         OutletObjectListModel(const QList<Outlet*> &objects, QObject *parent = 0);
         OutletObjectListModel(OutletObjectListModel *outletListModel, QObject *parent);
     };

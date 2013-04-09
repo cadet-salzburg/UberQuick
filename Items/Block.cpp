@@ -1,7 +1,7 @@
 #include "Block.h"
 #include <QDebug>
-namespace Uber {
 
+namespace Uber {
     Block::Block()
     :Item(0)
     ,m_InletModel(nullptr)
@@ -54,22 +54,12 @@ namespace Uber {
         return m_BlockHandle;
     }
 
-//    InletObjectListModel*   Block::getInletModel()
-//    {
-//        return m_InletModel;
-//    }
-
-//    OutletObjectListModel*  Block::getOutletModel()
-//    {
-//        return m_OutletModel;
-//    }
-
-    InletObjectListModel*   Block::getInletModel() const
+    Uber::InletObjectListModel*   Block::getInletModel() const
     {
         return m_InletModel;
     }
 
-    OutletObjectListModel*  Block::getOutletModel() const
+    Uber::OutletObjectListModel*  Block::getOutletModel() const
     {
         return m_OutletModel;
     }

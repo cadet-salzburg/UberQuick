@@ -26,7 +26,7 @@ void registerQmlTypes()
 {
     qmlRegisterType<Inlet>();
     qmlRegisterType<Outlet>();
-    qmlRegisterType<Uber::InletObjectListModel>();
+    qmlRegisterType<InletObjectListModel>();
     qmlRegisterType<OutletObjectListModel>();
 
 

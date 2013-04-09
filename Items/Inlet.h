@@ -19,6 +19,11 @@ namespace Uber {
         void            setInletHandle(const InletHandle& handle );
         InletHandle     getInletHandle() const;
 
+        Q_INVOKABLE QString getName()
+        {
+            return "Inlet!";
+        }
+
     private:
         InletHandle     m_InletHandle;
     signals:
