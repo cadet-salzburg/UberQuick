@@ -21,7 +21,7 @@ namespace Uber {
 
         Q_INVOKABLE QString getName()
         {
-            return "Inlet!";
+            return "Inlet";
         }
 
     private:

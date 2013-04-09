@@ -5,7 +5,7 @@ Rectangle {
     width: 100
     height: 62
     color: "#e6e6e6ff"
-    state: "hideDock"
+    state: "initState"
     MouseArea {
         id: mouseArea
         anchors.fill: parent
@@ -56,8 +56,13 @@ Rectangle {
     }
     states: [
         State {
-            name: "hideDock"
+            name: "initState"
             PropertyChanges { target: info; opacity: 1 }
+            PropertyChanges { target: DockView; visible: false }
+        },
+        State {
+            name: "hideDock"
+            PropertyChanges { target: info; opacity: 0 }
             PropertyChanges { target: DockView; visible: false }
             //_dockView.setVisible: false
         },

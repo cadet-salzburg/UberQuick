@@ -11,9 +11,7 @@ namespace Uber {
         ItemObjectListModel( QObject *parent );
         ItemObjectListModel( const QList<Item*> &objects, QObject *parent = 0 );
         ItemObjectListModel( ItemObjectListModel*itemListModel, QObject *parent );
-        void append(Item *item);
         QVariant data( const QModelIndex &index, int role ) const;
-        BlockObjectListModel*   m_BlockModel;
     };
 }
 #endif // ITEMOBJECTLISTMODEL_H

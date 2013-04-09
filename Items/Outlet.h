@@ -17,6 +17,10 @@ namespace Uber {
         ~Outlet();
         void            setOutletHandle(const OutletHandle& handle );
         OutletHandle    getOutletHandle() const;
+        Q_INVOKABLE QString getName()
+        {
+            return "Outlet";
+        }
     private:
         OutletHandle    m_OutletHandle;
     signals:

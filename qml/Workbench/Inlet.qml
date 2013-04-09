@@ -11,7 +11,7 @@ Rectangle {
         cursorShape: Qt.PointingHandCursor
         anchors.fill: parent
         onPressed: {
-            console.log("inlet/ outlet pressed")
+            console.log(object.getName() + " pressed");
         }
     }
     Rectangle {
