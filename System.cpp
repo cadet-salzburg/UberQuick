@@ -13,6 +13,7 @@
 #include "Models/InletObjectListModel.h"
 #include "Models/OutletObjectListModel.h"
 #include "Models/ItemObjectListModel.h"
+#include "FileLoader.h"
 #include "System.h"
 
 using namespace _2Real;
@@ -64,6 +65,7 @@ namespace Uber {
         qmlRegisterType<Block>();
         qmlRegisterType<Item>();
         qmlRegisterType<ItemObjectListModel>();
+        qmlRegisterType< FileLoader >( "LogicComponents", 1, 0, "FileLoader" );
     }
 
     void System::setContextProperties()
