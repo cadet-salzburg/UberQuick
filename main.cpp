@@ -1,4 +1,5 @@
 #include <QtGui/QGuiApplication>
+#include <QtWidgets/QApplication>
 #include "qtquick2applicationviewer.h"
 #include <QQmlEngine>
 #include <QQmlContext>
@@ -20,6 +21,8 @@
 #include "Models/QObjectListModel.h"
 #include "QmlLine.h"
 
+#include "FileLoader.h"
+
 using namespace Uber;
 
 void registerQmlTypes()
@@ -29,6 +32,8 @@ void registerQmlTypes()
     qmlRegisterType<InletObjectListModel>();
     qmlRegisterType<OutletObjectListModel>();
 
+
+    qmlRegisterType< FileLoader >( "LogicComponents", 1, 0, "FileLoader" );
 
     //    qmlRegisterType<Item>();
     //    qmlRegisterType<Block>();
@@ -51,7 +56,7 @@ int main(int argc, char *argv[])
 {
 
     registerQmlTypes();
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
     System *system = System::getInstance();
     system->loadBundles();
     QAbstractItemModel *dockModel = system->getDockModel();
@@ -68,11 +73,7 @@ int main(int argc, char *argv[])
     dock->show();
 
     system->getQmlEngine()->rootContext()->setContextProperty( "DockModel", dockModel );
-    system->getQmlEngine()->rootContext()->setContextProperty("DockView", dock );
-
-
-
-
+    system->getQmlEngine()->rootContext()->setContextProperty( "DockView", dock );
 
     QSurfaceFormat surfaceFormat;
     surfaceFormat.setAlphaBufferSize(8);
