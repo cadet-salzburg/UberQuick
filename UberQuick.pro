@@ -29,7 +29,8 @@ SOURCES += \
     Models/ItemObjectListModel.cpp \
     QmlLine.cpp \
     Models/InletObjectListModel.cpp \
-    Models/OutletObjectListModel.cpp
+    Models/OutletObjectListModel.cpp \
+    Items/Link.cpp
 
 HEADERS += \
     System.h \
@@ -49,7 +50,8 @@ HEADERS += \
     Models/BlockObjectListModel.h \
     QmlLine.h \
     Models/InletObjectListModel.h \
-    Models/OutletObjectListModel.h
+    Models/OutletObjectListModel.h \
+    Items/Link.h
 
 OTHER_FILES += \
     qml/Dock/Dock.qml \
@@ -104,3 +106,9 @@ win32 {
 # Please do not modify the following two lines. Required for deployment.
 include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
 qtcAddDeployment()
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/C:/Qt/Qt5.0.1/5.0.1/msvc2010/lib/ -lQt5Widgets
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/C:/Qt/Qt5.0.1/5.0.1/msvc2010/lib/ -lQt5Widgetsd
+
+INCLUDEPATH += $$PWD/C:/Qt/Qt5.0.1/5.0.1/msvc2010/include
+DEPENDPATH += $$PWD/C:/Qt/Qt5.0.1/5.0.1/msvc2010/include

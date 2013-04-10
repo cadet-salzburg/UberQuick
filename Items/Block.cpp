@@ -77,9 +77,12 @@ namespace Uber {
             BlockHandle::InletHandles  inlets = m_BlockHandle.getAllInletHandles();
             BlockHandle::OutletHandles outlets = m_BlockHandle.getAllOutletHandles();
             BlockHandle::InletHandleIterator iterIn = inlets.begin();
+            int i =0;
             for ( ;iterIn!=inlets.end(); ++iterIn )
             {
+                i++;
                 Inlet *currentInlet( new Inlet(*iterIn) );
+                currentInlet->setName("Inlet" + QString::number(i));
                 m_InletModel->append(currentInlet);
             }
             BlockHandle::OutletHandleIterator iterOut = outlets.begin();

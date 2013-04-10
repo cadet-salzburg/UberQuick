@@ -5,7 +5,7 @@ namespace Uber {
     ComplexDelegate::ComplexDelegate(QObject *parent)
     :QObject(parent)
     {
-        std::cout << "WTF!!!" << std::endl;
+
     }
 
     void ComplexDelegate::addDelegate(QString modelType, QUrl fileUrl)
@@ -27,7 +27,6 @@ namespace Uber {
     {
         if ( !m_DelegateStore.contains(modelType) )
             return QUrl();
-        std::cout << "WTF!!!" << std::endl;
         std::cout << modelType.toUtf8().constData() << std::endl;
         return m_DelegateStore.value(modelType);
     }

@@ -1,5 +1,6 @@
-  import QtQuick 2.0
+import QtQuick 2.0
 import "../UI"
+
 Item {
     id: window
     Rectangle {
@@ -57,10 +58,17 @@ Item {
                         cursorShape: Qt.PointingHandCursor
                         anchors.fill: parent
                         onClicked: {
-                            System.addBlock(index, Qt.point(mouseX, mouseY))
-                            //_system.
-                           // _system.
-//                            Qt.quit();
+                            var pos = System.maptoGlobal(parent);
+                            console.log("PosA: " + pos.x + " " + pos.y);
+                            pos.x += DockView.width/2;
+                            pos.y += DockView.height/2;
+                            console.log("PosB: " + pos.x + " " + pos.y);
+//                            var windowPos = Canvas.position();
+//                            pos.x -= windowPos.x;
+//                            pos.y -= windowPos.y;
+                            console.log("PosC: " + pos.x + " " + pos.y);
+                            System.addBlock(index, Qt.point(pos.x, pos.y));
+                            DockView.visible = false;
                         }
                     }
                 }
@@ -76,10 +84,13 @@ Item {
 //            highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
             MouseArea {
                 onClicked: {
-                    window.state = "hideDock"
+                    DockView.visible = false;
+                    //window.state = "hideDock"
                 }
             }
         }
+
+
         Button {
             iconPath:"../../Images/handleAIcon.png"
             width: 22

@@ -4,9 +4,16 @@
 #include <QStringList>
 #include <QQuickWindow>
 #include <QQmlContext>
+#include <dwmapi.h>
+#include "Items/Item.h"
+#include "Items/Inlet.h"
+#include "Items/Outlet.h"
 #include "Items/Block.h"
-#include "System.h"
 #include "Models/DockModel.h"
+#include "Models/InletObjectListModel.h"
+#include "Models/OutletObjectListModel.h"
+#include "Models/ItemObjectListModel.h"
+#include "System.h"
 
 using namespace _2Real;
 using namespace _2Real::app;
@@ -15,17 +22,82 @@ namespace Uber {
     System* System::m_Instance = nullptr;
     System::System()
     :QObject(nullptr)
-    ,m_DockModel(nullptr)
-    ,m_BlockModel(new BlockObjectListModel(0))
+    ,m_DockModel(new DockModel())
+    ,m_ItemModel(new ItemObjectListModel())
     ,m_Engine(Engine::instance())
     ,m_QmlEngine(new QQmlEngine )
+    ,m_Canvas(new QQuickView( m_QmlEngine, 0))
+    ,m_Dock(new QQuickView( m_QmlEngine, 0))
     {
+        m_SurfaceFormat.setAlphaBufferSize(8);
+        m_Canvas->setResizeMode(QQuickView::SizeRootObjectToView);
+        m_Canvas->setGeometry(300,200, 640, 480);
+        m_Canvas->setFormat(m_SurfaceFormat);
+        m_Canvas->setClearBeforeRendering(true);
 
+        m_Dock->setResizeMode(QQuickView::SizeRootObjectToView);
+        m_Dock->setGeometry(300,200, 400, 150);
+        m_Dock->setFormat(m_SurfaceFormat);
+        m_Dock->setClearBeforeRendering(true);
+        m_Dock->setColor(Qt::transparent);
+        m_Dock->setFlags(Qt::Window | Qt::FramelessWindowHint);
+
+        registerQmlTypes();
     }
 
     System::~System()
     {
-        qDebug() << "destructor called";
+        delete m_DockModel;
+        delete m_ItemModel;
+        delete m_QmlEngine;
+        delete m_ComplexDelegate;
+        delete m_Canvas;
+        delete m_Dock;
+    }
+
+    void System::registerQmlTypes()
+    {
+        qmlRegisterType<Inlet>();
+        qmlRegisterType<Outlet>();
+        qmlRegisterType<InletObjectListModel>();
+        qmlRegisterType<OutletObjectListModel>();
+        qmlRegisterType<Block>();
+        qmlRegisterType<Item>();
+        qmlRegisterType<ItemObjectListModel>();
+    }
+
+    void System::setContextProperties()
+    {
+        m_QmlEngine->rootContext()->setContextProperty( "DockModel", m_DockModel );
+        m_QmlEngine->rootContext()->setContextProperty("DockView", m_Dock );
+        m_QmlEngine->rootContext()->setContextProperty("Canvas",m_Canvas);
+        m_QmlEngine->rootContext()->setContextProperty("System",this);
+    }
+
+    void System::enableTransparentWindows()
+    {
+        //MS-Win specific code to enable transparent windows.
+        HWND hWndA = (HWND)m_Dock->winId();
+        HWND hWndB = (HWND)m_Canvas->winId();
+        DWM_BLURBEHIND bb = {0};
+        HRGN hRgn = CreateRectRgn(0, 0, -1, -1);
+        bb.dwFlags = DWM_BB_ENABLE | DWM_BB_BLURREGION;
+        bb.hRgnBlur = hRgn;
+        bb.fEnable = TRUE;
+        DwmEnableBlurBehindWindow(hWndA, &bb);
+        DwmEnableBlurBehindWindow(hWndB, &bb);
+    }
+
+    void System::showWindows()
+    {
+        m_Canvas->show();
+        m_Dock->show();
+    }
+
+    void System::loadQmlFiles()
+    {
+        m_Canvas->setSource(QUrl::fromLocalFile("qml/Workbench/MainWindow.qml"));
+        m_Dock->setSource(QUrl::fromLocalFile("qml/Dock/Dock.qml"));
     }
 
     void System::loadBundles()
@@ -101,7 +173,7 @@ namespace Uber {
         m_ComplexDelegate->addDelegate(QString("Uber::Block"),QUrl::fromLocalFile("qml/Workbench/Block.qml"));
         m_QmlEngine->rootContext()->setContextProperty( "ComplexDelegate", m_ComplexDelegate );
         m_QmlEngine->rootContext()->setContextProperty("System", this );
-        m_QmlEngine->rootContext()->setContextProperty( "BlockModel", m_BlockModel );
+        m_QmlEngine->rootContext()->setContextProperty( "ItemModel", m_ItemModel );
     }
 
     DockModel* System::getDockModel()
@@ -109,9 +181,9 @@ namespace Uber {
         return m_DockModel;
     }
 
-    BlockObjectListModel*   System::getBlockModel()
+    ItemObjectListModel*   System::getItemModel()
     {
-        return m_BlockModel;
+        return m_ItemModel;
     }
 
     QPointF System::maptoGlobal(QQuickItem *item)
@@ -131,6 +203,6 @@ namespace Uber {
         block->setPosition(pos);
 
         block->setName(entry.getBlockName());
-        m_BlockModel->append(block);
+        m_ItemModel->append(block);
     }
 }

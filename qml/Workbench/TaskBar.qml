@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import "../UI"
+
 Rectangle {
     width: parent.width
     height: 35

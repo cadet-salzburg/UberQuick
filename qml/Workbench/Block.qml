@@ -4,11 +4,13 @@ Rectangle {
     id: block
     height: 30
     width: 150
-    color: "#ffffff"
+    color: "#FCFCFC"
     radius: 12
+    x: object.position.x
+    y: object.position.y
     antialiasing: true
     border {
-        color: "#969696"
+        color: "#AFAFAF"
         width: 3
     }
     MouseArea {

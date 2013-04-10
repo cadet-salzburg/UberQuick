@@ -10,7 +10,7 @@ namespace Uber {
     {
         Q_OBJECT
         Q_PROPERTY (QString className READ getClassName )
-        Q_PROPERTY(QPointF position READ position WRITE setPosition)
+        Q_PROPERTY(QPointF position READ position WRITE setPosition NOTIFY positionChanged )
         Q_PROPERTY(QSizeF size READ size WRITE setSize)
     public:
         Item(QObject *parent = 0);
@@ -33,6 +33,8 @@ namespace Uber {
         QSizeF              m_Size;
         int                 m_Orientation;
         //static QString      m_Type;
+    signals:
+        void positionChanged();
     };
 }
 #endif // ITEM_H

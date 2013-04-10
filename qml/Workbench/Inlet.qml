@@ -18,6 +18,7 @@ Rectangle {
         width: parent.width
         height: block.border.width
         y: parent.y + parent.height /2 - height/2
-        color: "#606060"
+        color: "#8F8F8F"
+        //color: "#FFFFFF"
     }
 }

@@ -16,16 +16,23 @@ namespace Uber {
         Inlet(const Inlet &other);
         Inlet( const InletHandle &handle, QObject *parent = 0 );
         ~Inlet();
+
         void            setInletHandle(const InletHandle& handle );
         InletHandle     getInletHandle() const;
 
+        void setName( QString name )
+        {
+            m_Name = name;
+        }
+
         Q_INVOKABLE QString getName()
         {
-            return "Inlet";
+            return m_Name;
         }
 
     private:
         InletHandle     m_InletHandle;
+        QString         m_Name;
     signals:
     public slots:
     };
