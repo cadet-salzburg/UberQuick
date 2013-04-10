@@ -1,0 +1,56 @@
+<<<<<<< HEAD
+=======
+#include <QtGui/QGuiApplication>
+>>>>>>> 0d3503c935bac1044a9fec8fca400f7e9b58bc73
+#include <QtWidgets/QApplication>
+#include "qtquick2applicationviewer.h"
+#include "System.h"
+
+<<<<<<< HEAD
+=======
+#include "FileLoader.h"
+
+using namespace Uber;
+
+void registerQmlTypes()
+{
+    qmlRegisterType<Inlet>();
+    qmlRegisterType<Outlet>();
+    qmlRegisterType<InletObjectListModel>();
+    qmlRegisterType<OutletObjectListModel>();
+
+
+    qmlRegisterType< FileLoader >( "LogicComponents", 1, 0, "FileLoader" );
+
+    //    qmlRegisterType<Item>();
+    //    qmlRegisterType<Block>();
+    //    qmlRegisterType<BlockObjectListModel>();
+
+    //    qmlRegisterType<OutletObjectListModel>();
+    //    qmlRegisterType<QObjectListModel>();
+    //    qmlRegisterType<BlockObjectListModel>();
+
+    //    qmlRegisterType<Block>();
+    //    qmlRegisterType<Inlet>();
+         //qmlRegisterType<QCppItem,1>("MyModule", 1, 1, "CppItem")
+    //    qmlRegisterType<Uber::QmlLine>("UberComponents", 0, 1, "Line");
+>>>>>>> 0d3503c935bac1044a9fec8fca400f7e9b58bc73
+
+using namespace Uber;
+
+
+int main(int argc, char *argv[])
+{
+    QApplication app(argc, argv);
+    System *system = System::getInstance();
+    system->loadBundles();
+    system->registerQmlTypes();
+    system->setContextProperties();
+    system->loadQmlFiles();
+    system->enableTransparentWindows();
+    system->showWindows();
+
+    int res =  app.exec();
+    delete system;
+    return res;
+}

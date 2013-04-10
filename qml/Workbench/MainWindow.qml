@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import QtDesktop 1.0
+
 Rectangle {
+
     id: workbench
     width: 100
     height: 62
@@ -29,11 +31,6 @@ Rectangle {
             }
         }
     }
-
-    Slider {
-
-    }
-
     Repeater {
         id: grid
         anchors.fill: parent
