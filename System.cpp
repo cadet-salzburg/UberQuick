@@ -188,7 +188,7 @@ namespace Uber {
         return m_ItemModel;
     }
 
-    QPointF System::maptoGlobal(QQuickItem *item)
+    QPointF System::maptoGlobal( QQuickItem *item )
     {
         QQuickWindow *win = item->window();
         QPointF itemRootPos = item->mapToScene(QPoint(item->x(), item->y()));
@@ -196,13 +196,21 @@ namespace Uber {
         return winPos+itemRootPos;
     }
 
-    void System::addBlock( int index, QPoint pos )
+    QPointF System::getDockInputPosition()
+    {
+        QPointF dockPosition = m_Dock->position();
+        QPointF dotPosition  = dockPosition + QPointF(m_Dock->width()/2 - 75, -15);
+        QPointF inputPosition = dotPosition - m_Canvas->position();
+        return inputPosition;
+    }
+
+    void System::addBlock( int index )
     {
         //int row = index.row();
         GridEntry entry = m_DockModel->getEntry(index);
         BlockHandle handle = entry.getBundleHandle().createBlockInstance(entry.getBlockName().toUtf8().constData());
         Block* block = new Block( handle );
-        block->setPosition(pos);
+        block->setPosition(getDockInputPosition());
 
         block->setName(entry.getBlockName());
         m_ItemModel->append(block);
