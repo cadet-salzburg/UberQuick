@@ -67,7 +67,7 @@ Item {
 //                            pos.x -= windowPos.x;
 //                            pos.y -= windowPos.y;
                             console.log("PosC: " + pos.x + " " + pos.y);
-                            System.addBlock(index, Qt.point(pos.x, pos.y));
+                            System.addBlock(index );
                             DockView.visible = false;
                         }
                     }

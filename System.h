@@ -36,8 +36,9 @@ namespace Uber {
         void                                enableTransparentWindows();
         void                                showWindows();
 
-        Q_INVOKABLE void                    addBlock( int index, QPoint pos );
+        Q_INVOKABLE void                    addBlock( int index );
         Q_INVOKABLE QPointF                 maptoGlobal(QQuickItem* item);
+        Q_INVOKABLE QPointF                 getDockInputPosition();
 
     private:
         System();
