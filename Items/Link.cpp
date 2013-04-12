@@ -44,4 +44,32 @@ namespace Uber {
     {
         m_Inlet->getInletHandle().unlinkFrom(m_Outlet->getOutletHandle());
     }
+
+    QSGNode* Link::updatePaintNode( QSGNode *oldNode, UpdatePaintNodeData *updatePaintNodeData )
+    {
+        QSGGeometryNode *node = 0;
+        QSGGeometry *geometry = 0;
+        if ( !oldNode )
+        {
+            node = new QSGGeometryNode ;
+            geometry = new QSGGeometry(QSGGeometry::defaultAttributes_Point2D(), m_segmentCount);
+            geometry->setLineWidth(2);
+            geometry->setDrawingMode(GL_LINE_STRIP);
+            node->setGeometry(geometry);
+            node->setFlag(QSGNode::OwnsGeometry);
+            QSGFlatColorMaterial *material = new QSGFlatColorMaterial;
+            material->setColor(QColor(255, 0, 0));
+            node->setMaterial(material);
+            node->setFlag(QSGNode::OwnsMaterial);
+        } else {
+            node = static_cast<QSGGeometryNode *>(oldNode);
+            geometry = node->geometry();
+            geometry->allocate(m_segmentCount);
+        }
+        return node;
+    }
+    void Link::updateLinkNodes()
+    {
+        qDebug() << "Link::updateLinkNodes() was called.";
+    }
 }

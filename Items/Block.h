@@ -31,10 +31,12 @@ namespace Uber {
         {
             return m_InletModel->count();
         }
+
         Q_INVOKABLE int                             getNumberOfOutlets()
         {
             return m_OutletModel->count();
         }
+
         void                                        setBlockHandle( const BlockHandle& handle );
         BlockHandle                                 getBlockHandle() const;
     signals:
