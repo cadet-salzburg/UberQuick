@@ -7,7 +7,7 @@ namespace Uber {
 
     }
     Inlet::Inlet(const Inlet &other)
-    :Item(other.parent(), other.position(), other.size())
+    :Item(other.parent(), other.getPosition(), other.size())
     ,m_InletHandle(other.getInletHandle())
     {
 

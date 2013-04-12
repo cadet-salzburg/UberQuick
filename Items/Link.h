@@ -16,8 +16,8 @@ namespace Uber {
             MultiLine
         };
 
-        Link( QObject *parent = nullptr );
-        Link( Inlet *inlet, Outlet *outlet, QObject *parent = nullptr );
+        Link( QQuickItem *parent = nullptr );
+        Link( Inlet *inlet, Outlet *outlet, QQuickItem *parent = nullptr );
         Link( const Link &other );
 
         QSGNode*            updatePaintNode( QSGNode *oldNode, UpdatePaintNodeData *updatePaintNodeData );
@@ -34,7 +34,7 @@ namespace Uber {
         QPointF             getEnd() const;
         void                setEnd( QPointF end );
 
-        Q_INVOKABLE         setDisplayOption( DisplayOption option );
+        //Q_INVOKABLE         setDisplayOption( DisplayOption option );
 
     private:
         Inlet*              m_Inlet;

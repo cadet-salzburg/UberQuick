@@ -6,7 +6,7 @@ namespace Uber {
 
     }
     Outlet::Outlet(const Outlet &other)
-    :Item(other.parent(), other.position(), other.size())
+    :Item(other.parent(), other.getPosition(), other.size())
     ,m_OutletHandle(other.getOutletHandle())
     {
 

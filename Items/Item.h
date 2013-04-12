@@ -9,11 +9,11 @@ namespace Uber {
     class Item : public QObject
     {
         Q_OBJECT
-        Q_PROPERTY (QString className READ getClassName )
-        Q_PROPERTY(QPointF position READ position WRITE setPosition NOTIFY positionChanged )
-        Q_PROPERTY(float x READ x WRITE setX NOTIFY xChanged )
-        Q_PROPERTY(float y READ y WRITE setY NOTIFY yChanged )
-        Q_PROPERTY(QSizeF size READ size WRITE setSize)
+        Q_PROPERTY ( QString className READ getClassName )
+        Q_PROPERTY( QPointF position READ getPosition WRITE setPosition NOTIFY positionChanged )
+        Q_PROPERTY( float x READ x WRITE setX NOTIFY xChanged )
+        Q_PROPERTY( float y READ y WRITE setY NOTIFY yChanged )
+        Q_PROPERTY( QSizeF size READ size WRITE setSize )
     public:
         Item(QObject *parent = nullptr );
         Item(QObject *parent, QPointF position, QSizeF size);

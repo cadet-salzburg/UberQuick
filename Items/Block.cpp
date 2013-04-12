@@ -20,7 +20,7 @@ namespace Uber {
     }
 
     Block::Block(const Block &other)
-    :Item(other.parent(), other.position(), other.size())
+    :Item(other.parent(), other.getPosition(), other.size())
     ,m_BlockHandle(other.getBlockHandle())
     ,m_InletModel(other.getInletModel())
     ,m_OutletModel(other.getOutletModel())

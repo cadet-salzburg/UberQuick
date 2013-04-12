@@ -1,16 +1,17 @@
 #include "Link.h"
+#include <QDebug>
 
 namespace Uber {
-    Link::Link(QObject *parent)
-    :Item(parent)
+    Link::Link(QQuickItem *parent)
+    :QQuickItem(parent)
     ,m_Inlet(nullptr)
     ,m_Outlet(nullptr)
     {
 
     }
 
-    Link::Link(Inlet *inlet, Outlet *outlet, QObject *parent )
-    :Item(parent)
+    Link::Link(Inlet *inlet, Outlet *outlet, QQuickItem *parent )
+    :QQuickItem(parent)
     ,m_Inlet(inlet)
     ,m_Outlet(outlet)
     {
@@ -18,21 +19,43 @@ namespace Uber {
     }
 
     Link::Link(const Link &other)
-    :Item(other.parent())
+    :QQuickItem(other.parentItem())
     ,m_Inlet(other.getInlet())
     ,m_Outlet(other.getOutlet())
     {
 
     }
 
-    Inlet *Link::getInlet() const
+    Inlet*  Link::getInlet() const
     {
         return m_Inlet;
     }
 
-    Outlet *Link::getOutlet() const
+    Outlet* Link::getOutlet() const
     {
         return m_Outlet;
+    }
+
+    QPointF Link::getStart() const
+    {
+        //This returns a reference
+        return m_LinkNodes.front();
+    }
+
+    void Link::setStart( QPointF start )
+    {
+        m_LinkNodes.front() = start;
+    }
+
+    QPointF Link::getEnd() const
+    {
+        //This returns a reference
+        return m_LinkNodes.back();
+    }
+
+    void Link::setEnd( QPointF end )
+    {
+        m_LinkNodes.back() = end;
     }
 
     void Link::link()
@@ -47,26 +70,8 @@ namespace Uber {
 
     QSGNode* Link::updatePaintNode( QSGNode *oldNode, UpdatePaintNodeData *updatePaintNodeData )
     {
-        QSGGeometryNode *node = 0;
-        QSGGeometry *geometry = 0;
-        if ( !oldNode )
-        {
-            node = new QSGGeometryNode ;
-            geometry = new QSGGeometry(QSGGeometry::defaultAttributes_Point2D(), m_segmentCount);
-            geometry->setLineWidth(2);
-            geometry->setDrawingMode(GL_LINE_STRIP);
-            node->setGeometry(geometry);
-            node->setFlag(QSGNode::OwnsGeometry);
-            QSGFlatColorMaterial *material = new QSGFlatColorMaterial;
-            material->setColor(QColor(255, 0, 0));
-            node->setMaterial(material);
-            node->setFlag(QSGNode::OwnsMaterial);
-        } else {
-            node = static_cast<QSGGeometryNode *>(oldNode);
-            geometry = node->geometry();
-            geometry->allocate(m_segmentCount);
-        }
-        return node;
+        Q_UNUSED( updatePaintNodeData)
+        return nullptr;
     }
     void Link::updateLinkNodes()
     {

@@ -18,16 +18,45 @@ namespace Uber {
     {
 
     }
+
     Item::Item(const Item &other)
         :QObject(other.parent())
-        ,m_Position(other.position())
+        ,m_Position(other.getPosition())
         ,m_Size(other.size())
         ,m_Orientation(Qt::Horizontal)
     {
 
     }
 
-    QPointF Item::position() const
+    float  Item::x() const
+    {
+        return m_Position.x();
+    }
+
+    float Item::y() const
+    {
+        return m_Position.y();
+    }
+
+    void Item::setX( float x )
+    {
+        if ( m_Position.x() != x )
+        {
+            m_Position.setX(x);
+            emit xChanged(x);
+        }
+    }
+
+    void Item::setY( float y )
+    {
+        if ( m_Position.y() != y )
+        {
+            m_Position.setY(y);
+            emit yChanged(y);
+        }
+    }
+
+    QPointF Item::getPosition() const
     {
         return m_Position;
     }
