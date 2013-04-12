@@ -2,6 +2,7 @@
 #define FILELOADER_H
 
 #include <QObject>
+#include <QException>
 
 class FileLoader : public QObject
 {
@@ -9,6 +10,14 @@ class FileLoader : public QObject
     Q_OBJECT
 
 public:
+
+    class LoadException : public QException
+    {
+    public:
+        LoadException( QString const& msg );
+    private:
+        QString     mMessage;
+    };
 
     FileLoader( QObject *parent = nullptr );
     FileLoader( FileLoader const& other );

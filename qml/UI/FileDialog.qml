@@ -5,13 +5,19 @@ import Qt.labs.folderlistmodel 1.0
 Dialog
 {
     id:         fileDialog
-    width:      500
-    height:     500
+    width:      800
+    height:     600
     title:      "SELECT A FILE, YOU MORON"
 
+    // read
     property alias itemToBeLoaded: selectionHolder.item
     property alias isValidItem: selectionHolder.valid
     property alias currentFolder: selectionHolder.folder
+
+    // write
+    property alias openFolder: fileModel.folder
+    property alias fileFilters: fileModel.nameFilters
+    property alias showParentDirectories: fileModel.showDotAndDotDot
 
     signal reset()
     onReset:
@@ -45,7 +51,7 @@ Dialog
         id: selectionHolder
         property string item:   ""
         property bool valid:    false;
-        property url folder:    "..\\";
+        property url folder:    "..";
     }
 
     ListView
@@ -58,10 +64,7 @@ Dialog
 
         FolderListModel
         {
-            id:                 fileModel
-            folder:             selectionHolder.folder
-            showDotAndDotDot:   true
-            //nameFilters:    [ "*.ubef", "*.fbef" ]
+            id:             fileModel
         }
 
         Component
@@ -69,8 +72,8 @@ Dialog
             id:             fileDelegate
             Rectangle
             {
-                width:      parent.width
-                height:     20
+                width:          parent.width
+                height:         20
 
                 Text
                 {
@@ -80,18 +83,24 @@ Dialog
                 MouseArea
                 {
                     anchors.fill:   parent
-                    onClicked:
+                    onDoubleClicked:
                     {
                         if ( fileModel.isFolder( index ) )
                         {
                             selectionHolder.item = "";
                             selectionHolder.valid = false;
-                            fileModel.folder = fileModel.folder + "/" + fileName;
+                            //console.log( "current folder : " + fileModel.folder );
+                            fileModel.folder = fileModel.folder + fileName + "/";
+                            selectionHolder.folder = fileModel.folder;
+                            //console.log( "new folder : " + fileModel.folder );
                         }
                         else
                         {
                             selectionHolder.item = fileName;
                             selectionHolder.valid = true;
+                            //console.log( "file : " + selectionHolder.item )
+                            //console.log( "folder: " + selectionHolder.folder )
+                            //console.log( "file selected : " + selectionHolder.folder + selectionHolder.item );
                         }
                     }
                 }
@@ -110,7 +119,7 @@ Dialog
         Text
         {
             anchors.centerIn: parent
-            text: selectionHolder.item
+            text: selectionHolder.folder + selectionHolder.item
         }
     }
 

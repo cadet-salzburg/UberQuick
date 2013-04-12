@@ -58,9 +58,13 @@ Rectangle {
             FileDialog
             {
                 id: loadDialog
+
                 onAccepted:
                 {
-                    if (  isValidItem ) fileLoader.loadFile( itemToBeLoaded );
+                    console.log( "file : " + itemToBeLoaded )
+                    console.log( "folder: " + currentFolder )
+                    if ( isValidItem ) fileLoader.loadFile( currentFolder + itemToBeLoaded );
+                    // reset the selection
                     reset();
                 }
 
@@ -72,6 +76,10 @@ Rectangle {
             anchors.verticalCenter:     parent.verticalCenter
             onButtonClicked:
             {
+                // set properties & show file dialog
+                loadDialog.openFolder = ".";
+                loadDialog.showParentDirectories = true;
+                loadDialog.fileFilters = [ "*.ubef", "*.fbef" ];
                 loadDialog.show()
             }
         }
