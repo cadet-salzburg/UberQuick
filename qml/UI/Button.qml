@@ -10,7 +10,6 @@ Rectangle
     signal buttonClicked()
     onButtonClicked:
     {
-        console.log( "button clicked" )
     }
 
     Image

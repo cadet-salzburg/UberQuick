@@ -62,7 +62,8 @@ OTHER_FILES += \
     qml/UI/Button.qml \
     qml/Workbench/Block.qml \
     qml/Workbench/Inlet.qml \
-    qml/UI/Tooltip.qml
+    qml/UI/Tooltip.qml \
+    qml/UI/FileDialog.qml
 
 
 #Includes

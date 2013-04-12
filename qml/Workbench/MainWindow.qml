@@ -1,7 +1,14 @@
 import QtQuick 2.0
 import QtDesktop 1.0
+import "../UI"
 
 Rectangle {
+
+    FileDialog
+    {
+        id: crazyFucker
+
+    }
 
     id: workbench
     width: 100
@@ -20,6 +27,8 @@ Rectangle {
             {
                 workbench.state = "hideDock"
             }
+
+            crazyFucker.show()
         }
         onDoubleClicked: {
             if (mouse.button == Qt.LeftButton)
