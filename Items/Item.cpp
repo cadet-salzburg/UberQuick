@@ -1,5 +1,5 @@
 #include "Item.h"
-
+#include <QDebug>
 namespace Uber {
     Item::Item(QObject *parent)
         :QObject(parent)
@@ -9,7 +9,6 @@ namespace Uber {
     {
 
     }
-
     Item::Item(QObject *parent, QPointF position, QSizeF size )
         :QObject(parent)
         ,m_Position(position)
@@ -18,7 +17,6 @@ namespace Uber {
     {
 
     }
-
     Item::Item(const Item &other)
         :QObject(other.parent())
         ,m_Position(other.getPosition())
@@ -42,8 +40,9 @@ namespace Uber {
     {
         if ( m_Position.x() != x )
         {
+            //qDebug() << "position Was changed";
             m_Position.setX(x);
-            emit xChanged(x);
+            emit positionChanged();
         }
     }
 
@@ -51,8 +50,9 @@ namespace Uber {
     {
         if ( m_Position.y() != y )
         {
+            //qDebug() << "position Was changed";
             m_Position.setY(y);
-            emit yChanged(y);
+            emit positionChanged();
         }
     }
 
@@ -62,9 +62,9 @@ namespace Uber {
     }
     void Item::setPosition(const QPointF &position)
     {
+        //qDebug() << "position Was changed";
         m_Position = position;
     }
-
     QSizeF Item::size() const
     {
         return m_Size;

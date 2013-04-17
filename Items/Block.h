@@ -54,5 +54,4 @@ namespace Uber {
     QDebug operator<<(QDebug dbg, const Block &block);
     //Q_DECLARE_METATYPE(Block)
 }
-
 #endif // BLOCK_H

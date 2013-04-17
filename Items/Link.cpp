@@ -31,9 +31,19 @@ namespace Uber {
         return m_Inlet;
     }
 
+    void Link::setInlet(Inlet *const inlet)
+    {
+        m_Inlet = inlet;
+    }
+
     Outlet* Link::getOutlet() const
     {
         return m_Outlet;
+    }
+
+    void Link::setOutlet(Outlet *const outlet)
+    {
+        m_Outlet = outlet;
     }
 
     QPointF Link::getStart() const

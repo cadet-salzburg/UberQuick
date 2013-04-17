@@ -1,15 +1,6 @@
 import QtQuick 2.0
-import QtDesktop 1.0
-import "../UI"
-
+//Main Window
 Rectangle {
-
-    FileDialog
-    {
-        id: crazyFucker
-
-    }
-
     id: workbench
     width: 100
     height: 62
@@ -27,8 +18,6 @@ Rectangle {
             {
                 workbench.state = "hideDock"
             }
-
-            crazyFucker.show()
         }
         onDoubleClicked: {
             if (mouse.button == Qt.LeftButton)
@@ -62,9 +51,6 @@ Rectangle {
         anchors.horizontalCenter: workbench.horizontalCenter
         anchors.verticalCenter: workbench.verticalCenter
     }
-    TaskBar {
-        anchors.bottom : workbench.bottom
-    }
     states: [
         State {
             name: "initState"
@@ -84,4 +70,7 @@ Rectangle {
            // PropertyChanges { target: _dockView; x: 100; y: 100 }
         }
     ]
+    TaskBar {
+        anchors.bottom : workbench.bottom
+    }
 }

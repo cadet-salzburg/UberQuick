@@ -22,8 +22,11 @@ namespace Uber {
 
         QSGNode*            updatePaintNode( QSGNode *oldNode, UpdatePaintNodeData *updatePaintNodeData );
 
+
         Inlet*              getInlet() const;
+        void                setInlet( Inlet* const inlet );
         Outlet*             getOutlet() const;
+        void                setOutlet( Outlet* const outlet );
 
         void                link();
         void                unlink();
@@ -35,7 +38,6 @@ namespace Uber {
         void                setEnd( QPointF end );
 
         //Q_INVOKABLE         setDisplayOption( DisplayOption option );
-
     private:
         Inlet*              m_Inlet;
         Outlet*             m_Outlet;

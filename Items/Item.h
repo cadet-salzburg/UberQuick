@@ -11,8 +11,8 @@ namespace Uber {
         Q_OBJECT
         Q_PROPERTY ( QString className READ getClassName )
         Q_PROPERTY( QPointF position READ getPosition WRITE setPosition NOTIFY positionChanged )
-        Q_PROPERTY( float x READ x WRITE setX NOTIFY xChanged )
-        Q_PROPERTY( float y READ y WRITE setY NOTIFY yChanged )
+        Q_PROPERTY( float x READ x WRITE setX NOTIFY positionChanged )
+        Q_PROPERTY( float y READ y WRITE setY NOTIFY positionChanged )
         Q_PROPERTY( QSizeF size READ size WRITE setSize )
     public:
         Item(QObject *parent = nullptr );
@@ -20,11 +20,8 @@ namespace Uber {
         Item(const Item &other);
 
         QPointF                 getPosition() const;
-        void                    setPosition(const QPointF &position );
         float                   x() const;
         float                   y() const;
-        void                    setX( float x );
-        void                    setY( float y );
 
         QSizeF                  size() const;
         void                    setSize(const QSizeF &size);
@@ -39,11 +36,13 @@ namespace Uber {
         QPointF                 m_Position;
         QSizeF                  m_Size;
         int                     m_Orientation;
-        //static QString        m_Type;
     signals:
-        void positionChanged( QPointF p );
-        void xChanged( float x );
-        void yChanged( float y );
+        void                    positionChanged();
+    public slots:
+
+        void                    setPosition(const QPointF &position );
+        void                    setX( float x );
+        void                    setY( float y );
 
     };
 }

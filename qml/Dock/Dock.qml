@@ -18,11 +18,9 @@ Item {
             cursorShape: Qt.OpenHandCursor
             property variant previousPosition
             onPressed: {
-                //cursorShape: Qt.ClosedHandCursor
                 previousPosition = Qt.point(mouseX, mouseY)
             }
             onPositionChanged: {
-                //cursorShape: Qt.ClosedHandCursor
                 if (pressedButtons == Qt.LeftButton) {
                     var dx = mouseX - previousPosition.x
                     var dy = mouseY - previousPosition.y
@@ -53,7 +51,6 @@ Item {
                     anchors.fill: parent
                     source: path;
                     anchors.horizontalCenter: parent.horizontalCenter
-//                    fillMode: Image.PreserveAspectFit
                     MouseArea {
                         cursorShape: Qt.PointingHandCursor
                         anchors.fill: parent
@@ -63,9 +60,6 @@ Item {
                             pos.x += DockView.width/2;
                             pos.y += DockView.height/2;
                             console.log("PosB: " + pos.x + " " + pos.y);
-//                            var windowPos = Canvas.position();
-//                            pos.x -= windowPos.x;
-//                            pos.y -= windowPos.y;
                             console.log("PosC: " + pos.x + " " + pos.y);
                             System.addBlock(index );
                             DockView.visible = false;
@@ -81,15 +75,12 @@ Item {
             cellWidth: 40; cellHeight: 40
             model: DockModel;
             delegate: dockDelegate
-//            highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
             MouseArea {
                 onClicked: {
                     DockView.visible = false;
-                    //window.state = "hideDock"
                 }
             }
         }
-
 
         Button {
             iconPath:"../../Images/handleAIcon.png"
@@ -108,7 +99,6 @@ Item {
                     previousPosition = Qt.point(mouseX, mouseY)
                 }
                 onPositionChanged: {
-                    //previousPosition = Qt.point(mouseX, mouseY)
                     if (pressedButtons == Qt.LeftButton) {
                         var dx = mouseX - previousPosition.x
                         var dy = mouseY - previousPosition.y
