@@ -4,12 +4,6 @@ import "../UI"
 
 Rectangle {
 
-    FileDialog
-    {
-        id: crazyFucker
-
-    }
-
     id: workbench
     width: 100
     height: 62
@@ -27,8 +21,6 @@ Rectangle {
             {
                 workbench.state = "hideDock"
             }
-
-            crazyFucker.show()
         }
         onDoubleClicked: {
             if (mouse.button == Qt.LeftButton)

@@ -1,16 +1,19 @@
 #include "FileLoader.h"
+#include "System.h"
 
 #include <QtWidgets\QFileDialog>
 #include <QFile>
 #include <QByteArray>
+#include <QUrl>
+#include <QFileInfo>
 
 #include <iostream>
 
-FileLoader::LoadException::LoadException( QString const& msg ) :
-    QException()
-    , mMessage( msg )
+namespace Uber
 {
-}
+
+const QString FileLoader::sFrameworkSuffix = QString( "fbef" );
+const QString FileLoader::sUbercodeSuffix = QString( "ubef" );
 
 FileLoader::FileLoader( QObject *parent ) : QObject( parent )
 {
@@ -33,9 +36,49 @@ FileLoader::~FileLoader()
 {
 }
 
-void FileLoader::loadFile( QString const& filename )
+void FileLoader::loadFile( System *sys, QString const& filename )
 {
     // TODO: probably want to perform all sorts of file checks
+
+    QUrl url( filename );
+    QString path = url.path();
+
+    std::cout << path.toStdString() << std::endl;
+
+    QFileInfo info( filename );
+    std::cout << info.baseName().toStdString() << std::endl;
+    std::cout << info.suffix().toStdString() << std::endl;
+    std::cout << info.absoluteFilePath().toStdString() << std::endl;
+
+    if ( info.suffix() == sUbercodeSuffix )
+    {
+        // the framework now has to load & create stuff
+        //class FrameworkConfig;
+        //class UberCodeConfig : public FrameworkConfig;
+
+        //UbercodeConfig config;
+        //framework->loadConfig( file, config );
+
+        // now i need to handle all the ubercode specific stuff, i.e. positioning etc
+        //loader->loadConfig( file, config );
+
+        // now this needs to be added to the model, yay
+        //System->addConfig( config );
+    }
+    else if ( info.suffix() == sFrameworkSuffix )
+    {
+        // the framework now has to load & create stuff
+        //FrameworkConfig config = framework->loadFile();
+
+        // now the ub specific info needs to be added
+
+        // and now this needs to be added to the model, yay
+    }
+    else
+    {
+        std::cout << "whatever you're trying to load here is not a ubercode OR framework file. you suck." << std::endl;
+        return;
+    }
 
     // also: i'm stupid so I'll have to remove the file:/// manually
     QString tmp = filename;
@@ -59,4 +102,6 @@ void FileLoader::loadFile( QString const& filename )
     std::cout << byteData.length() << std::endl;
 
     file.close();
+}
+
 }

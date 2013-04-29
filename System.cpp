@@ -29,6 +29,7 @@ namespace Uber {
     ,m_QmlEngine(new QQmlEngine )
     ,m_Canvas(new QQuickView( m_QmlEngine, 0))
     ,m_Dock(new QQuickView( m_QmlEngine, 0))
+    , mFileLoader( new FileLoader( *this ) )
     {
         m_SurfaceFormat.setAlphaBufferSize(8);
         m_Canvas->setResizeMode(QQuickView::SizeRootObjectToView);
@@ -66,14 +67,17 @@ namespace Uber {
         qmlRegisterType<Item>();
         qmlRegisterType<ItemObjectListModel>();
         qmlRegisterType< FileLoader >( "LogicComponents", 1, 0, "FileLoader" );
+        //qmlRegisterSingletonType< System >( "LogicComponents", 1, 0, "SystemSingleton", blargh );
+        //qmlRegisterType< System >();
     }
 
     void System::setContextProperties()
     {
         m_QmlEngine->rootContext()->setContextProperty( "DockModel", m_DockModel );
-        m_QmlEngine->rootContext()->setContextProperty("DockView", m_Dock );
-        m_QmlEngine->rootContext()->setContextProperty("Canvas",m_Canvas);
-        m_QmlEngine->rootContext()->setContextProperty("System",this);
+        m_QmlEngine->rootContext()->setContextProperty( "DockView", m_Dock );
+        m_QmlEngine->rootContext()->setContextProperty( "Canvas", m_Canvas );
+        m_QmlEngine->rootContext()->setContextProperty( "System", this );
+        m_QmlEngine->rootContext()->setContextProperty( "FileLoader", m_Loader );
     }
 
     void System::enableTransparentWindows()

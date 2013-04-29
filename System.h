@@ -10,6 +10,9 @@
 #include "_2RealApplication.h"
 
 namespace Uber {
+
+    class FileLoader;
+
     class System : public QObject
     {
         Q_OBJECT
@@ -22,6 +25,7 @@ namespace Uber {
             }
             return m_Instance;
         }
+
         ~System();
         void                                loadBundles();
         void                                loadQmlFiles();
@@ -40,6 +44,16 @@ namespace Uber {
         Q_INVOKABLE QPointF                 maptoGlobal(QQuickItem* item);
         Q_INVOKABLE QPointF                 getDockInputPosition();
 
+        //static QObject *blargh( QQmlEngine *engine, QJSEngine *scriptEngine )
+        //{
+        //    Q_UNUSED(engine)
+        //    Q_UNUSED(scriptEngine)
+        //    return getInstance();
+        //}
+
+        FileLoader * fileLoader();
+        FileLoader const* fileLoader() const;
+
     private:
         System();
         System(System const&); //Dont implement
@@ -55,6 +69,8 @@ namespace Uber {
         QQuickView*                         m_Canvas;
         QQuickView*                         m_Dock;
         QSurfaceFormat                      m_SurfaceFormat;
+
+        FileLoader                          *mFileLoader;
 
     };
 }

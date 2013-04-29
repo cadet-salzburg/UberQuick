@@ -63,7 +63,7 @@ Rectangle {
                 {
                     console.log( "file : " + itemToBeLoaded )
                     console.log( "folder: " + currentFolder )
-                    if ( isValidItem ) fileLoader.loadFile( currentFolder + itemToBeLoaded );
+                    if ( isValidItem ) fileLoader.loadFile( System.narf(), currentFolder + itemToBeLoaded );
                     // reset the selection
                     reset();
                 }

@@ -2,32 +2,37 @@
 #define FILELOADER_H
 
 #include <QObject>
-#include <QException>
 
-class FileLoader : public QObject
+namespace Uber
 {
 
-    Q_OBJECT
+    class System;
 
-public:
-
-    class LoadException : public QException
+    class FileLoader : public QObject
     {
+
+     Q_OBJECT
+
     public:
-        LoadException( QString const& msg );
+
+        FileLoader( System &system, QObject *parent = nullptr );
+        FileLoader( FileLoader const& other );
+        FileLoader& operator=( FileLoader const& other );
+        ~FileLoader();
+
+        //
+        //Q_INVOKABLE void loadFile( Uber::System *sys, QString const& filename );
+
+        Q_INVOKABLE void loadFile( QString const& filename );
+
     private:
-        QString     mMessage;
+
+        static const QString sFrameworkSuffix;
+        static const QString sUbercodeSuffix;
+
+        System &mSystem;    // yeah, yeah, i know the system's a singleton, whatever
+
     };
-
-    FileLoader( QObject *parent = nullptr );
-    FileLoader( FileLoader const& other );
-    FileLoader& operator=( FileLoader const& other );
-    ~FileLoader();
-
-    Q_INVOKABLE void loadFile( QString const& filename );
-
-private:
-
-};
+}
 
 #endif // FILELOADER_H
