@@ -30,7 +30,7 @@ namespace Uber
         static const QString sFrameworkSuffix;
         static const QString sUbercodeSuffix;
 
-        System &mSystem;    // yeah, yeah, i know the system's a singleton, whatever
+        System &mSystem;
 
     };
 }

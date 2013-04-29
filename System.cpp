@@ -66,7 +66,11 @@ namespace Uber {
         qmlRegisterType<Block>();
         qmlRegisterType<Item>();
         qmlRegisterType<ItemObjectListModel>();
-        qmlRegisterType< FileLoader >( "LogicComponents", 1, 0, "FileLoader" );
+
+        // fileloader now has no default ctor any more, and thus cannot be registered
+        //qmlRegisterType< FileLoader >( "LogicComponents", 1, 0, "FileLoader" );
+
+        // singleton thingie
         //qmlRegisterSingletonType< System >( "LogicComponents", 1, 0, "SystemSingleton", blargh );
         //qmlRegisterType< System >();
     }
@@ -77,7 +81,7 @@ namespace Uber {
         m_QmlEngine->rootContext()->setContextProperty( "DockView", m_Dock );
         m_QmlEngine->rootContext()->setContextProperty( "Canvas", m_Canvas );
         m_QmlEngine->rootContext()->setContextProperty( "System", this );
-        m_QmlEngine->rootContext()->setContextProperty( "FileLoader", m_Loader );
+        m_QmlEngine->rootContext()->setContextProperty( "cpFileLoader", mFileLoader );
     }
 
     void System::enableTransparentWindows()

@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import "../UI"                  // included for button / file dialog etc
-import LogicComponents 1.0      // included for fileloader class
+//import LogicComponents 1.0      // included for fileloader class
+// fioleloader now became a context property...
 
 Rectangle {
     width:      parent.width
@@ -50,10 +51,10 @@ Rectangle {
 
         Button
         {
-            FileLoader
-            {
-                id: fileLoader;
-            }
+            //FileLoader
+            //{
+                //id: fileLoader;
+            //}
 
             FileDialog
             {
@@ -63,7 +64,7 @@ Rectangle {
                 {
                     console.log( "file : " + itemToBeLoaded )
                     console.log( "folder: " + currentFolder )
-                    if ( isValidItem ) fileLoader.loadFile( System.narf(), currentFolder + itemToBeLoaded );
+                    if ( isValidItem ) cpFileLoader.loadFile( currentFolder + itemToBeLoaded );
                     // reset the selection
                     reset();
                 }
