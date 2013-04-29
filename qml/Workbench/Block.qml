@@ -13,6 +13,11 @@ Rectangle {
         color: "#AFAFAF"
         width: 3
     }
+
+    Drag {
+
+    }
+
     MouseArea {
         anchors.fill: parent
         property variant previousPosition
@@ -24,11 +29,12 @@ Rectangle {
             //mouse.accepted = false
         }
         onPositionChanged: {
-            if (pressedButtons == Qt.LeftButton) {
+            if (pressedButtons === Qt.LeftButton) {
                 var dx = mouseX - previousPosition.x
                 var dy = mouseY - previousPosition.y
                 block.x += dx
                 block.y += dy
+                object.position = Qt.point(block.x, block.y);
             }
         }
     }

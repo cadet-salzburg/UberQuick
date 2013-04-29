@@ -13,12 +13,14 @@ Rectangle {
         onPressed: {
             console.log(object.getName() + " pressed");
         }
+        onReleased: {
+            console.log(object.getName() + " released");
+        }
     }
     Rectangle {
         width: parent.width
         height: block.border.width
         y: parent.y + parent.height /2 - height/2
         color: "#8F8F8F"
-        //color: "#FFFFFF"
     }
 }

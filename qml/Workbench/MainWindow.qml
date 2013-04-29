@@ -76,4 +76,7 @@ Rectangle {
            // PropertyChanges { target: _dockView; x: 100; y: 100 }
         }
     ]
+    TaskBar {
+        anchors.bottom : workbench.bottom
+    }
 }
