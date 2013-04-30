@@ -31,7 +31,8 @@ SOURCES += \
     Models/InletObjectListModel.cpp \
     Models/OutletObjectListModel.cpp \
     Items/Link.cpp \
-    FileLoader.cpp
+    FileLoader.cpp \
+    Canvas.cpp
 
 HEADERS += \
     System.h \
@@ -53,7 +54,8 @@ HEADERS += \
     Models/InletObjectListModel.h \
     Models/OutletObjectListModel.h \
     Items/Link.h \
-    FileLoader.h
+    FileLoader.h \
+    Canvas.h
 
 OTHER_FILES += \
     qml/Dock/Dock.qml \

@@ -15,6 +15,7 @@
 #include "Models/ItemObjectListModel.h"
 #include "FileLoader.h"
 #include "System.h"
+#include "Canvas.h"
 
 using namespace _2Real;
 using namespace _2Real::app;
@@ -66,6 +67,7 @@ namespace Uber {
         qmlRegisterType<Block>();
         qmlRegisterType<Item>();
         qmlRegisterType<ItemObjectListModel>();
+        qmlRegisterType<Canvas>("UberComponents", 1,0,"Canvas");
 
         // fileloader now has no default ctor any more, and thus cannot be registered
         //qmlRegisterType< FileLoader >( "LogicComponents", 1, 0, "FileLoader" );

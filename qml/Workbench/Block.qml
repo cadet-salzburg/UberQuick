@@ -14,10 +14,6 @@ Rectangle {
         width: 3
     }
 
-    Drag {
-
-    }
-
     MouseArea {
         anchors.fill: parent
         property variant previousPosition

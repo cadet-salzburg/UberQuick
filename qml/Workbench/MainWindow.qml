@@ -1,9 +1,9 @@
 import QtQuick 2.0
 import QtDesktop 1.0
+import UberComponents 1.0
 import "../UI"
 
 Rectangle {
-
     id: workbench
     width: 100
     height: 62
@@ -31,7 +31,23 @@ Rectangle {
                 workbench.state = "showDock"
             }
         }
+        onPressAndHold: {
+            var object = childAt(mouse.x, mouse.y );
+            if ( object )
+            {
+                console.log("Found something");
+            } else
+            {
+                console.log("Found nothing");
+            }
+        }
     }
+    Canvas {
+        id: canvasTest
+        width: 100
+        height: 100
+    }
+
     Repeater {
         id: grid
         anchors.fill: parent
