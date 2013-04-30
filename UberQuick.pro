@@ -32,7 +32,8 @@ SOURCES += \
     Models/OutletObjectListModel.cpp \
     Items/Link.cpp \
     FileLoader.cpp \
-    Canvas.cpp
+    Canvas.cpp \
+    Testrect.cpp
 
 HEADERS += \
     System.h \
@@ -55,7 +56,8 @@ HEADERS += \
     Models/OutletObjectListModel.h \
     Items/Link.h \
     FileLoader.h \
-    Canvas.h
+    Canvas.h \
+    Testrect.h
 
 OTHER_FILES += \
     qml/Dock/Dock.qml \

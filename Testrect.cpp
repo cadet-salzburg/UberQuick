@@ -1,32 +1,27 @@
-#include "Canvas.h"
+#include "Testrect.h"
 #include <QSGGeometryNode>
 
 namespace Uber {
-    Canvas::Canvas(QQuickItem *parent)
+    Testrect::Testrect(QQuickItem *parent)
     :QQuickItem(parent)
     ,m_Geometry( QSGGeometry::defaultAttributes_Point2D(), 4)
     {
         setFlag(ItemHasContents);
-        setFiltersChildMouseEvents(true);
+        setEnabled(true);
+        setAcceptedMouseButtons(Qt::AllButtons);
     }
 
-    QColor Canvas::getColor() const
+    QColor Testrect::getColor() const
     {
         return m_Material.color();
     }
 
-    void Canvas::setColor( const QColor &color)
+    void Testrect::setColor( const QColor &color)
     {
         m_Material.setColor(color);
     }
 
-    bool Canvas::childMouseEventFilter(QQuickItem * item, QEvent * event)
-    {
-        qDebug() << item->metaObject()->className();
-        return false;
-    }
-
-    QSGNode *Canvas::updatePaintNode(QSGNode *n, UpdatePaintNodeData *d)
+    QSGNode *Testrect::updatePaintNode(QSGNode *n, UpdatePaintNodeData *d)
     {
         QSGGeometryNode *node = static_cast<QSGGeometryNode*>(n);
         if (!node) node = new QSGGeometryNode();

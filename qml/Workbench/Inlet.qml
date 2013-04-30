@@ -6,17 +6,17 @@ Rectangle {
     radius: width
     color: "#002F4F4F"
     anchors.verticalCenter: parent.verticalCenter
-    MouseArea
-    {
-        cursorShape: Qt.PointingHandCursor
-        anchors.fill: parent
-        onPressed: {
-            console.log(object.getName() + " pressed");
-        }
-        onReleased: {
-            console.log(object.getName() + " released");
-        }
-    }
+//    MouseArea
+//    {
+//        cursorShape: Qt.PointingHandCursor
+//        anchors.fill: parent
+//        onPressed: {
+//            console.log(object.getName() + " pressed");
+//        }
+//        onReleased: {
+//            console.log(object.getName() + " released");
+//        }
+//    }
     Rectangle {
         width: parent.width
         height: block.border.width

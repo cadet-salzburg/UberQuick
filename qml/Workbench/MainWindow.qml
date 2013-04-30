@@ -3,50 +3,40 @@ import QtDesktop 1.0
 import UberComponents 1.0
 import "../UI"
 
-Rectangle {
+Canvas {
     id: workbench
     width: 100
     height: 62
     color: "#e6e6e6ff"
     state: "initState"
-    MouseArea {
-        id: mouseArea
-        anchors.fill: parent
-        //propagateComposedEvents: true
-        acceptedButtons: Qt.LeftButton | Qt.RightButton
-        onPressed: {
-            //mouse.accepted = false;
-            console.debug("Pressed");
-            if ( workbench.state == "showDock")
-            {
-                workbench.state = "hideDock"
-            }
-        }
-        onDoubleClicked: {
-            if (mouse.button == Qt.LeftButton)
-            {
-                var pos = System.maptoGlobal(parent)
-                DockView.setX(pos.x+mouseX-DockView.width/2)
-                 DockView.setY(pos.y+mouseY)
-                workbench.state = "showDock"
-            }
-        }
-        onPressAndHold: {
-            var object = childAt(mouse.x, mouse.y );
-            if ( object )
-            {
-                console.log("Found something");
-            } else
-            {
-                console.log("Found nothing");
-            }
-        }
-    }
-    Canvas {
-        id: canvasTest
+//    MouseArea {
+//        id: mouseArea
+//        anchors.fill: parent
+//        //propagateComposedEvents: true
+//        acceptedButtons: Qt.LeftButton | Qt.RightButton
+//        onPressed: {
+//            console.debug("Pressed");
+//            if ( workbench.state == "showDock")
+//            {
+//                workbench.state = "hideDock"
+//            }
+//        }
+//        onDoubleClicked: {
+//            if (mouse.button == Qt.LeftButton)
+//            {
+//                var pos = System.maptoGlobal(parent)
+//                DockView.setX(pos.x+mouseX-DockView.width/2)
+//                 DockView.setY(pos.y+mouseY)
+//                workbench.state = "showDock"
+//            }
+//        }
+//    }
+    Rect {
         width: 100
-        height: 100
+        height: 62
+        color: "#101010ff"
     }
+
 
     Repeater {
         id: grid
