@@ -8,8 +8,6 @@
 #include "Models/DockModel.h"
 #include "Models/ItemObjectListModel.h"
 #include "_2RealApplication.h"
-
-// included because of config
 #include "FileLoader.h"
 
 namespace Uber {
@@ -47,6 +45,14 @@ namespace Uber {
         Q_INVOKABLE QPointF                 maptoGlobal(QQuickItem* item);
         Q_INVOKABLE QPointF                 getDockInputPosition();
 
+
+        //static QObject *blargh( QQmlEngine *engine, QJSEngine *scriptEngine )
+        //{
+        //    Q_UNUSED(engine)
+        //    Q_UNUSED(scriptEngine)
+        //    return getInstance();
+        //}
+
         FileLoader * fileLoader();
         FileLoader const* fileLoader() const;
 
@@ -73,6 +79,7 @@ namespace Uber {
         QSurfaceFormat                      m_SurfaceFormat;
 
         FileLoader                          *mFileLoader;
+        Link*                               m_CurrentLink;
 
     };
 }

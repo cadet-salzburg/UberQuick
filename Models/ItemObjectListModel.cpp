@@ -1,5 +1,7 @@
 #include "ItemObjectListModel.h"
 #include "../Items/Block.h"
+#include "../Items/Link.h"
+
 namespace Uber {
     ItemObjectListModel::ItemObjectListModel(QObject *parent)
     :QObjectListModelT<Item*>(parent)
@@ -32,6 +34,9 @@ namespace Uber {
             if ( obj->getClassName()== QString("Uber::Block") )
             {
                 return QVariant::fromValue(dynamic_cast<Block*>(obj));
+            } else if ( obj->getClassName()== QString("Uber::Link") )
+            {
+                return QVariant::fromValue(dynamic_cast<Link*>(obj));
             }
         }
         case Qt::DisplayRole:

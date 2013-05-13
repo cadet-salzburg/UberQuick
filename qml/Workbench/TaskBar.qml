@@ -25,11 +25,11 @@ Rectangle
     width:      parent.width
     height:     35
     gradient:   Gradient
-                {
-                    GradientStop { position: -0.5; color: parent.color }
-                    GradientStop { position: 0.95; color: "grey" }
-                    GradientStop { position: 1.0; color: "grey" }
-                }
+    {
+    GradientStop { position: -0.5; color: parent.color }
+    GradientStop { position: 0.95; color: "grey" }
+    GradientStop { position: 1.0; color: "grey" }
+    }
 
     Row {
         spacing:                4

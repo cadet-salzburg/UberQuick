@@ -1,90 +1,53 @@
 #include "Link.h"
-#include <QDebug>
-
 namespace Uber {
-    Link::Link(QQuickItem *parent)
-    :QQuickItem(parent)
-    ,m_Inlet(nullptr)
-    ,m_Outlet(nullptr)
+    Link::Link()
+    :m_Inlet( nullptr )
+    ,m_Outlet( nullptr )
     {
 
     }
-
-    Link::Link(Inlet *inlet, Outlet *outlet, QQuickItem *parent )
-    :QQuickItem(parent)
-    ,m_Inlet(inlet)
-    ,m_Outlet(outlet)
-    {
-
-    }
-
-    Link::Link(const Link &other)
-    :QQuickItem(other.parentItem())
-    ,m_Inlet(other.getInlet())
-    ,m_Outlet(other.getOutlet())
-    {
-
-    }
-
-    Inlet*  Link::getInlet() const
-    {
-        return m_Inlet;
-    }
-
-    void Link::setInlet(Inlet *const inlet)
+    void Link::setInlet( Inlet *inlet )
     {
         m_Inlet = inlet;
     }
 
-    Outlet* Link::getOutlet() const
-    {
-        return m_Outlet;
-    }
-
-    void Link::setOutlet(Outlet *const outlet)
+    void Link::setOutlet( Outlet *outlet )
     {
         m_Outlet = outlet;
     }
 
-    QPointF Link::getStart() const
+    QPointF Link::getStartPos()
     {
-        //This returns a reference
-        return m_LinkNodes.front();
+        if ( m_Outlet )
+        {
+            return m_Outlet->getPosition();
+        } else if ( m_Inlet )
+        {
+            return m_Inlet->getPosition();
+        } else
+        {
+            return QPointF();
+        }
     }
 
-    void Link::setStart( QPointF start )
+    QPointF Link::getEndPos()
     {
-        m_LinkNodes.front() = start;
+        if ( m_Inlet && m_Outlet )
+        {
+            return m_Inlet->getPosition();
+        } else
+        {
+            return m_EndPos;
+        }
     }
 
-    QPointF Link::getEnd() const
+    void Link::updateEndPosition( const QPointF& point )
     {
-        //This returns a reference
-        return m_LinkNodes.back();
+        m_EndPos = point;
     }
-
-    void Link::setEnd( QPointF end )
+    QDebug operator<<(QDebug dbg, const Link &link )
     {
-        m_LinkNodes.back() = end;
-    }
-
-    void Link::link()
-    {
-        m_Inlet->getInletHandle().link(m_Outlet->getOutletHandle());
-    }
-
-    void Link::unlink()
-    {
-        m_Inlet->getInletHandle().unlinkFrom(m_Outlet->getOutletHandle());
-    }
-
-    QSGNode* Link::updatePaintNode( QSGNode *oldNode, UpdatePaintNodeData *updatePaintNodeData )
-    {
-        Q_UNUSED( updatePaintNodeData)
-        return nullptr;
-    }
-    void Link::updateLinkNodes()
-    {
-        qDebug() << "Link::updateLinkNodes() was called.";
+        dbg.nospace() << "Link";
+        return dbg.maybeSpace();
     }
 }
