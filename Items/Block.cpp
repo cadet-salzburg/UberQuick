@@ -9,7 +9,6 @@ namespace Uber {
     {
 
     }
-
     Block::Block( const BlockHandle& handle )
     :Item(0)
     ,m_BlockHandle(handle)
@@ -18,7 +17,6 @@ namespace Uber {
     {
         initialize();
     }
-
     Block::Block(const Block &other)
     :Item(other.parent(), other.getPosition(), other.size())
     ,m_BlockHandle(other.getBlockHandle())
@@ -27,7 +25,6 @@ namespace Uber {
     {
         initialize();
     }
-
     Block::~Block()
     {
 
@@ -93,7 +90,6 @@ namespace Uber {
             }
         }
     }
-
     QDebug operator<<(QDebug dbg, const Block &block )
     {
         dbg.nospace() << "Block";

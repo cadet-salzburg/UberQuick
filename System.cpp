@@ -16,7 +16,8 @@
 #include "FileLoader.h"
 #include "System.h"
 #include "Canvas.h"
-#include "Testrect.h"
+#include "IoRegion.h"
+#include "BezierCurve.h"
 
 using namespace _2Real;
 using namespace _2Real::app;
@@ -32,8 +33,10 @@ namespace Uber {
     ,m_Canvas(new QQuickView( m_QmlEngine, 0))
     ,m_Dock(new QQuickView( m_QmlEngine, 0))
     , mFileLoader( new FileLoader( *this ) )
+    ,m_CurrentLink(nullptr)
     {
         m_SurfaceFormat.setAlphaBufferSize(8);
+        m_SurfaceFormat.setStencilBufferSize(8);
         m_Canvas->setResizeMode(QQuickView::SizeRootObjectToView);
         m_Canvas->setGeometry(300,200, 640, 480);
         m_Canvas->setFormat(m_SurfaceFormat);
@@ -67,9 +70,11 @@ namespace Uber {
         qmlRegisterType<OutletObjectListModel>();
         qmlRegisterType<Block>();
         qmlRegisterType<Item>();
+        qmlRegisterType<Link>();
         qmlRegisterType<ItemObjectListModel>();
         qmlRegisterType<Canvas>("UberComponents", 1,0,"Canvas");
-        qmlRegisterType<Testrect>("UberComponents", 1,0,"Rect");
+        qmlRegisterType<IoRegion>("UberComponents", 1,0,"Node");
+        qmlRegisterType<BezierCurve>("UberComponents", 1,0,"Bezier");
 
         // fileloader now has no default ctor any more, and thus cannot be registered
         //qmlRegisterType< FileLoader >( "LogicComponents", 1, 0, "FileLoader" );
@@ -185,6 +190,8 @@ namespace Uber {
         m_DockModel->addEntries(entries);
         m_ComplexDelegate = new ComplexDelegate();
         m_ComplexDelegate->addDelegate(QString("Uber::Block"),QUrl::fromLocalFile("qml/Workbench/Block.qml"));
+        m_ComplexDelegate->addDelegate(QString("Uber::Link"), QUrl::fromLocalFile("qml/Workbench/Link.qml"));
+
         m_QmlEngine->rootContext()->setContextProperty( "ComplexDelegate", m_ComplexDelegate );
         m_QmlEngine->rootContext()->setContextProperty("System", this );
         m_QmlEngine->rootContext()->setContextProperty( "ItemModel", m_ItemModel );
@@ -214,6 +221,24 @@ namespace Uber {
         QPointF dotPosition  = dockPosition + QPointF(m_Dock->width()/2 - 75, -15);
         QPointF inputPosition = dotPosition - m_Canvas->position();
         return inputPosition;
+    }
+
+    void System::beginAddingLink(const QPointF& pos)
+    {
+        m_CurrentLink = new Link();
+        QString metaName = m_CurrentLink->getClassName();
+        m_ItemModel->append(m_CurrentLink);
+        qDebug() << "Something ";
+    }
+
+    void System::updateLink( const QPointF& pos )
+    {
+
+    }
+
+    void System::finishAddingLink(const QPointF& pos)
+    {
+
     }
 
     void System::addBlock( int index )

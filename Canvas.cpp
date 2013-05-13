@@ -22,7 +22,12 @@ namespace Uber {
 
     bool Canvas::childMouseEventFilter(QQuickItem * item, QEvent * event)
     {
-        qDebug() << item->metaObject()->className();
+         qDebug() << item->metaObject()->className();
+        if ( item->metaObject()->className() == QString("Uber::IoRegion")  )
+        {
+            qDebug() << "IoRegion pressed";
+            //return false;
+        }
         return false;
     }
 

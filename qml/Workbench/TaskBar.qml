@@ -7,11 +7,11 @@ Rectangle {
     width:      parent.width
     height:     35
     gradient:   Gradient
-                {
-                    GradientStop { position: -0.5; color: parent.color }
-                    GradientStop { position: 0.95; color: "grey" }
-                    GradientStop { position: 1.0; color: "grey" }
-                }
+    {
+    GradientStop { position: -0.5; color: parent.color }
+    GradientStop { position: 0.95; color: "grey" }
+    GradientStop { position: 1.0; color: "grey" }
+    }
 
     Row {
         spacing:                4
@@ -56,20 +56,21 @@ Rectangle {
                 //id: fileLoader;
             //}
 
-            FileDialog
-            {
-                id: loadDialog
+// Uncomment the following
+//            FileDialog
+//            {
+//                id: loadDialog
 
-                onAccepted:
-                {
-                    console.log( "file : " + itemToBeLoaded )
-                    console.log( "folder: " + currentFolder )
-                    if ( isValidItem ) cpFileLoader.loadFile( currentFolder + itemToBeLoaded );
-                    // reset the selection
-                    reset();
-                }
-
-            }
+//                onAccepted:
+//                {
+//                    console.log( "file : " + itemToBeLoaded )
+//                    console.log( "folder: " + currentFolder )
+//                    if ( isValidItem ) cpFileLoader.loadFile( currentFolder + itemToBeLoaded );
+//                    // reset the selection
+//                    reset();
+//                }
+//
+//            }
 
             iconPath:                   "../../Images/loadIcon.png"
             height:                     parent.height - 8

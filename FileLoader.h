@@ -20,7 +20,7 @@ namespace Uber
         FileLoader& operator=( FileLoader const& other );
         ~FileLoader();
 
-        //
+
         //Q_INVOKABLE void loadFile( Uber::System *sys, QString const& filename );
 
         Q_INVOKABLE void loadFile( QString const& filename );

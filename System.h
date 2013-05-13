@@ -8,6 +8,7 @@
 #include "Models/DockModel.h"
 #include "Models/ItemObjectListModel.h"
 #include "_2RealApplication.h"
+#include "Items/Link.h"
 
 namespace Uber {
 
@@ -40,9 +41,14 @@ namespace Uber {
         void                                enableTransparentWindows();
         void                                showWindows();
 
+        Q_INVOKABLE void                    beginAddingLink(const QPointF& pos);
+        Q_INVOKABLE void                    updateLink( const QPointF& pos );
+        Q_INVOKABLE void                    finishAddingLink(const QPointF& pos);
+
         Q_INVOKABLE void                    addBlock( int index );
         Q_INVOKABLE QPointF                 maptoGlobal(QQuickItem* item);
         Q_INVOKABLE QPointF                 getDockInputPosition();
+
 
         //static QObject *blargh( QQmlEngine *engine, QJSEngine *scriptEngine )
         //{
@@ -71,6 +77,7 @@ namespace Uber {
         QSurfaceFormat                      m_SurfaceFormat;
 
         FileLoader                          *mFileLoader;
+        Link*                               m_CurrentLink;
 
     };
 }
