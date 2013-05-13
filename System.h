@@ -9,6 +9,9 @@
 #include "Models/ItemObjectListModel.h"
 #include "_2RealApplication.h"
 
+// included because of config
+#include "FileLoader.h"
+
 namespace Uber {
 
     class FileLoader;
@@ -44,20 +47,19 @@ namespace Uber {
         Q_INVOKABLE QPointF                 maptoGlobal(QQuickItem* item);
         Q_INVOKABLE QPointF                 getDockInputPosition();
 
-        //static QObject *blargh( QQmlEngine *engine, QJSEngine *scriptEngine )
-        //{
-        //    Q_UNUSED(engine)
-        //    Q_UNUSED(scriptEngine)
-        //    return getInstance();
-        //}
-
         FileLoader * fileLoader();
         FileLoader const* fileLoader() const;
 
+        /*
+         *  called by the so-called file loader when a file is supposed to be loaded
+         */
+        void loadConfig( QString const& dataSource );
+
     private:
+
         System();
-        System(System const&); //Dont implement
-        void operator=(System const&); //Dont implement
+        System(System const&);
+        void operator=(System const&);
 
         static System*                      m_Instance;
         QStringList                         m_BundleFilenames;

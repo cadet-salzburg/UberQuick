@@ -3,7 +3,25 @@ import "../UI"                  // included for button / file dialog etc
 //import LogicComponents 1.0      // included for fileloader class
 // fioleloader now became a context property...
 
-Rectangle {
+Rectangle
+{
+
+    // used for loading. let's see if it should be used for saving, too?
+    FileDialog
+    {
+        id: loadDialog
+
+        onAccepted:
+        {
+            console.log( "file : " + itemToBeLoaded )
+            console.log( "folder: " + currentFolder )
+            if ( isValidItem ) cpFileLoader.loadFile( currentFolder + itemToBeLoaded );
+            // reset the selection
+            reset();
+        }
+
+    }
+
     width:      parent.width
     height:     35
     gradient:   Gradient
@@ -51,26 +69,6 @@ Rectangle {
 
         Button
         {
-            //FileLoader
-            //{
-                //id: fileLoader;
-            //}
-
-            FileDialog
-            {
-                id: loadDialog
-
-                onAccepted:
-                {
-                    console.log( "file : " + itemToBeLoaded )
-                    console.log( "folder: " + currentFolder )
-                    if ( isValidItem ) cpFileLoader.loadFile( currentFolder + itemToBeLoaded );
-                    // reset the selection
-                    reset();
-                }
-
-            }
-
             iconPath:                   "../../Images/loadIcon.png"
             height:                     parent.height - 8
             width:                      parent.height - 8

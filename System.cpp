@@ -223,4 +223,36 @@ namespace Uber {
         block->setName(entry.getBlockName());
         m_ItemModel->append(block);
     }
+
+    void System::loadConfig( QString const& dataSource )
+    {
+        try
+        {
+            // TODO: rewrite the framework's loading routine
+
+            //UberConfig leftovers;
+            //leftovers = m_Engine.loadConfig( config );
+            //ConfigLoader loader( this, config );
+
+            m_Engine.loadConfiguration( dataSource.toStdString() );
+        }
+        catch ( _2Real::XMLFormatException &e )
+        {
+            std::cout << e.what() << std::endl;
+            // the framework failed to load; but ubercode has not
+            // yet done anything. in this case, cleaning up is the frameworks' responsibility
+
+            // also, not sure if xmlformat is the only possible exception
+            // have to check the fw code for that
+        }
+        catch ( std::exception & e )
+        {
+            std::cout << e.what() << std::endl;
+        }
+        catch ( ... )
+        {
+            // the framework did its part, but ubercode failed
+            // this likely means something is very wrong, so shutdown?
+        }
+    }
 }

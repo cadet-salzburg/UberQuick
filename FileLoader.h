@@ -6,6 +6,8 @@
 namespace Uber
 {
 
+    // TODO: move to sep. file, this is just a placeholder for now
+
     class System;
 
     class FileLoader : public QObject
@@ -20,9 +22,9 @@ namespace Uber
         FileLoader& operator=( FileLoader const& other );
         ~FileLoader();
 
-        //
-        //Q_INVOKABLE void loadFile( Uber::System *sys, QString const& filename );
-
+        /*
+        *   this is called from qml on loading a file
+        */
         Q_INVOKABLE void loadFile( QString const& filename );
 
     private:
