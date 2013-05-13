@@ -8,9 +8,8 @@
 #include "Models/DockModel.h"
 #include "Models/ItemObjectListModel.h"
 #include "_2RealApplication.h"
-
-// included because of config
 #include "FileLoader.h"
+#include "Items/Link.h"
 
 namespace Uber {
 
@@ -43,9 +42,21 @@ namespace Uber {
         void                                enableTransparentWindows();
         void                                showWindows();
 
+        void beginAddingLink(const QPointF& pos);
+        void updateLink( const QPointF& pos );
+        void finishAddingLink(const QPointF& pos);
+
         Q_INVOKABLE void                    addBlock( int index );
         Q_INVOKABLE QPointF                 maptoGlobal(QQuickItem* item);
         Q_INVOKABLE QPointF                 getDockInputPosition();
+
+
+        //static QObject *blargh( QQmlEngine *engine, QJSEngine *scriptEngine )
+        //{
+        //    Q_UNUSED(engine)
+        //    Q_UNUSED(scriptEngine)
+        //    return getInstance();
+        //}
 
         FileLoader * fileLoader();
         FileLoader const* fileLoader() const;
@@ -73,6 +84,7 @@ namespace Uber {
         QSurfaceFormat                      m_SurfaceFormat;
 
         FileLoader                          *mFileLoader;
+        Link*                               m_CurrentLink;
 
     };
 }

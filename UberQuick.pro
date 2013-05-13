@@ -30,8 +30,11 @@ SOURCES += \
     QmlLine.cpp \
     Models/InletObjectListModel.cpp \
     Models/OutletObjectListModel.cpp \
+    FileLoader.cpp \
+    Canvas.cpp \
+    IoRegion.cpp \
     Items/Link.cpp \
-    FileLoader.cpp
+    BezierCurve.cpp
 
 HEADERS += \
     System.h \
@@ -52,8 +55,11 @@ HEADERS += \
     QmlLine.h \
     Models/InletObjectListModel.h \
     Models/OutletObjectListModel.h \
+    FileLoader.h \
+    Canvas.h \
+    IoRegion.h \
     Items/Link.h \
-    FileLoader.h
+    BezierCurve.h
 
 OTHER_FILES += \
     qml/Dock/Dock.qml \
@@ -63,7 +69,9 @@ OTHER_FILES += \
     qml/Workbench/Block.qml \
     qml/Workbench/Inlet.qml \
     qml/UI/Tooltip.qml \
-    qml/UI/FileDialog.qml
+    qml/UI/FileDialog.qml \
+    qml/Workbench/Test.qml \
+    qml/Workbench/Link.qml
 
 
 #Includes

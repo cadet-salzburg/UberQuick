@@ -1,53 +1,27 @@
 #ifndef LINK_H
 #define LINK_H
-#include <QQuickItem.h>
+#include "Item.h"
 #include "Inlet.h"
 #include "Outlet.h"
+#include <QDebug>
 
 namespace Uber {
-    class Link : public QQuickItem
+    class Link : public Item
     {
         Q_OBJECT
-        Q_PROPERTY(QPointF startPosition READ getStart WRITE setStart NOTIFY startPositionChanged )
-        Q_PROPERTY(QPointF endPosition READ getEnd WRITE setEnd NOTIFY endPositionChanged )
     public:
-        enum DisplayOption {
-            SingleLine,
-            MultiLine
-        };
-
-        Link( QQuickItem *parent = nullptr );
-        Link( Inlet *inlet, Outlet *outlet, QQuickItem *parent = nullptr );
-        Link( const Link &other );
-
-        QSGNode*            updatePaintNode( QSGNode *oldNode, UpdatePaintNodeData *updatePaintNodeData );
-
-
-        Inlet*              getInlet() const;
-        void                setInlet( Inlet* const inlet );
-        Outlet*             getOutlet() const;
-        void                setOutlet( Outlet* const outlet );
-
-        void                link();
-        void                unlink();
-
-        QPointF             getStart() const;
-        void                setStart( QPointF start );
-
-        QPointF             getEnd() const;
-        void                setEnd( QPointF end );
-
-        //Q_INVOKABLE         setDisplayOption( DisplayOption option );
+        Link();
+        void                    setInlet( Inlet *inlet );
+        void                    setOutlet( Outlet *outlet );
+        Q_INVOKABLE     QPointF getStartPos();
+        Q_INVOKABLE     QPointF getEndPos();
+        Q_INVOKABLE     void    updateEndPosition( const QPointF& point );
     private:
-        Inlet*              m_Inlet;
-        Outlet*             m_Outlet;
-        QList<QPointF>      m_LinkNodes;
-        DisplayOption       m_DisplayOption;
-    signals:
-        void                startPositionChanged( QPointF p );
-        void                endPositionChanged( QPointF p );
-    public slots:
-        void                updateLinkNodes();
+        Inlet*          m_Inlet;
+        Outlet*         m_Outlet;
+        QPointF         m_EndPos;
     };
+    typedef QSharedPointer<Link> LinkRef;
+    QDebug operator<<(QDebug dbg, const Link &link);
 }
 #endif // LINK_H
