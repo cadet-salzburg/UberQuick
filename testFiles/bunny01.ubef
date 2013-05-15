@@ -1,6 +1,5 @@
 <config>
  <bundles>
-  <bundle>TypeConversions</bundle>
   <bundle>SFMLBundle</bundle>
  </bundles>
  <block_instances>
@@ -16,7 +15,7 @@
       <inlet_id>PrimitiveType</inlet_id>
       <multi_inlet>0</multi_inlet>
       <policy>valid_data</policy>
-      <buffer/>
+      <buffer>1</buffer>
       <value>2</value>
       <default_value>2</default_value>
      </inlet_configuration>
@@ -45,61 +44,12 @@
         <value>UNSTREAMABLE class%std::tr1::shared_ptr&lt;struct%_2Real::gl::BufferObj%const%></value>
         <default_value>UNSTREAMABLE class%std::tr1::shared_ptr&lt;struct%_2Real::gl::BufferObj%const%></default_value>
        </basic_inlet>
-       <basic_inlet>
-        <inlet_id>Buffers:3</inlet_id>
-        <policy>valid_data</policy>
-        <buffer>1</buffer>
-        <value>UNSTREAMABLE class%std::tr1::shared_ptr&lt;struct%_2Real::gl::BufferObj%const%></value>
-        <default_value>UNSTREAMABLE class%std::tr1::shared_ptr&lt;struct%_2Real::gl::BufferObj%const%></default_value>
-       </basic_inlet>
-       <basic_inlet>
-        <inlet_id>Buffers:4</inlet_id>
-        <policy>valid_data</policy>
-        <buffer>1</buffer>
-        <value>UNSTREAMABLE class%std::tr1::shared_ptr&lt;struct%_2Real::gl::BufferObj%const%></value>
-        <default_value>UNSTREAMABLE class%std::tr1::shared_ptr&lt;struct%_2Real::gl::BufferObj%const%></default_value>
-       </basic_inlet>
       </basic_inlets>
      </inlet_configuration>
      <inlet_configuration>
       <inlet_id>Textures</inlet_id>
       <multi_inlet>1</multi_inlet>
       <basic_inlets>
-       <basic_inlet>
-        <inlet_id>Textures:0</inlet_id>
-        <policy>valid_data</policy>
-        <buffer>1</buffer>
-        <value>UNSTREAMABLE class%std::tr1::shared_ptr&lt;struct%_2Real::gl::TextureObj%const%></value>
-        <default_value>UNSTREAMABLE class%std::tr1::shared_ptr&lt;struct%_2Real::gl::TextureObj%const%></default_value>
-       </basic_inlet>
-       <basic_inlet>
-        <inlet_id>Textures:1</inlet_id>
-        <policy>valid_data</policy>
-        <buffer>1</buffer>
-        <value>UNSTREAMABLE class%std::tr1::shared_ptr&lt;struct%_2Real::gl::TextureObj%const%></value>
-        <default_value>UNSTREAMABLE class%std::tr1::shared_ptr&lt;struct%_2Real::gl::TextureObj%const%></default_value>
-       </basic_inlet>
-       <basic_inlet>
-        <inlet_id>Textures:2</inlet_id>
-        <policy>valid_data</policy>
-        <buffer>1</buffer>
-        <value>UNSTREAMABLE class%std::tr1::shared_ptr&lt;struct%_2Real::gl::TextureObj%const%></value>
-        <default_value>UNSTREAMABLE class%std::tr1::shared_ptr&lt;struct%_2Real::gl::TextureObj%const%></default_value>
-       </basic_inlet>
-       <basic_inlet>
-        <inlet_id>Textures:3</inlet_id>
-        <policy>valid_data</policy>
-        <buffer>1</buffer>
-        <value>UNSTREAMABLE class%std::tr1::shared_ptr&lt;struct%_2Real::gl::TextureObj%const%></value>
-        <default_value>UNSTREAMABLE class%std::tr1::shared_ptr&lt;struct%_2Real::gl::TextureObj%const%></default_value>
-       </basic_inlet>
-       <basic_inlet>
-        <inlet_id>Textures:4</inlet_id>
-        <policy>valid_data</policy>
-        <buffer>1</buffer>
-        <value>UNSTREAMABLE class%std::tr1::shared_ptr&lt;struct%_2Real::gl::TextureObj%const%></value>
-        <default_value>UNSTREAMABLE class%std::tr1::shared_ptr&lt;struct%_2Real::gl::TextureObj%const%></default_value>
-       </basic_inlet>
       </basic_inlets>
      </inlet_configuration>
      <inlet_configuration>
@@ -125,20 +75,6 @@
         <policy>valid_data</policy>
         <buffer>1</buffer>
         <value>matProj ( 2.41421 0 0 0 0 2.41421 0 0 0 0 -1.10526 -2.10526 0 0 -1 0 )</value>
-        <default_value/>
-       </basic_inlet>
-       <basic_inlet>
-        <inlet_id>UniformValues:3</inlet_id>
-        <policy>valid_data</policy>
-        <buffer>1</buffer>
-        <value/>
-        <default_value/>
-       </basic_inlet>
-       <basic_inlet>
-        <inlet_id>UniformValues:4</inlet_id>
-        <policy>valid_data</policy>
-        <buffer>1</buffer>
-        <value/>
         <default_value/>
        </basic_inlet>
       </basic_inlets>
@@ -168,35 +104,21 @@
         <value>normal ( 3 0 )</value>
         <default_value/>
        </basic_inlet>
-       <basic_inlet>
-        <inlet_id>AttributeDescriptions:3</inlet_id>
-        <policy>valid_data</policy>
-        <buffer>1</buffer>
-        <value/>
-        <default_value/>
-       </basic_inlet>
-       <basic_inlet>
-        <inlet_id>AttributeDescriptions:4</inlet_id>
-        <policy>valid_data</policy>
-        <buffer>1</buffer>
-        <value/>
-        <default_value/>
-       </basic_inlet>
       </basic_inlets>
      </inlet_configuration>
      <inlet_configuration>
       <inlet_id>VertexShaderSource</inlet_id>
       <multi_inlet>0</multi_inlet>
       <policy>valid_data</policy>
-      <buffer/>
-      <value>C:/Users/FHS-Cadet-B/Desktop/DestinyData/modelshaded.vert</value>
+      <buffer>1</buffer>
+      <value>D:/cadet/modelshaded.vert</value>
       <default_value/>
      </inlet_configuration>
      <inlet_configuration>
       <inlet_id>GeometryShaderSource</inlet_id>
       <multi_inlet>0</multi_inlet>
       <policy>valid_data</policy>
-      <buffer/>
+      <buffer>1</buffer>
       <value/>
       <default_value/>
      </inlet_configuration>
@@ -204,8 +126,8 @@
       <inlet_id>FragmentShaderSource</inlet_id>
       <multi_inlet>0</multi_inlet>
       <policy>valid_data</policy>
-      <buffer/>
-      <value>C:/Users/FHS-Cadet-B/Desktop/DestinyData/modelshaded.frag</value>
+      <buffer>1</buffer>
+      <value>D:/cadet/modelshaded.frag</value>
       <default_value/>
      </inlet_configuration>
     </inlet_configurations>
@@ -223,8 +145,8 @@
       <inlet_id>FilePath</inlet_id>
       <multi_inlet>0</multi_inlet>
       <policy>valid_data</policy>
-      <buffer/>
-      <value>C:/Users/FHS-Cadet-B/Desktop/DestinyData/bunny.ply</value>
+      <buffer>1</buffer>
+      <value>D:/cadet/bunny.obj</value>
       <default_value/>
      </inlet_configuration>
     </inlet_configurations>
@@ -242,7 +164,7 @@
       <inlet_id>ClearColor</inlet_id>
       <multi_inlet>0</multi_inlet>
       <policy>valid_data</policy>
-      <buffer/>
+      <buffer>1</buffer>
       <value>0 0 0 1</value>
       <default_value>0 0 0 1</default_value>
      </inlet_configuration>
@@ -258,7 +180,7 @@
       <inlet_id>WindowWidth</inlet_id>
       <multi_inlet>0</multi_inlet>
       <policy>valid_data</policy>
-      <buffer/>
+      <buffer>1</buffer>
       <value>1200</value>
       <default_value>1200</default_value>
      </inlet_configuration>
@@ -266,7 +188,7 @@
       <inlet_id>WindowHeight</inlet_id>
       <multi_inlet>0</multi_inlet>
       <policy>valid_data</policy>
-      <buffer/>
+      <buffer>1</buffer>
       <value>900</value>
       <default_value>900</default_value>
      </inlet_configuration>
@@ -281,41 +203,13 @@
         <value>UNSTREAMABLE struct%_2Real::gl::RenderData</value>
         <default_value>UNSTREAMABLE struct%_2Real::gl::RenderData</default_value>
        </basic_inlet>
-       <basic_inlet>
-        <inlet_id>RenderData:1</inlet_id>
-        <policy>valid_data</policy>
-        <buffer>1</buffer>
-        <value>UNSTREAMABLE struct%_2Real::gl::RenderData</value>
-        <default_value>UNSTREAMABLE struct%_2Real::gl::RenderData</default_value>
-       </basic_inlet>
-       <basic_inlet>
-        <inlet_id>RenderData:2</inlet_id>
-        <policy>valid_data</policy>
-        <buffer>1</buffer>
-        <value>UNSTREAMABLE struct%_2Real::gl::RenderData</value>
-        <default_value>UNSTREAMABLE struct%_2Real::gl::RenderData</default_value>
-       </basic_inlet>
-       <basic_inlet>
-        <inlet_id>RenderData:3</inlet_id>
-        <policy>valid_data</policy>
-        <buffer>1</buffer>
-        <value>UNSTREAMABLE struct%_2Real::gl::RenderData</value>
-        <default_value>UNSTREAMABLE struct%_2Real::gl::RenderData</default_value>
-       </basic_inlet>
-       <basic_inlet>
-        <inlet_id>RenderData:4</inlet_id>
-        <policy>valid_data</policy>
-        <buffer>1</buffer>
-        <value>UNSTREAMABLE struct%_2Real::gl::RenderData</value>
-        <default_value>UNSTREAMABLE struct%_2Real::gl::RenderData</default_value>
-       </basic_inlet>
       </basic_inlets>
      </inlet_configuration>
      <inlet_configuration>
       <inlet_id>EnableMouseInteraction</inlet_id>
       <multi_inlet>0</multi_inlet>
       <policy>valid_data</policy>
-      <buffer/>
+      <buffer>1</buffer>
       <value>1</value>
       <default_value>1</default_value>
      </inlet_configuration>
@@ -323,7 +217,7 @@
       <inlet_id>EnableKeyboardInteraction</inlet_id>
       <multi_inlet>0</multi_inlet>
       <policy>valid_data</policy>
-      <buffer/>
+      <buffer>1</buffer>
       <value>1</value>
       <default_value>1</default_value>
      </inlet_configuration>
@@ -403,135 +297,4 @@
    </outlet>
   </link>
  </links>
- <ubercode_data>
-  <ui_instances>
-   <ui_instance>
-    <ui_instance_name>PathBlock_5</ui_instance_name>
-    <position>
-     <x>523</x>
-     <y>262</y>
-    </position>
-    <value>C:/Users/FHS-Cadet-B/Desktop/DestinyData/modelshaded.frag</value>
-   </ui_instance>
-   <ui_instance>
-    <ui_instance_name>PathBlock_4</ui_instance_name>
-    <position>
-     <x>278</x>
-     <y>236</y>
-    </position>
-    <value>C:/Users/FHS-Cadet-B/Desktop/DestinyData/modelshaded.vert</value>
-   </ui_instance>
-   <ui_instance>
-    <ui_instance_name>PathBlock_3</ui_instance_name>
-    <position>
-     <x>43</x>
-     <y>580</y>
-    </position>
-    <value>indices ( )</value>
-   </ui_instance>
-   <ui_instance>
-    <ui_instance_name>PathBlock_2</ui_instance_name>
-    <position>
-     <x>45</x>
-     <y>524</y>
-    </position>
-    <value>position ( 3 0 )</value>
-   </ui_instance>
-   <ui_instance>
-    <ui_instance_name>PathBlock_1</ui_instance_name>
-    <position>
-     <x>82</x>
-     <y>344</y>
-    </position>
-    <value>normal ( 3 0 )</value>
-   </ui_instance>
-   <ui_instance>
-    <ui_instance_name>PathBlock_0</ui_instance_name>
-    <position>
-     <x>59</x>
-     <y>-68</y>
-    </position>
-    <value>C:/Users/FHS-Cadet-B/Desktop/DestinyData/bunny.ply</value>
-   </ui_instance>
-  </ui_instances>
-  <ui_links>
-   <ui_link>
-    <ui_node>
-     <ui_name>PathBlock_5</ui_name>
-    </ui_node>
-    <block_node>
-     <block_name>RenderDataCombinerBlock_0</block_name>
-     <node_name>FragmentShaderSource</node_name>
-    </block_node>
-   </ui_link>
-   <ui_link>
-    <ui_node>
-     <ui_name>PathBlock_4</ui_name>
-    </ui_node>
-    <block_node>
-     <block_name>RenderDataCombinerBlock_0</block_name>
-     <node_name>VertexShaderSource</node_name>
-    </block_node>
-   </ui_link>
-   <ui_link>
-    <ui_node>
-     <ui_name>PathBlock_3</ui_name>
-    </ui_node>
-    <block_node>
-     <block_name>RenderDataCombinerBlock_0</block_name>
-     <node_name>AttributeDescriptions:0</node_name>
-    </block_node>
-   </ui_link>
-   <ui_link>
-    <ui_node>
-     <ui_name>PathBlock_2</ui_name>
-    </ui_node>
-    <block_node>
-     <block_name>RenderDataCombinerBlock_0</block_name>
-     <node_name>AttributeDescriptions:1</node_name>
-    </block_node>
-   </ui_link>
-   <ui_link>
-    <ui_node>
-     <ui_name>PathBlock_1</ui_name>
-    </ui_node>
-    <block_node>
-     <block_name>RenderDataCombinerBlock_0</block_name>
-     <node_name>AttributeDescriptions:2</node_name>
-    </block_node>
-   </ui_link>
-   <ui_link>
-    <ui_node>
-     <ui_name>PathBlock_0</ui_name>
-    </ui_node>
-    <block_node>
-     <block_name>ModelImporterBlock_0</block_name>
-     <node_name>FilePath</node_name>
-    </block_node>
-   </ui_link>
-  </ui_links>
-  <block_instances>
-   <block_instance>
-    <block_instance_id>RenderDataCombinerBlock_0</block_instance_id>
-    <position>
-     <x>580</x>
-     <y>539</y>
-    </position>
-   </block_instance>
-   <block_instance>
-    <block_instance_id>ModelImporterBlock_0</block_instance_id>
-    <position>
-     <x>238</x>
-     <y>2</y>
-    </position>
-   </block_instance>
-   <block_instance>
-    <block_instance_id>DisplayWindowBlock_0</block_instance_id>
-    <position>
-     <x>665</x>
-     <y>71</y>
-    </position>
-   </block_instance>
-  </block_instances>
- </ubercode_data>
 </config>
