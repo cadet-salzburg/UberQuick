@@ -39,12 +39,12 @@
 **
 ****************************************************************************/
 
-#ifndef BEZIERCURVE_H
-#define BEZIERCURVE_H
+#ifndef BEZIER_CURVE_H
+#define BEZIER_CURVE_H
 
-//! [1]
 #include <QtQuick/QQuickItem>
-
+#include <QSGFlatColorMaterial>
+namespace Uber {
 class BezierCurve : public QQuickItem
 {
     Q_OBJECT
@@ -55,14 +55,13 @@ class BezierCurve : public QQuickItem
     Q_PROPERTY(QPointF p4 READ p4 WRITE setP4 NOTIFY p4Changed)
 
     Q_PROPERTY(int segmentCount READ segmentCount WRITE setSegmentCount NOTIFY segmentCountChanged)
+    Q_PROPERTY(QColor color READ getColor WRITE setColor NOTIFY colorChanged FINAL )
 
 public:
     BezierCurve(QQuickItem *parent = 0);
     ~BezierCurve();
 
-//! [2]
     QSGNode *updatePaintNode(QSGNode *, UpdatePaintNodeData *);
-//! [2]
 
     QPointF p1() const { return m_p1; }
     QPointF p2() const { return m_p2; }
@@ -76,7 +75,9 @@ public:
     void setP3(const QPointF &p);
     void setP4(const QPointF &p);
 
-    void setSegmentCount(int count);
+    void    setSegmentCount(int count);
+    QColor  getColor() const;
+    void    setColor( const QColor &color);
 
 signals:
     void p1Changed(const QPointF &p);
@@ -85,6 +86,7 @@ signals:
     void p4Changed(const QPointF &p);
 
     void segmentCountChanged(int count);
+    void colorChanged(const QColor &color);
 
 private:
     QPointF m_p1;
@@ -93,8 +95,8 @@ private:
     QPointF m_p4;
 
     int m_segmentCount;
+    QSGFlatColorMaterial *m_material;
 };
-//! [1]
-
+}
 #endif
 

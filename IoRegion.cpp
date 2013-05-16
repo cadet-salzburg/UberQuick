@@ -1,6 +1,7 @@
 #include "IoRegion.h"
 #include <QSGGeometryNode>
 #include <qmath.h>
+#include <QPainterPathStroker>
 namespace Uber {
     IoRegion::IoRegion(QQuickItem *parent)
     :QQuickItem(parent)

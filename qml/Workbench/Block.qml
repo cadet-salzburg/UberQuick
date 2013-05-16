@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import UberComponents 1.0
 Rectangle {
         id: block
         height: 30
@@ -13,6 +14,7 @@ Rectangle {
             color: "#FFAFAFAF"
             width: 3
         }
+        signal updateIoRegions();
         MouseArea {
             anchors.fill: parent
             property variant previousPosition
@@ -31,6 +33,7 @@ Rectangle {
                     block.y += dy
                     object.position = Qt.point(block.x, block.y);
                 }
+                emit
             }
         }
         Text {
@@ -45,6 +48,7 @@ Rectangle {
         }
     //Inlets
         Row {
+            id: inletRow
             spacing: 5
             anchors.verticalCenter: block.top
             anchors.verticalCenterOffset: block.border.width/2
@@ -52,13 +56,18 @@ Rectangle {
             anchors.left: block.left
             anchors.leftMargin: block.border.width + block.radius
             Repeater {
-                id: inlets
+                id: repeater
                 model: object.getInletModel()
                 delegate: Inlet {}
+                onItemAdded:
+                {
+                    //console.log( item.x +"---"+ item.y )
+                }
             }
         }
         //Outlets
         Row {
+            id: outletRow
             spacing: 5
             anchors.verticalCenter: block.bottom
             anchors.verticalCenterOffset: -block.border.width/2
@@ -66,12 +75,8 @@ Rectangle {
             anchors.left: block.left
             anchors.leftMargin: block.border.width + block.radius
             Repeater {
-                id: outlets
                 model: object.getOutletModel()
                 delegate: Inlet {}
             }
         }
-
-
-
 }

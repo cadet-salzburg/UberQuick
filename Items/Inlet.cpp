@@ -17,6 +17,7 @@ namespace Uber {
     :Item(parent)
     ,m_InletHandle(handle)
     {
+
     }
 
     Inlet::~Inlet()

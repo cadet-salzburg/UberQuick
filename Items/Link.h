@@ -19,6 +19,7 @@ namespace Uber {
     private:
         Inlet*          m_Inlet;
         Outlet*         m_Outlet;
+        QPointF         m_StartPos;
         QPointF         m_EndPos;
     };
     typedef QSharedPointer<Link> LinkRef;

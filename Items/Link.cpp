@@ -9,6 +9,7 @@ namespace Uber {
     void Link::setInlet( Inlet *inlet )
     {
         m_Inlet = inlet;
+        QObject::connect(inlet, SIGNAL(positionChanged()),this, SLOT(setValue(int)));
     }
 
     void Link::setOutlet( Outlet *outlet )
@@ -26,7 +27,7 @@ namespace Uber {
             return m_Inlet->getPosition();
         } else
         {
-            return QPointF();
+            return QPointF(0,0);
         }
     }
 

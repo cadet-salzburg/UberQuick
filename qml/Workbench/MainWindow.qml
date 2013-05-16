@@ -3,8 +3,6 @@ import QtQuick 2.0
 import UberComponents 1.0
 import "../UI"
 Canvas {
-
-
     id: workbench
     width: 100
     height: 62
@@ -33,7 +31,6 @@ Canvas {
             }
         }
     }
-
 
     Repeater {
         id: grid

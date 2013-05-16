@@ -11,7 +11,9 @@ DEPLOYMENTFOLDERS += folder_02
 DEPLOYMENTFOLDERS += folder_03
 
 #QML_IMPORT_PATH =
+QT+=qml-private
 
+QT+=sql-private
 SOURCES += \
     main.cpp \
     Image.cpp \
@@ -80,6 +82,10 @@ INCLUDEPATH += $(_2REAL_DEPENDENCIES_DIR)/poco/bin
 INCLUDEPATH += $(_2REAL_DEPENDENCIES_DIR)/poco/Foundation/include
 INCLUDEPATH += $(_2REAL_DIR)/kernel/src
 INCLUDEPATH += $$PWD/../../../Qt/Qt5.0.1/5.0.1/msvc2010/include
+INCLUDEPATH += C:/Qt/Qt5.0.1/5.0.1/msvc2010/include/QtQuick/5.0.1/QtQuick
+INCLUDEPATH += C:/Qt/Qt5.0.1/5.0.1/msvc2010/include/QtQuick/5.0.1/QtQuick/private
+INCLUDEPATH += C:/Qt/Qt5.0.1/5.0.1/msvc2010/include/QtCore/5.0.1
+
 
 #Linking
 win32:CONFIG(release, debug|release): LIBS += -L$(_2REAL_DIR)/kernel/lib/ -l_2RealFramework_32

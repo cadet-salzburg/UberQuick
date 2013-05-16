@@ -20,6 +20,11 @@ namespace Uber {
         float                   getRadius() const;
         void                    setRadius( const float &radius );
 
+        Q_INVOKABLE QPointF     getSceneCoords( QQuickItem *item, const QPointF &p )
+        {
+            return mapToItem(item,p);
+        }
+
     protected:
         QSGNode*                updatePaintNode( QSGNode *node, UpdatePaintNodeData *data);
     private:

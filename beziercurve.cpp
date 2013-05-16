@@ -38,32 +38,28 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
-
-#include "beziercurve.h"
-
+#include "BezierCurve.h"
 #include <QtQuick/qsgnode.h>
-#include <QtQuick/qsgflatcolormaterial.h>
 
-//! [1]
+namespace Uber {
 BezierCurve::BezierCurve(QQuickItem *parent)
-    : QQuickItem(parent)
-    , m_p1(0, 0)
-    , m_p2(1, 0)
-    , m_p3(0, 1)
-    , m_p4(1, 1)
-    , m_segmentCount(32)
+: QQuickItem(parent)
+, m_p1(0, 0)
+, m_p2(1, 0)
+, m_p3(0, 1)
+, m_p4(1, 1)
+, m_segmentCount(1024)
+, m_material( new QSGFlatColorMaterial )
 {
     setFlag(ItemHasContents, true);
+    setAntialiasing(true);
 }
-//! [1]
 
-//! [2]
 BezierCurve::~BezierCurve()
 {
-}
-//! [2]
 
-//! [3]
+}
+
 void BezierCurve::setP1(const QPointF &p)
 {
     if (p == m_p1)
@@ -73,7 +69,6 @@ void BezierCurve::setP1(const QPointF &p)
     emit p1Changed(p);
     update();
 }
-//! [3]
 
 void BezierCurve::setP2(const QPointF &p)
 {
@@ -114,8 +109,17 @@ void BezierCurve::setSegmentCount(int count)
     emit segmentCountChanged(count);
     update();
 }
+QColor BezierCurve::getColor() const
+{
+    return m_material->color();
+}
+void BezierCurve::setColor( const QColor &color)
+{
+    m_material->setColor(color);
+    emit colorChanged(color);
+    update();
+}
 
-//! [4]
 QSGNode *BezierCurve::updatePaintNode(QSGNode *oldNode, UpdatePaintNodeData *)
 {
     QSGGeometryNode *node = 0;
@@ -123,27 +127,20 @@ QSGNode *BezierCurve::updatePaintNode(QSGNode *oldNode, UpdatePaintNodeData *)
 
     if (!oldNode) {
         node = new QSGGeometryNode;
-//! [4] //! [5]
         geometry = new QSGGeometry(QSGGeometry::defaultAttributes_Point2D(), m_segmentCount);
-        geometry->setLineWidth(2);
         geometry->setDrawingMode(GL_LINE_STRIP);
+        geometry->setLineWidth(5);
         node->setGeometry(geometry);
         node->setFlag(QSGNode::OwnsGeometry);
-//! [5] //! [6]
-        QSGFlatColorMaterial *material = new QSGFlatColorMaterial;
-        material->setColor(QColor(255, 0, 0));
-        node->setMaterial(material);
+
+        node->setMaterial(m_material);
         node->setFlag(QSGNode::OwnsMaterial);
-//! [6] //! [7]
     } else {
         node = static_cast<QSGGeometryNode *>(oldNode);
         geometry = node->geometry();
         geometry->allocate(m_segmentCount);
     }
-//! [7]
-
-//! [8]
-    QRectF bounds = boundingRect();
+    //QRectF bounds = boundingRect();
     QSGGeometry::Point2D *vertices = geometry->vertexDataAsPoint2D();
     for (int i = 0; i < m_segmentCount; ++i) {
         qreal t = i / qreal(m_segmentCount - 1);
@@ -154,15 +151,12 @@ QSGNode *BezierCurve::updatePaintNode(QSGNode *oldNode, UpdatePaintNodeData *)
                     + 3 * invt * t * t * m_p3
                     + t * t * t * m_p4;
 
-        float x = bounds.x() + pos.x() * bounds.width();
-        float y = bounds.y() + pos.y() * bounds.height();
+//        float x = bounds.x() + pos.x() * bounds.width();
+//        float y = bounds.y() + pos.y() * bounds.height();
 
-        vertices[i].set(x, y);
+//        vertices[i].set(x, y);
+        vertices[i].set(pos.x(), pos.y());
     }
-//! [8]
-
-//! [9]
     return node;
 }
-//! [9]
-
+}

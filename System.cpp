@@ -141,6 +141,7 @@ namespace Uber {
                 try
                 {
                     QString path = fileInfoIter->canonicalPath();
+                    qDebug() << path;
                     QString filename = fileInfoIter->fileName();
                     QString delim("_32");
                     QStringList fileNameParts = filename.split(delim);
@@ -223,10 +224,23 @@ namespace Uber {
         return inputPosition;
     }
 
-    void System::beginAddingLink(const QPointF& pos)
+    void System::beginAddingLink(Item* item)
     {
         m_CurrentLink = new Link();
-        QString metaName = m_CurrentLink->getClassName();
+        if ( item->getClassName()=="Uber::Inlet" )
+        {
+            qDebug() << "Clicked on an inlet";
+            Inlet *inlet = qobject_cast<Inlet*>(item);
+         //   inlet->setPosition(item->property("actualPosition"));
+            m_CurrentLink->setInlet(inlet);
+
+        } else if ( item->getClassName()== "Uber::Outlet" )
+        {
+            Outlet *outlet = qobject_cast<Outlet*>(item);
+          //  outlet->setPosition(item->property("actualPosition"));
+            m_CurrentLink->setOutlet(outlet);
+            qDebug() << "Clicked on an outlet";
+        }
         m_ItemModel->append(m_CurrentLink);
         qDebug() << "Something ";
     }
@@ -236,9 +250,18 @@ namespace Uber {
 
     }
 
-    void System::finishAddingLink(const QPointF& pos)
+    void System::finishAddingLink(Item* item)
     {
-
+        if ( item->getClassName()=="Uber::Inlet" )
+        {
+            m_CurrentLink->setInlet(qobject_cast<Inlet*>(item));
+        } else if ( item->getClassName()== "Uber::Outlet" )
+        {
+            m_CurrentLink->setOutlet(qobject_cast<Outlet*>(item));
+        } else
+        {
+            qDebug() << "Adding Link failed.!!! Need to take care of removing the item from the model";
+        }
     }
 
     void System::addBlock( int index )
