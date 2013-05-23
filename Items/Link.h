@@ -37,6 +37,7 @@ namespace Uber {
         Q_INVOKABLE     void                updateEndPosition( const QPointF& point );
     protected:
 
+
     private:
         Inlet*                              m_Inlet;
         Outlet*                             m_Outlet;

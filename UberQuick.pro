@@ -34,9 +34,9 @@ SOURCES += \
     Models/OutletObjectListModel.cpp \
     FileLoader.cpp \
     Canvas.cpp \
-    IoRegion.cpp \
     Items/Link.cpp \
-    BezierCurve.cpp
+    BezierCurve.cpp \
+    Circle.cpp
 
 HEADERS += \
     System.h \
@@ -59,21 +59,25 @@ HEADERS += \
     Models/OutletObjectListModel.h \
     FileLoader.h \
     Canvas.h \
-    IoRegion.h \
     Items/Link.h \
-    BezierCurve.h
+    BezierCurve.h \
+    Circle.h
 
 OTHER_FILES += \
     qml/Dock/Dock.qml \
     qml/Workbench/TaskBar.qml \
     qml/Workbench/MainWindow.qml \
     qml/UI/Button.qml \
-    qml/Workbench/Block.qml \
-    qml/Workbench/Inlet.qml \
     qml/UI/Tooltip.qml \
     qml/UI/FileDialog.qml \
-    qml/Workbench/Test.qml \
-    qml/Workbench/Link.qml
+    qml/Workbench/Link.qml \
+    qml/Workbench/Node.qml \
+    qml/Workbench/Inlets.qml \
+    qml/Workbench/Outlets.qml \
+    qml/Block/Node.qml \
+    qml/Block/Link.qml \
+    qml/Block/Block.qml \
+    qml/Block/NodeRow.qml
 
 
 #Includes

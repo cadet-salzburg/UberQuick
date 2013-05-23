@@ -32,7 +32,7 @@ namespace Uber {
         return m_Point.y();
     }
 
-    void        Point::setY( const qreal &y )
+    void Point::setY( const qreal &y )
     {
         m_Point.setY(y);
     }
@@ -57,6 +57,11 @@ namespace Uber {
     void Link::addPoint( const QPointF &p )
     {
         m_Points.push_back(new Point(p) );
+    }
+
+    QObjectList Link::getPoints()
+    {
+        return m_Points;
     }
 
     QPointF Link::getStartPos()
@@ -98,6 +103,7 @@ namespace Uber {
             last->set(point);
         }
     }
+
     QDebug operator<<(QDebug dbg, const Link &link )
     {
         dbg.nospace() << "Link";

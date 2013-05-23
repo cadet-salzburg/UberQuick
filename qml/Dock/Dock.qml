@@ -56,11 +56,8 @@ Item {
                         anchors.fill: parent
                         onClicked: {
                             var pos = System.maptoGlobal(parent);
-                            console.log("PosA: " + pos.x + " " + pos.y);
                             pos.x += DockView.width/2;
                             pos.y += DockView.height/2;
-                            console.log("PosB: " + pos.x + " " + pos.y);
-                            console.log("PosC: " + pos.x + " " + pos.y);
                             System.addBlock(index );
                             DockView.visible = false;
                         }

@@ -1,18 +1,18 @@
-#ifndef IOREGION_H
-#define IOREGION_H
+#ifndef CIRCLE_H
+#define CIRCLE_H
 
 #include <QQuickItem>
 #include <QSGGeometry>
 #include <QSGFlatColorMaterial>
 
 namespace Uber {
-    class IoRegion : public QQuickItem
+    class Circle : public QQuickItem
     {
         Q_OBJECT
         Q_PROPERTY( QColor color READ getColor WRITE setColor NOTIFY colorChanged FINAL )
         Q_PROPERTY( float radius READ getRadius WRITE setRadius NOTIFY radiusChanged FINAL )
     public:
-        IoRegion(QQuickItem *parent = 0);
+        Circle(QQuickItem *parent = 0);
 
         QColor                  getColor() const;
         void                    setColor( const QColor &color);
@@ -37,4 +37,4 @@ namespace Uber {
     public slots:
     };
 }
-#endif // IOREGION_H
+#endif // CIRCLE_H

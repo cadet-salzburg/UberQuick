@@ -19,7 +19,7 @@ namespace Uber {
         Item(QObject *parent, QPointF position, QSizeF size);
         Item(const Item &other);
 
-        QPointF                 getPosition() const;
+        Q_INVOKABLE QPointF     getPosition() const;
         float                   x() const;
         float                   y() const;
 

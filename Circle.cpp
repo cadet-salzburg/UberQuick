@@ -1,9 +1,9 @@
-#include "IoRegion.h"
+#include "Circle.h"
 #include <QSGGeometryNode>
 #include <qmath.h>
 #include <QPainterPathStroker>
 namespace Uber {
-    IoRegion::IoRegion(QQuickItem *parent)
+    Circle::Circle(QQuickItem *parent)
     :QQuickItem(parent)
     ,m_Geometry( QSGGeometry::defaultAttributes_Point2D(), 18)
     {
@@ -15,30 +15,30 @@ namespace Uber {
         setZ(0);
     }
 
-    QColor IoRegion::getColor() const
+    QColor Circle::getColor() const
     {
         return m_Material.color();
     }
 
-    void IoRegion::setColor( const QColor &color)
+    void Circle::setColor( const QColor &color)
     {
         m_Material.setColor(color);
         //update();
     }
 
-    float IoRegion::getRadius() const
+    float Circle::getRadius() const
     {
         return m_Radius;
     }
 
-    void IoRegion::setRadius( const float &radius )
+    void Circle::setRadius( const float &radius )
     {
         m_Radius = radius;
         setWidth(2*m_Radius);
         setHeight(2*m_Radius);
     }
 
-    QSGNode *IoRegion::updatePaintNode(QSGNode *n, UpdatePaintNodeData *d)
+    QSGNode *Circle::updatePaintNode(QSGNode *n, UpdatePaintNodeData *d)
     {
         QSGGeometryNode *node = static_cast<QSGGeometryNode*>(n);
         if (!node) node = new QSGGeometryNode();

@@ -16,7 +16,7 @@
 #include "FileLoader.h"
 #include "System.h"
 #include "Canvas.h"
-#include "IoRegion.h"
+#include "Circle.h"
 #include "BezierCurve.h"
 
 using namespace _2Real;
@@ -73,7 +73,7 @@ namespace Uber {
         qmlRegisterType<Link>();
         qmlRegisterType<ItemObjectListModel>();
         qmlRegisterType<Canvas>("UberComponents", 1,0,"Canvas");
-        qmlRegisterType<IoRegion>("UberComponents", 1,0,"Node");
+        qmlRegisterType<Circle>("UberComponents", 1,0,"Circle");
         qmlRegisterType<BezierCurve>("UberComponents", 1,0,"Bezier");
 
         // fileloader now has no default ctor any more, and thus cannot be registered
@@ -190,8 +190,8 @@ namespace Uber {
         m_DockModel = new DockModel();
         m_DockModel->addEntries(entries);
         m_ComplexDelegate = new ComplexDelegate();
-        m_ComplexDelegate->addDelegate(QString("Uber::Block"),QUrl::fromLocalFile("qml/Workbench/Block.qml"));
-        m_ComplexDelegate->addDelegate(QString("Uber::Link"), QUrl::fromLocalFile("qml/Workbench/Link.qml"));
+        m_ComplexDelegate->addDelegate(QString("Uber::Block"),QUrl::fromLocalFile("qml/Block/Block.qml"));
+        m_ComplexDelegate->addDelegate(QString("Uber::Link"), QUrl::fromLocalFile("qml/Block/Link.qml"));
 
         m_QmlEngine->rootContext()->setContextProperty( "ComplexDelegate", m_ComplexDelegate );
         m_QmlEngine->rootContext()->setContextProperty("System", this );
