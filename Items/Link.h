@@ -37,6 +37,13 @@ namespace Uber {
         Q_INVOKABLE     void                updateEndPosition( const QPointF& point );
     protected:
 
+    signals:
+        void                    linkChanged();
+    public slots:
+        void    slotCall()
+        {
+            qDebug() << " The Slot Was Called ";
+        }
 
     private:
         Inlet*                              m_Inlet;

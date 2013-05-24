@@ -62,7 +62,7 @@ namespace Uber {
     }
     void Item::setPosition(const QPointF &position)
     {
-        qDebug() << "position Was changed: " << getClassName() ;
+        //qDebug() << "position Was changed: " << getClassName() ;
         m_Position = position;
     }
     QSizeF Item::size() const

@@ -46,12 +46,13 @@ namespace Uber {
     void Link::setInlet( Inlet *inlet )
     {
         m_Inlet = inlet;
-        QObject::connect(inlet, SIGNAL(positionChanged()),this, SLOT(setValue(int)));
+        QObject::connect(m_Inlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
     }
 
     void Link::setOutlet( Outlet *outlet )
     {
         m_Outlet = outlet;
+        QObject::connect(m_Outlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
     }
 
     void Link::addPoint( const QPointF &p )

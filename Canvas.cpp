@@ -22,12 +22,12 @@ namespace Uber {
 
     bool Canvas::childMouseEventFilter(QQuickItem * item, QEvent * event)
     {
-         qDebug() << item->metaObject()->className();
-        if ( item->metaObject()->className() == QString("Uber::Circle")  )
-        {
-            qDebug() << "Circle pressed";
-            //return false;
-        }
+//         qDebug() << item->metaObject()->className();
+//        if ( item->metaObject()->className() == QString("Uber::Circle")  )
+//        {
+//            qDebug() << "Circle pressed";
+//            //return false;
+//        }
         return false;
     }
 

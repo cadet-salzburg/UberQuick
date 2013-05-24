@@ -6,19 +6,21 @@ Rectangle {
     property string type: "block"
     signal          blockMoved();
     onBlockMoved:   console.log("blockMoved signal emitted")
-    function        connectSignals()
+    function        initialize()
     {
         var numInlets = inlets.count();
         for ( var i=0; i < numInlets; i++ )
         {
             var inlet = inlets.childAt(i);
             block.blockMoved.connect( inlet.moved );
+            inlet.updatePosition();
         }
         var numOutlets = outlets.count()
         for ( var j=0; j < numOutlets; j++ )
         {
             var outlet = outlets.childAt(j);
             block.blockMoved.connect( outlet.moved );
+            outlet.updatePosition();
         }
     }
 
@@ -77,6 +79,6 @@ Rectangle {
     }
     Component.onCompleted:
     {
-        connectSignals();
+        initialize();
     }
 }
