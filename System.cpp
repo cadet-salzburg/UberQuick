@@ -229,17 +229,13 @@ namespace Uber {
         m_CurrentLink = new Link();
         if ( item->getClassName()=="Uber::Inlet" )
         {
-//            qDebug() << "Clicked on an inlet";
             Inlet *inlet = qobject_cast<Inlet*>(item);
-         //   inlet->setPosition(item->property("actualPosition"));
             m_CurrentLink->setInlet(inlet);
 
         } else if ( item->getClassName()== "Uber::Outlet" )
         {
             Outlet *outlet = qobject_cast<Outlet*>(item);
-          //  outlet->setPosition(item->property("actualPosition"));
             m_CurrentLink->setOutlet(outlet);
-//            qDebug() << "Clicked on an outlet";
         }
         m_ItemModel->append(m_CurrentLink);
     }

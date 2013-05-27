@@ -1,5 +1,6 @@
 #include "Canvas.h"
 #include <QSGGeometryNode>
+#include "Items/Item.h"
 
 namespace Uber {
     Canvas::Canvas(QQuickItem *parent)
@@ -22,13 +23,13 @@ namespace Uber {
 
     bool Canvas::childMouseEventFilter(QQuickItem * item, QEvent * event)
     {
-//         qDebug() << item->metaObject()->className();
-//        if ( item->metaObject()->className() == QString("Uber::Circle")  )
-//        {
-//            qDebug() << "Circle pressed";
-//            //return false;
-//        }
-        return false;
+        Item* it = qobject_cast<Item*>(item);
+        qDebug() << "---- The  classname is: " << item->metaObject()->className();
+        if ( it )
+        {
+            return false;
+        }
+        return true;
     }
 
     QSGNode *Canvas::updatePaintNode(QSGNode *n, UpdatePaintNodeData *d)

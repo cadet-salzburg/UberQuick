@@ -11,7 +11,7 @@ Circle {
         updatePosition();
     }
     radius: 8
-    color: "#FFFFFF00"
+    color: "#00FFFF00"
     anchors.verticalCenter: parent.verticalCenter
 
     function printPoint( point , message )
@@ -28,7 +28,13 @@ Circle {
         object.x = nodeCenterInWorkbench.x;
         object.y = nodeCenterInWorkbench.y;
     }
-
+    MouseArea {
+        onPressed: {
+            mouse.accepted = false;
+            System.beginAddingLink(object);
+        }
+        anchors.fill: parent
+    }
     Rectangle {
         id: rect
         width: parent.width
@@ -37,13 +43,7 @@ Circle {
         color: "#8F8F8F"
     }
 
-    MouseArea {
-        onPressed: {
-            mouse.accepted = false;
-            System.beginAddingLink(object);
-        }
-        anchors.fill: parent
-    }
+
     Component.onCompleted:
     {
         node.moved.connect( object.positionChanged );

@@ -14,7 +14,16 @@ Canvas {
         anchors.fill: parent
         //propagateComposedEvents: true
         acceptedButtons: Qt.LeftButton | Qt.RightButton
-        onPressed: {
+        onPressed:
+        {
+            var mousePos = Qt.point(mouseX, mouseY );
+            var pp = mouseArea.mapToItem(workbench, mousePos.x, mousePos.y );
+
+            if ( workbench.itemAt( pp.x, pp.y )  )
+            {
+                console.debug("Some item");
+            }
+
             console.debug("Pressed");
             if ( workbench.state == "showDock")
             {
@@ -70,13 +79,11 @@ Canvas {
             name: "hideDock"
             PropertyChanges { target: info; opacity: 0 }
             PropertyChanges { target: DockView; visible: false }
-            //_dockView.setVisible: false
         },
         State {
             name: "showDock"
             PropertyChanges { target: info; opacity: 0 }
             PropertyChanges { target: DockView; visible: true }
-           // PropertyChanges { target: _dockView; x: 100; y: 100 }
         }
     ]
 }

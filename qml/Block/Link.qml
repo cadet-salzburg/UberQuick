@@ -19,6 +19,5 @@ Bezier {
     Component.onCompleted:
     {
         object.linkChanged.connect(line.linkMoved);
-//        line.linkMoved.connect
     }
 }
