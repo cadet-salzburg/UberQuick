@@ -80,5 +80,6 @@ Rectangle {
     Component.onCompleted:
     {
         initialize();
+        console.log(object.className );
     }
 }

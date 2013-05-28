@@ -35,6 +35,7 @@ Circle {
         }
         anchors.fill: parent
     }
+
     Rectangle {
         id: rect
         width: parent.width

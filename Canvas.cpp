@@ -23,12 +23,29 @@ namespace Uber {
 
     bool Canvas::childMouseEventFilter(QQuickItem * item, QEvent * event)
     {
-        Item* it = qobject_cast<Item*>(item);
-        qDebug() << "---- The  classname is: " << item->metaObject()->className();
-        if ( it )
+        Q_UNUSED(event);
+        qDebug() << " The item is: " << item->metaObject()->className();
+        QList<QQuickItem *> children  = childItems();
+        qDebug() << "The number of children are: " << children.size();
+
+        for ( int i = 0; i< children.size(); ++i )
         {
-            return false;
+            qDebug() <<  "Child " << i << ": " << children.at(i)->metaObject()->className();
         }
+        return false;
+
+
+
+//        QPointF p = mapFromItem( item, QPointF( item->x(), item->y() ) );
+//        QQuickItem* it = childAt( p.x(), p.y() );
+//        if ( it )
+//        {
+//             qDebug() << it->metaObject()->className();
+//             qDebug() << " ---------- ";
+//             qDebug() << item->metaObject()->className();
+//             qDebug() << "========" << item->parentItem()->metaObject()->className();
+//        }
+        //qDebug() << item->metaObject()->className();
         return true;
     }
 

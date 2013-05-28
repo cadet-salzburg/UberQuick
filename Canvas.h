@@ -21,7 +21,7 @@ namespace Uber {
         QSGGeometry             m_Geometry;
         QSGFlatColorMaterial    m_Material;
     signals:
-        void colorChanged(const QColor &color);
+        void                    colorChanged(const QColor &color);
     public slots:
     };
 }

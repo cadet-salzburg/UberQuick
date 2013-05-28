@@ -16,13 +16,13 @@ Canvas {
         acceptedButtons: Qt.LeftButton | Qt.RightButton
         onPressed:
         {
-            var mousePos = Qt.point(mouseX, mouseY );
-            var pp = mouseArea.mapToItem(workbench, mousePos.x, mousePos.y );
-
-            if ( workbench.itemAt( pp.x, pp.y )  )
-            {
-                console.debug("Some item");
-            }
+//            var mousePos = Qt.point(mouseX, mouseY );
+//            var pp = mouseArea.mapToItem(workbench, mousePos.x, mousePos.y );
+//
+//            if ( workbench.itemAt( pp.x, pp.y )  )
+//            {
+//                console.debug("Some item");
+//            }
 
             console.debug("Pressed");
             if ( workbench.state == "showDock")
