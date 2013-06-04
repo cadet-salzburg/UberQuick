@@ -8,7 +8,7 @@ namespace Uber {
     ,m_Geometry( QSGGeometry::defaultAttributes_Point2D(), 4)
     {
         setFlag(ItemHasContents);
-        setFiltersChildMouseEvents(true);
+        setFiltersChildMouseEvents(false);
     }
 
     QColor Canvas::getColor() const
@@ -21,17 +21,51 @@ namespace Uber {
         m_Material.setColor(color);
     }
 
+    QString Canvas::getTypeOfChildAt(int x, int y)
+    {
+        QQuickItem *item = childAt(x,y);
+        if ( item )
+        {
+            QString tp = item->metaObject()->className();
+            if ( tp=="QQuickLoader")
+            {
+                QPointF p = mapToItem(item, QPointF(x, y));
+                QQuickItem *childItem = item->childAt(p.x(), p.y() );
+                tp = childItem->metaObject()->className();
+                Item* castItem = dynamic_cast<Item*>(childItem);
+                if ( castItem )
+                {
+                    qDebug() <<" What he fuck!!!";
+                    tp = castItem->getClassName();
+                }
+            }
+            return tp;
+        }
+        return QString("notDefined");
+    }
+
     bool Canvas::childMouseEventFilter(QQuickItem * item, QEvent * event)
     {
-        Q_UNUSED(event);
-        qDebug() << " The item is: " << item->metaObject()->className();
-        QList<QQuickItem *> children  = childItems();
-        qDebug() << "The number of children are: " << children.size();
+        //Q_UNUSED(event);
+        //qDebug() << " The item is: " << item->metaObject()->className();
 
-        for ( int i = 0; i< children.size(); ++i )
-        {
-            qDebug() <<  "Child " << i << ": " << children.at(i)->metaObject()->className();
-        }
+
+//        QMouseEvent *k  = dynamic_cast<QMouseEvent *>(event);
+//        if ( k->button() == QEvent::MouseButtonRelease )
+//        {
+//            QQuickItem * it = childAt(k->x(), k->y());
+//            qDebug() << "The child at is: " << it->metaObject()->className();
+//        }
+
+
+
+//        QList<QQuickItem *> children  = childItems();
+//        qDebug() << "The number of children are: " << children.size();
+
+//        for ( int i = 0; i< children.size(); ++i )
+//        {
+//            qDebug() <<  "Child " << i << ": " << children.at(i)->metaObject()->className();
+//        }
         return false;
 
 

@@ -3,16 +3,17 @@ import UberComponents 1.0
 
 Circle {
     id: node
+    radius: 8
+    color: "#CCFFFF00"
+    anchors.verticalCenter: parent.verticalCenter
     property point  centerPoint: Qt.point(0,0)
     property point  offset: Qt.point(0,0)
     property string type: "circle"
+
     signal moved;
     onMoved: {
         updatePosition();
     }
-    radius: 8
-    color: "#00FFFF00"
-    anchors.verticalCenter: parent.verticalCenter
 
     function printPoint( point , message )
     {
@@ -22,18 +23,53 @@ Circle {
     function updatePosition()
     {
         var nodeCenter = Qt.point(node.radius, node.radius);
-        printPoint(nodeCenter, "----- nodeCenter")
+//        printPoint(nodeCenter, "----- nodeCenter")
         var nodeCenterInWorkbench  = node.mapToItem(workbench, nodeCenter.x, nodeCenter.y );
-        printPoint(nodeCenterInWorkbench, "nodeCenterInWorkbench");
+//        printPoint(nodeCenterInWorkbench, "nodeCenterInWorkbench");
         object.x = nodeCenterInWorkbench.x;
         object.y = nodeCenterInWorkbench.y;
     }
-    MouseArea {
-        onPressed: {
-            mouse.accepted = false;
-            System.beginAddingLink(object);
+
+    DropArea {
+        id: dropArea;
+        anchors.fill: parent;
+        onEntered: {
+            drag.accept (Qt.CopyAction);
+            console.log("onEntered");
         }
+        onDropped: {
+            console.log ("onDropped");
+        }
+        onExited: {
+            console.log ("onExited");
+        }
+    }
+
+
+    MouseArea {
         anchors.fill: parent
+        hoverEnabled: true
+        onPressed:
+        {
+            console.log("Mouse Pressed at " + object.className );
+            System.beginAddingLink(object);
+
+        }
+        onReleased:
+        {
+            if ( containsMouse )
+            {
+                console.log("Mouse Released at " + object.className );
+                mouse.accepted = true;
+            } else {
+                mouse.accepted = false;
+            }
+
+        }
+        onEntered:
+        {
+            console.log("Mouse Entered at " + object.className );
+        }
     }
 
     Rectangle {

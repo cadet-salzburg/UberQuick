@@ -14,6 +14,7 @@ namespace Uber {
         Canvas(QQuickItem *parent = 0);
         QColor                  getColor() const;
         void                    setColor( const QColor &color);
+        Q_INVOKABLE QString     getTypeOfChildAt( int x, int y );
     protected:
         bool                    childMouseEventFilter(QQuickItem * item, QEvent * event);
         QSGNode*                updatePaintNode( QSGNode *node, UpdatePaintNodeData *data);

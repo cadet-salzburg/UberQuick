@@ -2,6 +2,7 @@ import QtQuick 2.0
 import UberComponents 1.0
 Bezier {
     id: line
+    smooth: true
     property real t: 0
     signal linkMoved()
     onLinkMoved:

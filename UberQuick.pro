@@ -10,10 +10,6 @@ DEPLOYMENTFOLDERS = folder_01
 DEPLOYMENTFOLDERS += folder_02
 DEPLOYMENTFOLDERS += folder_03
 
-#QML_IMPORT_PATH =
-QT+=qml-private
-
-QT+=sql-private
 SOURCES += \
     main.cpp \
     Image.cpp \
@@ -36,7 +32,8 @@ SOURCES += \
     Canvas.cpp \
     Items/Link.cpp \
     BezierCurve.cpp \
-    Circle.cpp
+    Circle.cpp \
+    EventFilter.cpp
 
 HEADERS += \
     System.h \
@@ -61,7 +58,8 @@ HEADERS += \
     Canvas.h \
     Items/Link.h \
     BezierCurve.h \
-    Circle.h
+    Circle.h \
+    EventFilter.h
 
 OTHER_FILES += \
     qml/Dock/Dock.qml \
@@ -85,10 +83,10 @@ INCLUDEPATH += $(_2REAL_DEPENDENCIES_DIR)/eigen
 INCLUDEPATH += $(_2REAL_DEPENDENCIES_DIR)/poco/bin
 INCLUDEPATH += $(_2REAL_DEPENDENCIES_DIR)/poco/Foundation/include
 INCLUDEPATH += $(_2REAL_DIR)/kernel/src
-INCLUDEPATH += $$PWD/../../../Qt/Qt5.0.1/5.0.1/msvc2010/include
-INCLUDEPATH += C:/Qt/Qt5.0.1/5.0.1/msvc2010/include/QtQuick/5.0.1/QtQuick
-INCLUDEPATH += C:/Qt/Qt5.0.1/5.0.1/msvc2010/include/QtQuick/5.0.1/QtQuick/private
-INCLUDEPATH += C:/Qt/Qt5.0.1/5.0.1/msvc2010/include/QtCore/5.0.1
+INCLUDEPATH += $$PWD/../../../Qt/Qt5.0.2/5.0.2/msvc2010/include
+INCLUDEPATH += C:/Qt/Qt5.0.2/5.0.2/msvc2010/include/QtQuick/5.0.2/QtQuick
+INCLUDEPATH += C:/Qt/Qt5.0.2/5.0.2/msvc2010/include/QtQuick/5.0.2/QtQuick/private
+INCLUDEPATH += C:/Qt/Qt5.0.2/5.0.2/msvc2010/include/QtCore/5.0.2
 
 
 #Linking
@@ -96,8 +94,8 @@ win32:CONFIG(release, debug|release): LIBS += -L$(_2REAL_DIR)/kernel/lib/ -l_2Re
 else:win32:CONFIG(debug, debug|release): LIBS += -L$(_2REAL_DIR)/kernel/lib/ -l_2RealFramework_32d
 win32:CONFIG(release, debug|release): LIBS += -L$(_2REAL_DEPENDENCIES_DIR)/poco/lib/ -lPocoFoundation
 else:win32:CONFIG(debug, debug|release): LIBS += -L$(_2REAL_DEPENDENCIES_DIR)/poco/lib/ -lPocoFoundationd
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../Qt/Qt5.0.1/5.0.1/msvc2010/lib/ -lQt5Widgets
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../Qt/Qt5.0.1/5.0.1/msvc2010/lib/ -lQt5Widgetsd
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../Qt/Qt5.0.2/5.0.2/msvc2010/lib/ -lQt5Widgets
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../Qt/Qt5.0.2/5.0.2/msvc2010/lib/ -lQt5Widgetsd
 
 LIBS += -ldwmapi
 

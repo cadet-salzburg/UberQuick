@@ -3,9 +3,17 @@ import UberComponents 1.0
 
 Rectangle {
     id:             block
+    width:          150
+    height:         30
+    radius:         12
+    color:          "#FFFCFCFC"
+    border.color:   "#FFAFAFAF"
+    border.width:   3
+    antialiasing:   true
+
     property string type: "block"
     signal          blockMoved();
-    onBlockMoved:   console.log("blockMoved signal emitted")
+    //onBlockMoved:   console.log("blockMoved signal emitted")
     function        initialize()
     {
         var numInlets = inlets.count();
@@ -24,17 +32,8 @@ Rectangle {
         }
     }
 
-    x:              object.position.x
-    y:              object.position.y
-    width:          150
-    height:         30
-    radius:         12
-    color:          "#FFFCFCFC"
-    border.color:   "#FFAFAFAF"
-    border.width:   3
-    antialiasing:   true
-
     MouseArea {
+        id: mouseArea
         property variant previousPosition
         onPressed: {
             previousPosition = Qt.point(mouseX, mouseY)
@@ -44,15 +43,14 @@ Rectangle {
             if (pressedButtons === Qt.LeftButton) {
                 var dx = mouseX - previousPosition.x
                 var dy = mouseY - previousPosition.y
-                block.x += dx
-                block.y += dy
+                block.parent.x += dx
+                block.parent.y += dy
                 object.position = Qt.point(block.x, block.y);
             }
             blockMoved();
         }
         anchors.fill: parent
     }
-
     Text {
         id: info
         text: object.name

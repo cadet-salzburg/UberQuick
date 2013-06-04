@@ -8,50 +8,50 @@ Canvas {
     height: 62
     color: "#EEEEEE"
     state: "initState"
-
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        //propagateComposedEvents: true
+        propagateComposedEvents: true
         acceptedButtons: Qt.LeftButton | Qt.RightButton
         onPressed:
         {
-//            var mousePos = Qt.point(mouseX, mouseY );
-//            var pp = mouseArea.mapToItem(workbench, mousePos.x, mousePos.y );
-//
-//            if ( workbench.itemAt( pp.x, pp.y )  )
-//            {
-//                console.debug("Some item");
-//            }
-
-            console.debug("Pressed");
-            if ( workbench.state == "showDock")
+            if ( mouse.button == Qt.RightButton )
             {
-                workbench.state = "hideDock"
+                console.debug(getTypeOfChildAt(mouseX, mouseY));
+            }
+            else if ( mouse.button == Qt.LeftButton )
+            {
+                if ( workbench.state == "showDock")
+                {
+                    workbench.state = "hideDock";
+                }
             }
         }
+
         onDoubleClicked: {
             if (mouse.button == Qt.LeftButton)
             {
+                mouse.accepted = true;
                 var pos = System.maptoGlobal(parent)
                 DockView.setX(pos.x+mouseX-DockView.width/2)
                  DockView.setY(pos.y+mouseY)
+
                 workbench.state = "showDock"
             }
+        }
+        Component.onCompleted:
+        {
+            DockView.visible = false;
         }
     }
 
     Repeater {
         id: grid
-        anchors.fill: parent
         model: ItemModel
-        delegate: Item {
-            id: multidel
-            anchors.fill: parent
-            Loader {
-                id: loader
-                source: ComplexDelegate.getDelegate(object.getClassName())
-            }
+        delegate: Loader {
+            source: object.url
+            x: object.position.x
+            y: object.position.y
         }
     }
 
@@ -69,7 +69,13 @@ Canvas {
     TaskBar {
         anchors.bottom : workbench.bottom
     }
+
     states: [
+        State {
+            name: "startState"
+            PropertyChanges { target: info; opacity: 1 }
+            PropertyChanges { target: DockView; visible: false }
+        },
         State {
             name: "initState"
             PropertyChanges { target: info; opacity: 1 }

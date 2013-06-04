@@ -18,6 +18,7 @@
 #include "Canvas.h"
 #include "Circle.h"
 #include "BezierCurve.h"
+#include "EventFilter.h"
 
 using namespace _2Real;
 using namespace _2Real::app;
@@ -75,6 +76,7 @@ namespace Uber {
         qmlRegisterType<Canvas>("UberComponents", 1,0,"Canvas");
         qmlRegisterType<Circle>("UberComponents", 1,0,"Circle");
         qmlRegisterType<BezierCurve>("UberComponents", 1,0,"Bezier");
+        qmlRegisterType<EventFilter>("UberComponents", 1, 0, "MouseFilter");
 
         // fileloader now has no default ctor any more, and thus cannot be registered
         //qmlRegisterType< FileLoader >( "LogicComponents", 1, 0, "FileLoader" );
@@ -237,6 +239,7 @@ namespace Uber {
             Outlet *outlet = qobject_cast<Outlet*>(item);
             m_CurrentLink->setOutlet(outlet);
         }
+        m_CurrentLink->setUrl(m_ComplexDelegate->getDelegate(m_CurrentLink->getClassName()));
         m_ItemModel->append(m_CurrentLink);
     }
 
@@ -266,8 +269,8 @@ namespace Uber {
         BlockHandle handle = entry.getBundleHandle().createBlockInstance(entry.getBlockName().toUtf8().constData());
         Block* block = new Block( handle );
         block->setPosition(getDockInputPosition());
-
         block->setName(entry.getBlockName());
+        block->setUrl(m_ComplexDelegate->getDelegate(block->getClassName()));
         m_ItemModel->append(block);
     }
 }
