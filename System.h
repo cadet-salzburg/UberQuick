@@ -8,6 +8,7 @@
 #include "Models/DockModel.h"
 #include "Models/ItemObjectListModel.h"
 #include "_2RealApplication.h"
+#include "FileLoader.h"
 #include "Items/Link.h"
 
 
@@ -61,10 +62,16 @@ namespace Uber {
         FileLoader * fileLoader();
         FileLoader const* fileLoader() const;
 
+        /*
+         *  called by the so-called file loader when a file is supposed to be loaded
+         */
+        void loadConfig( QString const& dataSource );
+
     private:
+
         System();
-        System(System const&); //Dont implement
-        void operator=(System const&); //Dont implement
+        System(System const&);
+        void operator=(System const&);
 
         static System*                      m_Instance;
         QStringList                         m_BundleFilenames;

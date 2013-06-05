@@ -149,6 +149,7 @@ namespace Uber {
                     QStringList fileNameParts = filename.split(delim);
                     if (!fileNameParts.empty())
                     {
+                        std::cout << "LOADING " << fileNameParts.front().toStdString() << std::endl;
                         QString file = path + QString("/") + *(fileNameParts.begin());
                         BundleHandle bundleHandle = m_Engine.loadBundle(file.toStdString());
                         BundleInfo bundleInfo = bundleHandle.getBundleInfo();
@@ -272,5 +273,37 @@ namespace Uber {
         block->setName(entry.getBlockName());
         block->setUrl(m_ComplexDelegate->getDelegate(block->getClassName()));
         m_ItemModel->append(block);
+    }
+
+    void System::loadConfig( QString const& dataSource )
+    {
+        try
+        {
+            // TODO: rewrite the framework's loading routine
+
+            //UberConfig leftovers;
+            //leftovers = m_Engine.loadConfig( config );
+            //ConfigLoader loader( this, config );
+
+            m_Engine.loadConfiguration( dataSource.toStdString() );
+        }
+        catch ( _2Real::XMLFormatException &e )
+        {
+            std::cout << e.what() << std::endl;
+            // the framework failed to load; but ubercode has not
+            // yet done anything. in this case, cleaning up is the frameworks' responsibility
+
+            // also, not sure if xmlformat is the only possible exception
+            // have to check the fw code for that
+        }
+        catch ( std::exception & e )
+        {
+            std::cout << e.what() << std::endl;
+        }
+        catch ( ... )
+        {
+            // the framework did its part, but ubercode failed
+            // this likely means something is very wrong, so shutdown?
+        }
     }
 }
