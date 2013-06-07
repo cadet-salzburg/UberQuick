@@ -42,11 +42,11 @@ Circle {
         }
         onPositionChanged:
         {
-            console.log("PPPPPpppppposition changed" );
+            //console.log("PPPPPpppppposition changed" );
         }
         onReleased:
         {
-            console.debug("RRRRRRrrrrreleased");
+            //console.debug("RRRRRRrrrrreleased");
         }
 
 //        onReleased:

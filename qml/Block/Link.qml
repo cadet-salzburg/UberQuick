@@ -10,7 +10,6 @@ Bezier {
     {
         p1 = object.getStartPos();
         updateControlPoints();
-        console.log("-----------------------0000000000000000000-----------------")
     }
 
     width:      workbench.width
@@ -27,9 +26,9 @@ Bezier {
     }
     function updateControlPoints()
     {
-        var dist = p4.x() - p1.x();
-        var offset = dist/2;
-        p2 = p1 + Qt.point( offset, 0);
-        p3 = p4   - Qt.point(offset, 0);
+        var dist = p4.x - p1.x;
+        var offset = 0.5*dist;
+        p2 = Qt.point(p1.x + offset, p1.y);// + Qt.point( 40, 0);
+        p3 = Qt.point(p4.x - offset, p4.y);
     }
 }
