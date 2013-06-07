@@ -129,7 +129,7 @@ QSGNode *BezierCurve::updatePaintNode(QSGNode *oldNode, UpdatePaintNodeData *)
         node = new QSGGeometryNode;
         geometry = new QSGGeometry(QSGGeometry::defaultAttributes_Point2D(), m_segmentCount);
         geometry->setDrawingMode(GL_LINE_STRIP);
-        geometry->setLineWidth(5);
+        geometry->setLineWidth(1.0);
         node->setGeometry(geometry);
         node->setFlag(QSGNode::OwnsGeometry);
 

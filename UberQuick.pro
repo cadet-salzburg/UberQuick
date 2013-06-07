@@ -33,7 +33,8 @@ SOURCES += \
     Items/Link.cpp \
     BezierCurve.cpp \
     Circle.cpp \
-    EventFilter.cpp
+    EventFilter.cpp \
+    ConnectionManager.cpp
 
 HEADERS += \
     System.h \
@@ -59,7 +60,8 @@ HEADERS += \
     Items/Link.h \
     BezierCurve.h \
     Circle.h \
-    EventFilter.h
+    EventFilter.h \
+    ConnectionManager.h
 
 OTHER_FILES += \
     qml/Dock/Dock.qml \

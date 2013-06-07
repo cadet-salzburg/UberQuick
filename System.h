@@ -4,17 +4,18 @@
 #include <QQmlEngine>
 #include <QQuickItem>
 #include <QQuickView>
-#include "Items/ComplexDelegate.h"
+
 #include "Models/DockModel.h"
 #include "Models/ItemObjectListModel.h"
 #include "_2RealApplication.h"
-#include "FileLoader.h"
-#include "Items/Link.h"
-#include "ConnectionManager.h"
+
 
 namespace Uber {
 
     class FileLoader;
+    class ConnectionManager;
+    class ComplexDelegate;
+    class Link;
 
     class System : public QObject
     {
@@ -42,10 +43,6 @@ namespace Uber {
         void                                setContextProperties();
         void                                enableTransparentWindows();
         void                                showWindows();
-
-//        Q_INVOKABLE void                    beginAddingLink(Item* item);
-//        Q_INVOKABLE void                    updateLink( const QPointF& pos );
-//        Q_INVOKABLE void                    finishAddingLink(Item* item);
 
         Q_INVOKABLE void                    addBlock( int index );
         Q_INVOKABLE QPointF                 maptoGlobal(QQuickItem* item);

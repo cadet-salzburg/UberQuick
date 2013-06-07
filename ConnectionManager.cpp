@@ -32,7 +32,6 @@ namespace Uber {
         }
         m_ItemModel->append(m_Link);
         qDebug() << " The number of items in the model is: " << m_ItemModel->count();
-
     }
 
     void ConnectionManager::updateLink(const QPointF &pos)

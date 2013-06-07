@@ -64,15 +64,15 @@ namespace Uber {
     {
         return m_Points;
     }
-
+    /*
+     * A link always starts from an outlet and ends at an inlet.
+     * This is not affected by the way a connection is made.
+     */
     QPointF Link::getStartPos()
     {
         if ( m_Outlet )
         {
             return m_Outlet->getPosition();
-        } else if ( m_Inlet )
-        {
-            return m_Inlet->getPosition();
         } else
         {
             return QPointF(0,0);
@@ -81,27 +81,35 @@ namespace Uber {
 
     QPointF Link::getEndPos()
     {
-        QPointF pos(0,0);
-        if ( m_Inlet && m_Outlet )
+//        QPointF pos(0,0);
+//        if ( m_Inlet && m_Outlet )
+//        {
+//            pos =  m_Inlet->getPosition();
+//        } else
+//        {
+//            if ( m_Points.back() )
+//            {
+//                Point* last = qobject_cast<Point*>(m_Points.back());
+//                pos = last->get();
+//            }
+//        }
+//        return pos;
+        if ( m_Inlet )
         {
-            pos =  m_Inlet->getPosition();
+            return m_Inlet->getPosition();
         } else
         {
-            if ( m_Points.back() )
-            {
-                Point* last = qobject_cast<Point*>(m_Points.back());
-                pos = last->get();
-            }
+            return QPointF(0,0);
         }
-        return pos;
     }
 
-    void Link::updateEndPosition( const QPointF& point )
+    void Link::updatePosition( const QPointF& point )
     {
-        if ( m_Points.back() )
+        if ( m_Inlet && m_Outlet )
+            return;
+        if ( m_Outlet )
         {
-            Point* last = qobject_cast<Point*>(m_Points.back());
-            last->set(point);
+            //Start is created => update end
         }
     }
 

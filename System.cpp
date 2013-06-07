@@ -19,6 +19,9 @@
 #include "Circle.h"
 #include "BezierCurve.h"
 #include "EventFilter.h"
+#include "Items/Link.h"
+#include "ConnectionManager.h"
+#include "Items/ComplexDelegate.h"
 
 using namespace _2Real;
 using namespace _2Real::app;
@@ -231,42 +234,6 @@ namespace Uber {
         return inputPosition;
     }
 
-//    void System::beginAddingLink(Item* item)
-//    {
-//        m_ConnectionManager->startDrag(item);
-
-//        m_CurrentLink = new Link();
-//        if ( item->getClassName()=="Uber::Inlet" )
-//        {
-//            Inlet *inlet = qobject_cast<Inlet*>(item);
-//            m_CurrentLink->setInlet(inlet);
-//        } else if ( item->getClassName()== "Uber::Outlet" )
-//        {
-//            Outlet *outlet = qobject_cast<Outlet*>(item);
-//            m_CurrentLink->setOutlet(outlet);
-//        }
-//        m_CurrentLink->setUrl(m_ComplexDelegate->getDelegate(m_CurrentLink->getClassName()));
-//        //m_ItemModel->append(m_CurrentLink);
-//    }
-
-//    void System::updateLink( const QPointF& pos )
-//    {
-
-//    }
-
-//    void System::finishAddingLink(Item* item)
-//    {
-//        if ( item->getClassName()=="Uber::Inlet" )
-//        {
-//            m_CurrentLink->setInlet(qobject_cast<Inlet*>(item));
-//        } else if ( item->getClassName()== "Uber::Outlet" )
-//        {
-//            m_CurrentLink->setOutlet(qobject_cast<Outlet*>(item));
-//        } else
-//        {
-//            qDebug() << "Adding Link failed.!!! Need to take care of removing the item from the model";
-//        }
-//    }
 
     void System::addBlock( int index )
     {
