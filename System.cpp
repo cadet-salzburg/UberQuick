@@ -35,6 +35,7 @@ namespace Uber {
     ,m_Dock(new QQuickView( m_QmlEngine, 0))
     , mFileLoader( new FileLoader( *this ) )
     ,m_CurrentLink(nullptr)
+    ,m_ConnectionManager(nullptr)
     {
         m_SurfaceFormat.setAlphaBufferSize(8);
         m_SurfaceFormat.setStencilBufferSize(8);
@@ -51,6 +52,8 @@ namespace Uber {
         m_Dock->setFlags(Qt::Window | Qt::FramelessWindowHint);
 
         registerQmlTypes();
+
+        m_ConnectionManager = new ConnectionManager(m_ItemModel);
     }
 
     System::~System()
@@ -73,7 +76,7 @@ namespace Uber {
         qmlRegisterType<Item>();
         qmlRegisterType<Link>();
         qmlRegisterType<ItemObjectListModel>();
-        qmlRegisterType<Canvas>("UberComponents", 1,0,"Canvas");
+        qmlRegisterType<Canvas>("UberComponents", 1,0,"GraphCanvas");
         qmlRegisterType<Circle>("UberComponents", 1,0,"Circle");
         qmlRegisterType<BezierCurve>("UberComponents", 1,0,"Bezier");
         qmlRegisterType<EventFilter>("UberComponents", 1, 0, "MouseFilter");
@@ -92,6 +95,7 @@ namespace Uber {
         m_QmlEngine->rootContext()->setContextProperty( "DockView", m_Dock );
         m_QmlEngine->rootContext()->setContextProperty( "Canvas", m_Canvas );
         m_QmlEngine->rootContext()->setContextProperty( "System", this );
+        m_QmlEngine->rootContext()->setContextProperty( "ConnectionManager",m_ConnectionManager );
         m_QmlEngine->rootContext()->setContextProperty( "cpFileLoader", mFileLoader );
     }
 
@@ -227,41 +231,42 @@ namespace Uber {
         return inputPosition;
     }
 
-    void System::beginAddingLink(Item* item)
-    {
-        m_CurrentLink = new Link();
-        if ( item->getClassName()=="Uber::Inlet" )
-        {
-            Inlet *inlet = qobject_cast<Inlet*>(item);
-            m_CurrentLink->setInlet(inlet);
+//    void System::beginAddingLink(Item* item)
+//    {
+//        m_ConnectionManager->startDrag(item);
 
-        } else if ( item->getClassName()== "Uber::Outlet" )
-        {
-            Outlet *outlet = qobject_cast<Outlet*>(item);
-            m_CurrentLink->setOutlet(outlet);
-        }
-        m_CurrentLink->setUrl(m_ComplexDelegate->getDelegate(m_CurrentLink->getClassName()));
-        m_ItemModel->append(m_CurrentLink);
-    }
+//        m_CurrentLink = new Link();
+//        if ( item->getClassName()=="Uber::Inlet" )
+//        {
+//            Inlet *inlet = qobject_cast<Inlet*>(item);
+//            m_CurrentLink->setInlet(inlet);
+//        } else if ( item->getClassName()== "Uber::Outlet" )
+//        {
+//            Outlet *outlet = qobject_cast<Outlet*>(item);
+//            m_CurrentLink->setOutlet(outlet);
+//        }
+//        m_CurrentLink->setUrl(m_ComplexDelegate->getDelegate(m_CurrentLink->getClassName()));
+//        //m_ItemModel->append(m_CurrentLink);
+//    }
 
-    void System::updateLink( const QPointF& pos )
-    {
+//    void System::updateLink( const QPointF& pos )
+//    {
 
-    }
+//    }
 
-    void System::finishAddingLink(Item* item)
-    {
-        if ( item->getClassName()=="Uber::Inlet" )
-        {
-            m_CurrentLink->setInlet(qobject_cast<Inlet*>(item));
-        } else if ( item->getClassName()== "Uber::Outlet" )
-        {
-            m_CurrentLink->setOutlet(qobject_cast<Outlet*>(item));
-        } else
-        {
-            qDebug() << "Adding Link failed.!!! Need to take care of removing the item from the model";
-        }
-    }
+//    void System::finishAddingLink(Item* item)
+//    {
+//        if ( item->getClassName()=="Uber::Inlet" )
+//        {
+//            m_CurrentLink->setInlet(qobject_cast<Inlet*>(item));
+//        } else if ( item->getClassName()== "Uber::Outlet" )
+//        {
+//            m_CurrentLink->setOutlet(qobject_cast<Outlet*>(item));
+//        } else
+//        {
+//            qDebug() << "Adding Link failed.!!! Need to take care of removing the item from the model";
+//        }
+//    }
 
     void System::addBlock( int index )
     {

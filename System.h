@@ -10,7 +10,7 @@
 #include "_2RealApplication.h"
 #include "FileLoader.h"
 #include "Items/Link.h"
-
+#include "ConnectionManager.h"
 
 namespace Uber {
 
@@ -43,9 +43,9 @@ namespace Uber {
         void                                enableTransparentWindows();
         void                                showWindows();
 
-        Q_INVOKABLE void                    beginAddingLink(Item* item);
-        Q_INVOKABLE void                    updateLink( const QPointF& pos );
-        Q_INVOKABLE void                    finishAddingLink(Item* item);
+//        Q_INVOKABLE void                    beginAddingLink(Item* item);
+//        Q_INVOKABLE void                    updateLink( const QPointF& pos );
+//        Q_INVOKABLE void                    finishAddingLink(Item* item);
 
         Q_INVOKABLE void                    addBlock( int index );
         Q_INVOKABLE QPointF                 maptoGlobal(QQuickItem* item);
@@ -86,6 +86,7 @@ namespace Uber {
 
         FileLoader                          *mFileLoader;
         Link*                               m_CurrentLink;
+        ConnectionManager                   *m_ConnectionManager;
 
     };
 }

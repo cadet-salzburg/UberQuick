@@ -2,7 +2,8 @@ import QtQuick 2.0
 //import QtDesktop 1.0
 import UberComponents 1.0
 import "../UI"
-Canvas {
+import "../Block"
+GraphCanvas {
     id: workbench
     width: 100
     height: 62
@@ -49,7 +50,7 @@ Canvas {
         id: grid
         model: ItemModel
         delegate: Loader {
-            source: object.url
+            source: ComplexDelegate.getDelegate( object.className )
             x: object.position.x
             y: object.position.y
         }
@@ -64,6 +65,13 @@ Canvas {
         color: "dimgray"
         anchors.horizontalCenter: workbench.horizontalCenter
         anchors.verticalCenter: workbench.verticalCenter
+    }
+
+    CanvasConnection {
+        x1: 40
+        y1: 40
+        x2: 200
+        y2: 200
     }
 
     TaskBar {

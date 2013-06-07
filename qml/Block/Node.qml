@@ -30,45 +30,57 @@ Circle {
         object.y = nodeCenterInWorkbench.y;
     }
 
-    DropArea {
-        id: dropArea;
-        anchors.fill: parent;
-        onEntered: {
-            drag.accept (Qt.CopyAction);
-            console.log("onEntered");
-        }
-        onDropped: {
-            console.log ("onDropped");
-        }
-        onExited: {
-            console.log ("onExited");
-        }
-    }
-
-
     MouseArea {
         anchors.fill: parent
         hoverEnabled: true
         onPressed:
         {
+            //node.forceActiveFocus();
             console.log("Mouse Pressed at " + object.className );
-            System.beginAddingLink(object);
-
+            ConnectionManager.beginAddingLink(object);
+            //ConnectionManager.startDrag(object);
+        }
+        onPositionChanged:
+        {
+            console.log("PPPPPpppppposition changed" );
         }
         onReleased:
         {
-            if ( containsMouse )
-            {
-                console.log("Mouse Released at " + object.className );
-                mouse.accepted = true;
-            } else {
-                mouse.accepted = false;
-            }
-
+            console.debug("RRRRRRrrrrreleased");
         }
-        onEntered:
-        {
-            console.log("Mouse Entered at " + object.className );
+
+//        onReleased:
+//        {
+//            if ( containsMouse )
+//            {
+//                console.log("Mouse Released at " + object.className );
+//                mouse.accepted = true;
+//            } else {
+//                mouse.accepted = false;
+//            }
+
+//        }
+//        onEntered:
+//        {
+//            console.log("Mouse Entered at " + object.className );
+//        }
+        DropArea {
+            id: dropArea;
+            anchors.fill: parent;
+            onEntered: {
+                drag.accept (Qt.CopyAction);
+                console.log("onEntered");
+            }
+            onDropped: {
+                console.log ("onDropped");
+                //ConnectionManager.finishAddingLink(object);
+            }
+            onExited: {
+                console.log ("onExited");
+            }
+            onPositionChanged: {
+                console.log ("onPosition changed");
+            }
         }
     }
 
