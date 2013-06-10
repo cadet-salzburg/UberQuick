@@ -3,6 +3,7 @@ import QtQuick 2.0
 import UberComponents 1.0
 import "../UI"
 import "../Block"
+
 GraphCanvas {
     id: workbench
     width: 100

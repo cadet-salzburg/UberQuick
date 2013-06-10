@@ -37,8 +37,10 @@ Circle {
         {
             //node.forceActiveFocus();
             console.log("Mouse Pressed at " + object.className );
-            ConnectionManager.beginAddingLink(object);
-            //ConnectionManager.updateLink(node.mapToItem(workbench, mouseX, mouseY ));
+            var pos = node.mapToItem(workbench, mouseX, mouseY );
+            console.log("this is it: " + pos);
+            ConnectionManager.beginAddingLink(object,node.mapToItem(workbench, mouseX, mouseY ));
+            ConnectionManager.updateLink(node.mapToItem(workbench, mouseX, mouseY ));
             ConnectionManager.startDrag(object);
         }
         onPositionChanged:

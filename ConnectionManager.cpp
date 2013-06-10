@@ -15,7 +15,7 @@ namespace Uber {
 
     }
 
-    void ConnectionManager::beginAddingLink(Item *item)
+    void ConnectionManager::beginAddingLink(Item *item, const QPointF &pos )
     {
         qDebug() << "Begin adding link";
         m_Link = new Link();
@@ -30,6 +30,7 @@ namespace Uber {
             m_Link->setOutlet(outlet);
             qDebug() << "---Outlet";
         }
+        updateLink(pos);
         m_ItemModel->append(m_Link);
         qDebug() << " The number of items in the model is: " << m_ItemModel->count();
     }

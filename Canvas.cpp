@@ -90,7 +90,7 @@ void    Canvas::dragEnterEvent(QDragEnterEvent * event)
     event->accept();
 
     qDebug() << "drag Enter event pos is: " << event->pos();
-    System::getInstance()->getConnectionManager()->updateLink(event->pos() );
+    //System::getInstance()->getConnectionManager()->updateLink(event->pos() );
 }
 
 void    Canvas::dragLeaveEvent(QDragLeaveEvent * event)
