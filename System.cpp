@@ -34,8 +34,8 @@ namespace Uber {
     ,m_ItemModel(new ItemObjectListModel())
     ,m_Engine(Engine::instance())
     ,m_QmlEngine(new QQmlEngine )
-    ,m_Canvas(new QQuickView( m_QmlEngine, 0))
     ,m_Dock(new QQuickView( m_QmlEngine, 0))
+    ,m_Canvas(new QQuickView( m_QmlEngine, 0))
     , mFileLoader( new FileLoader( *this ) )
     ,m_CurrentLink(nullptr)
     ,m_ConnectionManager(nullptr)
@@ -216,6 +216,11 @@ namespace Uber {
     ItemObjectListModel*   System::getItemModel()
     {
         return m_ItemModel;
+    }
+
+    ConnectionManager *System::getConnectionManager()
+    {
+        return m_ConnectionManager;
     }
 
     QPointF System::maptoGlobal( QQuickItem *item )

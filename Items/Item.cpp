@@ -64,6 +64,7 @@ namespace Uber {
     {
         //qDebug() << "position Was changed: " << getClassName() ;
         m_Position = position;
+        emit positionChanged();
     }
     QSizeF Item::size() const
     {

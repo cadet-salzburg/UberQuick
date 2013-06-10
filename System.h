@@ -35,6 +35,7 @@ namespace Uber {
         void                                loadQmlFiles();
         DockModel*                          getDockModel();
         ItemObjectListModel*                getItemModel();
+        ConnectionManager*                  getConnectionManager();
         inline QQmlEngine*                  getQmlEngine()
         {
             return m_QmlEngine;

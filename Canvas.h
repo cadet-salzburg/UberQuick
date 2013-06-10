@@ -16,7 +16,13 @@ namespace Uber {
         void                    setColor( const QColor &color);
         Q_INVOKABLE QString     getTypeOfChildAt( int x, int y );
     protected:
-        bool                    childMouseEventFilter(QQuickItem * item, QEvent * event);
+        virtual bool            childMouseEventFilter(QQuickItem * item, QEvent * event);
+
+        virtual void            dragEnterEvent(QDragEnterEvent * event);
+        virtual void            dragLeaveEvent(QDragLeaveEvent * event);
+        virtual void            dragMoveEvent(QDragMoveEvent * event);
+        virtual void            dropEvent(QDropEvent * event);
+
         QSGNode*                updatePaintNode( QSGNode *node, UpdatePaintNodeData *data);
     private:
         QSGGeometry             m_Geometry;

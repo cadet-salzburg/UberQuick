@@ -9,16 +9,16 @@ Bezier {
     onLinkMoved:
     {
         p1 = object.getStartPos();
+        p4 = object.getEndPos();
         updateControlPoints();
     }
     color:      "#454545"
-    p1:         object.getStartPos()
-    p2:         Qt.point(0, 0)
-    p3:         Qt.point(0, 0)
-    p4:         Qt.point(120,80);
+
 
     Component.onCompleted:
     {
+        p1 = object.getStartPos();
+        p4 = object.getEndPos();
         updateControlPoints();
         object.linkChanged.connect(line.linkMoved);
     }

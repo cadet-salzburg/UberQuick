@@ -4,7 +4,7 @@ import UberComponents 1.0
 Circle {
     id: node
     radius: 8
-    color: "#CCFFFF00"
+    color: "#00FFFF00"
     anchors.verticalCenter: parent.verticalCenter
     property point  centerPoint: Qt.point(0,0)
     property point  offset: Qt.point(0,0)
@@ -38,11 +38,13 @@ Circle {
             //node.forceActiveFocus();
             console.log("Mouse Pressed at " + object.className );
             ConnectionManager.beginAddingLink(object);
-            //ConnectionManager.startDrag(object);
+            //ConnectionManager.updateLink(node.mapToItem(workbench, mouseX, mouseY ));
+            ConnectionManager.startDrag(object);
         }
         onPositionChanged:
         {
             //console.log("PPPPPpppppposition changed" );
+            //ConnectionManager.updateLink(Qt.point(mouseX, mouseY));
         }
         onReleased:
         {

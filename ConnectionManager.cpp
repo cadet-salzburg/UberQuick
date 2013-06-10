@@ -36,7 +36,10 @@ namespace Uber {
 
     void ConnectionManager::updateLink(const QPointF &pos)
     {
-
+        if ( m_Link )
+        {
+            m_Link->updatePosition(pos);
+        }
     }
 
     void ConnectionManager::finishAddingLink(Item *item)

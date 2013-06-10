@@ -18,6 +18,7 @@ namespace Uber {
     {
         m_EventType = type;
     }
+
     bool EventFilter::eventFilter(QObject *obj, QEvent *e)
     {
 //    return false;

@@ -34,7 +34,7 @@ namespace Uber {
 
         Q_INVOKABLE     QPointF             getStartPos();
         Q_INVOKABLE     QPointF             getEndPos();
-        Q_INVOKABLE     void                updatePosition( const QPointF& point );
+        Q_INVOKABLE     void                updatePosition( const QPointF& pos );
     protected:
 
     signals:

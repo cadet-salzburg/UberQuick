@@ -38,19 +38,22 @@ namespace Uber {
     }
 
     Link::Link()
-    :m_Inlet( nullptr )
-    ,m_Outlet( nullptr )
+    :m_Inlet( new Inlet() )
+    ,m_Outlet( new Outlet() )
     {
-
+        QObject::connect(m_Inlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
+        QObject::connect(m_Outlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
     }
     void Link::setInlet( Inlet *inlet )
     {
+        delete m_Inlet;
         m_Inlet = inlet;
         QObject::connect(m_Inlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
     }
 
     void Link::setOutlet( Outlet *outlet )
     {
+        delete m_Outlet;
         m_Outlet = outlet;
         QObject::connect(m_Outlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
     }
@@ -81,20 +84,7 @@ namespace Uber {
 
     QPointF Link::getEndPos()
     {
-//        QPointF pos(0,0);
-//        if ( m_Inlet && m_Outlet )
-//        {
-//            pos =  m_Inlet->getPosition();
-//        } else
-//        {
-//            if ( m_Points.back() )
-//            {
-//                Point* last = qobject_cast<Point*>(m_Points.back());
-//                pos = last->get();
-//            }
-//        }
-//        return pos;
-        if ( m_Inlet )
+        if ( m_Inlet->isValid() )
         {
             return m_Inlet->getPosition();
         } else
@@ -103,18 +93,22 @@ namespace Uber {
         }
     }
 
-    void Link::updatePosition( const QPointF& point )
+    void Link::updatePosition( const QPointF& pos )
     {
-        if ( m_Inlet && m_Outlet )
+        if ( m_Inlet->isValid() && m_Outlet->isValid() )
             return;
-        if ( m_Outlet )
+        if ( !m_Inlet->isValid() )
         {
-            //Start is created => update end
+            m_Inlet->setPosition(pos);
+        } else if ( !m_Outlet->isValid() )
+        {
+            m_Outlet->setPosition(pos);
         }
     }
 
     QDebug operator<<(QDebug dbg, const Link &link )
     {
+        Q_UNUSED(link)
         dbg.nospace() << "Link";
         return dbg.maybeSpace();
     }

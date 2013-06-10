@@ -34,7 +34,7 @@ Item {
         id: dock
         width: parent.width
         height: parent.height - dot.height - 5
-        color:  Qt.rgba(0.8,0.8,0.8,0.9)
+        color:  Qt.rgba(0.7,0.7,0.7,0.6)
         radius: 15
         border.color: dot.border.color
         border.width: dot.border.width

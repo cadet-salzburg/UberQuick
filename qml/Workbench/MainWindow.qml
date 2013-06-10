@@ -42,6 +42,7 @@ GraphCanvas {
         }
         Component.onCompleted:
         {
+            workbench.state = "startState"
             DockView.visible = false;
         }
     }
@@ -67,12 +68,12 @@ GraphCanvas {
         anchors.verticalCenter: workbench.verticalCenter
     }
 
-    CanvasConnection {
-        x1: 40
-        y1: 40
-        x2: 200
-        y2: 200
-    }
+//    CanvasConnection {
+//        x1: 40
+//        y1: 40
+//        x2: 200
+//        y2: 200
+//    }
 
     TaskBar {
         anchors.bottom : workbench.bottom

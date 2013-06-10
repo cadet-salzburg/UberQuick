@@ -13,7 +13,6 @@ Rectangle {
 
     property string type: "block"
     signal          blockMoved();
-    //onBlockMoved:   console.log("blockMoved signal emitted")
     function        initialize()
     {
         var numInlets = inlets.count();
@@ -51,6 +50,7 @@ Rectangle {
         }
         anchors.fill: parent
     }
+
     Text {
         id: info
         text: object.name

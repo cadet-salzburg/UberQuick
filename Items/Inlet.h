@@ -19,6 +19,10 @@ namespace Uber {
 
         void            setInletHandle(const InletHandle& handle );
         InletHandle     getInletHandle() const;
+        inline bool     isValid() const
+        {
+            return m_InletHandle.isValid();
+        }
 
         void setName( QString name )
         {
