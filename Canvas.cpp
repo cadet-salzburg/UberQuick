@@ -106,6 +106,8 @@ void    Canvas::dragMoveEvent(QDragMoveEvent * event)
 
 void    Canvas::dropEvent(QDropEvent * event)
 {
+    event->ignore();
+    System::getInstance()->getConnectionManager()->cancelAddingLink();
     qDebug() << "Canvas: dragDrop";
 }
 

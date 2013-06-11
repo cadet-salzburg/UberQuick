@@ -3,6 +3,7 @@ import UberComponents 1.0
 Bezier {
     id: line
     smooth: true
+    z: 5
     property point start
     property point end
     signal linkMoved()
@@ -21,6 +22,7 @@ Bezier {
         p4 = object.getEndPos();
         updateControlPoints();
         object.linkChanged.connect(line.linkMoved);
+        console.log("Start: " + p1 + " end: " + p4);
     }
 
     function updateControlPoints()

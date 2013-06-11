@@ -53,6 +53,7 @@ BezierCurve::BezierCurve(QQuickItem *parent)
 {
     setFlag(ItemHasContents, true);
     setAntialiasing(true);
+    setZ(1);
 }
 
 BezierCurve::~BezierCurve()

@@ -84,7 +84,7 @@ namespace Uber {
 
     QPointF Link::getEndPos()
     {
-        if ( m_Inlet->isValid() )
+        if ( m_Inlet )
         {
             return m_Inlet->getPosition();
         } else
@@ -100,9 +100,11 @@ namespace Uber {
         if ( !m_Inlet->isValid() )
         {
             m_Inlet->setPosition(pos);
+            qDebug() << "Updated inlet position to: " << pos;
         } else if ( !m_Outlet->isValid() )
         {
             m_Outlet->setPosition(pos);
+            qDebug() << "Updated outlet position to: " << pos ;
         }
     }
 

@@ -39,6 +39,7 @@ namespace Uber {
     {
         if ( m_Link )
         {
+            qDebug() << "Link position was updated: " << pos;
             m_Link->updatePosition(pos);
         }
     }
@@ -54,6 +55,16 @@ namespace Uber {
         } else
         {
             qDebug() << "Adding Link failed.!!! Need to take care of removing the item from the model";
+        }
+    }
+
+    void ConnectionManager::cancelAddingLink()
+    {
+        if ( m_Link )
+        {
+            int idx = m_ItemModel->indexOf(m_Link);
+            m_ItemModel->removeAt(idx);
+            qDebug() << "The id is: " << idx;
         }
     }
 

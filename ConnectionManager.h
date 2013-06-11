@@ -14,7 +14,8 @@ namespace Uber {
         ConnectionManager( ItemObjectListModel* itemModel );
         Q_INVOKABLE void        beginAddingLink( Uber::Item* item, const QPointF &pos );
         Q_INVOKABLE void        updateLink( const QPointF& pos );
-        Q_INVOKABLE void        finishAddingLink( Item* item );
+        Q_INVOKABLE void        finishAddingLink( Uber::Item* item );
+        Q_INVOKABLE void        cancelAddingLink();
         Q_INVOKABLE void        startDrag( Uber::Item* item );
         void                    disconnect(Link* link);
     private:

@@ -8,6 +8,7 @@ GraphCanvas {
     id: workbench
     width: 100
     height: 62
+    z: -2
     color: "#EEEEEE"
     state: "initState"
     MouseArea {
@@ -47,17 +48,6 @@ GraphCanvas {
             DockView.visible = false;
         }
     }
-
-    Repeater {
-        id: grid
-        model: ItemModel
-        delegate: Loader {
-            source: ComplexDelegate.getDelegate( object.className )
-            x: object.position.x
-            y: object.position.y
-        }
-    }
-
     //------------ Custom Delegate Test Ends ----------------//
     Text {
         id: info
@@ -68,6 +58,33 @@ GraphCanvas {
         anchors.horizontalCenter: workbench.horizontalCenter
         anchors.verticalCenter: workbench.verticalCenter
     }
+
+    Rectangle {
+        x: 150
+        y: 150
+        z: 0
+        width: 80
+        height: 80
+        color: "#FF8822"
+        DropArea {
+            anchors.fill: parent
+            onDropped: {
+                drop.accept();
+                console.log("Dropped in rectangle")
+            }
+        }
+    }
+    Repeater {
+        id: grid
+        model: ItemModel
+        delegate: Loader {
+            source: ComplexDelegate.getDelegate( object.className )
+            x: object.position.x
+            y: object.position.y
+        }
+    }
+
+
 
 //    CanvasConnection {
 //        x1: 40

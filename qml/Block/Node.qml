@@ -35,12 +35,9 @@ Circle {
         hoverEnabled: true
         onPressed:
         {
-            //node.forceActiveFocus();
-            console.log("Mouse Pressed at " + object.className );
             var pos = node.mapToItem(workbench, mouseX, mouseY );
-            console.log("this is it: " + pos);
             ConnectionManager.beginAddingLink(object,node.mapToItem(workbench, mouseX, mouseY ));
-            ConnectionManager.updateLink(node.mapToItem(workbench, mouseX, mouseY ));
+            ConnectionManager.updateLink(Qt.point(pos.x, pos.y));
             ConnectionManager.startDrag(object);
         }
         onPositionChanged:
@@ -76,8 +73,9 @@ Circle {
                 console.log("onEntered");
             }
             onDropped: {
+                drop.accept();
                 console.log ("onDropped");
-                //ConnectionManager.finishAddingLink(object);
+                ConnectionManager.finishAddingLink(object);
             }
             onExited: {
                 console.log ("onExited");

@@ -6,7 +6,6 @@
 #include <QUrl>
 
 namespace Uber {
-
     class Item : public QObject
     {
         Q_OBJECT
