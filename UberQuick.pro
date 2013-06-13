@@ -78,7 +78,8 @@ OTHER_FILES += \
     qml/Block/Link.qml \
     qml/Block/Block.qml \
     qml/Block/NodeRow.qml \
-    qml/Block/CanvasConnection.qml
+    qml/Block/CanvasConnection.qml \
+    qml/UI/Slider.qml
 
 
 #Includes

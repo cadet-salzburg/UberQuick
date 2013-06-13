@@ -65,7 +65,6 @@ void BezierCurve::setP1(const QPointF &p)
 {
     if (p == m_p1)
         return;
-
     m_p1 = p;
     emit p1Changed(p);
     update();

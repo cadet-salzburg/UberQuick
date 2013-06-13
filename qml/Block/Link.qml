@@ -9,6 +9,7 @@ Bezier {
     signal linkMoved()
     onLinkMoved:
     {
+        console.log("onLinkMoved");
         p1 = object.getStartPos();
         p4 = object.getEndPos();
         updateControlPoints();
@@ -27,10 +28,10 @@ Bezier {
 
     function updateControlPoints()
     {
-        var dist = p4.x - p1.x;
+        var dist = p4.y - p1.y;
         var offset = 0.5*dist;
-        p2 = Qt.point(p1.x + offset, p1.y);
-        p3 = Qt.point(p4.x - offset, p4.y);
+        p2 = Qt.point(p1.x, p1.y + offset );
+        p3 = Qt.point(p4.x, p4.y - offset );
     }
     Circle {
         radius: 5

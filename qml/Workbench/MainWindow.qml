@@ -11,6 +11,9 @@ GraphCanvas {
     z: -2
     color: "#EEEEEE"
     state: "initState"
+
+
+
     MouseArea {
         id: mouseArea
         anchors.fill: parent
@@ -73,7 +76,17 @@ GraphCanvas {
                 console.log("Dropped in rectangle")
             }
         }
+        MouseArea {
+            anchors.fill: parent
+            drag.axis: Drag.XAndYAxis
+            drag.target: parent
+        }
     }
+
+    Slider {
+
+    }
+
     Repeater {
         id: grid
         model: ItemModel

@@ -49,6 +49,7 @@ namespace Uber {
         delete m_Inlet;
         m_Inlet = inlet;
         QObject::connect(m_Inlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
+        emit positionChanged();
     }
 
     void Link::setOutlet( Outlet *outlet )
@@ -56,6 +57,7 @@ namespace Uber {
         delete m_Outlet;
         m_Outlet = outlet;
         QObject::connect(m_Outlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
+        emit positionChanged();
     }
 
     void Link::addPoint( const QPointF &p )
