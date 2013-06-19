@@ -7,6 +7,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     Uber::System *system = Uber::System::getInstance();
     system->loadBundles();
+    system->loadInterfaceBlocks();
     system->registerQmlTypes();
     system->setContextProperties();
     system->loadQmlFiles();

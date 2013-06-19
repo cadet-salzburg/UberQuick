@@ -60,9 +60,6 @@ namespace Uber {
         setComplexDelegates();
 
         m_ConnectionManager = new ConnectionManager(m_ItemModel);
-        Slider* slider = new Slider();
-        slider->setPosition(QPointF(100,80));
-        m_ItemModel->append(slider);
     }
 
     System::~System()
@@ -186,6 +183,7 @@ namespace Uber {
                                 if ( file.exists() )
                                 {
                                     QString iconPath = path + QString("/") + QString("icon.png");
+                                    qDebug() << "Icon path: " << iconPath;
                                     entry.setIconUrl(QUrl::fromLocalFile(iconPath));
                                 }
                                 entries << entry;
@@ -207,16 +205,15 @@ namespace Uber {
                 }
             }
         }
-
-
         m_DockModel->addEntries(entries);
-
-
     }
 
     void System::loadInterfaceBlocks()
     {
-
+        GridEntry slider = GridEntry(SliderType);
+        QString sliderIconPath("D:/Work/UberQuick/images/ui/slider.png");
+        slider.setIconUrl(QUrl::fromLocalFile(sliderIconPath));
+        m_DockModel->addEntry(slider);
     }
 
     void System::setComplexDelegates()
