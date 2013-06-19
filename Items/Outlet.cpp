@@ -16,6 +16,7 @@ namespace Uber {
     :Item(parent)
     ,m_OutletHandle(handle)
     {
+
     }
 
     Outlet::~Outlet()

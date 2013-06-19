@@ -1,4 +1,6 @@
 #include "DockModel.h"
+#include "../items/Block.h"
+#include "../items/Slider.h"
 
 namespace Uber {
     DockModel::DockModel(QObject *parent)
@@ -23,7 +25,7 @@ namespace Uber {
         }
         else if (role == NameRole)
         {
-            return QVariant::fromValue(m_Entries.at(index.row()).getBlockName());
+            return QVariant::fromValue(m_Entries.at(index.row()).getName());
         }
         return QVariant();
     }
@@ -68,5 +70,23 @@ namespace Uber {
         roles[PathRole] = "path";
         roles[NameRole] = "name";
         return roles;
+    }
+
+    Item *DockModel::create( int row )
+    {
+        Item *item = nullptr;
+        if ( row < rowCount() )
+        {
+            GridEntry entry = getEntry(row);
+            if ( entry.typeIs(BlockType) )
+            {
+                BlockHandle handle = entry.getBundleHandle().createBlockInstance(entry.getName().toUtf8().constData());
+                item = new Block(handle, entry.getName());
+            } else if ( entry.typeIs(SliderType) )
+            {
+                item = new Slider();
+            }
+        }
+        return item;
     }
 }

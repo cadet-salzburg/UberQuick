@@ -7,27 +7,28 @@
 #include <QUrl>
 #include <QDebug>
 #include "_2RealApplication.h"
+#include "../items/Item.h"
+
 namespace Uber {
     typedef QList<class GridEntry> GridEntryList;
+    enum  GridEntryType { BlockType, SliderType };
     class GridEntry
     {
     public:
-        GridEntry()
-//        :m_BlockName(QString())
-//        ,m_IconUrl(QUrl())
-//        ,m_BundleHandle()
+        GridEntry(GridEntryType entryType = BlockType)
+        :m_EntryType(entryType)
         {
 
         }
 
-        void setBlockName( const QString& name )
+        void setName( const QString& name )
         {
-            m_BlockName = name;
+            m_Name = name;
         }
 
-        QString getBlockName()const
+        QString getName()const
         {
-            return m_BlockName;
+            return m_Name;
         }
 
         void setIconUrl( const QUrl& iconUrl )
@@ -42,6 +43,7 @@ namespace Uber {
 
         void setBundleHandle( _2Real::app::BundleHandle handle )
         {
+            m_EntryType = BlockType;
             m_BundleHandle = handle;
         }
 
@@ -56,10 +58,16 @@ namespace Uber {
             //return m_Image.count();
         }
 
+        bool    typeIs( GridEntryType type )
+        {
+            return ( type == m_EntryType );
+        }
+
     private:
-        QString                     m_BlockName;
+        QString                     m_Name;
         QUrl                        m_IconUrl;
         _2Real::app::BundleHandle   m_BundleHandle;
+        GridEntryType               m_EntryType;
     };
 
     class DockModel : public QAbstractListModel
@@ -71,7 +79,6 @@ namespace Uber {
             PathRole = Qt::UserRole + 1,
             NameRole = PathRole + 1
         };
-
         explicit                DockModel(QObject *parent = 0);
         int                     rowCount(const QModelIndex & parent = QModelIndex()) const;
         QVariant                data(const QModelIndex & index, int role = Qt::DecorationRole) const;
@@ -83,6 +90,8 @@ namespace Uber {
 
         int                     count() const;
         QHash<int,QByteArray>   roleNames() const;
+
+        Item*                   create( int row );
     signals:
         void                    countChanged();
     public slots:

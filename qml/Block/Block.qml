@@ -30,7 +30,6 @@ Rectangle {
             outlet.updatePosition();
         }
     }
-
     MouseArea {
         id: mouseArea
         property variant previousPosition

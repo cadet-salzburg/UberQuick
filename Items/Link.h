@@ -44,7 +44,6 @@ namespace Uber {
         {
             qDebug() << " The Slot Was Called ";
         }
-
     private:
         Inlet*                              m_Inlet;
         Outlet*                             m_Outlet;

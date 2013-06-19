@@ -20,7 +20,9 @@ Row {
         id: repeater
         property string type: "repeater"
         model: currentModel
-        delegate: Node{}
+        delegate: Node {
+            thickness: block.border.width
+        }
     }
 
 }

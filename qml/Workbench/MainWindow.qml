@@ -83,10 +83,6 @@ GraphCanvas {
         }
     }
 
-    Slider {
-
-    }
-
     Repeater {
         id: grid
         model: ItemModel
@@ -94,6 +90,9 @@ GraphCanvas {
             source: ComplexDelegate.getDelegate( object.className )
             x: object.position.x
             y: object.position.y
+            onLoaded: {
+                console.log("---->" + object.className);
+            }
         }
     }
 

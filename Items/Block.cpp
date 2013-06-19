@@ -9,14 +9,17 @@ namespace Uber {
     {
 
     }
-    Block::Block( const BlockHandle& handle )
+
+    Block::Block( const BlockHandle& handle, QString name )
     :Item(0)
     ,m_BlockHandle(handle)
     ,m_InletModel(nullptr)
     ,m_OutletModel(nullptr)
+    ,m_Name(name)
     {
         initialize();
     }
+
     Block::Block(const Block &other)
     :Item(other.parent(), other.getPosition(), other.size())
     ,m_BlockHandle(other.getBlockHandle())
@@ -25,6 +28,7 @@ namespace Uber {
     {
         initialize();
     }
+
     Block::~Block()
     {
 

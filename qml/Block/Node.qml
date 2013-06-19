@@ -9,6 +9,7 @@ Circle {
     property point  centerPoint: Qt.point(0,0)
     property point  offset: Qt.point(0,0)
     property string type: "circle"
+    property real   thickness: 3
 
     signal moved;
     onMoved: {
@@ -23,9 +24,7 @@ Circle {
     function updatePosition()
     {
         var nodeCenter = Qt.point(node.radius, node.radius);
-//        printPoint(nodeCenter, "----- nodeCenter")
         var nodeCenterInWorkbench  = node.mapToItem(workbench, nodeCenter.x, nodeCenter.y );
-//        printPoint(nodeCenterInWorkbench, "nodeCenterInWorkbench");
         object.x = nodeCenterInWorkbench.x;
         object.y = nodeCenterInWorkbench.y;
     }
@@ -42,12 +41,11 @@ Circle {
         }
         onPositionChanged:
         {
-            //console.log("PPPPPpppppposition changed" );
-            //ConnectionManager.updateLink(Qt.point(mouseX, mouseY));
+
         }
         onReleased:
         {
-            //console.debug("RRRRRRrrrrreleased");
+
         }
 
 //        onReleased:
@@ -89,7 +87,7 @@ Circle {
     Rectangle {
         id: rect
         width: parent.width
-        height: block.border.width
+        height: node.thickness
         y: parent.y + parent.height /2 - height/2
         color: "#8F8F8F"
     }

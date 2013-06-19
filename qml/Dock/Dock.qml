@@ -58,7 +58,7 @@ Item {
                             var pos = System.maptoGlobal(parent);
                             pos.x += DockView.width/2;
                             pos.y += DockView.height/2;
-                            System.addBlock(index );
+                            System.addDockItem(index );
                             DockView.visible = false;
                         }
                     }

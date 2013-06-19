@@ -7,7 +7,6 @@
 
 using namespace _2Real::app;
 namespace Uber {
-
     class Inlet : public Item
     {
         Q_OBJECT

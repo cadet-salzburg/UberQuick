@@ -1,6 +1,6 @@
 #include <QtWidgets/QApplication>
 #include "qtquick2applicationviewer.h"
-#include "System.h"
+#include "system/System.h"
 
 int main(int argc, char *argv[])
 {

@@ -17,7 +17,7 @@ namespace Uber {
         Q_PROPERTY( QString name READ getName WRITE setName NOTIFY nameChanged )
     public:
         Block();
-        Block( const BlockHandle& handle );
+        Block( const BlockHandle& handle, QString name= "" );
         Block( const Block &other);
         ~Block();
         void                                        setName( QString name );

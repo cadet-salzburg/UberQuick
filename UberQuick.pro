@@ -12,56 +12,50 @@ DEPLOYMENTFOLDERS += folder_03
 
 SOURCES += \
     main.cpp \
-    Image.cpp \
-    System.cpp \
-    Models/DockModel.cpp \
-    Items/Outlet.cpp \
-    Items/Item.cpp \
-    Items/Inlet.cpp \
-    Items/Connection.cpp \
-    Items/Block.cpp \
-    Items/Workbench.cpp \
-    Items/ComplexDelegate.cpp \
-    Models/QObjectListModel.cpp \
-    Models/BlockObjectListModel.cpp \
-    Models/ItemObjectListModel.cpp \
-    QmlLine.cpp \
-    Models/InletObjectListModel.cpp \
-    Models/OutletObjectListModel.cpp \
-    FileLoader.cpp \
-    Canvas.cpp \
-    Items/Link.cpp \
-    BezierCurve.cpp \
-    Circle.cpp \
-    EventFilter.cpp \
-    ConnectionManager.cpp
+    models/QObjectListModel.cpp \
+    models/OutletObjectListModel.cpp \
+    models/ItemObjectListModel.cpp \
+    models/InletObjectListModel.cpp \
+    models/DockModel.cpp \
+    items/Workbench.cpp \
+    items/Slider.cpp \
+    items/Link.cpp \
+    items/Item.cpp \
+    items/Inlet.cpp \
+    items/Circle.cpp \
+    items/Canvas.cpp \
+    items/Block.cpp \
+    items/BezierCurve.cpp \
+    system/ComplexDelegate.cpp \
+    system/System.cpp \
+    system/FileLoader.cpp \
+    system/EventFilter.cpp \
+    system/ConnectionManager.cpp \
+    items/Outlet.cpp
 
 HEADERS += \
-    System.h \
-    Models/DockModel.h \
-    Items/Outlet.h \
-    Items/Item.h \
-    Items/Inlet.h \
-    Items/Connection.h \
-    Items/Block.h \
-    Items/Workbench.h \
-    Items/ComplexDelegate.h \
-    Image.h \
-    Models/QObjectListModelT.h \
-    Models/QObjectListModelAttachment.h \
-    Models/QObjectListModel.h \
-    Models/ItemObjectListModel.h \
-    Models/BlockObjectListModel.h \
-    QmlLine.h \
-    Models/InletObjectListModel.h \
-    Models/OutletObjectListModel.h \
-    FileLoader.h \
-    Canvas.h \
-    Items/Link.h \
-    BezierCurve.h \
-    Circle.h \
-    EventFilter.h \
-    ConnectionManager.h
+    models/QObjectListModelT.h \
+    models/QObjectListModelAttachment.h \
+    models/QObjectListModel.h \
+    models/OutletObjectListModel.h \
+    models/ItemObjectListModel.h \
+    models/InletObjectListModel.h \
+    models/DockModel.h \
+    items/Workbench.h \
+    items/Outlet.h \
+    items/Link.h \
+    items/Item.h \
+    items/Inlet.h \
+    items/Circle.h \
+    items/Canvas.h \
+    items/Block.h \
+    items/BezierCurve.h \
+    system/ComplexDelegate.h \
+    system/System.h \
+    system/FileLoader.h \
+    system/EventFilter.h \
+    items/Slider.h \
+    system/ConnectionManager.h
 
 OTHER_FILES += \
     qml/Dock/Dock.qml \
@@ -89,8 +83,11 @@ INCLUDEPATH += $(_2REAL_DEPENDENCIES_DIR)/poco/Foundation/include
 INCLUDEPATH += $(_2REAL_DIR)/kernel/src
 INCLUDEPATH += $$PWD/../../../Qt/Qt5.0.1/5.0.1/msvc2010/include
 INCLUDEPATH += C:/Qt/Qt5.0.1/5.0.1/msvc2010/include/QtQuick/5.0.1/QtQuick
-INCLUDEPATH += C:/Qt/Qt5.0.1/5.0.1/msvc2010/include/QtQuick/5.0.1/QtQuick/private
+INCLUDEPATH += C:/Qt/Qt5.0.1/5.0.1/msvc2010/include/QtQuick/5.0.1/QtQuick/privatez
 INCLUDEPATH += C:/Qt/Qt5.0.1/5.0.1/msvc2010/include/QtCore/5.0.1
+INCLUDEPATH += items/
+INCLUDEPATH += models/
+INCLUDEPATH += system/
 
 
 #Linking

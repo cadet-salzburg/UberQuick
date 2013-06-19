@@ -1,20 +1,17 @@
 import QtQuick 2.0
+import "../Block/"
 
  Item {
-     id: slider;
-     width: 400;
-     height: 16
-     x: 30
-     y: 30
-     // value is read/write.
-     property real value: 1
+     id: slider
+     width:          150
+     height:         30
+     property real value: 0
      onValueChanged: updatePos();
      property real maximum: 50
-     property real minimum: 1
+     property real minimum: 0
      property int xMax: width - handle.width - 4
      onXMaxChanged: updatePos();
      onMinimumChanged: updatePos();
-
      function updatePos() {
          if (maximum > minimum) {
              var pos = 2 + (value - minimum) * slider.xMax / (maximum - minimum);
@@ -26,28 +23,38 @@ import QtQuick 2.0
          }
          console.log(value)
      }
-
      Rectangle {
+         id: backgroundRect
          anchors.fill: parent
-         border.color: "white"; border.width: 0; radius: 8
-         gradient: Gradient {
-             GradientStop { position: 0.0; color: "#66343434" }
-             GradientStop { position: 1.0; color: "#66000000" }
-         }
+         radius:         12
+         color:          "#FFFCFCFC"
+         border.color:   "#FFAFAFAF"
+         border.width:   3
+         antialiasing:   true
+//         border.color: "white"; border.width: 0; radius: 12
+//         gradient: Gradient {
+//             GradientStop { position: 0.0; color: "#66343434" }
+//             GradientStop { position: 1.0; color: "#66000000" }
+//         }
          MouseArea {
              anchors.fill: parent
              drag.target: slider
              drag.axis: Drag.XAndYAxis
          }
      }
+     Node
+     {
+         thickness: backgroundRect.border.width
+     }
+
 
      Rectangle {
          id: handle; smooth: true
-         y: 2; width: 30; height: slider.height-4; radius: 6
-         gradient: Gradient {
-             GradientStop { position: 0.0; color: "lightgray" }
-             GradientStop { position: 1.0; color: "gray" }
-         }
+         y: backgroundRect.border.width;
+         width: 8;
+         height: slider.height-6;
+         radius: 4
+         color: "#8F8F8F"
 
          MouseArea {
              id: mouse
@@ -61,4 +68,5 @@ import QtQuick 2.0
              }
          }
      }
+
  }

@@ -10,7 +10,6 @@ Rectangle
     FileDialog
     {
         id: loadDialog
-
         onAccepted:
         {
             console.log( "file : " + itemToBeLoaded )
@@ -19,7 +18,6 @@ Rectangle
             // reset the selection
             reset();
         }
-
     }
 
     width:      parent.width
