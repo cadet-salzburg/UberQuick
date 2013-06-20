@@ -35,7 +35,8 @@ SOURCES += \
     items/BlockInlet.cpp \
     items/BlockOutlet.cpp \
     items/InterfaceInlet.cpp \
-    items/InterfaceElement.cpp
+    items/InterfaceElement.cpp \
+    items/InterfaceOutlet.cpp
 
 HEADERS += \
     models/QObjectListModelT.h \
@@ -63,7 +64,8 @@ HEADERS += \
     items/BlockInlet.h \
     items/BlockOutlet.h \
     items/InterfaceInlet.h \
-    items/InterfaceElement.h
+    items/InterfaceElement.h \
+    items/InterfaceOutlet.h
 
 OTHER_FILES += \
     qml/Dock/Dock.qml \
@@ -81,7 +83,9 @@ OTHER_FILES += \
     qml/Block/Block.qml \
     qml/Block/NodeRow.qml \
     qml/Block/CanvasConnection.qml \
-    qml/UI/Slider.qml
+    qml/UI/Slider.qml \
+    qml/UI/BaseBlock.qml \
+    qml/UI/SliderNew.qml
 
 
 #Includes

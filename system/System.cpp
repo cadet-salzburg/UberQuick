@@ -23,7 +23,6 @@
 #include "../system/EventFilter.h"
 #include "../system/ConnectionManager.h"
 #include "../system/ComplexDelegate.h"
-
 using namespace _2Real;
 using namespace _2Real::app;
 
@@ -60,6 +59,7 @@ namespace Uber {
         setComplexDelegates();
 
         m_ConnectionManager = new ConnectionManager(m_ItemModel);
+
     }
 
     System::~System()
@@ -220,7 +220,7 @@ namespace Uber {
     {
         m_ComplexDelegate->addDelegate(QString("Uber::Block"),QUrl::fromLocalFile("qml/Block/Block.qml"));
         m_ComplexDelegate->addDelegate(QString("Uber::Link"), QUrl::fromLocalFile("qml/Block/Link.qml"));
-        m_ComplexDelegate->addDelegate(QString("Uber::Slider"),QUrl::fromLocalFile("qml/UI/Slider.qml"));
+        m_ComplexDelegate->addDelegate(QString("Uber::Slider"),QUrl::fromLocalFile("qml/UI/SliderNew.qml"));
     }
 
     DockModel* System::getDockModel()

@@ -26,6 +26,8 @@ namespace Uber {
         {
             return m_OutletModel->count();
         }
+        void                                        appendInlet(Inlet *inlet);
+        void                                        appendOutlet(Outlet *outlet);
     signals:
         void                                        nameChanged();
     public slots:

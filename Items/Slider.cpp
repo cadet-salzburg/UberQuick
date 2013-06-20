@@ -1,17 +1,24 @@
 #include "Slider.h"
 #include <QDebug>
+#include "InterfaceOutlet.h"
 namespace Uber {
     Slider::Slider()
-    :Item()
+    :InterfaceElement()
     ,m_Multiplier(1.f)
     ,m_Offset(0.f)
     {
-
+        initialize();
     }
     Slider::~Slider()
     {
 
     }
+    void    Slider::initialize()
+    {
+        InterfaceOutlet *currentOutlet( new InterfaceOutlet());
+        appendOutlet(currentOutlet);
+    }
+
     void    Slider::setMultiplier( float m )
     {
         m_Multiplier = m;
@@ -28,7 +35,7 @@ namespace Uber {
     {
         return m_Offset;
     }
-    QDebug operator<<(QDebug dbg, const Slider &slider )
+    QDebug operator << (QDebug dbg, const Slider &slider )
     {
         Q_UNUSED(slider)
         dbg.nospace() << "Slider";

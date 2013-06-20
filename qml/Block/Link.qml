@@ -33,16 +33,16 @@ Bezier {
         p2 = Qt.point(p1.x, p1.y + offset );
         p3 = Qt.point(p4.x, p4.y - offset );
     }
-    Circle {
-        radius: 5
-        x: p1.x - radius
-        y: p1.y - radius
-        color: "#ff0000"
-    }
-    Circle {
-        radius: 5
-        x: p4.x - radius
-        y: p4.y - radius
-        color: "#0000ff"
-    }
+//    Circle {
+//        radius: 5
+//        x: p1.x - radius
+//        y: p1.y - radius
+//        color: "#ff0000"
+//    }
+//    Circle {
+//        radius: 5
+//        x: p4.x - radius
+//        y: p4.y - radius
+//        color: "#0000ff"
+//    }
 }

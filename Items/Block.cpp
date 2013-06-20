@@ -7,7 +7,7 @@ namespace Uber {
     ,m_InletModel(nullptr)
     ,m_OutletModel(nullptr)
     {
-
+        initialize();
     }
 
     Block::Block( const BlockHandle& handle, QString name )
@@ -31,7 +31,8 @@ namespace Uber {
 
     Block::~Block()
     {
-
+        delete m_InletModel;
+        delete m_OutletModel;
     }
 
     void    Block::setName( QString name )
