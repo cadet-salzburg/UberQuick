@@ -5,7 +5,7 @@ Circle {
     id: node
     radius: 8
     color: "#00FFFF00"
-    anchors.verticalCenter: parent.verticalCenter
+    //anchors.verticalCenter: parent.verticalCenter
     property point  centerPoint: Qt.point(0,0)
     property point  offset: Qt.point(0,0)
     property string type: "circle"
@@ -39,30 +39,17 @@ Circle {
             ConnectionManager.updateLink(Qt.point(pos.x, pos.y));
             ConnectionManager.startDrag(object);
         }
+
         onPositionChanged:
         {
 
         }
+
         onReleased:
         {
 
         }
 
-//        onReleased:
-//        {
-//            if ( containsMouse )
-//            {
-//                console.log("Mouse Released at " + object.className );
-//                mouse.accepted = true;
-//            } else {
-//                mouse.accepted = false;
-//            }
-
-//        }
-//        onEntered:
-//        {
-//            console.log("Mouse Entered at " + object.className );
-//        }
         DropArea {
             id: dropArea;
             anchors.fill: parent;
@@ -88,10 +75,9 @@ Circle {
         id: rect
         width: parent.width
         height: node.thickness
-        y: parent.y + parent.height /2 - height/2
+        y: parent.height /2 - height/2
         color: "#8F8F8F"
     }
-
 
     Component.onCompleted:
     {

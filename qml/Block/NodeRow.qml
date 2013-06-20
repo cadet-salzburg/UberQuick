@@ -22,6 +22,7 @@ Row {
         model: currentModel
         delegate: Node {
             thickness: block.border.width
+            anchors.verticalCenter: parent.verticalCenter
         }
     }
 

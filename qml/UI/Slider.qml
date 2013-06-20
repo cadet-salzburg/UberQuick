@@ -44,16 +44,17 @@ import "../Block/"
      }
      Node
      {
-         thickness: backgroundRect.border.width
+         x: backgroundRect.radius/2 + backgroundRect.border.width
+         y: slider.height / 2 +  1.5*backgroundRect.border.width
+         thickness: 3
      }
-
 
      Rectangle {
          id: handle; smooth: true
-         y: backgroundRect.border.width;
-         width: 8;
-         height: slider.height-6;
-         radius: 4
+         anchors.verticalCenter: backgroundRect.verticalCenter
+         width: 6;
+         height: slider.height-3*backgroundRect.border.width;
+         //radius: 4
          color: "#8F8F8F"
 
          MouseArea {
