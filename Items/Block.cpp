@@ -82,14 +82,14 @@ namespace Uber {
             for ( ;iterIn!=inlets.end(); ++iterIn )
             {
                 i++;
-                Inlet *currentInlet( new Inlet(*iterIn) );
+                BlockInlet *currentInlet( new BlockInlet(*iterIn) );
                 currentInlet->setName("Inlet" + QString::number(i));
                 m_InletModel->append(currentInlet);
             }
             BlockHandle::OutletHandleIterator iterOut = outlets.begin();
             for ( ;iterOut!=outlets.end(); ++iterOut )
             {
-                Outlet *currentOutlet( new Outlet(*iterOut));
+                BlockOutlet *currentOutlet( new BlockOutlet(*iterOut));
                 m_OutletModel->append(currentOutlet);
             }
         }

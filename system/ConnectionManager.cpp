@@ -5,6 +5,8 @@
 #include <QDebug>
 #include "../items/Item.h"
 #include "../items/Link.h"
+#include "../items/BlockInlet.h"
+#include "../items/BlockOutlet.h"
 #include "../models/ItemObjectListModel.h"
 
 namespace Uber {
@@ -19,14 +21,14 @@ namespace Uber {
     {
         qDebug() << "Begin adding link";
         m_Link = new Link();
-        if ( item->getClassName()=="Uber::Inlet" )
+        if ( item->getClassName()=="Uber::BlockInlet" )
         {
-            Inlet *inlet = qobject_cast<Inlet*>(item);
+            BlockInlet *inlet = qobject_cast<BlockInlet*>(item);
             m_Link->setInlet(inlet);
             qDebug() << "---Inlet";
-        } else if ( item->getClassName()== "Uber::Outlet" )
+        } else if ( item->getClassName()== "Uber::BlockOutlet" )
         {
-            Outlet *outlet = qobject_cast<Outlet*>(item);
+            BlockOutlet *outlet = qobject_cast<BlockOutlet*>(item);
             m_Link->setOutlet(outlet);
             qDebug() << "---Outlet";
         }
@@ -46,12 +48,12 @@ namespace Uber {
 
     void ConnectionManager::finishAddingLink(Item *item)
     {
-        if ( item->getClassName()=="Uber::Inlet" )
+        if ( item->getClassName()=="Uber::BlockInlet" )
         {
-            m_Link->setInlet(qobject_cast<Inlet*>(item));
-        } else if ( item->getClassName()== "Uber::Outlet" )
+            m_Link->setInlet(qobject_cast<BlockInlet*>(item));
+        } else if ( item->getClassName()== "Uber::BlockOutlet" )
         {
-            m_Link->setOutlet(qobject_cast<Outlet*>(item));
+            m_Link->setOutlet(qobject_cast<BlockOutlet*>(item));
         } else
         {
             qDebug() << "Adding Link failed.!!! Need to take care of removing the item from the model";

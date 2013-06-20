@@ -31,7 +31,11 @@ SOURCES += \
     system/FileLoader.cpp \
     system/EventFilter.cpp \
     system/ConnectionManager.cpp \
-    items/Outlet.cpp
+    items/Outlet.cpp \
+    items/BlockInlet.cpp \
+    items/BlockOutlet.cpp \
+    items/InterfaceInlet.cpp \
+    items/InterfaceElement.cpp
 
 HEADERS += \
     models/QObjectListModelT.h \
@@ -55,7 +59,11 @@ HEADERS += \
     system/FileLoader.h \
     system/EventFilter.h \
     items/Slider.h \
-    system/ConnectionManager.h
+    system/ConnectionManager.h \
+    items/BlockInlet.h \
+    items/BlockOutlet.h \
+    items/InterfaceInlet.h \
+    items/InterfaceElement.h
 
 OTHER_FILES += \
     qml/Dock/Dock.qml \

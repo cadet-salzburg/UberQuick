@@ -13,14 +13,10 @@ namespace Uber {
     public:
         Inlet(QObject *parent = 0);
         Inlet(const Inlet &other);
-        Inlet( const InletHandle &handle, QObject *parent = 0 );
-        ~Inlet();
-
-        void            setInletHandle(const InletHandle& handle );
-        InletHandle     getInletHandle() const;
-        inline bool     isValid() const
+        virtual ~Inlet();
+        virtual inline bool isValid() const
         {
-            return m_InletHandle.isValid();
+            return false;
         }
 
         void setName( QString name )
@@ -34,7 +30,6 @@ namespace Uber {
         }
 
     private:
-        InletHandle     m_InletHandle;
         QString         m_Name;
     signals:
     public slots:

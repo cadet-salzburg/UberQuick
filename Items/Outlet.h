@@ -13,22 +13,23 @@ namespace Uber {
     public:
         Outlet(QObject *parent = 0);
         Outlet(const Outlet &other);
-        Outlet( const   OutletHandle &handle, QObject *parent = 0 );
-        ~Outlet();
-        void            setOutletHandle(const OutletHandle& handle );
-        OutletHandle    getOutletHandle() const;
+        virtual ~Outlet();
 
-        inline bool     isValid() const
+        virtual inline bool isValid() const
         {
-            return m_OutletHandle.isValid();
+            return false;
         }
 
+        void setName( QString name )
+        {
+            m_Name = name;
+        }
         Q_INVOKABLE QString getName()
         {
             return "Outlet";
         }
     private:
-        OutletHandle    m_OutletHandle;
+        QString m_Name;
     signals:
     public slots:
     };

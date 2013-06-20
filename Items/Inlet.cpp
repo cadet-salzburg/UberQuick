@@ -8,14 +8,6 @@ namespace Uber {
     }
     Inlet::Inlet(const Inlet &other)
     :Item(other.parent(), other.getPosition(), other.size())
-    ,m_InletHandle(other.getInletHandle())
-    {
-
-    }
-
-    Inlet::Inlet(const InletHandle &handle, QObject *parent )
-    :Item(parent)
-    ,m_InletHandle(handle)
     {
 
     }
@@ -23,15 +15,5 @@ namespace Uber {
     Inlet::~Inlet()
     {
 
-    }
-
-    void Inlet::setInletHandle(const InletHandle &handle)
-    {
-        m_InletHandle = handle;
-    }
-
-    InletHandle Inlet::getInletHandle() const
-    {
-        return m_InletHandle;
     }
 }
