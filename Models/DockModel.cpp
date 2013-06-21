@@ -1,6 +1,7 @@
 #include "DockModel.h"
 #include "../items/Block.h"
 #include "../items/Slider.h"
+#include "../items/TextIO.h"
 
 namespace Uber {
     DockModel::DockModel(QObject *parent)
@@ -85,6 +86,9 @@ namespace Uber {
             } else if ( entry.typeIs(SliderType) )
             {
                 item = new Slider();
+            } else if ( entry.typeIs(TextInputType) )
+            {
+                item = new TextIO();
             }
         }
         return item;

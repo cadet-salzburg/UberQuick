@@ -11,7 +11,7 @@
 
 namespace Uber {
     typedef QList<class GridEntry> GridEntryList;
-    enum  GridEntryType { BlockType, SliderType };
+    enum  GridEntryType { BlockType, SliderType, TextInputType };
     class GridEntry
     {
     public:

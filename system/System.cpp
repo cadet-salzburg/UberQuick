@@ -14,6 +14,7 @@
 #include "../items/BezierCurve.h"
 #include "../items/Link.h"
 #include "../items/Slider.h"
+#include "../items/TextIO.h"
 #include "../models/DockModel.h"
 #include "../models/InletObjectListModel.h"
 #include "../models/OutletObjectListModel.h"
@@ -83,6 +84,7 @@ namespace Uber {
         qmlRegisterType<Item>();
         qmlRegisterType<Link>();
         qmlRegisterType<Slider>();
+        qmlRegisterType<TextIO>();
 
         qmlRegisterType<ItemObjectListModel>();
         qmlRegisterType<Canvas>("UberComponents", 1,0,"GraphCanvas");
@@ -132,8 +134,8 @@ namespace Uber {
 
     void System::loadQmlFiles()
     {
-        m_Canvas->setSource(QUrl::fromLocalFile("qml/Workbench/MainWindow.qml"));
-        m_Dock->setSource(QUrl::fromLocalFile("qml/Dock/Dock.qml"));
+        m_Canvas->setSource(QUrl::fromLocalFile("qml/Windows/MainWindow.qml"));
+        m_Dock->setSource(QUrl::fromLocalFile("qml/Windows/Dock.qml"));
     }
 
     void System::loadBundles()
@@ -214,13 +216,18 @@ namespace Uber {
         QString sliderIconPath("D:/Work/UberQuick/images/ui/slider.png");
         slider.setIconUrl(QUrl::fromLocalFile(sliderIconPath));
         m_DockModel->addEntry(slider);
+        GridEntry textInput = GridEntry(TextInputType);
+        QString textInputIconPath("D:/Work/UberQuick/images/ui/textedit.png");
+        textInput.setIconUrl(QUrl::fromLocalFile(textInputIconPath));
+        m_DockModel->addEntry(textInput);
     }
 
     void System::setComplexDelegates()
     {
-        m_ComplexDelegate->addDelegate(QString("Uber::Block"),QUrl::fromLocalFile("qml/Block/Block.qml"));
-        m_ComplexDelegate->addDelegate(QString("Uber::Link"), QUrl::fromLocalFile("qml/Block/Link.qml"));
-        m_ComplexDelegate->addDelegate(QString("Uber::Slider"),QUrl::fromLocalFile("qml/UI/SliderNew.qml"));
+        m_ComplexDelegate->addDelegate(QString("Uber::Block"),QUrl::fromLocalFile("qml/Canvas/UberBlock.qml"));
+        m_ComplexDelegate->addDelegate(QString("Uber::Link"), QUrl::fromLocalFile("qml/Canvas/Link.qml"));
+        m_ComplexDelegate->addDelegate(QString("Uber::Slider"),QUrl::fromLocalFile("qml/Canvas/Slider.qml"));
+        m_ComplexDelegate->addDelegate(QString("Uber::TextIO"),QUrl::fromLocalFile("qml/Canvas/TextEdit.qml"));
     }
 
     DockModel* System::getDockModel()

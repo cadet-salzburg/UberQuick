@@ -18,7 +18,6 @@ SOURCES += \
     models/InletObjectListModel.cpp \
     models/DockModel.cpp \
     items/Workbench.cpp \
-    items/Slider.cpp \
     items/Link.cpp \
     items/Item.cpp \
     items/Inlet.cpp \
@@ -36,7 +35,10 @@ SOURCES += \
     items/BlockOutlet.cpp \
     items/InterfaceInlet.cpp \
     items/InterfaceElement.cpp \
-    items/InterfaceOutlet.cpp
+    items/InterfaceOutlet.cpp \
+    items/Slider.cpp \
+    items/TextIO.cpp \
+    items/PixelView.cpp
 
 HEADERS += \
     models/QObjectListModelT.h \
@@ -65,27 +67,26 @@ HEADERS += \
     items/BlockOutlet.h \
     items/InterfaceInlet.h \
     items/InterfaceElement.h \
-    items/InterfaceOutlet.h
+    items/InterfaceOutlet.h \
+    items/TextIO.h \
+    items/PixelView.h
 
 OTHER_FILES += \
-    qml/Dock/Dock.qml \
-    qml/Workbench/TaskBar.qml \
-    qml/Workbench/MainWindow.qml \
-    qml/UI/Button.qml \
-    qml/UI/Tooltip.qml \
-    qml/UI/FileDialog.qml \
-    qml/Workbench/Link.qml \
-    qml/Workbench/Node.qml \
-    qml/Workbench/Inlets.qml \
-    qml/Workbench/Outlets.qml \
-    qml/Block/Node.qml \
-    qml/Block/Link.qml \
-    qml/Block/Block.qml \
-    qml/Block/NodeRow.qml \
-    qml/Block/CanvasConnection.qml \
-    qml/UI/Slider.qml \
-    qml/UI/BaseBlock.qml \
-    qml/UI/SliderNew.qml
+    qml/Canvas/Tooltip.qml \
+    qml/Canvas/NodeRow.qml \
+    qml/Canvas/Node.qml \
+    qml/Canvas/Link.qml \
+    qml/Canvas/FileDialog.qml \
+    qml/Canvas/Button.qml \
+    qml/Canvas/BaseBlock.qml \
+    qml/Windows/TaskBar.qml \
+    qml/Windows/MainWindow.qml \
+    qml/Windows/Dock.qml \
+    qml/Canvas/UberBlock.qml \
+    qml/Canvas/Slider.qml \
+    images/textedit.sci \
+    qml/Canvas/TextEdit.qml
+
 
 
 #Includes

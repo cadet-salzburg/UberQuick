@@ -7,6 +7,8 @@
 #include "../items/Link.h"
 #include "../items/BlockInlet.h"
 #include "../items/BlockOutlet.h"
+#include "../items/InterfaceInlet.h"
+#include "../items/InterfaceOutlet.h"
 #include "../models/ItemObjectListModel.h"
 
 namespace Uber {
@@ -29,6 +31,17 @@ namespace Uber {
         } else if ( item->getClassName()== "Uber::BlockOutlet" )
         {
             BlockOutlet *outlet = qobject_cast<BlockOutlet*>(item);
+            m_Link->setOutlet(outlet);
+            qDebug() << "---Outlet";
+        } else if ( item->getClassName()== "Uber::InterfaceInlet" )
+        {
+            InterfaceInlet *inlet = qobject_cast<InterfaceInlet*>(item);
+            m_Link->setInlet(inlet);
+            qDebug() << "---Inlet";
+        }
+        else if ( item->getClassName()== "Uber::InterfaceOutlet" )
+        {
+            InterfaceOutlet *outlet = qobject_cast<InterfaceOutlet*>(item);
             m_Link->setOutlet(outlet);
             qDebug() << "---Outlet";
         }
@@ -54,7 +67,21 @@ namespace Uber {
         } else if ( item->getClassName()== "Uber::BlockOutlet" )
         {
             m_Link->setOutlet(qobject_cast<BlockOutlet*>(item));
-        } else
+        } else if ( item->getClassName()== "Uber::InterfaceInlet" )
+        {
+            InterfaceInlet *inlet = qobject_cast<InterfaceInlet*>(item);
+            m_Link->setInlet(inlet);
+            qDebug() << "---Inlet";
+        }
+
+        else if ( item->getClassName()== "Uber::InterfaceOutlet" )
+        {
+            InterfaceOutlet *outlet = qobject_cast<InterfaceOutlet*>(item);
+            m_Link->setOutlet(outlet);
+            qDebug() << "---Outlet";
+        }
+
+        else
         {
             qDebug() << "Adding Link failed.!!! Need to take care of removing the item from the model";
         }
