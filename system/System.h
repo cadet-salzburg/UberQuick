@@ -88,6 +88,16 @@ namespace Uber {
         FileLoader                          *mFileLoader;
         Link*                               m_CurrentLink;
         ConnectionManager                   *m_ConnectionManager;
+    public slots:
+        void changedFocus(QObject * focusObject);
+        void cleanup()
+        {
+            qDebug() << "Cleanup called";
+//            if ( m_Dock )
+//                delete m_Dock;
+//            if ( m_Canvas )
+//                delete m_Canvas;
+        }
 
     };
 }

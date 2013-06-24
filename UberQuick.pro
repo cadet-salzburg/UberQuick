@@ -38,6 +38,7 @@ SOURCES += \
     items/InterfaceOutlet.cpp \
     items/Slider.cpp \
     items/TextIO.cpp \
+    items/PixelView.cpp \
     items/PixelView.cpp
 
 HEADERS += \

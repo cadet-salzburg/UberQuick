@@ -80,13 +80,13 @@ namespace Uber {
             m_Link->setOutlet(outlet);
             qDebug() << "---Outlet";
         }
-
-        else
+        if ( !m_Link->isValid() )
         {
-            qDebug() << "Adding Link failed.!!! Need to take care of removing the item from the model";
+            cancelAddingLink();
         }
-    }
+     }
 
+    //TODO:  Rename the following method to something better. It is not cancelling, it is actually removing.
     void ConnectionManager::cancelAddingLink()
     {
         if ( m_Link )

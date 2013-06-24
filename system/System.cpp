@@ -48,6 +48,10 @@ namespace Uber {
         m_Canvas->setGeometry(300,200, 640, 480);
         m_Canvas->setFormat(m_SurfaceFormat);
         m_Canvas->setClearBeforeRendering(true);
+        QObject::connect(m_Canvas, SIGNAL(focusObjectChanged(QObject *)),
+                         this, SLOT(changedFocus(QObject *)));
+        QObject::connect(m_Canvas, SIGNAL(destroyed()), this, SLOT(cleanup()));
+
 
         m_Dock->setResizeMode(QQuickView::SizeRootObjectToView);
         m_Dock->setGeometry(300,200, 400, 150);
@@ -65,12 +69,13 @@ namespace Uber {
 
     System::~System()
     {
+        qDebug() << "Destructor called";
         delete m_DockModel;
         delete m_ItemModel;
         delete m_QmlEngine;
         delete m_ComplexDelegate;
-        delete m_Canvas;
-        delete m_Dock;
+//        delete m_Canvas;
+//        delete m_Dock;
     }
 
     void System::registerQmlTypes()
@@ -129,7 +134,7 @@ namespace Uber {
     void System::showWindows()
     {
         m_Canvas->show();
-        m_Dock->show();
+        //m_Dock->show();
     }
 
     void System::loadQmlFiles()
@@ -305,4 +310,14 @@ namespace Uber {
             // this likely means something is very wrong, so shutdown?
         }
     }
+
+    void System::changedFocus(QObject *focusObject)
+    {
+        Q_UNUSED(focusObject)
+        if ( m_Canvas->isActive() )
+        {
+            m_Dock->hide();
+        }
+    }
+
 }

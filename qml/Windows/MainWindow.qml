@@ -44,10 +44,14 @@ GraphCanvas {
                 workbench.state = "showDock"
             }
         }
+        onClicked: {
+            console.log("Window pressed");
+        }
+
         Component.onCompleted:
         {
             workbench.state = "startState"
-            DockView.visible = false;
+            //DockView.visible = false;
         }
     }
     //------------ Custom Delegate Test Ends ----------------//

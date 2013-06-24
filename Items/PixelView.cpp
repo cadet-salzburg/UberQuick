@@ -1,38 +1,36 @@
 #include "PixelView.h"
-
+#include <QSGGeometryNode>
+#include <QSGSimpleTextureNode>
 namespace Uber {
-    PixelView::PixelView(QQuickItem *parent)
-    :QQuickItem(parent)
-    {
+//    PixelView::PixelView(QQuickItem *parent)
+//    :QQuickItem(parent)
+//    {
 
-    }
+//    }
 
-    PixelView::~PixelView()
-    {
-    }
+//    PixelView::~PixelView()
+//    {
 
-    QSGNode *PixelView::updatePaintNode(QSGNode *, QQuickItem::UpdatePaintNodeData *)
-    {
+//    }
 
-    }
-
-    void PixelView::setHeight(int h)
-    {
-        m_Height = h;
-    }
-
-    int PixelView::getHeight() const
-    {
-        return m_Height;
-    }
-
-    void PixelView::setWidth(int w)
-    {
-        m_Width = w;
-    }
-
-    void PixelView::getWidth() const
-    {
-        return m_Width;
-    }
+//    QSGNode *PixelView::updatePaintNode(QSGNode * node, QQuickItem::UpdatePaintNodeData *data)
+//    {
+//        if (width() <= 0 || height() <= 0)
+//        {
+//          m_Texture->reset();
+//          delete node;
+//          node = 0;
+//        }  else {
+//            if (!node)
+//            {
+//                node = new QSGSimpleTextureNode;
+//                static_cast<QSGSimpleTextureNode*>(node)->setFiltering(QSGTexture::Nearest);
+//            }
+//            static_cast<QSGSimpleTextureNode*>(node)->setRect(boundingRect());
+//            //Get the texture... maybe here we need to lock here or something
+//            Q_ASSERT(m_Texture);
+//            static_cast<QSGSimpleTextureNode*>(node)->setTexture(m_Texture.data());
+//        }
+//        return node;
+//    }
 }

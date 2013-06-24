@@ -28,6 +28,8 @@ namespace Uber {
         Link();
         void                                setInlet( Inlet *inlet );
         void                                setOutlet( Outlet *outlet );
+        Inlet*                              getInlet();
+        Outlet*                             getOutlet();
 
         Q_INVOKABLE     void                addPoint( const QPointF &p );
         Q_INVOKABLE     QObjectList         getPoints();
@@ -35,6 +37,7 @@ namespace Uber {
         Q_INVOKABLE     QPointF             getStartPos();
         Q_INVOKABLE     QPointF             getEndPos();
         Q_INVOKABLE     void                updatePosition( const QPointF& pos );
+        bool                                isValid();
     protected:
 
     signals:

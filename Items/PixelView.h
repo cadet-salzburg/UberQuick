@@ -8,16 +8,16 @@
 namespace Uber {
     class PixelView : public QQuickItem
     {
-        Q_OBJECT
-    public:
-        explicit PixelView(QQuickItem *parent = 0);
-        virtual ~PixelView();
-        QSGNode *updatePaintNode(QSGNode *node, UpdatePaintNodeData *data);
-    signals:
+//        Q_OBJECT
+//    public:
+//        explicit PixelView(QQuickItem *parent = 0);
+//        virtual ~PixelView();
+//        QSGNode*       updatePaintNode(QSGNode *node, UpdatePaintNodeData *data);
+//    signals:
 
-    public slots:
-    private:
-        QScopedPointer<QSGTexture> m_Texture;
+//    public slots:
+//    private:
+//        QSGTexture*      m_Texture;
     };
 }
 #endif // PIXELVIEW_H

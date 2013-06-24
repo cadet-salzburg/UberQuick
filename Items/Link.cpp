@@ -1,4 +1,9 @@
 #include "Link.h"
+#include "BlockInlet.h"
+#include "BlockOutlet.h"
+#include "InterfaceInlet.h"
+#include "InterfaceOutlet.h"
+
 namespace Uber {
     Point::Point(QPointF p)
     :QObject(nullptr)
@@ -60,6 +65,16 @@ namespace Uber {
         emit positionChanged();
     }
 
+    Inlet *Link::getInlet()
+    {
+        return m_Inlet;
+    }
+
+    Outlet *Link::getOutlet()
+    {
+        return m_Outlet;
+    }
+
     void Link::addPoint( const QPointF &p )
     {
         m_Points.push_back(new Point(p) );
@@ -107,6 +122,31 @@ namespace Uber {
         {
             m_Outlet->setPosition(pos);
             qDebug() << "Updated outlet position to: " << pos ;
+        }
+    }
+
+    bool Link::isValid()
+    {
+        if ( m_Inlet->getClassName() == "Uber::BlockInlet" && m_Outlet->getClassName() == "Uber::BlockOutlet" )
+        {
+            BlockInlet* inlet = qobject_cast<BlockInlet*>(m_Inlet);
+            BlockOutlet* outlet = qobject_cast<BlockOutlet*>(m_Outlet);
+            InletHandle inHandle = inlet->getInletHandle();
+            OutletHandle outHandle = outlet->getOutletHandle();
+            return inHandle.link(outHandle);
+        } else if (  m_Inlet->getClassName() == "Uber::BlockInlet" && m_Outlet->getClassName() == "Uber::InterfaceOutlet")
+        {
+            return false;
+
+        } else if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::BlockOutlet" )
+        {
+            return false;
+        } else if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::InterfaceOutlet" )
+        {
+            return false;
+        } else
+        {
+            return false;
         }
     }
 
