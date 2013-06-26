@@ -4,36 +4,51 @@
 namespace Uber {
     Slider::Slider()
     :InterfaceElement()
-    ,m_Multiplier(1.f)
-    ,m_Offset(0.f)
+    ,m_Minimum(0.f)
+    ,m_Maximum(5.f)
+    ,m_Step(0.05f)
     {
         initialize();
     }
+
     Slider::~Slider()
     {
 
     }
+
     void    Slider::initialize()
     {
         InterfaceOutlet *currentOutlet( new InterfaceOutlet());
         appendOutlet(currentOutlet);
     }
 
-    void    Slider::setMultiplier( float m )
+    void    Slider::setMinimum( float m )
     {
-        m_Multiplier = m;
+        m_Minimum = m;
     }
-    float   Slider::getMultiplier() const
+
+    float   Slider::getMinimum() const
     {
-        return m_Multiplier;
+        return m_Minimum;
     }
-    void    Slider::setOffset( float offset )
+
+    void    Slider::setMaximum( float m )
     {
-        m_Offset = offset;
+        m_Maximum = m;
     }
-    float   Slider::getOffset() const
+
+    float   Slider::getMaximum() const
     {
-        return m_Offset;
+        return m_Maximum;
+    }
+    void    Slider::setStep( float m )
+    {
+        m_Step = m;
+    }
+
+    float   Slider::getStep() const
+    {
+        return m_Step;
     }
     QDebug operator << (QDebug dbg, const Slider &slider )
     {

@@ -3,7 +3,6 @@
 #include <QQmlEngine>
 #include <QStringList>
 #include <QQuickWindow>
-#include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <dwmapi.h>
 #include "../items/Item.h"
@@ -53,8 +52,7 @@ namespace Uber {
         m_Canvas->setGeometry(300,200, 640, 480);
         m_Canvas->setFormat(m_SurfaceFormat);
         m_Canvas->setClearBeforeRendering(true);
-        QObject::connect(m_Canvas, SIGNAL(focusObjectChanged(QObject *)),
-                         this, SLOT(changedFocus(QObject *)));
+        QObject::connect(m_Canvas, SIGNAL(focusObjectChanged(QObject *)),this, SLOT(changedFocus(QObject *)));
         QObject::connect(m_Canvas, SIGNAL(destroyed()), this, SLOT(cleanup()));
 
 
@@ -63,9 +61,8 @@ namespace Uber {
         m_Dock->setFormat(m_SurfaceFormat);
         m_Dock->setClearBeforeRendering(true);
         m_Dock->setColor(Qt::transparent);
-        //m_Dock->setFlags(Qt::Window | Qt::FramelessWindowHint);
+        m_Dock->setFlags(Qt::SplashScreen );//| Qt::FramelessWindowHint );
         //m_Dock->setAttribute(Qt::WA_TranslucentBackground);
-
 
         registerQmlTypes();
         setComplexDelegates();
@@ -83,8 +80,8 @@ namespace Uber {
         delete m_ItemModel;
         delete m_QmlEngine;
         delete m_ComplexDelegate;
-//        delete m_Canvas;
-//        delete m_Dock;
+        delete m_Canvas;
+        delete m_Dock;
     }
 
     void System::registerQmlTypes()
@@ -151,7 +148,6 @@ namespace Uber {
         m_Canvas->setSource(QUrl::fromLocalFile("qml/Windows/MainWindow.qml"));
         m_Dock->setSource(QUrl::fromLocalFile("qml/Windows/Dock.qml"));
 
-        #include <QQmlApplicationEngine>
     }
 
     void System::loadBundles()

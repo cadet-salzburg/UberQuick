@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.1
 import UberComponents 1.0
 
 Circle {

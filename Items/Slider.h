@@ -5,21 +5,28 @@ namespace Uber {
 class Slider : public InterfaceElement
 {
     Q_OBJECT
-    Q_PROPERTY( float multiplier READ getMultiplier WRITE setMultiplier NOTIFY multiplierChanged )
-    Q_PROPERTY( float offset READ getOffset WRITE setOffset NOTIFY offsetChanged )
+    Q_PROPERTY( float minimum READ getMinimum WRITE setMinimum NOTIFY minimumChanged )
+    Q_PROPERTY( float maximum READ getMaximum WRITE setMaximum NOTIFY maximumChanged )
+    Q_PROPERTY( float step READ getStep WRITE setStep NOTIFY stepChanged )
 public:
     Slider();
     virtual         ~Slider();
-    void            setMultiplier( float m );
-    float           getMultiplier() const;
-    void            setOffset( float offset );
-    float           getOffset() const;
+    void            setMinimum( float m );
+    float           getMinimum() const;
+
+    void            setMaximum( float m );
+    float           getMaximum() const;
+
+    void            setStep( float offset );
+    float           getStep() const;
 signals:
-    void            multiplierChanged();
-    void            offsetChanged();
+    void            minimumChanged();
+    void            maximumChanged();
+    void            stepChanged();
 private:
-    float           m_Multiplier;
-    float           m_Offset;
+    float           m_Minimum;
+    float           m_Maximum;
+    float           m_Step;
     virtual void    initialize();
 };
     QDebug operator<<(QDebug dbg, const Slider &slider);

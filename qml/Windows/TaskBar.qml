@@ -1,23 +1,36 @@
 import QtQuick 2.1
 import QtQuick.Dialogs 1.0
+import "../Canvas"
 
-import "../Canvas"                  // included for button / file dialog etc
-//import LogicComponents 1.0      // included for fileloader class
-// fioleloader now became a context property...
 
 Rectangle
 {
 
-    // used for loading. let's see if it should be used for saving, too?
+//    // used for loading. let's see if it should be used for saving, too?
+//    FileDialog {
+//        id: loadDialog
+//        onAccepted:
+//        {
+//            console.log( "file : " + itemToBeLoaded )
+//            console.log( "folder: " + currentFolder )
+//            if ( isValidItem ) cpFileLoader.loadFile( currentFolder + itemToBeLoaded );
+//            // reset the selection
+//            reset();
+//        }
+//    }
     FileDialog {
-        id: loadDialog
-        onAccepted:
-        {
-            console.log( "file : " + itemToBeLoaded )
-            console.log( "folder: " + currentFolder )
-            if ( isValidItem ) cpFileLoader.loadFile( currentFolder + itemToBeLoaded );
-            // reset the selection
-            reset();
+        id: fileDialog
+        title: "Please choose a file"
+        nameFilters: [ "Ubercode format (*.ubef *.fbef)", "All files (*)" ]
+        visible: false
+        modality: ApplicationModal
+        onAccepted: {
+            console.log("You chose: " + fileDialog.filePaths)
+            Qt.quit()
+        }
+        onRejected: {
+            console.log("Canceled")
+            Qt.quit()
         }
     }
 
@@ -74,11 +87,12 @@ Rectangle
             anchors.verticalCenter:     parent.verticalCenter
             onButtonClicked:
             {
-                // set properties & show file dialog
-                loadDialog.openFolder = ".";
-                loadDialog.showParentDirectories = true;
-                loadDialog.fileFilters = [ "*.ubef", "*.fbef" ];
-                loadDialog.show()
+//                // set properties & show file dialog
+//                loadDialog.openFolder = ".";
+//                loadDialog.showParentDirectories = true;
+//                loadDialog.fileFilters = [ "*.ubef", "*.fbef" ];
+//                loadDialog.show()
+                fileDialog.open();
             }
         }
         Button

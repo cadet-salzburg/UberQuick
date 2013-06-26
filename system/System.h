@@ -4,7 +4,6 @@
 #include <QQmlEngine>
 #include <QQuickItem>
 #include <QQuickView>
-
 #include "../models/DockModel.h"
 #include "../models/ItemObjectListModel.h"
 #include "_2RealApplication.h"
@@ -39,6 +38,7 @@ namespace Uber {
         DockModel*                          getDockModel();
         ItemObjectListModel*                getItemModel();
         ConnectionManager*                  getConnectionManager();
+
         inline QQmlEngine*                  getQmlEngine()
         {
             return m_QmlEngine;

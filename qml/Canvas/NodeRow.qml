@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.1
 Row {
     id: row
     property variant currentModel
@@ -12,18 +12,14 @@ Row {
     {
         return repeater.itemAt(idx);
     }
-
     spacing: 5
-
-
     Repeater {
         id: repeater
         property string type: "repeater"
         model: currentModel
         delegate: Node {
             thickness: block.border.width
-            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenter: row.verticalCenter
         }
     }
-
 }
