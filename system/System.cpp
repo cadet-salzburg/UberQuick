@@ -3,6 +3,7 @@
 #include <QQmlEngine>
 #include <QStringList>
 #include <QQuickWindow>
+#include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <dwmapi.h>
 #include "../items/Item.h"
@@ -24,6 +25,10 @@
 #include "../system/EventFilter.h"
 #include "../system/ConnectionManager.h"
 #include "../system/ComplexDelegate.h"
+
+#include <QWidget>
+#include <QHBoxLayout>
+#include <QPushButton>
 using namespace _2Real;
 using namespace _2Real::app;
 
@@ -58,12 +63,16 @@ namespace Uber {
         m_Dock->setFormat(m_SurfaceFormat);
         m_Dock->setClearBeforeRendering(true);
         m_Dock->setColor(Qt::transparent);
-        m_Dock->setFlags(Qt::Window | Qt::FramelessWindowHint);
+        //m_Dock->setFlags(Qt::Window | Qt::FramelessWindowHint);
+        //m_Dock->setAttribute(Qt::WA_TranslucentBackground);
+
 
         registerQmlTypes();
         setComplexDelegates();
 
         m_ConnectionManager = new ConnectionManager(m_ItemModel);
+
+
 
     }
 
@@ -141,6 +150,8 @@ namespace Uber {
     {
         m_Canvas->setSource(QUrl::fromLocalFile("qml/Windows/MainWindow.qml"));
         m_Dock->setSource(QUrl::fromLocalFile("qml/Windows/Dock.qml"));
+
+        #include <QQmlApplicationEngine>
     }
 
     void System::loadBundles()

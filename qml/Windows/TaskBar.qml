@@ -1,4 +1,6 @@
-import QtQuick 2.0
+import QtQuick 2.1
+import QtQuick.Dialogs 1.0
+
 import "../Canvas"                  // included for button / file dialog etc
 //import LogicComponents 1.0      // included for fileloader class
 // fioleloader now became a context property...
@@ -7,8 +9,7 @@ Rectangle
 {
 
     // used for loading. let's see if it should be used for saving, too?
-    FileDialog
-    {
+    FileDialog {
         id: loadDialog
         onAccepted:
         {
@@ -36,7 +37,7 @@ Rectangle
         anchors.leftMargin:     spacing
         Button
         {
-            iconPath:                   "../../Images/editIcon.png"
+            iconPath:                   "../../Images/edit.png"
             height:                     parent.height - 8
             width:                      parent.height - 8
             anchors.verticalCenter:     parent.verticalCenter
@@ -46,7 +47,7 @@ Rectangle
         }
         Button
         {
-            iconPath:                   "../../Images/viewIcon.png"
+            iconPath:                   "../../Images/view.png"
             height:                     parent.height - 8
             width:                      parent.height - 8
             anchors.verticalCenter:     parent.verticalCenter
@@ -56,7 +57,7 @@ Rectangle
         }
         Button
         {
-            iconPath:                   "../../Images/lockIcon.png"
+            iconPath:                   "../../Images/lock.png"
             height:                     parent.height - 8
             width:                      parent.height - 8
             anchors.verticalCenter:     parent.verticalCenter
@@ -67,7 +68,7 @@ Rectangle
 
         Button
         {
-            iconPath:                   "../../Images/loadIcon.png"
+            iconPath:                   "../../Images/open.png"
             height:                     parent.height - 8
             width:                      parent.height - 8
             anchors.verticalCenter:     parent.verticalCenter
@@ -82,7 +83,7 @@ Rectangle
         }
         Button
         {
-            iconPath:"../../Images/saveIcon.png";
+            iconPath:"../../Images/save.png";
             height: parent.height - 8;
             width: parent.height - 8;
             anchors.verticalCenter: parent.verticalCenter

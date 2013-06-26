@@ -5,10 +5,13 @@ folder_02.source += images/*
 folder_02.target = images
 folder_03.source += blocks/*
 folder_03.target = blocks
+folder_04.source += js/*
+folder_04.target = js
 
 DEPLOYMENTFOLDERS = folder_01
 DEPLOYMENTFOLDERS += folder_02
 DEPLOYMENTFOLDERS += folder_03
+DEPLOYMENTFOLDERS += folder_04
 
 SOURCES += \
     main.cpp \
@@ -77,7 +80,6 @@ OTHER_FILES += \
     qml/Canvas/NodeRow.qml \
     qml/Canvas/Node.qml \
     qml/Canvas/Link.qml \
-    qml/Canvas/FileDialog.qml \
     qml/Canvas/Button.qml \
     qml/Canvas/BaseBlock.qml \
     qml/Windows/TaskBar.qml \
@@ -86,7 +88,9 @@ OTHER_FILES += \
     qml/Canvas/UberBlock.qml \
     qml/Canvas/Slider.qml \
     images/textedit.sci \
-    qml/Canvas/TextEdit.qml
+    qml/Canvas/TextEdit.qml \
+    js/ContextMenu.js \
+    qml/Windows/CContextMenu.qml
 
 
 
@@ -95,22 +99,22 @@ INCLUDEPATH += $(_2REAL_DEPENDENCIES_DIR)/eigen
 INCLUDEPATH += $(_2REAL_DEPENDENCIES_DIR)/poco/bin
 INCLUDEPATH += $(_2REAL_DEPENDENCIES_DIR)/poco/Foundation/include
 INCLUDEPATH += $(_2REAL_DIR)/kernel/src
-INCLUDEPATH += $$PWD/../../../Qt/Qt5.0.1/5.0.1/msvc2010/include
-INCLUDEPATH += C:/Qt/Qt5.0.1/5.0.1/msvc2010/include/QtQuick/5.0.1/QtQuick
-INCLUDEPATH += C:/Qt/Qt5.0.1/5.0.1/msvc2010/include/QtQuick/5.0.1/QtQuick/privatez
-INCLUDEPATH += C:/Qt/Qt5.0.1/5.0.1/msvc2010/include/QtCore/5.0.1
 INCLUDEPATH += items/
 INCLUDEPATH += models/
 INCLUDEPATH += system/
 
 
 #Linking
+
+CONFIG += qt
+QT += opengl
+
+
 win32:CONFIG(release, debug|release): LIBS += -L$(_2REAL_DIR)/kernel/lib/ -l_2RealFramework_32
 else:win32:CONFIG(debug, debug|release): LIBS += -L$(_2REAL_DIR)/kernel/lib/ -l_2RealFramework_32d
 win32:CONFIG(release, debug|release): LIBS += -L$(_2REAL_DEPENDENCIES_DIR)/poco/lib/ -lPocoFoundation
 else:win32:CONFIG(debug, debug|release): LIBS += -L$(_2REAL_DEPENDENCIES_DIR)/poco/lib/ -lPocoFoundationd
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../Qt/Qt5.0.1/5.0.1/msvc2010/lib/ -lQt5Widgets
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../Qt/Qt5.0.1/5.0.1/msvc2010/lib/ -lQt5Widgetsd
+
 
 LIBS += -ldwmapi
 
