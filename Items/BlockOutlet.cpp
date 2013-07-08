@@ -49,13 +49,16 @@ namespace Uber {
         if ( isValid() )
         {
             _2Real::app::TypeMetainfo info = m_OutletHandle.getType();
-            TypeMetainfo::FieldDesc d = info.getFieldInfo();
-            for ( TypeMetainfo::FieldDesc::const_iterator it = d.begin(); it != d.end(); ++it )
+            _2Real::Fields fields;
+            info.getFieldInfo( fields );
+
+            for ( _2Real::Fields::const_iterator it = fields.begin(); it != fields.end(); ++ it )
             {
                 StringObject *obj = new StringObject();
-                obj->setString(QString::fromUtf8((*it).c_str()));
+                obj->setString(QString::fromUtf8((*it)->getTypename().c_str()));
                 m_ConnectionOptions->append(obj);
             }
+
         }
         return m_ConnectionOptions;
     }
