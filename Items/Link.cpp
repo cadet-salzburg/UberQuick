@@ -45,6 +45,7 @@ namespace Uber {
     Link::Link()
     :m_Inlet( new Inlet() )
     ,m_Outlet( new Outlet() )
+    ,m_ConnectionOptions(nullptr)
     {
         QObject::connect(m_Inlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
         QObject::connect(m_Outlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
@@ -136,18 +137,33 @@ namespace Uber {
             return inHandle.link(outHandle);
         } else if (  m_Inlet->getClassName() == "Uber::BlockInlet" && m_Outlet->getClassName() == "Uber::InterfaceOutlet")
         {
-            return false;
+            return true;
 
         } else if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::BlockOutlet" )
         {
-            return false;
+            return true;
         } else if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::InterfaceOutlet" )
         {
-            return false;
+            return true;
         } else
         {
             return false;
         }
+    }
+
+    StringModel* Link::getConnectionOptions()
+    {
+        StringModel* options = nullptr;
+        if (  m_Inlet->getClassName() == "Uber::BlockInlet" && m_Outlet->getClassName() == "Uber::InterfaceOutlet")
+        {
+            BlockInlet* inlet = qobject_cast<BlockInlet*>(m_Inlet);
+            options =  inlet->getDataTypeFields();
+        } else if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::BlockOutlet" )
+        {
+            BlockOutlet* outlet = qobject_cast<BlockOutlet*>(m_Outlet);
+            options =  outlet->getDataTypeFields();
+        }
+        return options;
     }
 
     QDebug operator<<(QDebug dbg, const Link &link )

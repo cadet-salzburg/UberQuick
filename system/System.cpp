@@ -24,6 +24,7 @@
 #include "../system/EventFilter.h"
 #include "../system/ConnectionManager.h"
 #include "../system/ComplexDelegate.h"
+#include "../models/StringModel.h"
 
 #include <QWidget>
 #include <QHBoxLayout>
@@ -96,6 +97,7 @@ namespace Uber {
         qmlRegisterType<Link>();
         qmlRegisterType<Slider>();
         qmlRegisterType<TextIO>();
+        qmlRegisterType<StringModel>();
 
         qmlRegisterType<ItemObjectListModel>();
         qmlRegisterType<Canvas>("UberComponents", 1,0,"GraphCanvas");
@@ -283,7 +285,7 @@ namespace Uber {
             item->setUrl(m_ComplexDelegate->getDelegate(item->getClassName()));
              m_ItemModel->append(item);
         }
-        qDebug() << "Number of items: " << m_ItemModel->size();
+        qDebug() << "Number of items: " << m_ItemModel->count();
     }
 
     void System::loadConfig( QString const& dataSource )

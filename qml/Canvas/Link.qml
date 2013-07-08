@@ -3,19 +3,18 @@ import UberComponents 1.0
 Bezier {
     id: line
     smooth: true
-    z: 5
+    z: -100
     property point start
     property point end
     signal linkMoved()
     onLinkMoved:
     {
-        console.log("onLinkMoved");
+        //console.log("onLinkMoved");
         p1 = object.getStartPos();
         p4 = object.getEndPos();
         updateControlPoints();
     }
-    color:      "#454545"
-
+    color: "#454545"
 
     Component.onCompleted:
     {

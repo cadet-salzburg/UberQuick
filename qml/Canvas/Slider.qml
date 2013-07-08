@@ -29,4 +29,10 @@ BaseBlock {
             console.log(value);
         }
     }
+//    Rectangle {
+//        anchors.centerIn: parent
+//        width: slider.width - 2*slider.radius - 2*slider.border.width
+//        height: slider.height - 2*slider.border.width - 2
+//        color: "#66EFEFEF"
+//    }
 }

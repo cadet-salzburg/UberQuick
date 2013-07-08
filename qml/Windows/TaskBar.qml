@@ -6,7 +6,7 @@ import "../Canvas"
 Rectangle
 {
 
-//    // used for loading. let's see if it should be used for saving, too?
+// used for loading. let's see if it should be used for saving, too?
 //    FileDialog {
 //        id: loadDialog
 //        onAccepted:
@@ -23,7 +23,7 @@ Rectangle
         title: "Please choose a file"
         nameFilters: [ "Ubercode format (*.ubef *.fbef)", "All files (*)" ]
         visible: false
-        modality: ApplicationModal
+        //modality: ApplicationModal
         onAccepted: {
             console.log("You chose: " + fileDialog.filePaths)
             Qt.quit()

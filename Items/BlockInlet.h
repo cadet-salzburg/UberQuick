@@ -2,7 +2,7 @@
 #define BLOCKINLET_H
 #include "Inlet.h"
 #include "_2RealApplication.h"
-
+#include "StringModel.h"
 using namespace _2Real::app;
 
 namespace Uber {
@@ -15,19 +15,20 @@ public:
     BlockInlet( const InletHandle &handle, QObject *parent = 0 );
     virtual ~BlockInlet();
 
-    void            setInletHandle(const InletHandle& handle );
-    InletHandle     getInletHandle() const;
-    virtual inline bool     isValid() const
+    void                            setInletHandle(const InletHandle& handle );
+    InletHandle                     getInletHandle() const;
+    virtual inline bool             isValid() const
     {
         return m_InletHandle.isValid();
     }
-
+    StringModel*                  getDataTypeFields();
 private:
-    InletHandle     m_InletHandle;
+    InletHandle                     m_InletHandle;
+    StringModel*                    m_ConnectionOptions;
 signals:
 public slots:
 };
-typedef QSharedPointer<BlockInlet> BlockInletRef;
+typedef QSharedPointer<BlockInlet>  BlockInletRef;
 Q_DECLARE_METATYPE(BlockInlet)
 }
 #endif // BLOCKINLET_H

@@ -11,7 +11,8 @@ GraphCanvas {
     z: -2
     color: "#EEEEEE"
     state: "initState"
-
+    readonly property alias mouseX: mouseArea.mouseX
+    readonly property alias mouseY: mouseArea.mouseY
     MouseArea {
         id: mouseArea
         anchors.fill: parent
@@ -25,6 +26,7 @@ GraphCanvas {
                     workbench.state = "hideDock"
                 }
             }
+
         }
 
         onDoubleClicked: {
@@ -39,6 +41,7 @@ GraphCanvas {
         }
         onClicked: {
             console.log("Window pressed")
+
         }
 
         Component.onCompleted: {
@@ -78,6 +81,7 @@ GraphCanvas {
     //            drag.target: parent
     //        }
     //    }
+
     Repeater {
         id: grid
         model: ItemModel
@@ -91,9 +95,44 @@ GraphCanvas {
         }
     }
 
-    CContextMenu {
-
+    ContextMenu {
+        id: ctxMenu
     }
+
+
+    CustomContextMenu {
+        id: customContext
+    }
+
+
+//    Menu {
+//        id:  mmm
+//        title: "Edit"
+//        MenuItem {
+//            text: "Cut"
+//            shortcut: "Ctrl+X"
+//        }
+
+//        MenuItem {
+//            text: "Copy"
+//            shortcut: "Ctrl+C"
+//        }
+
+//        MenuItem {
+//            text: "Paste"
+//            shortcut: "Ctrl+V"
+//        }
+
+//        MenuSeparator { }
+
+//        Menu {
+//            title: "More Stuff"
+
+//            MenuItem {
+//                text: "Do Nothing"
+//            }
+//        }
+//    }
 
     //    CanvasConnection {
     //        x1: 40

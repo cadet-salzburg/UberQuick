@@ -42,7 +42,9 @@ SOURCES += \
     items/Slider.cpp \
     items/TextIO.cpp \
     items/PixelView.cpp \
-    items/PixelView.cpp
+    items/PixelView.cpp \
+    items/StringObject.cpp \
+    models/StringModel.cpp
 
 HEADERS += \
     models/QObjectListModelT.h \
@@ -73,7 +75,9 @@ HEADERS += \
     items/InterfaceElement.h \
     items/InterfaceOutlet.h \
     items/TextIO.h \
-    items/PixelView.h
+    items/PixelView.h \
+    items/StringObject.h \
+    models/StringModel.h
 
 OTHER_FILES += \
     qml/Canvas/Tooltip.qml \
@@ -90,7 +94,8 @@ OTHER_FILES += \
     images/textedit.sci \
     qml/Canvas/TextEdit.qml \
     js/ContextMenu.js \
-    qml/Windows/CContextMenu.qml
+    qml/Windows/ContextMenu.qml \
+    qml/Windows/CustomContextMenu.qml
 
 
 

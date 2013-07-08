@@ -3,6 +3,7 @@
 
 #include <QSharedPointer>
 #include "Outlet.h"
+#include "StringModel.h"
 #include "_2RealApplication.h"
 
 using namespace _2Real::app;
@@ -22,8 +23,10 @@ namespace Uber {
         {
             return m_OutletHandle.isValid();
         }
+        StringModel*     getDataTypeFields();
     private:
         OutletHandle    m_OutletHandle;
+            StringModel*                    m_ConnectionOptions;
     signals:
     public slots:
     };

@@ -10,7 +10,7 @@ Rectangle {
     border.color:   "#FFAFAFAF"
     border.width:   3
     antialiasing:   true
-
+    z:  10000
     property string type: "block"
     signal          blockMoved();
     function        initialize()

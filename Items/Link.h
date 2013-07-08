@@ -6,6 +6,7 @@
 #include <QVector>
 #include <QDebug>
 #include <QObjectList>
+#include "StringModel.h"
 
 namespace Uber {
     class Point : public QObject {
@@ -38,6 +39,8 @@ namespace Uber {
         Q_INVOKABLE     QPointF             getEndPos();
         Q_INVOKABLE     void                updatePosition( const QPointF& pos );
         bool                                isValid();
+        StringModel*                        getConnectionOptions();
+
     protected:
 
     signals:
@@ -51,6 +54,8 @@ namespace Uber {
         Inlet*                              m_Inlet;
         Outlet*                             m_Outlet;
         QObjectList                         m_Points;
+        StringModel*                        m_ConnectionOptions;
+
 
     };
     typedef QSharedPointer<Link> LinkRef;

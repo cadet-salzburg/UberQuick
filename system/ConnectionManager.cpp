@@ -19,7 +19,8 @@ namespace Uber {
 
     }
 
-    void ConnectionManager::beginAddingLink(Item *item, const QPointF &pos )
+
+    void ConnectionManager::beginLink(Item *item, const QPointF &pos )
     {
         qDebug() << "Begin adding link";
         m_Link = new Link();
@@ -45,9 +46,9 @@ namespace Uber {
             m_Link->setOutlet(outlet);
             qDebug() << "---Outlet";
         }
-        updateLink(pos);
         m_ItemModel->append(m_Link);
-        qDebug() << " The number of items in the model is: " << m_ItemModel->count();
+        updateLink(pos);
+        startDrag(item);
     }
 
     void ConnectionManager::updateLink(const QPointF &pos)
@@ -59,7 +60,7 @@ namespace Uber {
         }
     }
 
-    void ConnectionManager::finishAddingLink(Item *item)
+    void ConnectionManager::finishLink(Item *item)
     {
         if ( item->getClassName()=="Uber::BlockInlet" )
         {
@@ -82,24 +83,28 @@ namespace Uber {
         }
         if ( !m_Link->isValid() )
         {
-            cancelAddingLink();
+            removeLink();
         }
-     }
+    }
 
-    //TODO:  Rename the following method to something better. It is not cancelling, it is actually removing.
-    void ConnectionManager::cancelAddingLink()
+    void ConnectionManager::removeLink( Link* link )
     {
-        if ( m_Link )
+        if ( !link )
         {
-            int idx = m_ItemModel->indexOf(m_Link);
-            m_ItemModel->removeAt(idx);
-            qDebug() << "The id is: " << idx;
+            if ( m_Link )
+            {
+                link = m_Link;
+
+            } else {
+                return;
+            }
         }
+        int idx = m_ItemModel->indexOf(link);
+        m_ItemModel->removeAt(idx);
     }
 
     void ConnectionManager::startDrag(Uber::Item *item)
     {
-        qDebug() << "Started drag";
         QDrag *drag = new QDrag(this);
         QMimeData *mimeData = new QMimeData();
         mimeData->setText(item->getClassName());
@@ -110,8 +115,15 @@ namespace Uber {
         Qt::DropAction dropAction = drag->exec();
     }
 
-    void ConnectionManager::disconnect(Link *link)
+    StringModel* ConnectionManager::getConnectionOptions()
     {
+        //StringModelRef options;
+        if ( m_Link )
+        {
+            return m_Link->getConnectionOptions();
+        } else {
+            return nullptr;
+        }
     }
 
     bool ConnectionManager::canConnect(Item *itemA, Item *itemB)

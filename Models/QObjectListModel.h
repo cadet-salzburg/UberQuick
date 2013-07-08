@@ -106,7 +106,7 @@ public:
     Q_INVOKABLE int indexOfName (const QString & str) const;
 
     inline int count() const { return m_objects.count(); }
-    inline int size() const { return m_objects.size(); }
+    //inline int size() const { return m_objects.size(); }
     inline bool isEmpty() const { return m_objects.isEmpty(); }
 
     //additional QML API

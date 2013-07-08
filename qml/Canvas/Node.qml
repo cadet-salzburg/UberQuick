@@ -5,13 +5,12 @@ Circle {
     id: node
     radius: 8
     color: "#00FFFF00"
-    //anchors.verticalCenter: parent.verticalCenter
     property point  centerPoint: Qt.point(0,0)
     property point  offset: Qt.point(0,0)
     property string type: "circle"
     property real   thickness: 3
-
     signal moved;
+
     onMoved: {
         updatePosition();
     }
@@ -35,9 +34,7 @@ Circle {
         onPressed:
         {
             var pos = node.mapToItem(workbench, mouseX, mouseY );
-            ConnectionManager.beginAddingLink(object,node.mapToItem(workbench, mouseX, mouseY ));
-            ConnectionManager.updateLink(Qt.point(pos.x, pos.y));
-            ConnectionManager.startDrag(object);
+            ConnectionManager.beginLink(object, Qt.point(pos.x, pos.y));
         }
 
         onPositionChanged:
@@ -60,7 +57,13 @@ Circle {
             onDropped: {
                 drop.accept();
                 console.log ("onDropped");
-                ConnectionManager.finishAddingLink(object);
+                ConnectionManager.finishLink(object);
+                customContext.model = ConnectionManager.getConnectionOptions();
+                print( customContext.model.count + "-------------");
+                if ( customContext.model.count > 0 )
+                {
+                    customContext.popup();
+                }
             }
             onExited: {
                 console.log ("onExited");
