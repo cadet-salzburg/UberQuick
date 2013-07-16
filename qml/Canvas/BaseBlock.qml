@@ -1,68 +1,75 @@
 import QtQuick 2.1
 import UberComponents 1.0
 
-Rectangle {
-    id:             block
-    width:          150
-    height:         30
-    radius:         12
-    color:          "#FFFCFCFC"
-    border.color:   "#FFAFAFAF"
-    border.width:   3
-    antialiasing:   true
-    z:  10000
+ObjectFrame {
     property string type: "block"
+    x: object.x
+    y: object.y
     signal          blockMoved();
     function        initialize()
     {
+        console.log("--x--" + x );
+        console.log("--y--" + y );
         var numInlets = inlets.count();
         for ( var i=0; i < numInlets; i++ )
         {
             var inlet = inlets.childAt(i);
-            block.blockMoved.connect( inlet.moved );
+            blockMoved.connect( inlet.moved );
             inlet.updatePosition();
         }
         var numOutlets = outlets.count()
         for ( var j=0; j < numOutlets; j++ )
         {
             var outlet = outlets.childAt(j);
-            block.blockMoved.connect( outlet.moved );
+            blockMoved.connect( outlet.moved );
             outlet.updatePosition();
         }
     }
+
     MouseArea {
         id: mouseArea
-        property variant previousPosition
-        onPressed: {
-            previousPosition = Qt.point(mouseX, mouseY)
-            workbench.state = "hideDock"
-        }
-        onPositionChanged: {
-            if (pressedButtons === Qt.LeftButton) {
-                var dx = mouseX - previousPosition.x
-                var dy = mouseY - previousPosition.y
-                block.parent.x += dx
-                block.parent.y += dy
-                object.position = Qt.point(block.x, block.y);
-            }
+        anchors.fill: parent
+        drag.target: parent
+        onPositionChanged:
+        {
+            print("actual" + Qt.point(parent.x, parent.y));
+            object.position = Qt.point(parent.x, parent.y);
             blockMoved();
         }
-        anchors.fill: parent
-    }
+        onClicked: {
 
+            workbench.state = "hideDock"
+        }
+    }
 
     NodeRow {
         id: inlets
-        x: block.border.width + block.radius
-        y: block.border.width/2-8
+        x: parent.border.width + parent.radius
+        y: parent.border.width/2-8
         currentModel: object.getInletModel()
+        Component.onCompleted: {
+            var w = parent.width - 2*parent.radius - 2*parent.border.width
+            if ( inlets.width > w )
+            {
+                parent.width = inlets.getNeededWidth( inlets.count()) + 2*parent.radius + 2*parent.border.width;
+                print("inlet count: " + inlets.count());
+            }
+        }
     }
 
     NodeRow {
         id: outlets
-        x: block.border.width + block.radius
-        y: block.height - block.border.width/2 - 8
+        x: parent.border.width + parent.radius
+        y: parent.height - parent.border.width/2 - 8
         currentModel: object.getOutletModel()
+        Component.onCompleted: {
+            var w = parent.width - 2*parent.radius - 2*parent.border.width
+            if ( inlets.width > w )
+            {
+                parent.width = outlets.getNeededWidth( outlets.count()) + 2*parent.radius + 2*parent.border.width;
+                print("outlet count: " + outlets.count());
+            }
+        }
     }
     Component.onCompleted:
     {

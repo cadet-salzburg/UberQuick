@@ -2,10 +2,12 @@
 #define DOCKMODEL_H
 
 #include <QAbstractListModel>
+#include <QSortFilterProxyModel>
 #include <QList>
 #include <QSize>
 #include <QUrl>
 #include <QDebug>
+#include <QCompleter>
 #include "_2RealApplication.h"
 #include "../items/Item.h"
 
@@ -86,6 +88,8 @@ namespace Uber {
         void                    addEntry( const GridEntry &entry );
         void                    addEntries( const GridEntryList& entries );
 
+        Q_INVOKABLE QAbstractItemModel  * getCompletionModel(const QString& text);
+
         GridEntry               getEntry( int row );
 
         int                     count() const;
@@ -97,6 +101,7 @@ namespace Uber {
     public slots:
     private:
         GridEntryList           m_Entries;
+        QCompleter*             m_AutoCompleter;
     };
 }
 #endif // DOCKMODEL_H

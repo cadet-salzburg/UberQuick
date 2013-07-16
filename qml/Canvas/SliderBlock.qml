@@ -8,6 +8,7 @@ BaseBlock {
         stepSize: object.step
         minimumValue: object.minimum
         maximumValue: object.maximum
+        value: object.value
         style: SliderStyle {
             groove: Rectangle {
                 id: groove
@@ -25,14 +26,7 @@ BaseBlock {
         }
         activeFocusOnPress: false
         onValueChanged: {
-            pressed ? print("Pressed") : print("not pressed")
-            console.log(value);
+            object.value = value;
         }
     }
-//    Rectangle {
-//        anchors.centerIn: parent
-//        width: slider.width - 2*slider.radius - 2*slider.border.width
-//        height: slider.height - 2*slider.border.width - 2
-//        color: "#66EFEFEF"
-//    }
 }

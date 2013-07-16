@@ -29,6 +29,7 @@ Item {
             }
         }
     }
+
     Rectangle {
         id: dock
         width: parent.width

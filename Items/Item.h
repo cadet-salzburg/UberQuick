@@ -10,9 +10,9 @@ namespace Uber {
     {
         Q_OBJECT
         Q_PROPERTY ( QString className READ getClassName CONSTANT )
-        Q_PROPERTY( QPointF position READ getPosition WRITE setPosition NOTIFY positionChanged )
-        Q_PROPERTY( float x READ x WRITE setX NOTIFY positionChanged )
-        Q_PROPERTY( float y READ y WRITE setY NOTIFY positionChanged )
+        Q_PROPERTY( QPointF position READ getPosition WRITE setPosition )//NOTIFY positionChanged )
+        Q_PROPERTY( float x READ x WRITE setX ) //NOTIFY positionChanged )
+        Q_PROPERTY( float y READ y WRITE setY )// NOTIFY positionChanged )
         Q_PROPERTY( QSizeF size READ size WRITE setSize )
         Q_PROPERTY( QUrl url READ getUrl WRITE setUrl NOTIFY urlChanged )
     public:

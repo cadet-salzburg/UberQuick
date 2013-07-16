@@ -7,6 +7,7 @@ namespace Uber {
     {
 
     }
+
     BlockInlet::BlockInlet(const BlockInlet &other)
     :Inlet(other)
     ,m_InletHandle(other.getInletHandle())

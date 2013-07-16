@@ -10,6 +10,7 @@ Rectangle
     signal buttonClicked()
     onButtonClicked:
     {
+
     }
 
     Image

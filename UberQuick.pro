@@ -77,7 +77,10 @@ HEADERS += \
     items/TextIO.h \
     items/PixelView.h \
     items/StringObject.h \
-    models/StringModel.h
+    models/StringModel.h \
+    system/Converter.h \
+    system/Converter_T.h \
+    system/ConverterFromDescription.h
 
 OTHER_FILES += \
     qml/Canvas/Tooltip.qml \
@@ -90,12 +93,14 @@ OTHER_FILES += \
     qml/Windows/MainWindow.qml \
     qml/Windows/Dock.qml \
     qml/Canvas/UberBlock.qml \
-    qml/Canvas/Slider.qml \
     images/textedit.sci \
-    qml/Canvas/TextEdit.qml \
     js/ContextMenu.js \
+    qml/Windows/DockTextBrowser.qml \
+    qml/Canvas/TextBlock.qml \
+    qml/Canvas/SliderBlock.qml \
+    qml/Canvas/ObjectFrame.qml \
     qml/Windows/ContextMenu.qml \
-    qml/Windows/CustomContextMenu.qml
+    qml/Canvas/TextElement.qml
 
 
 

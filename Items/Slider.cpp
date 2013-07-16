@@ -20,6 +20,8 @@ namespace Uber {
     {
         InterfaceOutlet *currentOutlet( new InterfaceOutlet());
         appendOutlet(currentOutlet);
+        QObject::connect(this, SIGNAL(valueChanged(QVariant)),
+                         currentOutlet, SLOT(valueChanged(QVariant)));
     }
 
     void    Slider::setMinimum( float m )
@@ -49,6 +51,22 @@ namespace Uber {
     float   Slider::getStep() const
     {
         return m_Step;
+    }
+
+    void Slider::setValue(float value)
+    {
+        if ( m_Value != value )
+        {
+            m_Value = value;
+            QVariant variantValue(value);
+            emit valueChanged(variantValue);
+        }
+        qDebug() << " Slider value: " << m_Value;
+    }
+
+    float Slider::getValue() const
+    {
+        return m_Value;
     }
     QDebug operator << (QDebug dbg, const Slider &slider )
     {

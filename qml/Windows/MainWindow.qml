@@ -13,12 +13,21 @@ GraphCanvas {
     state: "initState"
     readonly property alias mouseX: mouseArea.mouseX
     readonly property alias mouseY: mouseArea.mouseY
+
+    ContextMenu {
+        id: contextMenu
+        z: 20
+    }
+
+
+
     MouseArea {
         id: mouseArea
         anchors.fill: parent
         propagateComposedEvents: true
+        hoverEnabled: true
         acceptedButtons: Qt.LeftButton | Qt.RightButton
-        onPressed: {
+        onClicked: {
             if (mouse.button == Qt.RightButton) {
                 console.debug(getTypeOfChildAt(mouseX, mouseY))
             } else if (mouse.button == Qt.LeftButton) {
@@ -26,7 +35,10 @@ GraphCanvas {
                     workbench.state = "hideDock"
                 }
             }
+        }
 
+        onPositionChanged: {
+            //print("X is: " +mouseX+ "Y is: " + mouseY);
         }
 
         onDoubleClicked: {
@@ -39,14 +51,11 @@ GraphCanvas {
                 workbench.state = "showDock"
             }
         }
-        onClicked: {
-            console.log("Window pressed")
-
-        }
 
         Component.onCompleted: {
             workbench.state = "startState"
             //DockView.visible = false;
+            mouseArea.onClicked.connect(contextMenu.hide);
         }
     }
     //------------ Custom Delegate Test Ends ----------------//
@@ -87,22 +96,22 @@ GraphCanvas {
         model: ItemModel
         delegate: Loader {
             source: ComplexDelegate.getDelegate(object.className)
-            x: object.position.x
-            y: object.position.y
+//            x: object.x
+//            y: object.y
             onLoaded: {
                 console.log("---->" + object.className)
             }
         }
     }
 
-    ContextMenu {
-        id: ctxMenu
+    DockTextBrowser {
+
     }
 
 
-    CustomContextMenu {
-        id: customContext
-    }
+
+
+
 
 
 //    Menu {

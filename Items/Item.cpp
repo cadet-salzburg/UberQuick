@@ -3,7 +3,7 @@
 namespace Uber {
     Item::Item(QObject *parent)
         :QObject(parent)
-        ,m_Position( QPointF())
+        ,m_Position( QPointF(0,0))
         ,m_Size(100,50)
         ,m_Orientation(Qt::Horizontal)
     {

@@ -2,12 +2,15 @@
 #include "../items/Block.h"
 #include "../items/Slider.h"
 #include "../items/TextIO.h"
+#include <QStringListModel>
 
 namespace Uber {
     DockModel::DockModel(QObject *parent)
-    :QAbstractListModel(parent)
+    :QAbstractListModel( parent )
+    ,m_AutoCompleter( nullptr )
     {
-
+        m_AutoCompleter = new QCompleter(this);
+        m_AutoCompleter->setModel(this);
     }
 
     int DockModel::rowCount(const QModelIndex &parent) const
@@ -24,7 +27,7 @@ namespace Uber {
         {
             return QVariant::fromValue(m_Entries.at(index.row()).getIconUrl());
         }
-        else if (role == NameRole)
+        else if (role == NameRole  || role == Qt::EditRole )
         {
             return QVariant::fromValue(m_Entries.at(index.row()).getName());
         }
@@ -48,6 +51,16 @@ namespace Uber {
         }
         endInsertRows();
         emit countChanged();
+    }
+
+    QAbstractItemModel* DockModel::getCompletionModel(const QString &text)
+    {
+        m_AutoCompleter->setCompletionPrefix("");
+        m_AutoCompleter->setCompletionMode(QCompleter::PopupCompletion);
+        QAbstractItemModel *md = m_AutoCompleter->completionModel();
+        //QSortFilterProxyModel *actualMd = qobject_cast<QSortFilterProxyModel*>(md);
+        QStringListModel *actualMd = new QStringListModel(md);
+        return actualMd;
     }
 
     GridEntry   DockModel::getEntry( int row )

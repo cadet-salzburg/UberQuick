@@ -58,11 +58,12 @@ Circle {
                 drop.accept();
                 console.log ("onDropped");
                 ConnectionManager.finishLink(object);
-                customContext.model = ConnectionManager.getConnectionOptions();
-                print( customContext.model.count + "-------------");
-                if ( customContext.model.count > 0 )
+                print( object.x + "---" + object.y );
+                contextMenu.model = ConnectionManager.getConnectionOptions();
+                print( contextMenu.model.count + "-------------");
+                if ( contextMenu.model.count > 0 )
                 {
-                    customContext.popup();
+                    contextMenu.popup(Qt.point(object.x, object.y));
                 }
             }
             onExited: {

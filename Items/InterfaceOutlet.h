@@ -1,5 +1,6 @@
 #ifndef INTERFACEOUTLET_H
 #define INTERFACEOUTLET_H
+#include <QDebug>
 #include "Outlet.h"
 namespace Uber {
     class InterfaceOutlet : public Outlet
@@ -12,10 +13,20 @@ namespace Uber {
         {
             return true;
         }
-
-    private:
     signals:
+        void valueChanged(QVariant val);
     public slots:
+        void setValue(QVariant val)
+        {
+            if ( val != m_Value )
+            {
+                m_Value = val;
+                emit valueChanged(m_Value);
+            }
+            qDebug() << " Interface Outlet Value: " << val;
+        }
+    private:
+        QVariant    m_Value;
     };
 }
 #endif // INTERFACEOUTLET_H
