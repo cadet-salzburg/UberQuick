@@ -41,6 +41,8 @@ namespace Uber {
         bool                                isValid();
         StringModel*                        getConnectionOptions();
 
+        void                                connectSignals();
+
     protected:
 
     signals:

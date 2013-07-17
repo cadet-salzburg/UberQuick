@@ -3,6 +3,7 @@
 #include "Inlet.h"
 #include "_2RealApplication.h"
 #include "StringModel.h"
+#include <QDebug>
 using namespace _2Real::app;
 
 namespace Uber {
@@ -25,8 +26,11 @@ public:
 private:
     InletHandle                     m_InletHandle;
     StringModel*                    m_ConnectionOptions;
-signals:
 public slots:
+    void setValue(QVariant val)
+    {
+        qDebug() << " Block Inlet Value: " << val;
+    }
 };
 typedef QSharedPointer<BlockInlet>  BlockInletRef;
 Q_DECLARE_METATYPE(BlockInlet)

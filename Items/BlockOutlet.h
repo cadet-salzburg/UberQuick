@@ -27,7 +27,6 @@ namespace Uber {
     private:
         OutletHandle    m_OutletHandle;
             StringModel*                    m_ConnectionOptions;
-    signals:
     public slots:
     };
     typedef QSharedPointer<BlockOutlet> BlockOutletRef;

@@ -8,5 +8,9 @@ BaseBlock {
         height: parent.height - 2*parent.border.width - 2
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
+        text: object.value
+        onTextChanged: {
+            object.value = text;
+        }
     }
 }

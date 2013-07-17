@@ -15,7 +15,7 @@ namespace Uber {
     private:
         QString m_String;
     signals:
-        void stringChanged();
+        void stringChanged(QString);
     public slots:
     };
 }

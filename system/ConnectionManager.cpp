@@ -84,6 +84,8 @@ namespace Uber {
         if ( !m_Link->isValid() )
         {
             removeLink();
+        } else {
+            QObject::connect(m_Link->getOutlet(), SIGNAL(valueChanged(QVariant)),m_Link->getInlet(), SLOT(setValue(QVariant)));
         }
     }
 

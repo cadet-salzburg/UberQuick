@@ -166,6 +166,11 @@ namespace Uber {
         return options;
     }
 
+    void Link::connectSignals()
+    {
+
+    }
+
     QDebug operator<<(QDebug dbg, const Link &link )
     {
         Q_UNUSED(link)

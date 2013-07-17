@@ -1,7 +1,7 @@
 #ifndef INLET_H
 #define INLET_H
-
 #include <QSharedPointer>
+#include <QVariant>
 #include "Item.h"
 #include "_2RealApplication.h"
 
@@ -32,7 +32,12 @@ namespace Uber {
     private:
         QString         m_Name;
     signals:
+        void valueChanged(QVariant val);
     public slots:
+        virtual void setValue(QVariant val)
+        {
+            //
+        }
     };
     typedef QSharedPointer<Inlet> InletRef;
     Q_DECLARE_METATYPE(Inlet)

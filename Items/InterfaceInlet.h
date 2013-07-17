@@ -10,13 +10,11 @@ namespace Uber {
     public:
         InterfaceInlet(QObject *parent = 0);
         virtual ~InterfaceInlet();
-
         virtual inline bool     isValid() const
         {
             return true;
         }
-    signals:
-        void valueChanged(QVariant val);
+
     public slots:
         void setValue(QVariant val)
         {

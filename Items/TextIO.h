@@ -6,16 +6,17 @@ namespace Uber {
     class TextIO : public InterfaceElement
     {
         Q_OBJECT
-        Q_PROPERTY( QString text READ getText WRITE setText NOTIFY textChanged )
+        Q_PROPERTY( QVariant value READ getValue WRITE setValue NOTIFY valueChanged )
     public:
         TextIO();
         virtual ~TextIO();
-        void        setText( const QString &text);
-        QString     getText() const;
+        QVariant        getValue() const;
     signals:
-        void textChanged();
+        void            valueChanged(QVariant);
+    public slots:
+        void            setValue(const QVariant &value);
     private:
-        QString m_Text;
+        QVariant        m_Value;
         virtual void    initialize();
     };
 }

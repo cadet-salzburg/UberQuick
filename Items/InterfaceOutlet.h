@@ -13,8 +13,6 @@ namespace Uber {
         {
             return true;
         }
-    signals:
-        void valueChanged(QVariant val);
     public slots:
         void setValue(QVariant val)
         {
