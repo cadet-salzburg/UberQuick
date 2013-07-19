@@ -80,7 +80,7 @@ Item {
         }
 
         Button {
-            iconPath:"../../Images/handleAIcon.png"
+            iconPath:"qrc:///images/handle-icon.png"
             width: 22
             height: 22
             color: Qt.rgba(51./255., 51./255., 51./255.,0.0 )

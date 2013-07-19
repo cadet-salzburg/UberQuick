@@ -50,7 +50,7 @@ Rectangle
         anchors.leftMargin:     spacing
         Button
         {
-            iconPath:                   "../../Images/edit.png"
+            iconPath:                   "qrc:///images/edit-icon.png"
             height:                     parent.height - 8
             width:                      parent.height - 8
             anchors.verticalCenter:     parent.verticalCenter
@@ -60,7 +60,7 @@ Rectangle
         }
         Button
         {
-            iconPath:                   "../../Images/view.png"
+            iconPath:                   "qrc:///images/view-icon.png"
             height:                     parent.height - 8
             width:                      parent.height - 8
             anchors.verticalCenter:     parent.verticalCenter
@@ -70,7 +70,7 @@ Rectangle
         }
         Button
         {
-            iconPath:                   "../../Images/lock.png"
+            iconPath:                   "qrc:///images/lock-icon.png"
             height:                     parent.height - 8
             width:                      parent.height - 8
             anchors.verticalCenter:     parent.verticalCenter
@@ -81,7 +81,7 @@ Rectangle
 
         Button
         {
-            iconPath:                   "../../Images/open.png"
+            iconPath:                   "qrc:///images/open-icon.png"
             height:                     parent.height - 8
             width:                      parent.height - 8
             anchors.verticalCenter:     parent.verticalCenter
@@ -97,7 +97,7 @@ Rectangle
         }
         Button
         {
-            iconPath:"../../Images/save.png";
+            iconPath:"qrc:///images/save-icon.png";
             height: parent.height - 8;
             width: parent.height - 8;
             anchors.verticalCenter: parent.verticalCenter

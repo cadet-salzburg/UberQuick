@@ -1,10 +1,11 @@
 <RCC>
     <qresource prefix="/images">
         <file alias="default-img.png">images/defaultImage.png</file>
-        <file>images/edit.png</file>
-        <file>images/lock.png</file>
-        <file>images/open.png</file>
-        <file>images/save.png</file>
-        <file>images/view.png</file>
+        <file alias="edit-icon.png">images/edit.png</file>
+        <file alias="lock-icon.png">images/lock.png</file>
+        <file alias="open-icon.png">images/open.png</file>
+        <file alias="save-icon.png">images/save.png</file>
+        <file alias="view-icon.png">images/view.png</file>
+        <file alias="handle-icon.png">images/handleIcon.png</file>
     </qresource>
 </RCC>

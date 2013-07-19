@@ -1,15 +1,15 @@
 # Add more folders to ship with the application, here
 folder_01.source += qml/*
 folder_01.target = qml
-folder_02.source += images/*
-folder_02.target = images
+#folder_02.source += images/*
+#folder_02.target = images
 folder_03.source += blocks/*
 folder_03.target = blocks
 folder_04.source += js/*
 folder_04.target = js
 
 DEPLOYMENTFOLDERS = folder_01
-DEPLOYMENTFOLDERS += folder_02
+#DEPLOYMENTFOLDERS += folder_02
 DEPLOYMENTFOLDERS += folder_03
 DEPLOYMENTFOLDERS += folder_04
 
@@ -44,7 +44,8 @@ SOURCES += \
     items/PixelView.cpp \
     items/PixelView.cpp \
     items/StringObject.cpp \
-    models/StringModel.cpp
+    models/StringModel.cpp \
+    items/Image.cpp
 
 HEADERS += \
     models/QObjectListModelT.h \
@@ -80,7 +81,8 @@ HEADERS += \
     models/StringModel.h \
     system/Converter.h \
     system/Converter_T.h \
-    system/ConverterFromDescription.h
+    system/ConverterFromDescription.h \
+    items/Image.h
 
 OTHER_FILES += \
     qml/Canvas/Tooltip.qml \

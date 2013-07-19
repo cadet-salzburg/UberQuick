@@ -48,7 +48,6 @@ namespace Uber {
 class BezierCurve : public QQuickItem
 {
     Q_OBJECT
-
     Q_PROPERTY(QPointF p1 READ p1 WRITE setP1 NOTIFY p1Changed)
     Q_PROPERTY(QPointF p2 READ p2 WRITE setP2 NOTIFY p2Changed)
     Q_PROPERTY(QPointF p3 READ p3 WRITE setP3 NOTIFY p3Changed)
