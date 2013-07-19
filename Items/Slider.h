@@ -34,7 +34,7 @@ private:
     float           m_Step;
     float           m_Value;
 
-    virtual void    initialize();
+    void            initialize();
 };
     QDebug operator<<(QDebug dbg, const Slider &slider);
 }

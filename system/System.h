@@ -52,6 +52,7 @@ namespace Uber {
         Q_INVOKABLE QPointF                 maptoGlobal(QQuickItem* item);
         Q_INVOKABLE QPointF                 getDockInputPosition();
 
+        QQuickView*                         getWindow() const;
 
         //static QObject *blargh( QQmlEngine *engine, QJSEngine *scriptEngine )
         //{

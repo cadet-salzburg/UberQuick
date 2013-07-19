@@ -15,6 +15,7 @@
 #include "../items/Link.h"
 #include "../items/Slider.h"
 #include "../items/TextIO.h"
+#include "../items/PixelView.h"
 #include "../models/DockModel.h"
 #include "../models/InletObjectListModel.h"
 #include "../models/OutletObjectListModel.h"
@@ -107,6 +108,7 @@ namespace Uber {
         qmlRegisterType<Circle>("UberComponents", 1,0,"Circle");
         qmlRegisterType<BezierCurve>("UberComponents", 1,0,"Bezier");
         qmlRegisterType<EventFilter>("UberComponents", 1, 0, "MouseFilter");
+        qmlRegisterType<PixelView>("UberComponents", 1, 0, "ImageView");
 
         //fileloader now has no default ctor any more, and thus cannot be registered
         //qmlRegisterType< FileLoader >( "LogicComponents", 1, 0, "FileLoader" );
@@ -278,6 +280,11 @@ namespace Uber {
         QPointF dotPosition  = dockPosition + QPointF(m_Dock->width()/2 - 75, -15);
         QPointF inputPosition = dotPosition - m_Canvas->position();
         return inputPosition;
+    }
+
+    QQuickView *System::getWindow() const
+    {
+        return m_Canvas;
     }
 
 

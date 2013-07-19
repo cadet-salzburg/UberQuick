@@ -100,7 +100,8 @@ OTHER_FILES += \
     qml/Canvas/SliderBlock.qml \
     qml/Canvas/ObjectFrame.qml \
     qml/Windows/ContextMenu.qml \
-    qml/Canvas/TextElement.qml
+    qml/Canvas/TextElement.qml \
+    qml/Canvas/ImageBlock.qml
 
 
 
@@ -156,3 +157,6 @@ win32 {
 # Please do not modify the following two lines. Required for deployment.
 include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
 qtcAddDeployment()
+
+RESOURCES += \
+    uberquick.qrc

@@ -19,8 +19,6 @@ GraphCanvas {
         z: 20
     }
 
-
-
     MouseArea {
         id: mouseArea
         anchors.fill: parent
@@ -96,8 +94,8 @@ GraphCanvas {
         model: ItemModel
         delegate: Loader {
             source: ComplexDelegate.getDelegate(object.className)
-//            x: object.x
-//            y: object.y
+            //            x: object.x
+            //            y: object.y
             onLoaded: {
                 console.log("---->" + object.className)
             }
@@ -108,40 +106,58 @@ GraphCanvas {
 
     }
 
-
-
-
-
-
-
-//    Menu {
-//        id:  mmm
-//        title: "Edit"
-//        MenuItem {
-//            text: "Cut"
-//            shortcut: "Ctrl+X"
+//    Rectangle {
+//        x:0
+//        y:0
+//        width: 100
+//        height: 100
+//        ImageView {
+//            anchors.fill: parent
 //        }
-
-//        MenuItem {
-//            text: "Copy"
-//            shortcut: "Ctrl+C"
-//        }
-
-//        MenuItem {
-//            text: "Paste"
-//            shortcut: "Ctrl+V"
-//        }
-
-//        MenuSeparator { }
-
-//        Menu {
-//            title: "More Stuff"
-
-//            MenuItem {
-//                text: "Do Nothing"
-//            }
+//        MouseArea {
+//            anchors.fill: parent
+//            drag.target: parent
 //        }
 //    }
+ImageBlock {
+    x: 0
+    y: 0
+//    width: 300
+//    height: 300
+}
+
+
+
+
+
+    //    Menu {
+    //        id:  mmm
+    //        title: "Edit"
+    //        MenuItem {
+    //            text: "Cut"
+    //            shortcut: "Ctrl+X"
+    //        }
+
+    //        MenuItem {
+    //            text: "Copy"
+    //            shortcut: "Ctrl+C"
+    //        }
+
+    //        MenuItem {
+    //            text: "Paste"
+    //            shortcut: "Ctrl+V"
+    //        }
+
+    //        MenuSeparator { }
+
+    //        Menu {
+    //            title: "More Stuff"
+
+    //            MenuItem {
+    //                text: "Do Nothing"
+    //            }
+    //        }
+    //    }
 
     //    CanvasConnection {
     //        x1: 40
