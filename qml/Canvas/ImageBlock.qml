@@ -2,13 +2,17 @@ import QtQuick 2.1
 import UberComponents 1.0
 BaseBlock {
     id: imageBlock
-    width: 200
-    height: 200
+    width: 100
+    height: 100
     property int minWidth: 100
     property int minHeight: 100
     ImageView {
         anchors.fill: parent
         anchors.margins: 15
+        image: object.image
+        onImageChanged: {
+            image: object.image;
+        }
     }
     Button {
         iconPath:"qrc:///images/handle-icon.png"

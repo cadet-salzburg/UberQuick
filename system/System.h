@@ -7,8 +7,10 @@
 #include "../models/DockModel.h"
 #include "../models/ItemObjectListModel.h"
 #include "_2RealApplication.h"
+#include "_2RealDatatypes.h"
+#include <QImage>
 
-
+typedef std::shared_ptr<const _2Real::CustomType> CustomTypeRef;
 namespace Uber {
     class FileLoader;
     class ConnectionManager;
@@ -99,7 +101,7 @@ namespace Uber {
 //            if ( m_Canvas )
 //                delete m_Canvas;
         }
-
     };
+    Q_DECLARE_METATYPE(std::shared_ptr<const _2Real::CustomType> )
 }
 #endif // UBSYSTEM_H

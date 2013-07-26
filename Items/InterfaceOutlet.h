@@ -21,7 +21,6 @@ namespace Uber {
                 m_Value = val;
                 emit valueChanged(m_Value);
             }
-            qDebug() << " Interface Outlet Value: " << val;
         }
     private:
         QVariant    m_Value;

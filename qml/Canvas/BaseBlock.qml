@@ -11,6 +11,7 @@ ObjectFrame {
         console.log("--x--" + x );
         console.log("--y--" + y );
         var numInlets = inlets.count();
+        print("Num inlets is: ---- " + object.getNumberOfInlets() );
         for ( var i=0; i < numInlets; i++ )
         {
             var inlet = inlets.childAt(i);

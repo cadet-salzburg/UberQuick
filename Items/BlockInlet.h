@@ -22,14 +22,17 @@ public:
     {
         return m_InletHandle.isValid();
     }
+    StringModel*                  getDataType();
     StringModel*                  getDataTypeFields();
+
 private:
     InletHandle                     m_InletHandle;
     StringModel*                    m_ConnectionOptions;
+    StringModel*                    m_DataType;
 public slots:
     void setValue(QVariant val)
     {
-        qDebug() << " Block Inlet Value: " << val;
+
     }
 };
 typedef QSharedPointer<BlockInlet>  BlockInletRef;

@@ -2,6 +2,7 @@
 #include "../items/Block.h"
 #include "../items/Slider.h"
 #include "../items/TextIO.h"
+#include "../items/Image.h"
 #include <QStringListModel>
 
 namespace Uber {
@@ -95,6 +96,8 @@ namespace Uber {
             if ( entry.typeIs(BlockType) )
             {
                 BlockHandle handle = entry.getBundleHandle().createBlockInstance(entry.getName().toUtf8().constData());
+                handle.setup();
+                handle.start();
                 item = new Block(handle, entry.getName());
             } else if ( entry.typeIs(SliderType) )
             {
@@ -102,6 +105,9 @@ namespace Uber {
             } else if ( entry.typeIs(TextInputType) )
             {
                 item = new TextIO();
+            } else if ( entry.typeIs(ImageType) )
+            {
+                item = new Image();
             }
         }
         return item;

@@ -1,5 +1,4 @@
 import QtQuick 2.1
-//import QtDesktop 1.0
 import QtQuick.Controls 1.0
 import UberComponents 1.0
 import "../Canvas"
@@ -34,11 +33,6 @@ GraphCanvas {
                 }
             }
         }
-
-        onPositionChanged: {
-            //print("X is: " +mouseX+ "Y is: " + mouseY);
-        }
-
         onDoubleClicked: {
             if (mouse.button == Qt.LeftButton) {
                 mouse.accepted = true
@@ -52,7 +46,6 @@ GraphCanvas {
 
         Component.onCompleted: {
             workbench.state = "startState"
-            //DockView.visible = false;
             mouseArea.onClicked.connect(contextMenu.hide);
         }
     }
@@ -68,26 +61,6 @@ GraphCanvas {
     }
 
 
-    //    Rectangle {
-    //        x: 150
-    //        y: 150
-    //        z: 0
-    //        width: 80
-    //        height: 80
-    //        color: "#FF8822"
-    //        DropArea {
-    //            anchors.fill: parent
-    //            onDropped: {
-    //                drop.accept();
-    //                console.log("Dropped in rectangle")
-    //            }
-    //        }
-    //        MouseArea {
-    //            anchors.fill: parent
-    //            drag.axis: Drag.XAndYAxis
-    //            drag.target: parent
-    //        }
-    //    }
 
     Repeater {
         id: grid
@@ -102,29 +75,11 @@ GraphCanvas {
         }
     }
 
-    DockTextBrowser {
+//    DockTextBrowser {
 
-    }
-
-//    Rectangle {
-//        x:0
-//        y:0
-//        width: 100
-//        height: 100
-//        ImageView {
-//            anchors.fill: parent
-//        }
-//        MouseArea {
-//            anchors.fill: parent
-//            drag.target: parent
-//        }
 //    }
-ImageBlock {
-    x: 0
-    y: 0
-//    width: 300
-//    height: 300
-}
+
+
 
 
 
@@ -159,12 +114,6 @@ ImageBlock {
     //        }
     //    }
 
-    //    CanvasConnection {
-    //        x1: 40
-    //        y1: 40
-    //        x2: 200
-    //        y2: 200
-    //    }
     TaskBar {
         anchors.bottom: workbench.bottom
     }

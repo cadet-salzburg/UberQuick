@@ -45,7 +45,8 @@ SOURCES += \
     items/PixelView.cpp \
     items/StringObject.cpp \
     models/StringModel.cpp \
-    items/Image.cpp
+    items/Image.cpp \
+    items/UberTexture.cpp
 
 HEADERS += \
     models/QObjectListModelT.h \
@@ -82,7 +83,8 @@ HEADERS += \
     system/Converter.h \
     system/Converter_T.h \
     system/ConverterFromDescription.h \
-    items/Image.h
+    items/Image.h \
+    items/UberTexture.h
 
 OTHER_FILES += \
     qml/Canvas/Tooltip.qml \

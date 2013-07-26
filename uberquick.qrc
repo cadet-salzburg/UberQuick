@@ -7,5 +7,8 @@
         <file alias="save-icon.png">images/save.png</file>
         <file alias="view-icon.png">images/view.png</file>
         <file alias="handle-icon.png">images/handleIcon.png</file>
+        <file alias="image-icon.png">images/ui/image.png</file>
+        <file alias="slider-icon.png">images/ui/slider.png</file>
+        <file alias="textedit-icon.png">images/ui/textedit.png</file>
     </qresource>
 </RCC>

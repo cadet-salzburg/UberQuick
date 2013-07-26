@@ -38,7 +38,6 @@ QString Canvas::getTypeOfChildAt(int x, int y)
             Item* castItem = dynamic_cast<Item*>(childItem);
             if ( castItem )
             {
-                qDebug() <<" What he fuck!!!";
                 tp = castItem->getClassName();
             }
         }

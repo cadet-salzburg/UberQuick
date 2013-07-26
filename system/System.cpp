@@ -16,6 +16,7 @@
 #include "../items/Slider.h"
 #include "../items/TextIO.h"
 #include "../items/PixelView.h"
+#include "../items/Image.h"
 #include "../models/DockModel.h"
 #include "../models/InletObjectListModel.h"
 #include "../models/OutletObjectListModel.h"
@@ -27,6 +28,7 @@
 #include "../system/ComplexDelegate.h"
 #include "../models/StringModel.h"
 #include <QStringListModel>
+#include <memory>
 
 #include <QWidget>
 #include <QHBoxLayout>
@@ -58,7 +60,6 @@ namespace Uber {
         QObject::connect(m_Canvas, SIGNAL(focusObjectChanged(QObject *)),this, SLOT(changedFocus(QObject *)));
         QObject::connect(m_Canvas, SIGNAL(destroyed()), this, SLOT(cleanup()));
 
-
         m_Dock->setResizeMode(QQuickView::SizeRootObjectToView);
         m_Dock->setGeometry(300,200, 400, 150);
         m_Dock->setFormat(m_SurfaceFormat);
@@ -71,9 +72,7 @@ namespace Uber {
         setComplexDelegates();
 
         m_ConnectionManager = new ConnectionManager(m_ItemModel);
-
-
-
+        qRegisterMetaType< std::shared_ptr<const _2Real::CustomType> >("std::shared_ptr<const _2Real::CustomType>");
     }
 
     System::~System()
@@ -100,6 +99,7 @@ namespace Uber {
         qmlRegisterType<Link>();
         qmlRegisterType<Slider>();
         qmlRegisterType<TextIO>();
+        qmlRegisterType<Image>();
         qmlRegisterType<StringModel>();
         qmlRegisterType<QStringListModel>();
         qmlRegisterType<QAbstractItemModel>();
@@ -232,15 +232,22 @@ namespace Uber {
     void System::loadInterfaceBlocks()
     {
         GridEntry slider = GridEntry(SliderType);
-        QString sliderIconPath("D:/Work/UberQuick/images/ui/slider.png");
-        slider.setIconUrl(QUrl::fromLocalFile(sliderIconPath));
+        QString sliderIconPath("qrc:///images/slider-icon.png");
+        slider.setIconUrl(QUrl(sliderIconPath));
         slider.setName("Slider");
         m_DockModel->addEntry(slider);
+        //
         GridEntry textInput = GridEntry(TextInputType);
-        QString textInputIconPath("D:/Work/UberQuick/images/ui/textedit.png");
-        textInput.setIconUrl(QUrl::fromLocalFile(textInputIconPath));
+        QString textInputIconPath("qrc:///images/textedit-icon.png");
+        textInput.setIconUrl(QUrl(textInputIconPath));
         textInput.setName("TextInput");
         m_DockModel->addEntry(textInput);
+        //
+        GridEntry imageOutput = GridEntry(ImageType);
+        QString imageOutputIconPath("qrc:///images/image-icon.png");
+        imageOutput.setIconUrl(QUrl(imageOutputIconPath));
+        imageOutput.setName("Image");
+        m_DockModel->addEntry(imageOutput);
     }
 
     void System::setComplexDelegates()
@@ -249,6 +256,7 @@ namespace Uber {
         m_ComplexDelegate->addDelegate(QString("Uber::Link"), QUrl::fromLocalFile("qml/Canvas/Link.qml"));
         m_ComplexDelegate->addDelegate(QString("Uber::Slider"),QUrl::fromLocalFile("qml/Canvas/SliderBlock.qml"));
         m_ComplexDelegate->addDelegate(QString("Uber::TextIO"),QUrl::fromLocalFile("qml/Canvas/TextBlock.qml"));
+        m_ComplexDelegate->addDelegate(QString("Uber::Image"),QUrl::fromLocalFile("qml/Canvas/ImageBlock.qml"));
     }
 
     DockModel* System::getDockModel()

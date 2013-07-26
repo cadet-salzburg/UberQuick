@@ -59,7 +59,8 @@ Circle {
                 console.log ("onDropped");
                 ConnectionManager.finishLink(object);
                 print( object.x + "---" + object.y );
-                contextMenu.model = ConnectionManager.getConnectionOptions();
+               //contextMenu.model = ConnectionManager.getConnectionOptions();
+                contextMenu.model = ConnectionManager.getConnectionTypename();
                 print( contextMenu.model.count + "-------------");
                 if ( contextMenu.model.count > 0 )
                 {

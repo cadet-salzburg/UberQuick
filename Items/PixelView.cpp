@@ -5,36 +5,39 @@
 namespace Uber {
     PixelView::PixelView(QQuickItem *parent)
     :QQuickItem(parent)
-    ,m_DefaultImage(":/images/default-img.png")
-    //,m_Image(m_DefaultImage)
+    ,m_Data(nullptr)
+    ,m_Texture(nullptr)
     {
         setFlag(ItemHasContents);
         setEnabled(true);
-//        QImage m_DefaultImage(":/images/default-img.png");
-        setImage( m_DefaultImage );
-        qDebug() << "constructor";
+        m_Texture = new UberTexture();
     }
 
     PixelView::~PixelView()
     {
-
+        delete m_Texture;
     }
 
     QSGNode* PixelView::updatePaintNode(QSGNode * node, QQuickItem::UpdatePaintNodeData *data)
     {
         if ( node || width() <= 0 || height() <= 0 )
         {
-            qDebug() << "WWW";
             delete node;
             node = nullptr;
-            //return node;
         }
-                    qDebug() << "WWAAAA";
         node = new QSGSimpleTextureNode;
         static_cast<QSGSimpleTextureNode*>(node)->setFiltering(QSGTexture::Nearest);
         static_cast<QSGSimpleTextureNode*>(node)->setRect(boundingRect());
-        QSGTexture* tex = createTextureFromImage(m_Image);
-        Q_ASSERT(tex);
+        QSGTexture* tex;
+        if ( !m_Data )
+        {
+            tex = createTextureFromImage(m_Image);
+        } else {
+            std::shared_ptr< const _2Real::Image> outty = _2Real::Image::asImage( m_Data );
+            m_Texture->setData(outty);
+            tex = m_Texture;
+        }
+        assert(tex);
         static_cast<QSGSimpleTextureNode*>(node)->setTexture(tex);
         return node;
     }
@@ -51,15 +54,27 @@ namespace Uber {
 
     void PixelView::setImage(const QImage &image)
     {
-        if ( image != m_Image )
-        {
-            m_Image = image;
-            emit imageChanged(m_Image);
-        }
+        m_Image = image;
+        emit imageChanged(m_Image);
+        update();
     }
 
     QImage PixelView::getImage() const
     {
         return m_Image;
+    }
+
+    void PixelView::setValue(const QVariant &image)
+    {
+        m_Data = image.value<std::shared_ptr<const _2Real::CustomType> >();
+//        std::shared_ptr< const _2Real::Image> outty = _2Real::Image::asImage( m_Data );
+//        m_Image = QImage( outty->getPixels(), outty->getWidth(), outty->getHeight(), QImage::Format_RGB888 );
+//        emit valueChanged(m_Data);
+        update();
+    }
+
+    QVariant PixelView::getValue() const
+    {
+        return QVariant::fromValue(m_Data);
     }
 }

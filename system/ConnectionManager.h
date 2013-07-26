@@ -20,6 +20,7 @@ namespace Uber {
         Q_INVOKABLE void                removeLink( Link* link = nullptr );
 
         Q_INVOKABLE Uber::StringModel*  getConnectionOptions();
+        Q_INVOKABLE Uber::StringModel*  getConnectionTypename();
 
     private:
         Link*                           m_Link;

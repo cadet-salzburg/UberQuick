@@ -7,8 +7,17 @@
 #include <QDebug>
 #include <QObjectList>
 #include "StringModel.h"
+#include <memory>
+#include "_2RealApplication.h"
+#include "_2RealDatatypes.h"
+#include <QMutex>
+#include <QImage>
+#include <QMutex>
+#include "../system/System.h"
 
 namespace Uber {
+using namespace _2Real;
+using namespace _2Real::app;
     class Point : public QObject {
         Q_OBJECT
     public:
@@ -27,6 +36,7 @@ namespace Uber {
         Q_OBJECT
     public:
         Link();
+        virtual ~Link();
         void                                setInlet( Inlet *inlet );
         void                                setOutlet( Outlet *outlet );
         Inlet*                              getInlet();
@@ -39,26 +49,29 @@ namespace Uber {
         Q_INVOKABLE     QPointF             getEndPos();
         Q_INVOKABLE     void                updatePosition( const QPointF& pos );
         bool                                isValid();
+        StringModel*                        getConnectionTypename();
         StringModel*                        getConnectionOptions();
 
         void                                connectSignals();
+        void                                receivedData( std::shared_ptr<const _2Real::CustomType> data );
 
     protected:
 
     signals:
         void                    linkChanged();
+
     public slots:
         void    slotCall()
         {
             qDebug() << " The Slot Was Called ";
         }
+
     private:
         Inlet*                              m_Inlet;
         Outlet*                             m_Outlet;
         QObjectList                         m_Points;
         StringModel*                        m_ConnectionOptions;
-
-
+        QMutex                              m_Mutex;
     };
     typedef QSharedPointer<Link> LinkRef;
     QDebug operator<<(QDebug dbg, const Link &link);

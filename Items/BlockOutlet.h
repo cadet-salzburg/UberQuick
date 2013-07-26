@@ -23,10 +23,12 @@ namespace Uber {
         {
             return m_OutletHandle.isValid();
         }
+        StringModel*                  getDataType();
         StringModel*     getDataTypeFields();
     private:
         OutletHandle    m_OutletHandle;
-            StringModel*                    m_ConnectionOptions;
+        StringModel*                    m_ConnectionOptions;
+        StringModel*                    m_DataType;
     public slots:
     };
     typedef QSharedPointer<BlockOutlet> BlockOutletRef;

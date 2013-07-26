@@ -85,7 +85,7 @@ namespace Uber {
         {
             removeLink();
         } else {
-            QObject::connect(m_Link->getOutlet(), SIGNAL(valueChanged(QVariant)),m_Link->getInlet(), SLOT(setValue(QVariant)));
+            m_Link->connectSignals();
         }
     }
 
@@ -123,6 +123,16 @@ namespace Uber {
         if ( m_Link )
         {
             return m_Link->getConnectionOptions();
+        } else {
+            return nullptr;
+        }
+    }
+
+    StringModel *ConnectionManager::getConnectionTypename()
+    {
+        if ( m_Link )
+        {
+            return m_Link->getConnectionTypename();
         } else {
             return nullptr;
         }
