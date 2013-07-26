@@ -6,6 +6,15 @@
 #include "_2RealApplication.h"
 #include "_2RealDatatypes.h"
 #include <memory>
+
+namespace Uber {
+#ifndef IMAGE_TYPEDEFS
+#define IMAGE_TYPEDEFS
+    typedef std::shared_ptr<const _2Real::Image> ImageConstRef;
+    typedef std::shared_ptr<_2Real::Image> ImageRef;
+#endif
+}
+
 namespace Uber {
     class Image : public InterfaceElement
     {
@@ -13,32 +22,27 @@ namespace Uber {
         Q_PROPERTY( int minWidth READ getMinWidth WRITE setMinWidth NOTIFY minWidthChanged )
         Q_PROPERTY( int maxWidth READ getMaxWidth WRITE setMaxWidth NOTIFY maxWidthChanged )
         Q_PROPERTY( qreal aspectRatio READ getAspectRatio NOTIFY aspectRatioChanged )
-        Q_PROPERTY( QImage image READ getImage WRITE setImage NOTIFY imageChanged )
-        Q_PROPERTY( QVariant value READ getValue WRITE setValue NOTIFY valueChanged )
+        Q_PROPERTY( QVariant image READ getImage WRITE setImage NOTIFY imageChanged )
     public:
         Image();
-        qreal   getAspectRatio() const;
-        void    setMinWidth( int w );
-        int     getMinWidth() const;
-        void    setMaxWidth( int w );
-        int     getMaxWidth() const;
-        QImage  getImage() const;
+        qreal           getAspectRatio() const;
+        void            setMinWidth( int w );
+        int             getMinWidth() const;
+        void            setMaxWidth( int w );
+        int             getMaxWidth() const;
+        QVariant        getImage() const;
     signals:
-        void    minWidthChanged(int);
-        void    maxWidthChanged(int);
-        void    imageChanged(QVariant);
-        void    valueChanged(QVariant);
-        void    aspectRatioChanged(qreal);
+        void            minWidthChanged(int);
+        void            maxWidthChanged(int);
+        void            imageChanged(QVariant);
+        void            aspectRatioChanged(qreal);
     public slots:
-        void    setImage(const QImage& img );
-        void    setImage(const QVariant& img);
-        void    setValue(const QVariant& value);
+        void            setImage(QVariant img);
     private:
-        qreal   m_AspectRatio;
-        int     m_MinWidth;
-        int     m_MaxWidth;
-        QImage  m_Image;
-        std::shared_ptr<const _2Real::CustomType> m_Data;
+        qreal           m_AspectRatio;
+        int             m_MinWidth;
+        int             m_MaxWidth;
+        ImageConstRef   m_Image;
         virtual void    initialize();
     };
 }

@@ -5,14 +5,14 @@
 namespace Uber {
     Image::Image()
     :InterfaceElement()
-    ,m_Image(":/images/default-img.png")
+    ,m_Image(nullptr)
     {
         initialize();
     }
 
     qreal Image::getAspectRatio() const
     {
-        return m_Image.width()/m_Image.height();
+        return m_Image->getWidth()/m_Image->getHeight();
     }
 
     void Image::setMinWidth(int w)
@@ -43,21 +43,14 @@ namespace Uber {
         return m_MaxWidth;
     }
 
-    QImage Image::getImage() const
+    QVariant Image::getImage() const
     {
-        return m_Image;
+        return QVariant::fromValue( m_Image );
     }
 
-    void Image::setImage(const QImage &img)
+    void Image::setImage(QVariant img)
     {
-        m_Image = img;
-    }
-
-    void Image::setImage(const QVariant &img)
-    {
-        m_Data = img.value<std::shared_ptr<const _2Real::CustomType> >();
-        std::shared_ptr< const _2Real::Image> outty = _2Real::Image::asImage( m_Data );
-        m_Image = QImage( outty->getPixels(), outty->getWidth(), outty->getHeight(), QImage::Format_RGB888 );
+        m_Image = img.value<ImageConstRef>();
         emit imageChanged(img);
     }
 

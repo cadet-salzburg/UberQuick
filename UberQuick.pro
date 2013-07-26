@@ -86,6 +86,7 @@ HEADERS += \
     items/Image.h \
     items/UberTexture.h
 
+
 OTHER_FILES += \
     qml/Canvas/Tooltip.qml \
     qml/Canvas/NodeRow.qml \
@@ -113,10 +114,12 @@ OTHER_FILES += \
 INCLUDEPATH += $(_2REAL_DEPENDENCIES_DIR)/eigen
 INCLUDEPATH += $(_2REAL_DEPENDENCIES_DIR)/poco/bin
 INCLUDEPATH += $(_2REAL_DEPENDENCIES_DIR)/poco/Foundation/include
+INCLUDEPATH += $(_2REAL_DEPENDENCIES_DIR)/vld/include
 INCLUDEPATH += $(_2REAL_DIR)/kernel/src
 INCLUDEPATH += items/
 INCLUDEPATH += models/
 INCLUDEPATH += system/
+
 
 
 #Linking
@@ -129,7 +132,7 @@ win32:CONFIG(release, debug|release): LIBS += -L$(_2REAL_DIR)/kernel/lib/ -l_2Re
 else:win32:CONFIG(debug, debug|release): LIBS += -L$(_2REAL_DIR)/kernel/lib/ -l_2RealFramework_32d
 win32:CONFIG(release, debug|release): LIBS += -L$(_2REAL_DEPENDENCIES_DIR)/poco/lib/ -lPocoFoundation
 else:win32:CONFIG(debug, debug|release): LIBS += -L$(_2REAL_DEPENDENCIES_DIR)/poco/lib/ -lPocoFoundationd
-
+win32:CONFIG(debug, debug|release): LIBS += -L$(_2REAL_DEPENDENCIES_DIR)/vld/lib/Win32/ -lvld
 
 LIBS += -ldwmapi
 

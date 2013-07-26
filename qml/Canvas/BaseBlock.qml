@@ -33,7 +33,7 @@ ObjectFrame {
         drag.target: parent
         onPositionChanged:
         {
-            print("actual" + Qt.point(parent.x, parent.y));
+            //print("actual" + Qt.point(parent.x, parent.y));
             object.position = Qt.point(parent.x, parent.y);
             blockMoved();
         }

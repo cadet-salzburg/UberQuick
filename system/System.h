@@ -102,6 +102,6 @@ namespace Uber {
 //                delete m_Canvas;
         }
     };
-    Q_DECLARE_METATYPE(std::shared_ptr<const _2Real::CustomType> )
+    Q_DECLARE_METATYPE(std::shared_ptr<const _2Real::Image> )
 }
 #endif // UBSYSTEM_H

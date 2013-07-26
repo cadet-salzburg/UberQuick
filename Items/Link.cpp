@@ -188,7 +188,7 @@ namespace Uber {
     }
     void Link::connectSignals()
     {
-        QObject::connect(getOutlet(), SIGNAL(valueChanged(QVariant)),getInlet(), SLOT(setValue(QVariant)));
+        QObject::connect(getOutlet(), SIGNAL(valueChanged(QVariant)),getInlet(), SIGNAL(valueChanged(QVariant)));
         if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::BlockOutlet" )
         {
             static_cast<Uber::BlockOutlet*>(m_Outlet)->getOutletHandle().registerToNewData(*this, &Link::receivedData );
@@ -199,7 +199,9 @@ namespace Uber {
     {
         assert( data.get() );
         m_Mutex.lock();
-        QVariant val = QVariant::fromValue(data);
+        m_Data = data;
+        std::shared_ptr<const _2Real::Image> img =_2Real::Image::asImage(m_Data);
+        QVariant val = QVariant::fromValue(img);
         emit m_Outlet->valueChanged(val);
         m_Mutex.unlock();
     }

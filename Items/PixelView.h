@@ -12,34 +12,40 @@
 #include "_2RealDatatypes.h"
 
 namespace Uber {
+#ifndef IMAGE_TYPEDEFS
+#define IMAGE_TYPEDEFS
+    typedef std::shared_ptr<const _2Real::Image> ImageConstRef;
+    typedef std::shared_ptr<_2Real::Image> ImageRef;
+#endif
     class PixelView : public QQuickItem
     {
         Q_OBJECT
-        Q_PROPERTY( QVariant value READ getValue WRITE setValue NOTIFY valueChanged)
-        Q_PROPERTY( QImage image READ getImage WRITE setImage NOTIFY imageChanged)
+        Q_PROPERTY( QVariant image READ getImage WRITE setImage NOTIFY imageChanged )
+        Q_PROPERTY( QString placeholder READ getPlaceholderPath WRITE setPlaceholderPath NOTIFY placeholderPathChanged )
     public:
         explicit PixelView(QQuickItem *parent = 0);
         virtual ~PixelView();
 
         QSGNode*        updatePaintNode(QSGNode *node, UpdatePaintNodeData *data);
-        QSGTexture*     createTextureFromImage(const QImage & image) const;
 
-        void            setImage(const QImage& image );
-        void            setValue(const QVariant& image );
+        void            setPlaceholderPath( const QString& path );
+        QString         getPlaceholderPath() const;
 
-        QImage          getImage() const;
-        QVariant        getValue() const;
+        void            setImage( QVariant image );
+        QVariant        getImage() const;
 
     signals:
-        void            imageChanged(QImage);
-        void            valueChanged(QVariant);
+        void            imageChanged(QVariant);
+        void            placeholderPathChanged(QString);
     public slots:
+    private:
+        void            initialize();
 
 
     private:
-        QImage           m_Image;
         QString          m_Path;
-        std::shared_ptr<const _2Real::CustomType> m_Data;
+        ImageConstRef    m_Image;
+        ImageRef         m_PlaceholderImage;
         UberTexture     *m_Texture;
     };
 }

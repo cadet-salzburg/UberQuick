@@ -6,6 +6,7 @@
 #include <memory>
 
 
+
 int main(int argc, char *argv[])
 {
 
@@ -21,5 +22,6 @@ int main(int argc, char *argv[])
     system->showWindows();
     int res =  app.exec();
     delete system;
+    _CrtDumpMemoryLeaks();
     return res;
 }

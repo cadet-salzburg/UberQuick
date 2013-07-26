@@ -67,11 +67,12 @@ using namespace _2Real::app;
         }
 
     private:
-        Inlet*                              m_Inlet;
-        Outlet*                             m_Outlet;
-        QObjectList                         m_Points;
-        StringModel*                        m_ConnectionOptions;
-        QMutex                              m_Mutex;
+        Inlet*                                      m_Inlet;
+        Outlet*                                     m_Outlet;
+        QObjectList                                 m_Points;
+        StringModel*                                m_ConnectionOptions;
+        QMutex                                      m_Mutex;
+        std::shared_ptr<const _2Real::CustomType>   m_Data;
     };
     typedef QSharedPointer<Link> LinkRef;
     QDebug operator<<(QDebug dbg, const Link &link);

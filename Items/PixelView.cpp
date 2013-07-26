@@ -5,12 +5,15 @@
 namespace Uber {
     PixelView::PixelView(QQuickItem *parent)
     :QQuickItem(parent)
-    ,m_Data(nullptr)
+    ,m_Path(":/images/default-img.png")
+    ,m_Image(nullptr)
+    ,m_PlaceholderImage(nullptr)
     ,m_Texture(nullptr)
     {
         setFlag(ItemHasContents);
         setEnabled(true);
         m_Texture = new UberTexture();
+        initialize();
     }
 
     PixelView::~PixelView()
@@ -20,61 +23,67 @@ namespace Uber {
 
     QSGNode* PixelView::updatePaintNode(QSGNode * node, QQuickItem::UpdatePaintNodeData *data)
     {
-        if ( node || width() <= 0 || height() <= 0 )
+        if ( node )
         {
             delete node;
             node = nullptr;
+        }
+
+
+
+        if ( width() <= 0 || height() <= 0 )
+        {
+            return nullptr;
         }
         node = new QSGSimpleTextureNode;
         static_cast<QSGSimpleTextureNode*>(node)->setFiltering(QSGTexture::Nearest);
         static_cast<QSGSimpleTextureNode*>(node)->setRect(boundingRect());
         QSGTexture* tex;
-        if ( !m_Data )
+        if ( !m_Image )
         {
-            tex = createTextureFromImage(m_Image);
+            m_Texture->setData(m_PlaceholderImage);
         } else {
-            std::shared_ptr< const _2Real::Image> outty = _2Real::Image::asImage( m_Data );
-            m_Texture->setData(outty);
-            tex = m_Texture;
+            m_Texture->setData(m_Image);
         }
+        tex = m_Texture;
         assert(tex);
         static_cast<QSGSimpleTextureNode*>(node)->setTexture(tex);
         return node;
     }
 
-    QSGTexture* PixelView::createTextureFromImage(const QImage &image) const
+    void PixelView::setPlaceholderPath(const QString &path)
     {
-        QSGTexture *t = nullptr;
-        if (!image.isNull())
+        if ( m_Path != path )
         {
-            t = System::getInstance()->getWindow()->createTextureFromImage(image);
+            m_Path = path;
+            initialize();
+            emit placeholderPathChanged(m_Path);
         }
-        return t;
     }
 
-    void PixelView::setImage(const QImage &image)
+    QString PixelView::getPlaceholderPath() const
     {
-        m_Image = image;
-        emit imageChanged(m_Image);
+        return m_Path;
+    }
+
+    void PixelView::setImage(QVariant image)
+    {
+        m_Image = image.value<ImageConstRef>();
+        emit imageChanged(image);
         update();
     }
 
-    QImage PixelView::getImage() const
+    QVariant PixelView::getImage() const
     {
-        return m_Image;
+        return QVariant::fromValue( m_Image );
     }
 
-    void PixelView::setValue(const QVariant &image)
+    void PixelView::initialize()
     {
-        m_Data = image.value<std::shared_ptr<const _2Real::CustomType> >();
-//        std::shared_ptr< const _2Real::Image> outty = _2Real::Image::asImage( m_Data );
-//        m_Image = QImage( outty->getPixels(), outty->getWidth(), outty->getHeight(), QImage::Format_RGB888 );
-//        emit valueChanged(m_Data);
-        update();
-    }
-
-    QVariant PixelView::getValue() const
-    {
-        return QVariant::fromValue(m_Data);
+        QImage img;
+        img.load(m_Path);
+        m_PlaceholderImage = ImageRef( new _2Real::Image());
+        QImage::Format f = img.format();
+        m_PlaceholderImage->setImagedata<uchar>(img.bits(),img.width(),img.height(), _2Real::Image::ChannelOrder::ARGB, _2Real::Image::Datatype::UINT8);
     }
 }
