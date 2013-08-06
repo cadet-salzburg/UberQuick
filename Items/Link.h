@@ -65,6 +65,10 @@ using namespace _2Real::app;
         {
             qDebug() << " The Slot Was Called ";
         }
+//        void killSelf()
+//        {
+//            System::getInstance()->removeItem(this);
+//        }
 
     private:
         Inlet*                                      m_Inlet;
@@ -72,7 +76,7 @@ using namespace _2Real::app;
         QObjectList                                 m_Points;
         StringModel*                                m_ConnectionOptions;
         QMutex                                      m_Mutex;
-        std::shared_ptr<const _2Real::CustomType>   m_Data;
+        //std::shared_ptr<const _2Real::CustomType>   m_Data;
     };
     typedef QSharedPointer<Link> LinkRef;
     QDebug operator<<(QDebug dbg, const Link &link);

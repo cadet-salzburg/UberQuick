@@ -33,6 +33,7 @@ namespace Uber {
         QString         m_Name;
     signals:
         void valueChanged(QVariant val);
+        void killSelf();
     public slots:
         virtual void setValue(QVariant val)
         {

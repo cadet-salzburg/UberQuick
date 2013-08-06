@@ -27,7 +27,7 @@ namespace Uber {
     {
         if ( !m_DelegateStore.contains(modelType) )
             return QUrl();
-        std::cout << modelType.toUtf8().constData() << std::endl;
+        qDebug() << modelType.toUtf8().constData();
         return m_DelegateStore.value(modelType);
     }
 }

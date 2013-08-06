@@ -24,6 +24,18 @@ namespace Uber {
 
     }
 
+    ItemObjectListModel::~ItemObjectListModel()
+    {
+        qDebug() << " Destructor Item Model";
+        int cnt = count();
+        for ( int i =0; i< cnt; ++i )
+        {
+            Item* item = at(i);
+            delete item;
+        }
+        removeAt(0, cnt);
+    }
+
     QVariant ItemObjectListModel::data(const QModelIndex &index, int role ) const
     {
         if (index.row() < 0 || index.row() >= m_objects.size())

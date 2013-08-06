@@ -11,6 +11,7 @@ namespace Uber {
         OutletObjectListModel(QObject *parent = nullptr);
         OutletObjectListModel(const QList<Outlet*> &objects, QObject *parent = 0);
         OutletObjectListModel(OutletObjectListModel *outletListModel, QObject *parent);
+        virtual ~OutletObjectListModel();
     };
 }
 #endif // OUTLETOBJECTLISTMODEL_H

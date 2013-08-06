@@ -23,11 +23,10 @@ GraphCanvas {
         anchors.fill: parent
         propagateComposedEvents: true
         hoverEnabled: true
-        acceptedButtons: Qt.LeftButton | Qt.RightButton
+        acceptedButtons: Qt.LeftButton
         onClicked: {
-            if (mouse.button == Qt.RightButton) {
-                console.debug(getTypeOfChildAt(mouseX, mouseY))
-            } else if (mouse.button == Qt.LeftButton) {
+            print(mouse.button);
+            if (mouse.button == Qt.LeftButton) {
                 if (workbench.state == "showDock") {
                     workbench.state = "hideDock"
                 }
@@ -49,7 +48,6 @@ GraphCanvas {
             mouseArea.onClicked.connect(contextMenu.hide);
         }
     }
-    //------------ Custom Delegate Test Ends ----------------//
     Text {
         id: info
         text: "Double-click to make a new object"
@@ -60,59 +58,13 @@ GraphCanvas {
         anchors.verticalCenter: workbench.verticalCenter
     }
 
-
-
     Repeater {
         id: grid
         model: ItemModel
         delegate: Loader {
             source: ComplexDelegate.getDelegate(object.className)
-            //            x: object.x
-            //            y: object.y
-            onLoaded: {
-                console.log("---->" + object.className)
-            }
         }
     }
-
-//    DockTextBrowser {
-
-//    }
-
-
-
-
-
-
-
-    //    Menu {
-    //        id:  mmm
-    //        title: "Edit"
-    //        MenuItem {
-    //            text: "Cut"
-    //            shortcut: "Ctrl+X"
-    //        }
-
-    //        MenuItem {
-    //            text: "Copy"
-    //            shortcut: "Ctrl+C"
-    //        }
-
-    //        MenuItem {
-    //            text: "Paste"
-    //            shortcut: "Ctrl+V"
-    //        }
-
-    //        MenuSeparator { }
-
-    //        Menu {
-    //            title: "More Stuff"
-
-    //            MenuItem {
-    //                text: "Do Nothing"
-    //            }
-    //        }
-    //    }
 
     TaskBar {
         anchors.bottom: workbench.bottom

@@ -9,9 +9,10 @@
 #include <QDebug>
 #include <QCompleter>
 #include "_2RealApplication.h"
-#include "../items/Item.h"
+//#include "../items/Item.h"
 
 namespace Uber {
+    class Item;
     typedef QList<class GridEntry> GridEntryList;
     enum  GridEntryType { BlockType, SliderType, TextInputType, ImageType };
     class GridEntry

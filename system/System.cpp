@@ -12,6 +12,7 @@
 #include "../items/Canvas.h"
 #include "../items/Circle.h"
 #include "../items/BezierCurve.h"
+#include "../items/PainterBezier.h"
 #include "../items/Link.h"
 #include "../items/Slider.h"
 #include "../items/TextIO.h"
@@ -29,6 +30,7 @@
 #include "../models/StringModel.h"
 #include <QStringListModel>
 #include <memory>
+#include <iostream>
 
 #include <QWidget>
 #include <QHBoxLayout>
@@ -40,17 +42,28 @@ namespace Uber {
     System* System::m_Instance = nullptr;
     System::System()
     :QObject(nullptr)
-    ,m_DockModel(new DockModel())
-    ,m_ComplexDelegate( new ComplexDelegate() )
-    ,m_ItemModel(new ItemObjectListModel())
-    ,m_Engine(Engine::instance())
-    ,m_QmlEngine(new QQmlEngine )
-    ,m_Dock(new QQuickView( m_QmlEngine, 0))
-    ,m_Canvas(new QQuickView( m_QmlEngine, 0))
-    , mFileLoader( new FileLoader( *this ) )
+    ,m_DockModel(nullptr)
+    ,m_ComplexDelegate(nullptr )
+    ,m_ItemModel(nullptr)
+    ,m_Engine( Engine::instance())
+    ,m_QmlEngine(nullptr)
+    ,m_Dock(nullptr)
+    ,m_Canvas(nullptr)
+    ,mFileLoader( nullptr )
     ,m_CurrentLink(nullptr)
     ,m_ConnectionManager(nullptr)
     {
+        m_DockModel = new DockModel(0);
+        m_ComplexDelegate = new ComplexDelegate(0);
+        m_ItemModel = new ItemObjectListModel(0);
+        m_QmlEngine = new QQmlEngine(0);
+        m_Dock = new QQuickView( m_QmlEngine, 0 );
+        m_Canvas = new QQuickView( m_QmlEngine, 0 );
+        mFileLoader = new FileLoader( *this );
+        m_ConnectionManager = new ConnectionManager(m_ItemModel);
+
+
+
         m_SurfaceFormat.setAlphaBufferSize(8);
         m_SurfaceFormat.setStencilBufferSize(8);
         m_Canvas->setResizeMode(QQuickView::SizeRootObjectToView);
@@ -71,19 +84,14 @@ namespace Uber {
         registerQmlTypes();
         setComplexDelegates();
 
-        m_ConnectionManager = new ConnectionManager(m_ItemModel);
+
         qRegisterMetaType< std::shared_ptr<const _2Real::CustomType> >("std::shared_ptr<const _2Real::CustomType>");
     }
 
     System::~System()
     {
         qDebug() << "Destructor called";
-        delete m_DockModel;
-        delete m_ItemModel;
-        delete m_QmlEngine;
-        delete m_ComplexDelegate;
-        delete m_Canvas;
-        delete m_Dock;
+
     }
 
     void System::registerQmlTypes()
@@ -106,7 +114,7 @@ namespace Uber {
         qmlRegisterType<ItemObjectListModel>();
         qmlRegisterType<Canvas>("UberComponents", 1,0,"GraphCanvas");
         qmlRegisterType<Circle>("UberComponents", 1,0,"Circle");
-        qmlRegisterType<BezierCurve>("UberComponents", 1,0,"Bezier");
+        qmlRegisterType<PainterBezier>("UberComponents", 1,0,"Bezier");
         qmlRegisterType<EventFilter>("UberComponents", 1, 0, "MouseFilter");
         qmlRegisterType<PixelView>("UberComponents", 1, 0, "ImageView");
 
@@ -148,6 +156,19 @@ namespace Uber {
     {
         m_Canvas->show();
         //m_Dock->show();
+    }
+
+    void System::removeItem(Item *item)
+    {
+        if ( item )
+        {
+            int idx = m_ItemModel->indexOf(item);
+            if ( idx!=-1)
+            {
+                delete item;
+                m_ItemModel->removeAt(idx);
+            }
+        }
     }
 
     void System::loadQmlFiles()

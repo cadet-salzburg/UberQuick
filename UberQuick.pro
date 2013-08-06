@@ -46,7 +46,8 @@ SOURCES += \
     items/StringObject.cpp \
     models/StringModel.cpp \
     items/Image.cpp \
-    items/UberTexture.cpp
+    items/UberTexture.cpp \
+    items/PainterBezier.cpp
 
 HEADERS += \
     models/QObjectListModelT.h \
@@ -84,7 +85,8 @@ HEADERS += \
     system/Converter_T.h \
     system/ConverterFromDescription.h \
     items/Image.h \
-    items/UberTexture.h
+    items/UberTexture.h \
+    items/PainterBezier.h
 
 
 OTHER_FILES += \
@@ -106,7 +108,8 @@ OTHER_FILES += \
     qml/Canvas/ObjectFrame.qml \
     qml/Windows/ContextMenu.qml \
     qml/Canvas/TextElement.qml \
-    qml/Canvas/ImageBlock.qml
+    qml/Canvas/ImageBlock.qml \
+    js/Bezier.js
 
 
 

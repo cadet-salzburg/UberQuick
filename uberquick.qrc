@@ -10,5 +10,6 @@
         <file alias="image-icon.png">images/ui/image.png</file>
         <file alias="slider-icon.png">images/ui/slider.png</file>
         <file alias="textedit-icon.png">images/ui/textedit.png</file>
+        <file alias="default-img.jpg">images/defaultImage.jpg</file>
     </qresource>
 </RCC>

@@ -14,7 +14,7 @@ class UberTexture : public QSGTexture
     Q_OBJECT
 public:
     UberTexture();
-    ~UberTexture();
+    virtual ~UberTexture();
     void    setData( std::shared_ptr< const _2Real::Image>  data );
     void    bind();
     bool hasAlphaChannel() const { return m_has_alpha; }

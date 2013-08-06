@@ -31,13 +31,22 @@ ObjectFrame {
         id: mouseArea
         anchors.fill: parent
         drag.target: parent
+                acceptedButtons: Qt.LeftButton | Qt.RightButton
         onPositionChanged:
         {
-            //print("actual" + Qt.point(parent.x, parent.y));
+            print("actual" + Qt.point(parent.x, parent.y));
             object.position = Qt.point(parent.x, parent.y);
             blockMoved();
         }
         onClicked: {
+            print(mouse.button);
+            if ( mouse.button == Qt.RightButton )
+            {
+                print("------removing--------")
+                System.removeItem(object);
+            } else {
+                print("------why-----")
+            }
 
             workbench.state = "hideDock"
         }

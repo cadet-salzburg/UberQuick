@@ -10,8 +10,8 @@ namespace Uber {
     :QAbstractListModel( parent )
     ,m_AutoCompleter( nullptr )
     {
-        m_AutoCompleter = new QCompleter(this);
-        m_AutoCompleter->setModel(this);
+//        m_AutoCompleter = new QCompleter(this);
+//        m_AutoCompleter->setModel(this);
     }
 
     int DockModel::rowCount(const QModelIndex &parent) const

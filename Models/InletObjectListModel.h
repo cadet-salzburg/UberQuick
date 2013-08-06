@@ -12,6 +12,7 @@ namespace Uber {
         InletObjectListModel(QObject *parent = nullptr);
         InletObjectListModel(const QList<Inlet*> &objects, QObject *parent = 0);
         InletObjectListModel(InletObjectListModel *inletListModel, QObject *parent);
+        virtual ~InletObjectListModel();
     };
 }
 #endif // INLETOBJECTLISTMODEL_H

@@ -12,7 +12,6 @@ namespace Uber {
     {
 
     }
-
     QPointF Point::get() const
     {
         return m_Point;
@@ -56,8 +55,14 @@ namespace Uber {
     {
         if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::BlockOutlet" )
         {
+            qDebug() << " unregistering";
             static_cast<Uber::BlockOutlet*>(m_Outlet)->getOutletHandle().unregisterFromNewData(*this, &Link::receivedData);
         }
+        QObject::disconnect(m_Inlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
+        QObject::disconnect(m_Outlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
+        QObject::disconnect(getOutlet(), SIGNAL(valueChanged(QVariant)),getInlet(), SIGNAL(valueChanged(QVariant)));
+        QObject::disconnect(getOutlet(), SIGNAL(killSelf()),this, SLOT(killSelf()));
+        QObject::disconnect(getInlet(), SIGNAL(killSelf()),this, SLOT(killSelf()));
     }
     void Link::setInlet( Inlet *inlet )
     {
@@ -189,6 +194,8 @@ namespace Uber {
     void Link::connectSignals()
     {
         QObject::connect(getOutlet(), SIGNAL(valueChanged(QVariant)),getInlet(), SIGNAL(valueChanged(QVariant)));
+        QObject::connect(getOutlet(), SIGNAL(killSelf()),this, SLOT(killSelf()));
+        QObject::connect(getInlet(), SIGNAL(killSelf()),this, SLOT(killSelf()));
         if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::BlockOutlet" )
         {
             static_cast<Uber::BlockOutlet*>(m_Outlet)->getOutletHandle().registerToNewData(*this, &Link::receivedData );
@@ -199,8 +206,7 @@ namespace Uber {
     {
         assert( data.get() );
         m_Mutex.lock();
-        m_Data = data;
-        std::shared_ptr<const _2Real::Image> img =_2Real::Image::asImage(m_Data);
+        std::shared_ptr<const _2Real::Image> img =_2Real::Image::asImage(data);
         QVariant val = QVariant::fromValue(img);
         emit m_Outlet->valueChanged(val);
         m_Mutex.unlock();

@@ -36,12 +36,12 @@
       <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Generated Files\Release">
-      <UniqueIdentifier>{b818495b-1cc3-457a-ba0f-aa02ccefcee9}</UniqueIdentifier>
+      <UniqueIdentifier>{e9c25801-1e7c-46fb-b473-359e2ca950f4}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Debug">
-      <UniqueIdentifier>{09ba850a-dc6a-4225-8e72-9b9f5bab1791}</UniqueIdentifier>
+      <UniqueIdentifier>{7ffea34e-f045-4d5f-9c00-3fcb75b6101f}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
@@ -456,6 +456,9 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <None Include="images\defaultImage.jpg">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="images\defaultImage.png">
       <Filter>Resource Files</Filter>
     </None>

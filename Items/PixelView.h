@@ -10,6 +10,7 @@
 #include <memory>
 #include "_2RealApplication.h"
 #include "_2RealDatatypes.h"
+#include "../items/Image.h"
 
 namespace Uber {
 #ifndef IMAGE_TYPEDEFS
@@ -22,6 +23,7 @@ namespace Uber {
         Q_OBJECT
         Q_PROPERTY( QVariant image READ getImage WRITE setImage NOTIFY imageChanged )
         Q_PROPERTY( QString placeholder READ getPlaceholderPath WRITE setPlaceholderPath NOTIFY placeholderPathChanged )
+        Q_PROPERTY( Uber::Image* imageProvider READ getImageProvider WRITE setImageProvider NOTIFY imageProviderChanged )
     public:
         explicit PixelView(QQuickItem *parent = 0);
         virtual ~PixelView();
@@ -31,13 +33,15 @@ namespace Uber {
         void            setPlaceholderPath( const QString& path );
         QString         getPlaceholderPath() const;
 
-        void            setImage( QVariant image );
+        void            setImageProvider( Image *item );
+        Image*          getImageProvider();
         QVariant        getImage() const;
-
     signals:
         void            imageChanged(QVariant);
         void            placeholderPathChanged(QString);
+        void            imageProviderChanged();
     public slots:
+        void            setImage( QVariant image );
     private:
         void            initialize();
 
@@ -47,6 +51,7 @@ namespace Uber {
         ImageConstRef    m_Image;
         ImageRef         m_PlaceholderImage;
         UberTexture     *m_Texture;
+        Image*           m_ImageItem;
     };
 }
 #endif // PIXELVIEW_H

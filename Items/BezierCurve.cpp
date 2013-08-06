@@ -58,7 +58,7 @@ BezierCurve::BezierCurve(QQuickItem *parent)
 
 BezierCurve::~BezierCurve()
 {
-
+    delete m_material;
 }
 
 void BezierCurve::setP1(const QPointF &p)

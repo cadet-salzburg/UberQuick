@@ -19,7 +19,7 @@ namespace Uber {
         Block();
         Block( const BlockHandle& handle, QString name= "" );
         Block( const Block &other);
-        ~Block();
+        virtual ~Block();
         void                                        setName( QString name );
         Q_INVOKABLE QString                         getName();
         // It seems that the QT mocing has a bug and requires to use the namespace in the return type.

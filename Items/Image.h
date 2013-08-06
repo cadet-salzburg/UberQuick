@@ -36,14 +36,17 @@ namespace Uber {
         void            maxWidthChanged(int);
         void            imageChanged(QVariant);
         void            aspectRatioChanged(qreal);
+
+        void            valueChanged();
     public slots:
         void            setImage(QVariant img);
     private:
         qreal           m_AspectRatio;
         int             m_MinWidth;
         int             m_MaxWidth;
-        ImageConstRef   m_Image;
+        ImageConstRef   m_Image, m_ImageKeep;
         virtual void    initialize();
+        int             cnt;
     };
 }
 #endif // IMAGE_H

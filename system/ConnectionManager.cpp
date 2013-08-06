@@ -102,6 +102,7 @@ namespace Uber {
             }
         }
         int idx = m_ItemModel->indexOf(link);
+        delete link;
         m_ItemModel->removeAt(idx);
     }
 

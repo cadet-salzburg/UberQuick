@@ -4,7 +4,7 @@
 #include <QPoint>
 #include <QSize>
 #include <QUrl>
-
+#include "../system/System.h"
 namespace Uber {
     class Item : public QObject
     {
@@ -19,6 +19,7 @@ namespace Uber {
         Item(QObject *parent = nullptr );
         Item(QObject *parent, QPointF position, QSizeF size);
         Item(const Item &other);
+        virtual ~Item();
 
         Q_INVOKABLE QPointF     getPosition() const;
         float                   x() const;
@@ -30,10 +31,12 @@ namespace Uber {
         {
             return QString( metaObject()->className());
         }
+
         const QUrl&             getUrl()
         {
             return m_ComponentUrl;
         }
+
         void                    setUrl( const QUrl &url)
         {
             m_ComponentUrl = url;
@@ -57,7 +60,7 @@ namespace Uber {
         void                    setPosition(const QPointF &position );
         void                    setX( float x );
         void                    setY( float y );
-
+        void                    killSelf();
     };
 }
 #endif // ITEM_H

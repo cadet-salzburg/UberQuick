@@ -16,6 +16,7 @@ namespace Uber {
     class ConnectionManager;
     class ComplexDelegate;
     class Link;
+    class Item;
 
     class System : public QObject
     {
@@ -49,6 +50,7 @@ namespace Uber {
         void                                setContextProperties();
         void                                enableTransparentWindows();
         void                                showWindows();
+        Q_INVOKABLE void                    removeItem(Item* item);
 
         Q_INVOKABLE void                    addDockItem( int index );
         Q_INVOKABLE QPointF                 maptoGlobal(QQuickItem* item);
@@ -100,6 +102,12 @@ namespace Uber {
 //                delete m_Dock;
 //            if ( m_Canvas )
 //                delete m_Canvas;
+            delete m_DockModel;
+            delete m_ItemModel;
+            delete m_QmlEngine;
+            delete m_ComplexDelegate;
+            delete m_Canvas;
+            delete m_Dock;
         }
     };
     Q_DECLARE_METATYPE(std::shared_ptr<const _2Real::Image> )

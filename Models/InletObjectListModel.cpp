@@ -1,4 +1,5 @@
 #include "InletObjectListModel.h"
+#include <QDebug>
 namespace Uber {
     InletObjectListModel::InletObjectListModel(QObject *parent)
     :QObjectListModelT<Inlet*>(parent)
@@ -17,4 +18,18 @@ namespace Uber {
     {
 
     }
+
+    InletObjectListModel::~InletObjectListModel()
+    {
+        qDebug() << " InletObjectListModel destructor";
+        int cnt = count();
+        for ( int i =0; i< cnt; ++i )
+        {
+            Inlet* item = at(i);
+            emit item->killSelf();
+            delete item;
+        }
+        removeAt(0, cnt);
+    }
+
 }

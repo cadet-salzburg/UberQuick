@@ -9,12 +9,7 @@ BaseBlock {
     ImageView {
         anchors.fill: parent
         anchors.margins: 15
-        //image: object.image
-        //image: object.image ? object.image : null
-        onImageChanged: {
-            print("Image Changed----")
-            image: object.image;
-        }
+        imageProvider: object
     }
     Button {
         iconPath:"qrc:///images/handle-icon.png"

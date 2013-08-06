@@ -26,6 +26,11 @@ namespace Uber {
 
     }
 
+    Item::~Item()
+    {
+
+    }
+
     float  Item::x() const
     {
         return m_Position.x();
@@ -54,6 +59,11 @@ namespace Uber {
             m_Position.setY(y);
             emit positionChanged();
         }
+    }
+
+    void Item::killSelf()
+    {
+        System::getInstance()->removeItem(this);
     }
 
     QPointF Item::getPosition() const

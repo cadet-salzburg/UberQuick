@@ -5,10 +5,11 @@
 namespace Uber {
     PixelView::PixelView(QQuickItem *parent)
     :QQuickItem(parent)
-    ,m_Path(":/images/default-img.png")
+    ,m_Path(":/images/default-img.jpg")
     ,m_Image(nullptr)
     ,m_PlaceholderImage(nullptr)
     ,m_Texture(nullptr)
+    ,m_ImageItem(nullptr)
     {
         setFlag(ItemHasContents);
         setEnabled(true);
@@ -28,9 +29,6 @@ namespace Uber {
             delete node;
             node = nullptr;
         }
-
-
-
         if ( width() <= 0 || height() <= 0 )
         {
             return nullptr;
@@ -66,10 +64,20 @@ namespace Uber {
         return m_Path;
     }
 
+    void PixelView::setImageProvider(Image *item)
+    {
+        m_ImageItem = item;
+        QObject::connect(m_ImageItem, SIGNAL(imageChanged(QVariant)), this, SLOT(setImage(QVariant)));
+    }
+
+    Image *PixelView::getImageProvider()
+    {
+        return m_ImageItem;
+    }
+
     void PixelView::setImage(QVariant image)
     {
         m_Image = image.value<ImageConstRef>();
-        emit imageChanged(image);
         update();
     }
 
@@ -83,7 +91,7 @@ namespace Uber {
         QImage img;
         img.load(m_Path);
         m_PlaceholderImage = ImageRef( new _2Real::Image());
-        QImage::Format f = img.format();
-        m_PlaceholderImage->setImagedata<uchar>(img.bits(),img.width(),img.height(), _2Real::Image::ChannelOrder::ARGB, _2Real::Image::Datatype::UINT8);
+        QImage newImage = img.convertToFormat(QImage::Format_RGB888);
+        m_PlaceholderImage->setImagedata<uchar>(newImage.bits(),newImage.width(),newImage.height(), _2Real::Image::ChannelOrder::RGB, _2Real::Image::Datatype::UINT8);
     }
 }

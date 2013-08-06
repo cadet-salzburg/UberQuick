@@ -61,7 +61,7 @@ public:
     explicit QObjectListModel(QObject *parent = 0);
     QObjectListModel(const QList<QObject*> &objects, QObject *parent = 0);
     QObjectListModel(QObjectListModel *objectListModel, QObject *parent = 0);
-    ~QObjectListModel();
+    virtual ~QObjectListModel();
 
     inline QObject * parent() const { return QObject::parent(); }
 

@@ -20,6 +20,7 @@ Rectangle {
         }
         onClicked: {
             workbench.state = "hideDock"
+            print(mouse.button);
         }
     }
 }

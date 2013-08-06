@@ -31,6 +31,7 @@ namespace Uber {
 
     Block::~Block()
     {
+        qDebug() << " destructor Block";
         delete m_InletModel;
         delete m_OutletModel;
     }
@@ -76,8 +77,12 @@ namespace Uber {
             m_InletModel = new InletObjectListModel(0);
             m_OutletModel = new OutletObjectListModel(0);
 
-            BlockHandle::InletHandles  inlets = m_BlockHandle.getAllInletHandles();
-            BlockHandle::OutletHandles outlets = m_BlockHandle.getAllOutletHandles();
+            std::vector<InletHandle> inlets;
+            std::vector<OutletHandle> outlets;
+
+            m_BlockHandle.getAllInletHandles(inlets);
+            m_BlockHandle.getAllOutletHandles(outlets);
+
             BlockHandle::InletHandleIterator iterIn = inlets.begin();
             int i =0;
             for ( ;iterIn!=inlets.end(); ++iterIn )

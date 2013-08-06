@@ -7,6 +7,7 @@ namespace Uber {
     :InterfaceElement()
     ,m_Image(nullptr)
     {
+        cnt = 0;
         initialize();
     }
 
@@ -53,7 +54,6 @@ namespace Uber {
         m_Image = img.value<ImageConstRef>();
         emit imageChanged(img);
     }
-
     void Image::initialize()
     {
         InterfaceInlet *currentInlet( new InterfaceInlet());
