@@ -52,7 +52,6 @@ Rectangle {
             }
             MouseArea {
                 onPressed: {
-                    print("Item pressed:  " + index  );
                     list.currentIndex = index;
                     hide();
                 }

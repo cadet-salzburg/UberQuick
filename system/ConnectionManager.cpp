@@ -10,6 +10,7 @@
 #include "../items/InterfaceInlet.h"
 #include "../items/InterfaceOutlet.h"
 #include "../models/ItemObjectListModel.h"
+#include "../models/StringModel.h"
 
 namespace Uber {
     ConnectionManager::ConnectionManager( ItemObjectListModel* itemModel )
@@ -22,29 +23,24 @@ namespace Uber {
 
     void ConnectionManager::beginLink(Item *item, const QPointF &pos )
     {
-        qDebug() << "Begin adding link";
         m_Link = new Link();
         if ( item->getClassName()=="Uber::BlockInlet" )
         {
             BlockInlet *inlet = qobject_cast<BlockInlet*>(item);
             m_Link->setInlet(inlet);
-            qDebug() << "---Inlet";
         } else if ( item->getClassName()== "Uber::BlockOutlet" )
         {
             BlockOutlet *outlet = qobject_cast<BlockOutlet*>(item);
             m_Link->setOutlet(outlet);
-            qDebug() << "---Outlet";
         } else if ( item->getClassName()== "Uber::InterfaceInlet" )
         {
             InterfaceInlet *inlet = qobject_cast<InterfaceInlet*>(item);
             m_Link->setInlet(inlet);
-            qDebug() << "---Inlet";
         }
         else if ( item->getClassName()== "Uber::InterfaceOutlet" )
         {
             InterfaceOutlet *outlet = qobject_cast<InterfaceOutlet*>(item);
             m_Link->setOutlet(outlet);
-            qDebug() << "---Outlet";
         }
         m_ItemModel->append(m_Link);
         updateLink(pos);
@@ -55,7 +51,6 @@ namespace Uber {
     {
         if ( m_Link )
         {
-            qDebug() << "Link position was updated: " << pos;
             m_Link->updatePosition(pos);
         }
     }

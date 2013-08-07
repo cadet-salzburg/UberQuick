@@ -1,12 +1,9 @@
 #ifndef OUTLET_H
 #define OUTLET_H
 
-#include <QSharedPointer>
 #include <QVariant>
 #include "Item.h"
-#include "_2RealApplication.h"
 
-using namespace _2Real::app;
 namespace Uber {
     class Outlet : public Item
     {
@@ -33,10 +30,7 @@ namespace Uber {
         QString m_Name;
     signals:
         void valueChanged(QVariant val);
-        void killSelf();
     public slots:
     };
-    typedef QSharedPointer<Outlet> OutletRef;
-    Q_DECLARE_METATYPE(Outlet)
 }
 #endif // OUTLET_H

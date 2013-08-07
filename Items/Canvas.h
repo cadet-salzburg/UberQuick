@@ -15,12 +15,9 @@ namespace Uber {
         Canvas(QQuickItem *parent = 0);
         QColor                  getColor() const;
         void                    setColor( const QColor &color);
-        Q_INVOKABLE QString     getTypeOfChildAt( int x, int y );
     protected:
-        virtual bool            childMouseEventFilter(QQuickItem * item, QEvent * event);
 
         virtual void            dragEnterEvent(QDragEnterEvent * event);
-        virtual void            dragLeaveEvent(QDragLeaveEvent * event);
         virtual void            dragMoveEvent(QDragMoveEvent * event);
         virtual void            dropEvent(QDropEvent * event);
 

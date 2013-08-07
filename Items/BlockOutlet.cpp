@@ -1,4 +1,6 @@
 #include "BlockOutlet.h"
+#include "../models/StringModel.h"
+#include "StringObject.h"
 namespace Uber {
     BlockOutlet::BlockOutlet(QObject *parent)
     :Outlet(parent)
@@ -40,7 +42,10 @@ namespace Uber {
     {
         return m_OutletHandle;
     }
-
+    bool BlockOutlet::isValid() const
+    {
+        return m_OutletHandle.isValid();
+    }
     StringModel *BlockOutlet::getDataType()
     {
         if ( !m_DataType )

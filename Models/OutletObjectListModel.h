@@ -1,9 +1,10 @@
 #ifndef OUTLETOBJECTLISTMODEL_H
 #define OUTLETOBJECTLISTMODEL_H
 #include "QObjectListModelT.h"
-#include "../Items/Outlet.h"
+
 
 namespace Uber {
+    class Outlet;
     class OutletObjectListModel : public QObjectListModelT<Outlet*>
     {
         Q_OBJECT

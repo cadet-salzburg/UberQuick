@@ -1,9 +1,9 @@
 #ifndef STRINGMODEL_H
 #define STRINGMODEL_H
 #include "QObjectListModelT.h"
-#include "../Items/StringObject.h"
 
 namespace Uber {
+    class StringObject;
     class StringModel : public QObjectListModelT<StringObject*>
     {
         Q_OBJECT

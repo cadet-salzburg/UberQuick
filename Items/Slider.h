@@ -1,5 +1,6 @@
 #ifndef SLIDER_H
 #define SLIDER_H
+#include <QVariant>
 #include "InterfaceElement.h"
 namespace Uber {
 class Slider : public InterfaceElement

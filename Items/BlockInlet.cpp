@@ -1,5 +1,7 @@
 #include "BlockInlet.h"
 #include "_2RealDatatypes.h"
+#include "StringModel.h"
+#include "StringObject.h"
 namespace Uber {
     BlockInlet::BlockInlet(QObject *parent)
     :Inlet(parent)
@@ -42,7 +44,10 @@ namespace Uber {
     {
         return m_InletHandle;
     }
-
+    bool BlockInlet::isValid() const
+    {
+        return m_InletHandle.isValid();
+    }
     StringModel *BlockInlet::getDataType()
     {
         if ( !m_DataType )

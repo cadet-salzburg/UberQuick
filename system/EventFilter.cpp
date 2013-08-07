@@ -6,11 +6,9 @@ namespace Uber {
     EventFilter::EventFilter(QObject *parent)
     :QObject(parent)
     {
-        qDebug() << "EventFilter constructor called.";
         if ( hasParent() )
         {
             QObject::parent()->installEventFilter(this);
-            qDebug() << "Has parent and! has set up the event filter";
         }
     }
 
@@ -27,7 +25,7 @@ namespace Uber {
 //        QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(e);
 //        emit activated();
 //    }
-        qDebug() << "Event filter called.";
+        //qDebug() << "Event filter called.";
         return true;
         //return QObject::eventFilter(obj, e);
     }

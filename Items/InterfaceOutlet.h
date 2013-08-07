@@ -1,6 +1,5 @@
 #ifndef INTERFACEOUTLET_H
 #define INTERFACEOUTLET_H
-#include <QDebug>
 #include "Outlet.h"
 namespace Uber {
     class InterfaceOutlet : public Outlet

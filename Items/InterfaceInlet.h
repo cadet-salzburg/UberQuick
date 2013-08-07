@@ -2,13 +2,12 @@
 #define INTERFACEINLET_H
 #include "Inlet.h"
 #include <QVariant>
-#include <QDebug>
 namespace Uber {
     class InterfaceInlet : public Inlet
     {
         Q_OBJECT
     public:
-        InterfaceInlet(QObject *parent = 0);
+        InterfaceInlet( QObject *parent = 0 );
         virtual ~InterfaceInlet();
         virtual inline bool     isValid() const
         {

@@ -11,13 +11,12 @@
 #include "_2RealApplication.h"
 #include "_2RealDatatypes.h"
 #include "../items/Image.h"
-
-namespace Uber {
 #ifndef IMAGE_TYPEDEFS
 #define IMAGE_TYPEDEFS
     typedef std::shared_ptr<const _2Real::Image> ImageConstRef;
     typedef std::shared_ptr<_2Real::Image> ImageRef;
 #endif
+namespace Uber {
     class PixelView : public QQuickItem
     {
         Q_OBJECT

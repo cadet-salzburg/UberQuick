@@ -3,7 +3,9 @@
 #include "BlockOutlet.h"
 #include "InterfaceInlet.h"
 #include "InterfaceOutlet.h"
-#include <QImage>
+#include "StringModel.h"
+#include "../system/System.h"
+#include <QDebug>
 
 namespace Uber {
     Point::Point(QPointF p)
@@ -55,17 +57,13 @@ namespace Uber {
     {
         if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::BlockOutlet" )
         {
-            qDebug() << " unregistering";
             static_cast<Uber::BlockOutlet*>(m_Outlet)->getOutletHandle().unregisterFromNewData(*this, &Link::receivedData);
         }
-        QObject::disconnect(m_Inlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
-        QObject::disconnect(m_Outlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
-        QObject::disconnect(getOutlet(), SIGNAL(valueChanged(QVariant)),getInlet(), SIGNAL(valueChanged(QVariant)));
-        QObject::disconnect(getOutlet(), SIGNAL(killSelf()),this, SLOT(killSelf()));
-        QObject::disconnect(getInlet(), SIGNAL(killSelf()),this, SLOT(killSelf()));
+        disconnectSignals();
     }
     void Link::setInlet( Inlet *inlet )
     {
+        QObject::disconnect(m_Inlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
         delete m_Inlet;
         m_Inlet = inlet;
         QObject::connect(m_Inlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
@@ -74,6 +72,7 @@ namespace Uber {
 
     void Link::setOutlet( Outlet *outlet )
     {
+        QObject::disconnect(m_Outlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
         delete m_Outlet;
         m_Outlet = outlet;
         QObject::connect(m_Outlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
@@ -194,12 +193,21 @@ namespace Uber {
     void Link::connectSignals()
     {
         QObject::connect(getOutlet(), SIGNAL(valueChanged(QVariant)),getInlet(), SIGNAL(valueChanged(QVariant)));
-        QObject::connect(getOutlet(), SIGNAL(killSelf()),this, SLOT(killSelf()));
-        QObject::connect(getInlet(), SIGNAL(killSelf()),this, SLOT(killSelf()));
+        QObject::connect(getOutlet(), SIGNAL(killSelf()),this, SLOT(remove()));
+        QObject::connect(getInlet(), SIGNAL(killSelf()),this, SLOT(remove()));
         if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::BlockOutlet" )
         {
             static_cast<Uber::BlockOutlet*>(m_Outlet)->getOutletHandle().registerToNewData(*this, &Link::receivedData );
         }
+    }
+
+    void Link::disconnectSignals()
+    {
+        QObject::disconnect(m_Inlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
+        QObject::disconnect(m_Outlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
+        QObject::disconnect(getOutlet(), SIGNAL(valueChanged(QVariant)),getInlet(), SIGNAL(valueChanged(QVariant)));
+        QObject::disconnect(getOutlet(), SIGNAL(killSelf()),this, SLOT(remove()));
+        QObject::disconnect(getInlet(), SIGNAL(killSelf()),this, SLOT(remove()));
     }
 
     void Link::receivedData( std::shared_ptr<const _2Real::CustomType> data)
@@ -210,12 +218,5 @@ namespace Uber {
         QVariant val = QVariant::fromValue(img);
         emit m_Outlet->valueChanged(val);
         m_Mutex.unlock();
-    }
-
-    QDebug operator<<(QDebug dbg, const Link &link )
-    {
-        Q_UNUSED(link)
-        dbg.nospace() << "Link";
-        return dbg.maybeSpace();
     }
 }

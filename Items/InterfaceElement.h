@@ -1,9 +1,12 @@
 #ifndef INTERFACEELEMENT_H
 #define INTERFACEELEMENT_H
 #include "Item.h"
-#include "../Models/InletObjectListModel.h"
-#include "../Models/OutletObjectListModel.h"
+
 namespace Uber {
+    class Inlet;
+    class Outlet;
+    class InletObjectListModel;
+    class OutletObjectListModel;
     class InterfaceElement : public Item
     {
         Q_OBJECT
@@ -18,14 +21,8 @@ namespace Uber {
         Q_INVOKABLE Uber::InletObjectListModel*     getInletModel() const;
         Q_INVOKABLE Uber::OutletObjectListModel*    getOutletModel() const;
 
-        Q_INVOKABLE int                             getNumberOfInlets()
-        {
-            return m_InletModel->count();
-        }
-        Q_INVOKABLE int                             getNumberOfOutlets()
-        {
-            return m_OutletModel->count();
-        }
+        Q_INVOKABLE int                             getNumberOfInlets();
+        Q_INVOKABLE int                             getNumberOfOutlets();
         void                                        appendInlet(Inlet *inlet);
         void                                        appendOutlet(Outlet *outlet);
     signals:

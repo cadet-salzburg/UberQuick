@@ -2,9 +2,30 @@
 #include <QDebug>
 #include <QQmlEngine>
 #include <QStringList>
+#include <QQuickItem>
 #include <QQuickWindow>
 #include <QQmlContext>
 #include <dwmapi.h>
+#include <QStringListModel>
+#include <memory>
+#include <iostream>
+#include <QWidget>
+#include <QHBoxLayout>
+#include <QPushButton>
+#include <QQmlEngine>
+#include <QQuickView>
+#include "../system/System.h"
+#include "../system/FileLoader.h"
+#include "../system/EventFilter.h"
+#include "../system/ConnectionManager.h"
+#include "../system/ComplexDelegate.h"
+#include "../models/DockModel.h"
+#include "../models/ItemObjectListModel.h"
+#include "../models/DockModel.h"
+#include "../models/InletObjectListModel.h"
+#include "../models/OutletObjectListModel.h"
+#include "../models/ItemObjectListModel.h"
+#include "../models/StringModel.h"
 #include "../items/Item.h"
 #include "../items/Inlet.h"
 #include "../items/Outlet.h"
@@ -18,23 +39,10 @@
 #include "../items/TextIO.h"
 #include "../items/PixelView.h"
 #include "../items/Image.h"
-#include "../models/DockModel.h"
-#include "../models/InletObjectListModel.h"
-#include "../models/OutletObjectListModel.h"
-#include "../models/ItemObjectListModel.h"
-#include "../system/FileLoader.h"
-#include "../system/System.h"
-#include "../system/EventFilter.h"
-#include "../system/ConnectionManager.h"
-#include "../system/ComplexDelegate.h"
-#include "../models/StringModel.h"
-#include <QStringListModel>
-#include <memory>
-#include <iostream>
 
-#include <QWidget>
-#include <QHBoxLayout>
-#include <QPushButton>
+
+
+
 using namespace _2Real;
 using namespace _2Real::app;
 
@@ -103,12 +111,15 @@ namespace Uber {
         qmlRegisterType<OutletObjectListModel>();
         qmlRegisterType<QSortFilterProxyModel>();
         qmlRegisterType<Block>();
-        qmlRegisterType<Item>();
+
+        qmlRegisterInterface<Item>("Item");
+        qmlRegisterInterface<StringModel>("StringModel");
+
         qmlRegisterType<Link>();
         qmlRegisterType<Slider>();
         qmlRegisterType<TextIO>();
         qmlRegisterType<Image>();
-        qmlRegisterType<StringModel>();
+
         qmlRegisterType<QStringListModel>();
         qmlRegisterType<QAbstractItemModel>();
         qmlRegisterType<ItemObjectListModel>();
@@ -370,4 +381,13 @@ namespace Uber {
         }
     }
 
+    void System::cleanup()
+    {
+        delete m_DockModel;
+        delete m_ItemModel;
+        delete m_QmlEngine;
+        delete m_ComplexDelegate;
+        delete m_Canvas;
+        delete m_Dock;
+    }
 }

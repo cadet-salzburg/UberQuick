@@ -25,7 +25,6 @@ GraphCanvas {
         hoverEnabled: true
         acceptedButtons: Qt.LeftButton
         onClicked: {
-            print(mouse.button);
             if (mouse.button == Qt.LeftButton) {
                 if (workbench.state == "showDock") {
                     workbench.state = "hideDock"

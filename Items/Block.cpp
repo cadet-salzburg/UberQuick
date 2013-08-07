@@ -1,7 +1,12 @@
 #include "Block.h"
+#include "BlockInlet.h"
+#include "BlockOutlet.h"
+#include "../Models/InletObjectListModel.h"
+#include "../Models/OutletObjectListModel.h"
 #include <QDebug>
 
 namespace Uber {
+    using namespace _2Real::app;
     Block::Block()
     :Item(0)
     ,m_InletModel(nullptr)
@@ -31,7 +36,6 @@ namespace Uber {
 
     Block::~Block()
     {
-        qDebug() << " destructor Block";
         delete m_InletModel;
         delete m_OutletModel;
     }
@@ -65,6 +69,14 @@ namespace Uber {
     Uber::OutletObjectListModel*  Block::getOutletModel() const
     {
         return m_OutletModel;
+    }
+    int Block::getNumberOfInlets()
+    {
+        return m_InletModel->count();
+    }
+    int Block::getNumberOfOutlets()
+    {
+        return m_OutletModel->count();
     }
 
     void Block::initialize()

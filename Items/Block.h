@@ -1,16 +1,12 @@
 #ifndef BLOCK_H
 #define BLOCK_H
-#include <QList>
-#include <QSharedPointer>
-#include "_2RealApplication.h"
 #include "Item.h"
-#include "BlockInlet.h"
-#include "BlockOutlet.h"
-#include "../Models/InletObjectListModel.h"
-#include "../Models/OutletObjectListModel.h"
+#include "_2RealApplication.h"
 
-using namespace _2Real::app;
 namespace Uber {
+    using namespace _2Real::app;
+    class InletObjectListModel;
+    class OutletObjectListModel;
     class Block : public Item
     {
         Q_OBJECT
@@ -27,15 +23,9 @@ namespace Uber {
         Q_INVOKABLE Uber::InletObjectListModel*     getInletModel() const;
         Q_INVOKABLE Uber::OutletObjectListModel*    getOutletModel() const;
 
-        Q_INVOKABLE int                             getNumberOfInlets()
-        {
-            return m_InletModel->count();
-        }
+        Q_INVOKABLE int                             getNumberOfInlets();
 
-        Q_INVOKABLE int                             getNumberOfOutlets()
-        {
-            return m_OutletModel->count();
-        }
+        Q_INVOKABLE int                             getNumberOfOutlets();
 
         void                                        setBlockHandle( const BlockHandle& handle );
         BlockHandle                                 getBlockHandle() const;
@@ -50,8 +40,6 @@ namespace Uber {
         OutletObjectListModel*                      m_OutletModel;
         void                                        initialize();
     };
-    typedef QSharedPointer<Block> BlockRef;
     QDebug operator<<(QDebug dbg, const Block &block);
-    //Q_DECLARE_METATYPE(Block)
 }
 #endif // BLOCK_H

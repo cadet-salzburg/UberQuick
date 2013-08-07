@@ -1,4 +1,5 @@
 #include "StringModel.h"
+#include "../Items/StringObject.h"
 namespace Uber {
     StringModel::StringModel(QObject *parent)
     :QObjectListModelT<StringObject*>(parent)

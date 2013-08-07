@@ -2,9 +2,9 @@
 #define INLETOBJECTLISTMODEL_H
 
 #include "QObjectListModelT.h"
-#include "../Items/Inlet.h"
 
 namespace Uber {
+    class Inlet;
     class InletObjectListModel : public QObjectListModelT<Inlet*>
     {
         Q_OBJECT

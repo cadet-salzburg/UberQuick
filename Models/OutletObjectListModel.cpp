@@ -1,5 +1,6 @@
 #include "OutletObjectListModel.h"
-#include <QDebug>
+#include "../Items/Outlet.h"
+
 namespace Uber {
     OutletObjectListModel::OutletObjectListModel(QObject *parent)
     :QObjectListModelT<Outlet*>(parent)
@@ -21,12 +22,11 @@ namespace Uber {
 
     OutletObjectListModel::~OutletObjectListModel()
     {
-        qDebug() << " OutletObjectListModel destructor";
         int cnt = count();
         for ( int i =0; i< cnt; ++i )
         {
             Outlet* item = at(i);
-            emit item->killSelf();
+            //emit item->killSelf();
             delete item;
         }
         removeAt(0, cnt);

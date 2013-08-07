@@ -16,11 +16,11 @@ Rectangle {
         anchors.fill: parent
         drag.target: parent
         onPositionChanged: {
-            print(Qt.point(block.x, block.y));
+
         }
         onClicked: {
             workbench.state = "hideDock"
-            print(mouse.button);
+
         }
     }
 }

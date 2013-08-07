@@ -2,10 +2,10 @@
 #define WORKBENCH_H
 
 #include <QObject>
-#include <QAbstractItemModel>
 #include <QMap>
 
 namespace Uber {
+    class QAbstractItemModel;
     class Workbench : public QObject
     {
         Q_OBJECT

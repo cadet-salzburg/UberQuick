@@ -1,23 +1,17 @@
 #ifndef LINK_H
 #define LINK_H
-#include "Item.h"
-#include "Inlet.h"
-#include "Outlet.h"
-#include <QVector>
-#include <QDebug>
-#include <QObjectList>
-#include "StringModel.h"
 #include <memory>
+#include <QMutex>
+#include <QObjectList>
 #include "_2RealApplication.h"
 #include "_2RealDatatypes.h"
-#include <QMutex>
-#include <QImage>
-#include <QMutex>
-#include "../system/System.h"
-
+#include "Item.h"
 namespace Uber {
-using namespace _2Real;
-using namespace _2Real::app;
+    using namespace _2Real;
+    class Item;
+    class Inlet;
+    class Outlet;
+    class StringModel;
     class Point : public QObject {
         Q_OBJECT
     public:
@@ -31,6 +25,7 @@ using namespace _2Real::app;
     private:
         QPointF m_Point;
     };
+
     class Link : public Item
     {
         Q_OBJECT
@@ -52,23 +47,20 @@ using namespace _2Real::app;
         StringModel*                        getConnectionTypename();
         StringModel*                        getConnectionOptions();
 
-        void                                connectSignals();
-        void                                receivedData( std::shared_ptr<const _2Real::CustomType> data );
+        virtual void                        connectSignals();
+        virtual void                        disconnectSignals();
+        void                                receivedData( std::shared_ptr<const CustomType> data );
 
     protected:
 
     signals:
-        void                    linkChanged();
+        void                                linkChanged();
 
     public slots:
         void    slotCall()
         {
-            qDebug() << " The Slot Was Called ";
+
         }
-//        void killSelf()
-//        {
-//            System::getInstance()->removeItem(this);
-//        }
 
     private:
         Inlet*                                      m_Inlet;
@@ -76,9 +68,6 @@ using namespace _2Real::app;
         QObjectList                                 m_Points;
         StringModel*                                m_ConnectionOptions;
         QMutex                                      m_Mutex;
-        //std::shared_ptr<const _2Real::CustomType>   m_Data;
     };
-    typedef QSharedPointer<Link> LinkRef;
-    QDebug operator<<(QDebug dbg, const Link &link);
 }
 #endif // LINK_H

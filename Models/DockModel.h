@@ -9,7 +9,6 @@
 #include <QDebug>
 #include <QCompleter>
 #include "_2RealApplication.h"
-//#include "../items/Item.h"
 
 namespace Uber {
     class Item;
@@ -58,7 +57,6 @@ namespace Uber {
         QSize getSize() const
         {
             return QSize();
-            //return m_Image.count();
         }
 
         bool    typeIs( GridEntryType type )

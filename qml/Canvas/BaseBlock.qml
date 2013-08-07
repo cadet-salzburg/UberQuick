@@ -8,10 +8,7 @@ ObjectFrame {
     signal          blockMoved();
     function        initialize()
     {
-        console.log("--x--" + x );
-        console.log("--y--" + y );
         var numInlets = inlets.count();
-        print("Num inlets is: ---- " + object.getNumberOfInlets() );
         for ( var i=0; i < numInlets; i++ )
         {
             var inlet = inlets.childAt(i);
@@ -34,20 +31,14 @@ ObjectFrame {
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
         onPositionChanged:
         {
-            print("actual" + Qt.point(parent.x, parent.y));
             object.position = Qt.point(parent.x, parent.y);
             blockMoved();
         }
         onClicked: {
-            print(mouse.button);
             if ( mouse.button == Qt.RightButton )
             {
-                print("------removing--------")
                 System.removeItem(object);
-            } else {
-                print("------why-----")
             }
-
             workbench.state = "hideDock"
         }
     }
@@ -62,7 +53,6 @@ ObjectFrame {
             if ( inlets.width > w )
             {
                 parent.width = inlets.getNeededWidth( inlets.count()) + 2*parent.radius + 2*parent.border.width;
-                print("inlet count: " + inlets.count());
             }
         }
     }
@@ -77,14 +67,12 @@ ObjectFrame {
             if ( inlets.width > w )
             {
                 parent.width = outlets.getNeededWidth( outlets.count()) + 2*parent.radius + 2*parent.border.width;
-                print("outlet count: " + outlets.count());
             }
         }
     }
     Component.onCompleted:
     {
         initialize();
-        console.log(object.className );
     }
 }
 

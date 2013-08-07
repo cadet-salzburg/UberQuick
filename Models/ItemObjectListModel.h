@@ -1,7 +1,7 @@
 #ifndef ITEMOBJECTLISTMODEL_H
 #define ITEMOBJECTLISTMODEL_H
+
 #include "QObjectListModelT.h"
-//#include "../Items/Item.h"
 
 namespace Uber {
     class Item;

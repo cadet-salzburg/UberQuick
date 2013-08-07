@@ -25,11 +25,9 @@ Rectangle
         visible: false
         //modality: ApplicationModal
         onAccepted: {
-            console.log("You chose: " + fileDialog.filePaths)
             Qt.quit()
         }
         onRejected: {
-            console.log("Canceled")
             Qt.quit()
         }
     }

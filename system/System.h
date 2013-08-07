@@ -1,22 +1,27 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
+#include <memory>
+#include <QObject>
 #include <QStringList>
-#include <QQmlEngine>
+#include <QSurfaceFormat>
 #include <QQuickItem>
+#include <QQmlEngine>
 #include <QQuickView>
-#include "../models/DockModel.h"
-#include "../models/ItemObjectListModel.h"
 #include "_2RealApplication.h"
 #include "_2RealDatatypes.h"
-#include <QImage>
+
 
 typedef std::shared_ptr<const _2Real::CustomType> CustomTypeRef;
+
 namespace Uber {
+
     class FileLoader;
     class ConnectionManager;
     class ComplexDelegate;
     class Link;
     class Item;
+    class ItemObjectListModel;
+    class DockModel;
 
     class System : public QObject
     {
@@ -58,13 +63,6 @@ namespace Uber {
 
         QQuickView*                         getWindow() const;
 
-        //static QObject *blargh( QQmlEngine *engine, QJSEngine *scriptEngine )
-        //{
-        //    Q_UNUSED(engine)
-        //    Q_UNUSED(scriptEngine)
-        //    return getInstance();
-        //}
-
         FileLoader * fileLoader();
         FileLoader const* fileLoader() const;
 
@@ -95,20 +93,7 @@ namespace Uber {
         ConnectionManager                   *m_ConnectionManager;
     public slots:
         void changedFocus(QObject * focusObject);
-        void cleanup()
-        {
-            qDebug() << "Cleanup called";
-//            if ( m_Dock )
-//                delete m_Dock;
-//            if ( m_Canvas )
-//                delete m_Canvas;
-            delete m_DockModel;
-            delete m_ItemModel;
-            delete m_QmlEngine;
-            delete m_ComplexDelegate;
-            delete m_Canvas;
-            delete m_Dock;
-        }
+        void cleanup();
     };
     Q_DECLARE_METATYPE(std::shared_ptr<const _2Real::Image> )
 }

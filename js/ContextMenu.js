@@ -74,7 +74,6 @@ function showMenu(mouse)
 
     menu.x = Math.max(0, Math.min(absoluteX - menu.width / 2, menuRoot.width - menu.width));
     menu.y = Math.max(0, Math.min(absoluteY - menu.height / 2, menuRoot.height - menu.height));
-    console.log(absoluteX + ", " + absoluteY + ", " + menu.width + ", " + menu.height);
     menuRoot.state = "visible";
     menuList.forceActiveFocus();
 }

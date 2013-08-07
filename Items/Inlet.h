@@ -1,11 +1,7 @@
 #ifndef INLET_H
 #define INLET_H
-#include <QSharedPointer>
 #include <QVariant>
 #include "Item.h"
-#include "_2RealApplication.h"
-
-using namespace _2Real::app;
 namespace Uber {
     class Inlet : public Item
     {
@@ -18,7 +14,6 @@ namespace Uber {
         {
             return false;
         }
-
         void setName( QString name )
         {
             m_Name = name;
@@ -30,17 +25,14 @@ namespace Uber {
         }
 
     private:
-        QString         m_Name;
+        QString     m_Name;
     signals:
         void valueChanged(QVariant val);
-        void killSelf();
     public slots:
         virtual void setValue(QVariant val)
         {
             //
         }
     };
-    typedef QSharedPointer<Inlet> InletRef;
-    Q_DECLARE_METATYPE(Inlet)
 }
 #endif // INLET_H

@@ -1,5 +1,9 @@
 #include "InterfaceElement.h"
-#include <QDebug>
+#include "Inlet.h"
+#include "Outlet.h"
+#include "../Models/InletObjectListModel.h"
+#include "../Models/OutletObjectListModel.h"
+
 namespace Uber {
     InterfaceElement::InterfaceElement()
     :Item(0)
@@ -32,6 +36,16 @@ namespace Uber {
     Uber::OutletObjectListModel*  InterfaceElement::getOutletModel() const
     {
         return m_OutletModel;
+    }
+
+    int InterfaceElement::getNumberOfInlets()
+    {
+        return m_InletModel->count();
+    }
+
+    int InterfaceElement::getNumberOfOutlets()
+    {
+        return m_OutletModel->count();
     }
 
     void InterfaceElement::appendInlet(Inlet *inlet)

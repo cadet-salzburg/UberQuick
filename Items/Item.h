@@ -4,7 +4,7 @@
 #include <QPoint>
 #include <QSize>
 #include <QUrl>
-#include "../system/System.h"
+
 namespace Uber {
     class Item : public QObject
     {
@@ -41,6 +41,8 @@ namespace Uber {
         {
             m_ComponentUrl = url;
         }
+        virtual void            connectSignals(){}
+        virtual void            disconnectSignals(){}
 
     protected:
 
@@ -50,17 +52,18 @@ namespace Uber {
         int                     m_Orientation;
         QUrl                    m_ComponentUrl;
     signals:
+        void                    killSelf();
         void                    positionChanged(QPointF);
         void                    positionChanged();
         void                    xChanged(float);
         void                    yChanged(float);
         void                    urlChanged();
-    public slots:
 
+    public slots:
         void                    setPosition(const QPointF &position );
         void                    setX( float x );
         void                    setY( float y );
-        void                    killSelf();
+        void                    remove();
     };
 }
 #endif // ITEM_H

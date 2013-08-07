@@ -61,7 +61,6 @@ namespace Uber {
             QVariant variantValue(value);
             emit valueChanged(variantValue);
         }
-        //qDebug() << " Slider value: " << m_Value;
     }
 
     float Slider::getValue() const

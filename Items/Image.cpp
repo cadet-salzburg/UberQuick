@@ -1,7 +1,8 @@
 #include "Image.h"
 #include "InterfaceInlet.h"
-
-
+#include "../system/System.h"
+#include "../models/InletObjectListModel.h"
+#include <QDebug>
 namespace Uber {
     Image::Image()
     :InterfaceElement()
@@ -9,6 +10,11 @@ namespace Uber {
     {
         cnt = 0;
         initialize();
+    }
+
+    Image::~Image()
+    {
+        disconnectSignals();
     }
 
     qreal Image::getAspectRatio() const
@@ -49,15 +55,30 @@ namespace Uber {
         return QVariant::fromValue( m_Image );
     }
 
+    void Image::connectSignals()
+    {
+        InletObjectListModel *model = getInletModel();
+        Inlet* inlet = model->at(0);
+        QObject::connect(inlet, SIGNAL(valueChanged(QVariant)), this, SLOT(setImage(QVariant)));
+    }
+
+    void Image::disconnectSignals()
+    {
+        InletObjectListModel *model = getInletModel();
+        Inlet* inlet = model->at(0);
+        QObject::disconnect(inlet, SIGNAL(valueChanged(QVariant)), this, SLOT(setImage(QVariant)));
+    }
+
     void Image::setImage(QVariant img)
     {
         m_Image = img.value<ImageConstRef>();
         emit imageChanged(img);
     }
+
     void Image::initialize()
     {
         InterfaceInlet *currentInlet( new InterfaceInlet());
         appendInlet(currentInlet);
-        QObject::connect(currentInlet, SIGNAL(valueChanged(QVariant)), this, SLOT(setImage(QVariant)));
+        connectSignals();
     }
 }

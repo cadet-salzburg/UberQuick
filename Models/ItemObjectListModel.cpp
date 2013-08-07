@@ -1,4 +1,5 @@
 #include "ItemObjectListModel.h"
+#include "../items/Item.h"
 #include "../Items/Block.h"
 #include "../Items/Link.h"
 #include "../Items/Slider.h"
@@ -26,7 +27,6 @@ namespace Uber {
 
     ItemObjectListModel::~ItemObjectListModel()
     {
-        qDebug() << " Destructor Item Model";
         int cnt = count();
         for ( int i =0; i< cnt; ++i )
         {

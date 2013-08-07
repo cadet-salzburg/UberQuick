@@ -1,11 +1,10 @@
 #ifndef IMAGE_H
 #define IMAGE_H
+#include <memory>
+#include <QVariant>
 #include "InterfaceElement.h"
-#include <QImage>
-#include "../system/System.h"
 #include "_2RealApplication.h"
 #include "_2RealDatatypes.h"
-#include <memory>
 
 namespace Uber {
 #ifndef IMAGE_TYPEDEFS
@@ -25,12 +24,16 @@ namespace Uber {
         Q_PROPERTY( QVariant image READ getImage WRITE setImage NOTIFY imageChanged )
     public:
         Image();
+        virtual ~Image();
         qreal           getAspectRatio() const;
         void            setMinWidth( int w );
         int             getMinWidth() const;
         void            setMaxWidth( int w );
         int             getMaxWidth() const;
         QVariant        getImage() const;
+        void            connectSignals();
+        void            disconnectSignals();
+
     signals:
         void            minWidthChanged(int);
         void            maxWidthChanged(int);

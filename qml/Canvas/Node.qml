@@ -15,10 +15,6 @@ Circle {
         updatePosition();
     }
 
-    function printPoint( point , message )
-    {
-        console.log( message + " is: [" + point.x + "," + point.y + "]" );
-    }
 
     function updatePosition()
     {
@@ -52,26 +48,21 @@ Circle {
             anchors.fill: parent;
             onEntered: {
                 drag.accept (Qt.CopyAction);
-                console.log("onEntered");
             }
             onDropped: {
                 drop.accept();
-                console.log ("onDropped");
                 ConnectionManager.finishLink(object);
-                print( object.x + "---" + object.y );
                //contextMenu.model = ConnectionManager.getConnectionOptions();
-                contextMenu.model = ConnectionManager.getConnectionTypename();
-                print( contextMenu.model.count + "-------------");
-                if ( contextMenu.model.count > 0 )
+                //contextMenu.model = ConnectionManager.getConnectionTypename();
+                if ( ConnectionManager.getConnectionTypename().count > 0 )
                 {
                     contextMenu.popup(Qt.point(object.x, object.y));
                 }
             }
             onExited: {
-                console.log ("onExited");
+
             }
             onPositionChanged: {
-                console.log ("onPosition changed");
             }
         }
     }

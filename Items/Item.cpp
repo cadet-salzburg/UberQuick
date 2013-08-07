@@ -1,5 +1,6 @@
 #include "Item.h"
 #include <QDebug>
+#include "../system/System.h"
 namespace Uber {
     Item::Item(QObject *parent)
         :QObject(parent)
@@ -28,7 +29,7 @@ namespace Uber {
 
     Item::~Item()
     {
-
+        emit killSelf();
     }
 
     float  Item::x() const
@@ -45,7 +46,6 @@ namespace Uber {
     {
         if ( m_Position.x() != x )
         {
-            //qDebug() << "position Was changed";
             m_Position.setX(x);
             emit positionChanged();
         }
@@ -55,13 +55,12 @@ namespace Uber {
     {
         if ( m_Position.y() != y )
         {
-            //qDebug() << "position Was changed";
             m_Position.setY(y);
             emit positionChanged();
         }
     }
 
-    void Item::killSelf()
+    void Item::remove()
     {
         System::getInstance()->removeItem(this);
     }
@@ -72,7 +71,6 @@ namespace Uber {
     }
     void Item::setPosition(const QPointF &position)
     {
-        //qDebug() << "position Was changed: " << getClassName() ;
         m_Position = position;
         emit positionChanged();
     }

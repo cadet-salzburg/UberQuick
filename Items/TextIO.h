@@ -1,7 +1,7 @@
 #ifndef TEXTIO_H
 #define TEXTIO_H
 #include "InterfaceElement.h"
-
+#include <QVariant>
 namespace Uber {
     class TextIO : public InterfaceElement
     {
