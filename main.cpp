@@ -8,7 +8,6 @@
 
 int main(int argc, char *argv[])
 {
-
     QApplication app(argc, argv);
     qRegisterMetaType<CustomTypeRef>("CustomTypeRef");
     Uber::System *system = Uber::System::getInstance();

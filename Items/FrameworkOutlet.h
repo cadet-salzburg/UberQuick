@@ -1,25 +1,27 @@
-#ifndef BLOCKOUTLET_H
-#define BLOCKOUTLET_H
-#include "Outlet.h"
+#ifndef FRAMEWORKOUTLET_H
+#define FRAMEWORKOUTLET_H
+#include "BaseOutlet.h"
 #include "_2RealApplication.h"
 
 using namespace _2Real::app;
 namespace Uber {
     class StringModel;
-    class BlockOutlet : public Outlet
+    class FrameworkOutlet : public BaseOutlet
     {
         Q_OBJECT
     public:
-        BlockOutlet(QObject *parent = 0);
-        BlockOutlet(const BlockOutlet &other);
-        BlockOutlet( const  OutletHandle &handle, QObject *parent = 0 );
-        virtual ~BlockOutlet();
-        void                        setOutletHandle(const OutletHandle& handle );
-        OutletHandle                getOutletHandle() const;
+        FrameworkOutlet(QObject *parent = 0);
+        FrameworkOutlet(const FrameworkOutlet &other);
+        FrameworkOutlet( const  OutletHandle &handle, QObject *parent = 0 );
+        virtual ~FrameworkOutlet();
 
-        virtual bool                isValid() const;
+        OutletHandle                getOutletHandle() const;
+        void                        setOutletHandle(const OutletHandle& handle );
+
         StringModel*                getDataType();
         StringModel*                getDataTypeFields();
+
+        bool                        isValid() const;
     private:
         _2Real::app::OutletHandle   m_OutletHandle;
         StringModel*                m_ConnectionOptions;
@@ -27,4 +29,4 @@ namespace Uber {
     public slots:
     };
 }
-#endif // BLOCKOUTLET_H
+#endif // FRAMEWORKOUTLET_H

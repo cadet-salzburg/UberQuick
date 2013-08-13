@@ -44,6 +44,7 @@
 
 #include <QtQuick/QQuickItem>
 #include <QSGFlatColorMaterial>
+
 namespace Uber {
 class BezierCurve : public QQuickItem
 {
@@ -98,4 +99,3 @@ private:
 };
 }
 #endif
-

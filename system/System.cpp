@@ -1,3 +1,5 @@
+#include <memory>
+#include <dwmapi.h>
 #include <QDir>
 #include <QDebug>
 #include <QQmlEngine>
@@ -5,18 +7,13 @@
 #include <QQuickItem>
 #include <QQuickWindow>
 #include <QQmlContext>
-#include <dwmapi.h>
 #include <QStringListModel>
-#include <memory>
 #include <iostream>
-#include <QWidget>
-#include <QHBoxLayout>
-#include <QPushButton>
 #include <QQmlEngine>
 #include <QQuickView>
+
 #include "../system/System.h"
 #include "../system/FileLoader.h"
-#include "../system/EventFilter.h"
 #include "../system/ConnectionManager.h"
 #include "../system/ComplexDelegate.h"
 #include "../models/DockModel.h"
@@ -27,21 +24,18 @@
 #include "../models/ItemObjectListModel.h"
 #include "../models/StringModel.h"
 #include "../items/Item.h"
-#include "../items/Inlet.h"
-#include "../items/Outlet.h"
-#include "../items/Block.h"
-#include "../items/Canvas.h"
-#include "../items/Circle.h"
-#include "../items/BezierCurve.h"
-#include "../items/PainterBezier.h"
+#include "../items/BaseInlet.h"
+#include "../items/BaseOutlet.h"
+#include "../items/FrameworkBlock.h"
+#include "../qml_extensions/Canvas.h"
+#include "../qml_extensions/Circle.h"
+#include "../qml_extensions/BezierCurve.h"
+#include "../qml_extensions/PainterBezier.h"
 #include "../items/Link.h"
-#include "../items/Slider.h"
-#include "../items/TextIO.h"
-#include "../items/PixelView.h"
-#include "../items/Image.h"
-
-
-
+#include "../ui_items/SliderBlock.h"
+#include "../ui_items/TextIO.h"
+#include "../qml_extensions/PixelView.h"
+#include "../ui_items/Image.h"
 
 using namespace _2Real;
 using namespace _2Real::app;
@@ -53,41 +47,22 @@ namespace Uber {
     ,m_DockModel(nullptr)
     ,m_ComplexDelegate(nullptr )
     ,m_ItemModel(nullptr)
-    ,m_Engine( Engine::instance())
+    ,m_2RealEngine( Engine::instance())
     ,m_QmlEngine(nullptr)
-    ,m_Dock(nullptr)
-    ,m_Canvas(nullptr)
-    ,mFileLoader( nullptr )
-    ,m_CurrentLink(nullptr)
+    ,m_DockWindow(nullptr)
+    ,m_CanvasWindow(nullptr)
+    ,m_FileLoader( nullptr )
     ,m_ConnectionManager(nullptr)
     {
-        m_DockModel = new DockModel(0);
+        m_DockModel =       new DockModel(0);
         m_ComplexDelegate = new ComplexDelegate(0);
-        m_ItemModel = new ItemObjectListModel(0);
-        m_QmlEngine = new QQmlEngine(0);
-        m_Dock = new QQuickView( m_QmlEngine, 0 );
-        m_Canvas = new QQuickView( m_QmlEngine, 0 );
-        mFileLoader = new FileLoader( *this );
+        m_ItemModel =       new ItemObjectListModel(0);
+        m_QmlEngine =    new QQmlEngine(0);
+
+        m_FileLoader = new FileLoader( *this );
         m_ConnectionManager = new ConnectionManager(m_ItemModel);
 
 
-
-        m_SurfaceFormat.setAlphaBufferSize(8);
-        m_SurfaceFormat.setStencilBufferSize(8);
-        m_Canvas->setResizeMode(QQuickView::SizeRootObjectToView);
-        m_Canvas->setGeometry(300,200, 640, 480);
-        m_Canvas->setFormat(m_SurfaceFormat);
-        m_Canvas->setClearBeforeRendering(true);
-        QObject::connect(m_Canvas, SIGNAL(focusObjectChanged(QObject *)),this, SLOT(changedFocus(QObject *)));
-        QObject::connect(m_Canvas, SIGNAL(destroyed()), this, SLOT(cleanup()));
-
-        m_Dock->setResizeMode(QQuickView::SizeRootObjectToView);
-        m_Dock->setGeometry(300,200, 400, 150);
-        m_Dock->setFormat(m_SurfaceFormat);
-        m_Dock->setClearBeforeRendering(true);
-        m_Dock->setColor(Qt::transparent);
-        m_Dock->setFlags(Qt::SplashScreen );//| Qt::FramelessWindowHint );
-        //m_Dock->setAttribute(Qt::WA_TranslucentBackground);
 
         registerQmlTypes();
         setComplexDelegates();
@@ -102,21 +77,43 @@ namespace Uber {
 
     }
 
+    void System::createWindows()
+    {
+        m_DockWindow =   new QQuickView( m_QmlEngine, 0 );
+        m_CanvasWindow = new QQuickView( m_QmlEngine, 0 );
+        QSurfaceFormat  surfaceFormat;
+        surfaceFormat.setAlphaBufferSize(8);
+        surfaceFormat.setStencilBufferSize(8);
+        m_CanvasWindow->setResizeMode(QQuickView::SizeRootObjectToView);
+        m_CanvasWindow->setGeometry(300,200, 640, 480);
+        m_CanvasWindow->setFormat( surfaceFormat );
+        m_CanvasWindow->setClearBeforeRendering(true);
+//        QObject::connect(m_CanvasWindow, SIGNAL(focusObjectChanged(QObject *)),this, SLOT(changedFocus(QObject *)));
+//        QObject::connect(m_CanvasWindow, SIGNAL(destroyed()), this, SLOT(cleanup()));
+
+        m_DockWindow->setResizeMode(QQuickView::SizeRootObjectToView);
+        m_DockWindow->setGeometry(300,200, 400, 150);
+        m_DockWindow->setFormat(m_SurfaceFormat);
+        m_DockWindow->setClearBeforeRendering(true);
+        m_DockWindow->setColor(Qt::transparent);
+        m_DockWindow->setFlags(Qt::SplashScreen );//| Qt::FramelessWindowHint );
+        //m_DockWindow->setAttribute(Qt::WA_TranslucentBackground);
+    }
+
     void System::registerQmlTypes()
     {
-        qmlRegisterType<Slider>();
-        qmlRegisterType<Inlet>();
-        qmlRegisterType<Outlet>();
+        qmlRegisterType<SliderBlock>();
+        qmlRegisterType<BaseInlet>();
+        qmlRegisterType<BaseOutlet>();
         qmlRegisterType<InletObjectListModel>();
         qmlRegisterType<OutletObjectListModel>();
-        qmlRegisterType<QSortFilterProxyModel>();
-        qmlRegisterType<Block>();
+
+        qmlRegisterType<FrameworkBlock>();
 
         qmlRegisterInterface<Item>("Item");
         qmlRegisterInterface<StringModel>("StringModel");
 
         qmlRegisterType<Link>();
-        qmlRegisterType<Slider>();
         qmlRegisterType<TextIO>();
         qmlRegisterType<Image>();
 
@@ -126,7 +123,6 @@ namespace Uber {
         qmlRegisterType<Canvas>("UberComponents", 1,0,"GraphCanvas");
         qmlRegisterType<Circle>("UberComponents", 1,0,"Circle");
         qmlRegisterType<PainterBezier>("UberComponents", 1,0,"Bezier");
-        qmlRegisterType<EventFilter>("UberComponents", 1, 0, "MouseFilter");
         qmlRegisterType<PixelView>("UberComponents", 1, 0, "ImageView");
 
         //fileloader now has no default ctor any more, and thus cannot be registered
@@ -143,17 +139,17 @@ namespace Uber {
         m_QmlEngine->rootContext()->setContextProperty( "DockModel", m_DockModel );
         m_QmlEngine->rootContext()->setContextProperty( "ComplexDelegate", m_ComplexDelegate );
         m_QmlEngine->rootContext()->setContextProperty( "ConnectionManager",m_ConnectionManager );
-        m_QmlEngine->rootContext()->setContextProperty( "DockView", m_Dock );
-        m_QmlEngine->rootContext()->setContextProperty( "Canvas", m_Canvas );
+        m_QmlEngine->rootContext()->setContextProperty( "DockView", m_DockWindow );
+        m_QmlEngine->rootContext()->setContextProperty( "Canvas", m_CanvasWindow );
         m_QmlEngine->rootContext()->setContextProperty( "ItemModel", m_ItemModel );
-        m_QmlEngine->rootContext()->setContextProperty( "cpFileLoader", mFileLoader );
+        m_QmlEngine->rootContext()->setContextProperty( "cpFileLoader", m_FileLoader );
     }
 
     void System::enableTransparentWindows()
     {
         //MS-Win specific code to enable transparent windows.
-        HWND hWndA = (HWND)m_Dock->winId();
-        HWND hWndB = (HWND)m_Canvas->winId();
+        HWND hWndA = (HWND)m_DockWindow->winId();
+        HWND hWndB = (HWND)m_CanvasWindow->winId();
         DWM_BLURBEHIND bb = {0};
         HRGN hRgn = CreateRectRgn(0, 0, -1, -1);
         bb.dwFlags = DWM_BB_ENABLE | DWM_BB_BLURREGION;
@@ -165,8 +161,8 @@ namespace Uber {
 
     void System::showWindows()
     {
-        m_Canvas->show();
-        //m_Dock->show();
+        m_CanvasWindow->show();
+        //m_DockWindow->show();
     }
 
     void System::removeItem(Item *item)
@@ -184,8 +180,8 @@ namespace Uber {
 
     void System::loadQmlFiles()
     {
-        m_Canvas->setSource(QUrl::fromLocalFile("qml/Windows/MainWindow.qml"));
-        m_Dock->setSource(QUrl::fromLocalFile("qml/Windows/Dock.qml"));
+        m_CanvasWindow->setSource(QUrl::fromLocalFile("qml/Windows/MainWindow.qml"));
+        m_DockWindow->setSource(QUrl::fromLocalFile("qml/Windows/Dock.qml"));
 
     }
 
@@ -219,17 +215,18 @@ namespace Uber {
                     {
                         std::cout << "LOADING " << fileNameParts.front().toStdString() << std::endl;
                         QString file = path + QString("/") + *(fileNameParts.begin());
-                        BundleHandle bundleHandle = m_Engine.loadBundle(file.toStdString());
-                        BundleInfo bundleInfo = bundleHandle.getBundleInfo();
-                        BundleInfo::BlockInfos blocks = bundleInfo.exportedBlocks;
+                        BundleHandle bundleHandle = m_2RealEngine.loadBundle(file.toStdString());
+                        BundleMetainfo bundleInfo = bundleHandle.getBundleMetainfo();
+                        std::vector< BlockMetainfo > blocks;
+                        bundleInfo.getExportedBlocks(blocks);
 
-                        BundleInfo::BlockInfos::const_iterator iter = blocks.begin();
+                        std::vector< BlockMetainfo >::const_iterator iter = blocks.begin();
                         for ( ; iter!= blocks.end(); ++iter )
                         {
-                            QString blockName = QString::fromStdString( iter->name );
-                            if( blockName != "contextblock")		// don't show or use context blocks in ubercode
+                            if( !iter->isContext() )		// don't show or use context blocks in ubercode
                             {
                                 GridEntry entry;
+                                QString blockName = QString::fromStdString( iter->getName() );
                                 entry.setName(blockName);
                                 entry.setBundleHandle(bundleHandle);
                                 QFile file(bundleDir.filePath("icon.png"));
@@ -266,7 +263,7 @@ namespace Uber {
         GridEntry slider = GridEntry(SliderType);
         QString sliderIconPath("qrc:///images/slider-icon.png");
         slider.setIconUrl(QUrl(sliderIconPath));
-        slider.setName("Slider");
+        slider.setName("SliderBlock");
         m_DockModel->addEntry(slider);
         //
         GridEntry textInput = GridEntry(TextInputType);
@@ -284,9 +281,9 @@ namespace Uber {
 
     void System::setComplexDelegates()
     {
-        m_ComplexDelegate->addDelegate(QString("Uber::Block"),QUrl::fromLocalFile("qml/Canvas/UberBlock.qml"));
+        m_ComplexDelegate->addDelegate(QString("Uber::FrameworkBlock"),QUrl::fromLocalFile("qml/Canvas/UberBlock.qml"));
         m_ComplexDelegate->addDelegate(QString("Uber::Link"), QUrl::fromLocalFile("qml/Canvas/Link.qml"));
-        m_ComplexDelegate->addDelegate(QString("Uber::Slider"),QUrl::fromLocalFile("qml/Canvas/SliderBlock.qml"));
+        m_ComplexDelegate->addDelegate(QString("Uber::SliderBlock"),QUrl::fromLocalFile("qml/Canvas/SliderBlock.qml"));
         m_ComplexDelegate->addDelegate(QString("Uber::TextIO"),QUrl::fromLocalFile("qml/Canvas/TextBlock.qml"));
         m_ComplexDelegate->addDelegate(QString("Uber::Image"),QUrl::fromLocalFile("qml/Canvas/ImageBlock.qml"));
     }
@@ -316,15 +313,15 @@ namespace Uber {
 
     QPointF System::getDockInputPosition()
     {
-        QPointF dockPosition = m_Dock->position();
-        QPointF dotPosition  = dockPosition + QPointF(m_Dock->width()/2 - 75, -15);
-        QPointF inputPosition = dotPosition - m_Canvas->position();
+        QPointF dockPosition = m_DockWindow->position();
+        QPointF dotPosition  = dockPosition + QPointF(m_DockWindow->width()/2 - 75, -15);
+        QPointF inputPosition = dotPosition - m_CanvasWindow->position();
         return inputPosition;
     }
 
     QQuickView *System::getWindow() const
     {
-        return m_Canvas;
+        return m_CanvasWindow;
     }
 
 
@@ -334,8 +331,7 @@ namespace Uber {
         if ( item )
         {
             item->setPosition( getDockInputPosition() );
-            item->setUrl(m_ComplexDelegate->getDelegate(item->getClassName()));
-             m_ItemModel->append(item);
+            m_ItemModel->append(item);
         }
         qDebug() << "Number of items: " << m_ItemModel->count();
     }
@@ -347,10 +343,10 @@ namespace Uber {
             // TODO: rewrite the framework's loading routine
 
             //UberConfig leftovers;
-            //leftovers = m_Engine.loadConfig( config );
+            //leftovers = m_2RealEngine.loadConfig( config );
             //ConfigLoader loader( this, config );
 
-            //m_Engine.loadConfiguration( dataSource.toStdString() );
+            //m_2RealEngine.loadConfiguration( dataSource.toStdString() );
         }
         catch ( _2Real::XMLFormatException &e )
         {
@@ -375,9 +371,9 @@ namespace Uber {
     void System::changedFocus(QObject *focusObject)
     {
         Q_UNUSED(focusObject)
-        if ( m_Canvas->isActive() )
+        if ( m_CanvasWindow->isActive() )
         {
-            m_Dock->hide();
+            m_DockWindow->hide();
         }
     }
 
@@ -387,7 +383,7 @@ namespace Uber {
         delete m_ItemModel;
         delete m_QmlEngine;
         delete m_ComplexDelegate;
-        delete m_Canvas;
-        delete m_Dock;
+        delete m_CanvasWindow;
+        delete m_DockWindow;
     }
 }

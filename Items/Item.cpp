@@ -6,7 +6,6 @@ namespace Uber {
         :QObject(parent)
         ,m_Position( QPointF(0,0))
         ,m_Size(100,50)
-        ,m_Orientation(Qt::Horizontal)
     {
 
     }
@@ -14,7 +13,6 @@ namespace Uber {
         :QObject(parent)
         ,m_Position(position)
         ,m_Size(size)
-        ,m_Orientation(Qt::Horizontal)
     {
 
     }
@@ -22,7 +20,6 @@ namespace Uber {
         :QObject(other.parent())
         ,m_Position(other.getPosition())
         ,m_Size(other.size())
-        ,m_Orientation(Qt::Horizontal)
     {
 
     }

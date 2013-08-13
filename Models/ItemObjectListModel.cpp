@@ -1,10 +1,10 @@
 #include "ItemObjectListModel.h"
 #include "../items/Item.h"
-#include "../Items/Block.h"
+#include "../Items/FrameworkBlock.h"
 #include "../Items/Link.h"
-#include "../Items/Slider.h"
-#include "../Items/TextIO.h"
-#include "../Items/Image.h"
+#include "../ui_items//SliderBlock.h"
+#include "../ui_items/TextIO.h"
+#include "../ui_items/Image.h"
 
 namespace Uber {
     ItemObjectListModel::ItemObjectListModel(QObject *parent)
@@ -48,13 +48,13 @@ namespace Uber {
             Item *obj = this->at(index.row());
             if ( obj->getClassName()== QString("Uber::Block") )
             {
-                return QVariant::fromValue(dynamic_cast<Block*>(obj));
+                return QVariant::fromValue(dynamic_cast<FrameworkBlock*>(obj));
             } else if ( obj->getClassName()== QString("Uber::Link") )
             {
                 return QVariant::fromValue(dynamic_cast<Link*>(obj));
-            } else if ( obj->getClassName()== QString("Uber::Slider") )
+            } else if ( obj->getClassName()== QString("Uber::SliderBlock") )
             {
-                return QVariant::fromValue(dynamic_cast<Slider*>(obj));
+                return QVariant::fromValue(dynamic_cast<SliderBlock*>(obj));
             }  else if ( obj->getClassName()== QString("Uber::TextIO") )
             {
                 return QVariant::fromValue(dynamic_cast<TextIO*>(obj));

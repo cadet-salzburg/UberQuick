@@ -10,7 +10,7 @@
 #include <memory>
 #include "_2RealApplication.h"
 #include "_2RealDatatypes.h"
-#include "../items/Image.h"
+#include "../ui_items/Image.h"
 #ifndef IMAGE_TYPEDEFS
 #define IMAGE_TYPEDEFS
     typedef std::shared_ptr<const _2Real::Image> ImageConstRef;

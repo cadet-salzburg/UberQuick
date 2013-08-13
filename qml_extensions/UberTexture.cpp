@@ -147,7 +147,6 @@ namespace Uber {
             m_Data = nullptr;
     }
 
-
     int UberTexture::textureId() const
     {
         if (m_dirty_texture) {

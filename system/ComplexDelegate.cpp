@@ -25,8 +25,10 @@ namespace Uber {
 
     QUrl ComplexDelegate::getDelegate(QString modelType)
     {
+        qDebug() << " Requesting: " << modelType;
         if ( !m_DelegateStore.contains(modelType) )
             return QUrl();
+        qDebug() << m_DelegateStore.value(modelType);
         return m_DelegateStore.value(modelType);
     }
 }

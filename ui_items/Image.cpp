@@ -1,11 +1,12 @@
 #include "Image.h"
 #include "InterfaceInlet.h"
 #include "../system/System.h"
-#include "../models/InletObjectListModel.h"
-#include <QDebug>
+#include "InletObjectListModel.h"
+#include "OutletObjectListModel.h"
+
 namespace Uber {
     Image::Image()
-    :InterfaceElement()
+    :InterfaceBlock()
     ,m_Image(nullptr)
     {
         cnt = 0;
@@ -14,6 +15,7 @@ namespace Uber {
 
     Image::~Image()
     {
+        qDebug() << "Image Destructor";
         disconnectSignals();
     }
 
@@ -58,14 +60,14 @@ namespace Uber {
     void Image::connectSignals()
     {
         InletObjectListModel *model = getInletModel();
-        Inlet* inlet = model->at(0);
+        BaseInlet* inlet = model->at(0);
         QObject::connect(inlet, SIGNAL(valueChanged(QVariant)), this, SLOT(setImage(QVariant)));
     }
 
     void Image::disconnectSignals()
     {
         InletObjectListModel *model = getInletModel();
-        Inlet* inlet = model->at(0);
+        BaseInlet* inlet = model->at(0);
         QObject::disconnect(inlet, SIGNAL(valueChanged(QVariant)), this, SLOT(setImage(QVariant)));
     }
 

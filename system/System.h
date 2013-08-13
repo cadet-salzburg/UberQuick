@@ -38,6 +38,7 @@ namespace Uber {
 
         ~System();
 
+        void                                createWindows();
         void                                loadQmlFiles();
         void                                loadBundles();
         void                                loadInterfaceBlocks();
@@ -77,22 +78,22 @@ namespace Uber {
         System(System const&);
         void operator=(System const&);
 
-        static System*                      m_Instance;
-        QStringList                         m_BundleFilenames;
-        DockModel*                          m_DockModel;
-        ItemObjectListModel*                m_ItemModel;
-        _2Real::app::Engine&                m_Engine;
-        QQmlEngine*                         m_QmlEngine;
-        ComplexDelegate*                    m_ComplexDelegate;
-        QQuickView*                         m_Canvas;
-        QQuickView*                         m_Dock;
-        QSurfaceFormat                      m_SurfaceFormat;
+        static System               *m_Instance;
 
-        FileLoader                          *mFileLoader;
-        Link*                               m_CurrentLink;
-        ConnectionManager                   *m_ConnectionManager;
+        _2Real::app::Engine         &m_2RealEngine;
+        QQmlEngine                  *m_QmlEngine;
+
+        DockModel                   *m_DockModel;
+        ItemObjectListModel         *m_ItemModel;
+        ComplexDelegate             *m_ComplexDelegate;
+
+        QQuickView                  *m_CanvasWindow;
+        QQuickView                  *m_DockWindow;
+        FileLoader                  *m_FileLoader;
+        ConnectionManager           *m_ConnectionManager;
+
     public slots:
-        void changedFocus(QObject * focusObject);
+//        void changedFocus(QObject * focusObject);
         void cleanup();
     };
     Q_DECLARE_METATYPE(std::shared_ptr<const _2Real::Image> )

@@ -20,98 +20,91 @@ SOURCES += \
     models/ItemObjectListModel.cpp \
     models/InletObjectListModel.cpp \
     models/DockModel.cpp \
-    items/Workbench.cpp \
-    items/Link.cpp \
-    items/Item.cpp \
-    items/Inlet.cpp \
-    items/Circle.cpp \
-    items/Canvas.cpp \
-    items/Block.cpp \
-    items/BezierCurve.cpp \
+    models/StringModel.cpp \
     system/ComplexDelegate.cpp \
     system/System.cpp \
     system/FileLoader.cpp \
-    system/EventFilter.cpp \
     system/ConnectionManager.cpp \
-    items/Outlet.cpp \
-    items/BlockInlet.cpp \
-    items/BlockOutlet.cpp \
+    items/Link.cpp \
+    items/Item.cpp \
+    items/BaseInlet.cpp \
+    items/BaseOutlet.cpp \
+    items/FrameworkInlet.cpp \
+    items/FrameworkOutlet.cpp \
     items/InterfaceInlet.cpp \
-    items/InterfaceElement.cpp \
     items/InterfaceOutlet.cpp \
-    items/Slider.cpp \
-    items/TextIO.cpp \
-    items/PixelView.cpp \
-    items/PixelView.cpp \
     items/StringObject.cpp \
-    models/StringModel.cpp \
-    items/Image.cpp \
-    items/UberTexture.cpp \
-    items/PainterBezier.cpp
-
+    qml_extensions/UberTexture.cpp \
+    qml_extensions/PixelView.cpp \
+    qml_extensions/PainterBezier.cpp \
+    qml_extensions/Circle.cpp \
+    qml_extensions/Canvas.cpp \
+    qml_extensions/BezierCurve.cpp \
+    ui_items/TextIO.cpp \
+    ui_items/SliderBlock.cpp \
+    ui_items/InterfaceBlock.cpp \
+    ui_items/Image.cpp \
+    items/BaseBlock.cpp \
+    items/FrameworkBlock.cpp
 HEADERS += \
-    models/QObjectListModelT.h \
+models/QObjectListModelT.h \
     models/QObjectListModelAttachment.h \
     models/QObjectListModel.h \
     models/OutletObjectListModel.h \
     models/ItemObjectListModel.h \
     models/InletObjectListModel.h \
     models/DockModel.h \
-    items/Workbench.h \
-    items/Outlet.h \
-    items/Link.h \
-    items/Item.h \
-    items/Inlet.h \
-    items/Circle.h \
-    items/Canvas.h \
-    items/Block.h \
-    items/BezierCurve.h \
+    models/StringModel.h \
     system/ComplexDelegate.h \
     system/System.h \
     system/FileLoader.h \
-    system/EventFilter.h \
-    items/Slider.h \
     system/ConnectionManager.h \
-    items/BlockInlet.h \
-    items/BlockOutlet.h \
-    items/InterfaceInlet.h \
-    items/InterfaceElement.h \
-    items/InterfaceOutlet.h \
-    items/TextIO.h \
-    items/PixelView.h \
-    items/StringObject.h \
-    models/StringModel.h \
     system/Converter.h \
     system/Converter_T.h \
     system/ConverterFromDescription.h \
-    items/Image.h \
-    items/UberTexture.h \
-    items/PainterBezier.h
-
+    items/BaseOutlet.h \
+    items/Link.h \
+    items/Item.h \
+    items/BaseInlet.h \
+    items/FrameworkInlet.h \
+    items/FrameworkOutlet.h \
+    items/InterfaceInlet.h \
+    items/InterfaceOutlet.h \
+    qml_extensions/UberTexture.h \
+    qml_extensions/PixelView.h \
+    qml_extensions/PainterBezier.h \
+    qml_extensions/Circle.h \
+    qml_extensions/Canvas.h \
+    qml_extensions/BezierCurve.h \
+    ui_items/TextIO.h \
+    ui_items/SliderBlock.h \
+    ui_items/InterfaceBlock.h \
+    ui_items/Image.h \
+    items/StringObject.h \
+    items/BaseBlock.h \
+    items/FrameworkBlock.h
 
 OTHER_FILES += \
     qml/Canvas/Tooltip.qml \
-    qml/Canvas/NodeRow.qml \
     qml/Canvas/Node.qml \
+    qml/Canvas/NodeRow.qml \
+    qml/Canvas/ObjectFrame.qml \
+    qml/Canvas/BaseBlock.qml \
+    qml/Canvas/UberBlock.qml \
+    qml/Canvas/SliderBlock.qml \
+    qml/Canvas/ImageBlock.qml \
     qml/Canvas/Link.qml \
     qml/Canvas/Button.qml \
-    qml/Canvas/BaseBlock.qml \
+    qml/Canvas/TextBlock.qml \
+    qml/Canvas/TextElement.qml \
     qml/Windows/TaskBar.qml \
     qml/Windows/MainWindow.qml \
     qml/Windows/Dock.qml \
-    qml/Canvas/UberBlock.qml \
+    qml/Windows/ContextMenu.qml \
+    qml/Windows/DockTextBrowser.qml \
     images/textedit.sci \
     js/ContextMenu.js \
-    qml/Windows/DockTextBrowser.qml \
-    qml/Canvas/TextBlock.qml \
-    qml/Canvas/SliderBlock.qml \
-    qml/Canvas/ObjectFrame.qml \
-    qml/Windows/ContextMenu.qml \
-    qml/Canvas/TextElement.qml \
-    qml/Canvas/ImageBlock.qml \
     js/Bezier.js
-
-
 
 #Includes
 INCLUDEPATH += $(_2REAL_DEPENDENCIES_DIR)/eigen
@@ -122,14 +115,12 @@ INCLUDEPATH += $(_2REAL_DIR)/kernel/src
 INCLUDEPATH += items/
 INCLUDEPATH += models/
 INCLUDEPATH += system/
-
-
+INCLUDEPATH += qml_extensions/
+INCLUDEPATH += ui_items/
 
 #Linking
-
 CONFIG += qt
 QT += opengl
-
 
 win32:CONFIG(release, debug|release): LIBS += -L$(_2REAL_DIR)/kernel/lib/ -l_2RealFramework_32
 else:win32:CONFIG(debug, debug|release): LIBS += -L$(_2REAL_DIR)/kernel/lib/ -l_2RealFramework_32d
@@ -138,7 +129,6 @@ else:win32:CONFIG(debug, debug|release): LIBS += -L$(_2REAL_DEPENDENCIES_DIR)/po
 win32:CONFIG(debug, debug|release): LIBS += -L$(_2REAL_DEPENDENCIES_DIR)/vld/lib/Win32/ -lvld
 
 LIBS += -ldwmapi
-
 #Copy needed dlls to dest dir
 win32 {
     #...

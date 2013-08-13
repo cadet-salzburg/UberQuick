@@ -6,12 +6,14 @@
 #include "_2RealApplication.h"
 #include "_2RealDatatypes.h"
 #include "Item.h"
+
 namespace Uber {
     using namespace _2Real;
     class Item;
-    class Inlet;
-    class Outlet;
+    class BaseInlet;
+    class BaseOutlet;
     class StringModel;
+
     class Point : public QObject {
         Q_OBJECT
     public:
@@ -32,25 +34,31 @@ namespace Uber {
     public:
         Link();
         virtual ~Link();
-        void                                setInlet( Inlet *inlet );
-        void                                setOutlet( Outlet *outlet );
-        Inlet*                              getInlet();
-        Outlet*                             getOutlet();
+        void                                setInlet( BaseInlet *inlet );
+        BaseInlet*                              getInlet();
+
+        void                                setOutlet( BaseOutlet *outlet );
+        BaseOutlet*                             getOutlet();
 
         Q_INVOKABLE     void                addPoint( const QPointF &p );
         Q_INVOKABLE     QObjectList         getPoints();
 
         Q_INVOKABLE     QPointF             getStartPos();
         Q_INVOKABLE     QPointF             getEndPos();
+
         Q_INVOKABLE     void                updatePosition( const QPointF& pos );
+
         bool                                isValid();
+
         StringModel*                        getConnectionTypename();
         StringModel*                        getConnectionOptions();
 
         virtual void                        connectSignals();
         virtual void                        disconnectSignals();
-        void                                receivedData( std::shared_ptr<const CustomType> data );
 
+
+        void                                receivedData( std::shared_ptr<const CustomType> data );
+        bool                                isFrameworkLink() const;
     protected:
 
     signals:
@@ -63,8 +71,8 @@ namespace Uber {
         }
 
     private:
-        Inlet*                                      m_Inlet;
-        Outlet*                                     m_Outlet;
+        BaseInlet*                                  m_Inlet;
+        BaseOutlet*                                 m_Outlet;
         QObjectList                                 m_Points;
         StringModel*                                m_ConnectionOptions;
         QMutex                                      m_Mutex;

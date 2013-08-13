@@ -1,9 +1,9 @@
 #ifndef TEXTIO_H
 #define TEXTIO_H
-#include "InterfaceElement.h"
+#include "InterfaceBlock.h"
 #include <QVariant>
 namespace Uber {
-    class TextIO : public InterfaceElement
+    class TextIO : public InterfaceBlock
     {
         Q_OBJECT
         Q_PROPERTY( QVariant value READ getValue WRITE setValue NOTIFY valueChanged )

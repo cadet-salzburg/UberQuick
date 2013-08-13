@@ -1,21 +1,21 @@
 #include "OutletObjectListModel.h"
-#include "../Items/Outlet.h"
+#include "../Items/BaseOutlet.h"
 
 namespace Uber {
     OutletObjectListModel::OutletObjectListModel(QObject *parent)
-    :QObjectListModelT<Outlet*>(parent)
+    :QObjectListModelT<BaseOutlet*>(parent)
     {
 
     }
 
-    OutletObjectListModel::OutletObjectListModel(const QList<Outlet*> &objects, QObject *parent)
-    :QObjectListModelT<Outlet*>(objects, parent)
+    OutletObjectListModel::OutletObjectListModel(const QList<BaseOutlet*> &objects, QObject *parent)
+    :QObjectListModelT<BaseOutlet*>(objects, parent)
     {
 
     }
 
     OutletObjectListModel::OutletObjectListModel(OutletObjectListModel *outletListModel, QObject *parent)
-    :QObjectListModelT<Outlet*>(outletListModel, parent)
+    :QObjectListModelT<BaseOutlet*>(outletListModel, parent)
     {
 
     }
@@ -25,7 +25,7 @@ namespace Uber {
         int cnt = count();
         for ( int i =0; i< cnt; ++i )
         {
-            Outlet* item = at(i);
+            BaseOutlet* item = at(i);
             //emit item->killSelf();
             delete item;
         }

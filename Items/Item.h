@@ -4,6 +4,7 @@
 #include <QPoint>
 #include <QSize>
 #include <QUrl>
+#include <QDebug>
 
 namespace Uber {
     class Item : public QObject
@@ -14,7 +15,6 @@ namespace Uber {
         Q_PROPERTY( float x READ x WRITE setX NOTIFY xChanged )
         Q_PROPERTY( float y READ y WRITE setY NOTIFY yChanged )
         Q_PROPERTY( QSizeF size READ size WRITE setSize )
-        Q_PROPERTY( QUrl url READ getUrl WRITE setUrl NOTIFY urlChanged )
     public:
         Item(QObject *parent = nullptr );
         Item(QObject *parent, QPointF position, QSizeF size);
@@ -27,20 +27,14 @@ namespace Uber {
 
         QSizeF                  size() const;
         void                    setSize(const QSizeF &size);
+
         Q_INVOKABLE QString     getClassName() const
         {
+            qDebug() << "Should: " << metaObject()->className();
             return QString( metaObject()->className());
         }
 
-        const QUrl&             getUrl()
-        {
-            return m_ComponentUrl;
-        }
 
-        void                    setUrl( const QUrl &url)
-        {
-            m_ComponentUrl = url;
-        }
         virtual void            connectSignals(){}
         virtual void            disconnectSignals(){}
 
@@ -49,8 +43,7 @@ namespace Uber {
     private:
         QPointF                 m_Position;
         QSizeF                  m_Size;
-        int                     m_Orientation;
-        QUrl                    m_ComponentUrl;
+
     signals:
         void                    killSelf();
         void                    positionChanged(QPointF);

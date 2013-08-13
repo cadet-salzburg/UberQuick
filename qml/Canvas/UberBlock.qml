@@ -5,7 +5,7 @@ BaseBlock
 {
     Text {
         id: info
-        text: object.name
+        text: object.objectName
         font.family: "Helvetica"
         font.pointSize: 8
         color: "dimgray"

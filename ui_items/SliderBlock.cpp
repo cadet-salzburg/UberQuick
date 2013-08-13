@@ -1,9 +1,9 @@
-#include "Slider.h"
+#include "SliderBlock.h"
 #include <QDebug>
 #include "InterfaceOutlet.h"
 namespace Uber {
-    Slider::Slider()
-    :InterfaceElement()
+    SliderBlock::SliderBlock()
+    :InterfaceBlock()
     ,m_Minimum(0.f)
     ,m_Maximum(5.f)
     ,m_Step(0.05f)
@@ -11,12 +11,12 @@ namespace Uber {
         initialize();
     }
 
-    Slider::~Slider()
+    SliderBlock::~SliderBlock()
     {
 
     }
 
-    void    Slider::initialize()
+    void    SliderBlock::initialize()
     {
         InterfaceOutlet *currentOutlet( new InterfaceOutlet());
         appendOutlet(currentOutlet);
@@ -24,36 +24,36 @@ namespace Uber {
                          currentOutlet, SIGNAL(valueChanged(QVariant)));
     }
 
-    void    Slider::setMinimum( float m )
+    void    SliderBlock::setMinimum( float m )
     {
         m_Minimum = m;
     }
 
-    float   Slider::getMinimum() const
+    float   SliderBlock::getMinimum() const
     {
         return m_Minimum;
     }
 
-    void    Slider::setMaximum( float m )
+    void    SliderBlock::setMaximum( float m )
     {
         m_Maximum = m;
     }
 
-    float   Slider::getMaximum() const
+    float   SliderBlock::getMaximum() const
     {
         return m_Maximum;
     }
-    void    Slider::setStep( float m )
+    void    SliderBlock::setStep( float m )
     {
         m_Step = m;
     }
 
-    float   Slider::getStep() const
+    float   SliderBlock::getStep() const
     {
         return m_Step;
     }
 
-    void Slider::setValue(float value)
+    void SliderBlock::setValue(float value)
     {
         if ( m_Value != value )
         {
@@ -63,14 +63,14 @@ namespace Uber {
         }
     }
 
-    float Slider::getValue() const
+    float SliderBlock::getValue() const
     {
         return m_Value;
     }
-    QDebug operator << (QDebug dbg, const Slider &slider )
+    QDebug operator << (QDebug dbg, const SliderBlock &slider )
     {
         Q_UNUSED(slider)
-        dbg.nospace() << "Slider";
+        dbg.nospace() << "SliderBlock";
         return dbg.maybeSpace();
     }
 }

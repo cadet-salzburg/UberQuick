@@ -3,10 +3,11 @@
 #include <QMimeData>
 #include <QPixmap>
 #include <QDebug>
+
 #include "../items/Item.h"
 #include "../items/Link.h"
-#include "../items/BlockInlet.h"
-#include "../items/BlockOutlet.h"
+#include "../items/FrameworkInlet.h"
+#include "../items/FrameworkOutlet.h"
 #include "../items/InterfaceInlet.h"
 #include "../items/InterfaceOutlet.h"
 #include "../models/ItemObjectListModel.h"
@@ -24,13 +25,13 @@ namespace Uber {
     void ConnectionManager::beginLink(Item *item, const QPointF &pos )
     {
         m_Link = new Link();
-        if ( item->getClassName()=="Uber::BlockInlet" )
+        if ( item->getClassName()=="Uber::FrameworkInlet" )
         {
-            BlockInlet *inlet = qobject_cast<BlockInlet*>(item);
+            FrameworkInlet *inlet = qobject_cast<FrameworkInlet*>(item);
             m_Link->setInlet(inlet);
-        } else if ( item->getClassName()== "Uber::BlockOutlet" )
+        } else if ( item->getClassName()== "Uber::FrameworkOutlet" )
         {
-            BlockOutlet *outlet = qobject_cast<BlockOutlet*>(item);
+            FrameworkOutlet *outlet = qobject_cast<FrameworkOutlet*>(item);
             m_Link->setOutlet(outlet);
         } else if ( item->getClassName()== "Uber::InterfaceInlet" )
         {
@@ -57,12 +58,12 @@ namespace Uber {
 
     void ConnectionManager::finishLink(Item *item)
     {
-        if ( item->getClassName()=="Uber::BlockInlet" )
+        if ( item->getClassName()=="Uber::FrameworkInlet" )
         {
-            m_Link->setInlet(qobject_cast<BlockInlet*>(item));
-        } else if ( item->getClassName()== "Uber::BlockOutlet" )
+            m_Link->setInlet(qobject_cast<FrameworkInlet*>(item));
+        } else if ( item->getClassName()== "Uber::FrameworkOutlet" )
         {
-            m_Link->setOutlet(qobject_cast<BlockOutlet*>(item));
+            m_Link->setOutlet(qobject_cast<FrameworkOutlet*>(item));
         } else if ( item->getClassName()== "Uber::InterfaceInlet" )
         {
             InterfaceInlet *inlet = qobject_cast<InterfaceInlet*>(item);
@@ -74,7 +75,7 @@ namespace Uber {
         {
             InterfaceOutlet *outlet = qobject_cast<InterfaceOutlet*>(item);
             m_Link->setOutlet(outlet);
-            qDebug() << "---Outlet";
+            qDebug() << "---BaseOutlet";
         }
         if ( !m_Link->isValid() )
         {
@@ -82,6 +83,13 @@ namespace Uber {
         } else {
             m_Link->connectSignals();
         }
+        if ( m_Link->isFrameworkLink() )
+        {
+            qDebug() << " Is a framework Link";
+        } else {
+            qDebug() << " Is NOT a framework Link";
+        }
+
     }
 
     void ConnectionManager::removeLink( Link* link )

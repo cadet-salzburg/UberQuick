@@ -1,6 +1,6 @@
 #include "Link.h"
-#include "BlockInlet.h"
-#include "BlockOutlet.h"
+#include "FrameworkInlet.h"
+#include "FrameworkOutlet.h"
 #include "InterfaceInlet.h"
 #include "InterfaceOutlet.h"
 #include "StringModel.h"
@@ -14,6 +14,7 @@ namespace Uber {
     {
 
     }
+
     QPointF Point::get() const
     {
         return m_Point;
@@ -45,8 +46,8 @@ namespace Uber {
     }
 
     Link::Link()
-    :m_Inlet( new Inlet() )
-    ,m_Outlet( new Outlet() )
+    :m_Inlet( new BaseInlet() )
+    ,m_Outlet( new BaseOutlet() )
     ,m_ConnectionOptions(nullptr)
     {
         QObject::connect(m_Inlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
@@ -55,13 +56,14 @@ namespace Uber {
 
     Link::~Link()
     {
-        if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::BlockOutlet" )
+        if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::FrameworkOutlet" )
         {
-            static_cast<Uber::BlockOutlet*>(m_Outlet)->getOutletHandle().unregisterFromNewData(*this, &Link::receivedData);
+            static_cast<Uber::FrameworkOutlet*>(m_Outlet)->getOutletHandle().unregisterFromNewData(*this, &Link::receivedData);
         }
         disconnectSignals();
     }
-    void Link::setInlet( Inlet *inlet )
+
+    void Link::setInlet( BaseInlet *inlet )
     {
         QObject::disconnect(m_Inlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
         delete m_Inlet;
@@ -70,7 +72,7 @@ namespace Uber {
         emit positionChanged();
     }
 
-    void Link::setOutlet( Outlet *outlet )
+    void Link::setOutlet( BaseOutlet *outlet )
     {
         QObject::disconnect(m_Outlet, SIGNAL(positionChanged()),this, SIGNAL(linkChanged()));
         delete m_Outlet;
@@ -79,12 +81,12 @@ namespace Uber {
         emit positionChanged();
     }
 
-    Inlet *Link::getInlet()
+    BaseInlet *Link::getInlet()
     {
         return m_Inlet;
     }
 
-    Outlet *Link::getOutlet()
+    BaseOutlet *Link::getOutlet()
     {
         return m_Outlet;
     }
@@ -98,10 +100,12 @@ namespace Uber {
     {
         return m_Points;
     }
+
     /*
      * A link always starts from an outlet and ends at an inlet.
-     * This is not affected by the way a connection is made.
+     * This is not affected by the way a connection is established
      */
+
     QPointF Link::getStartPos()
     {
         if ( m_Outlet )
@@ -139,18 +143,18 @@ namespace Uber {
 
     bool Link::isValid()
     {
-        if ( m_Inlet->getClassName() == "Uber::BlockInlet" && m_Outlet->getClassName() == "Uber::BlockOutlet" )
+        if ( m_Inlet->getClassName() == "Uber::FrameworkInlet" && m_Outlet->getClassName() == "Uber::FrameworkOutlet" )
         {
-            BlockInlet* inlet = qobject_cast<BlockInlet*>(m_Inlet);
-            BlockOutlet* outlet = qobject_cast<BlockOutlet*>(m_Outlet);
+            FrameworkInlet* inlet = qobject_cast<FrameworkInlet*>(m_Inlet);
+            FrameworkOutlet* outlet = qobject_cast<FrameworkOutlet*>(m_Outlet);
             InletHandle inHandle = inlet->getInletHandle();
             OutletHandle outHandle = outlet->getOutletHandle();
-            return inHandle.link(outHandle);
-        } else if (  m_Inlet->getClassName() == "Uber::BlockInlet" && m_Outlet->getClassName() == "Uber::InterfaceOutlet")
+            LinkHandle linkHandle = inHandle.link(outHandle);
+            return linkHandle.isValid();
+        } else if (  m_Inlet->getClassName() == "Uber::FrameworkInlet" && m_Outlet->getClassName() == "Uber::InterfaceOutlet")
         {
             return true;
-
-        } else if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::BlockOutlet" )
+        } else if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::FrameworkOutlet" )
         {
             return true;
         } else if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::InterfaceOutlet" )
@@ -161,16 +165,17 @@ namespace Uber {
             return false;
         }
     }
+
     StringModel* Link::getConnectionTypename()
     {
         StringModel* options = nullptr;
-        if (  m_Inlet->getClassName() == "Uber::BlockInlet" && m_Outlet->getClassName() == "Uber::InterfaceOutlet")
+        if (  m_Inlet->getClassName() == "Uber::FrameworkInlet" && m_Outlet->getClassName() == "Uber::InterfaceOutlet")
         {
-            BlockInlet* inlet = qobject_cast<BlockInlet*>(m_Inlet);
+            FrameworkInlet* inlet = qobject_cast<FrameworkInlet*>(m_Inlet);
             options =  inlet->getDataType();
-        } else if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::BlockOutlet" )
+        } else if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::FrameworkOutlet" )
         {
-            BlockOutlet* outlet = qobject_cast<BlockOutlet*>(m_Outlet);
+            FrameworkOutlet* outlet = qobject_cast<FrameworkOutlet*>(m_Outlet);
             options =  outlet->getDataType();
         }
         return options;
@@ -179,25 +184,26 @@ namespace Uber {
     StringModel* Link::getConnectionOptions()
     {
         StringModel* options = nullptr;
-        if (  m_Inlet->getClassName() == "Uber::BlockInlet" && m_Outlet->getClassName() == "Uber::InterfaceOutlet")
+        if (  m_Inlet->getClassName() == "Uber::FrameworkInlet" && m_Outlet->getClassName() == "Uber::InterfaceOutlet")
         {
-            BlockInlet* inlet = qobject_cast<BlockInlet*>(m_Inlet);
+            FrameworkInlet* inlet = qobject_cast<FrameworkInlet*>(m_Inlet);
             options =  inlet->getDataTypeFields();
-        } else if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::BlockOutlet" )
+        } else if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::FrameworkOutlet" )
         {
-            BlockOutlet* outlet = qobject_cast<BlockOutlet*>(m_Outlet);
+            FrameworkOutlet* outlet = qobject_cast<FrameworkOutlet*>(m_Outlet);
             options =  outlet->getDataTypeFields();
         }
         return options;
     }
+
     void Link::connectSignals()
     {
         QObject::connect(getOutlet(), SIGNAL(valueChanged(QVariant)),getInlet(), SIGNAL(valueChanged(QVariant)));
         QObject::connect(getOutlet(), SIGNAL(killSelf()),this, SLOT(remove()));
         QObject::connect(getInlet(), SIGNAL(killSelf()),this, SLOT(remove()));
-        if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::BlockOutlet" )
+        if ( m_Inlet->getClassName() == "Uber::InterfaceInlet" && m_Outlet->getClassName() == "Uber::FrameworkOutlet" )
         {
-            static_cast<Uber::BlockOutlet*>(m_Outlet)->getOutletHandle().registerToNewData(*this, &Link::receivedData );
+            static_cast<Uber::FrameworkOutlet*>(m_Outlet)->getOutletHandle().registerToNewData(*this, &Link::receivedData );
         }
     }
 
@@ -218,5 +224,15 @@ namespace Uber {
         QVariant val = QVariant::fromValue(img);
         emit m_Outlet->valueChanged(val);
         m_Mutex.unlock();
+    }
+
+    bool Link::isFrameworkLink() const
+    {
+        if ( ( m_Inlet->getClassName() == QString("Uber::FrameworkInlet") ) && ( m_Outlet->getClassName() == QString("Uber::FrameworkOutlet") ) )
+        {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

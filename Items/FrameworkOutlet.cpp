@@ -1,54 +1,54 @@
-#include "BlockInlet.h"
-#include "_2RealDatatypes.h"
-#include "StringModel.h"
+#include "FrameworkOutlet.h"
+#include "../models/StringModel.h"
 #include "StringObject.h"
 namespace Uber {
-    BlockInlet::BlockInlet(QObject *parent)
-    :Inlet(parent)
+    FrameworkOutlet::FrameworkOutlet(QObject *parent)
+    :BaseOutlet(parent)
+    ,m_ConnectionOptions(nullptr)
+    ,m_DataType(nullptr)
+    {
+
+    }
+    FrameworkOutlet::FrameworkOutlet(const FrameworkOutlet &other)
+    :BaseOutlet(other)
+    ,m_OutletHandle(other.getOutletHandle())
     ,m_ConnectionOptions(nullptr)
     ,m_DataType(nullptr)
     {
 
     }
 
-    BlockInlet::BlockInlet(const BlockInlet &other)
-    :Inlet(other)
-    ,m_InletHandle(other.getInletHandle())
+    FrameworkOutlet::FrameworkOutlet(const OutletHandle &handle, QObject *parent )
+    :BaseOutlet(parent)
+    ,m_OutletHandle(handle)
     ,m_ConnectionOptions(nullptr)
     ,m_DataType(nullptr)
     {
 
     }
 
-    BlockInlet::BlockInlet(const InletHandle &handle, QObject *parent )
-    :Inlet(parent)
-    ,m_InletHandle(handle)
-    ,m_ConnectionOptions(nullptr)
-    ,m_DataType(nullptr)
-    {
-
-    }
-
-    BlockInlet::~BlockInlet()
+    FrameworkOutlet::~FrameworkOutlet()
     {
         delete m_ConnectionOptions;
         delete m_DataType;
     }
 
-    void BlockInlet::setInletHandle(const InletHandle &handle)
+    void FrameworkOutlet::setOutletHandle(const OutletHandle &handle)
     {
-        m_InletHandle = handle;
+        m_OutletHandle = handle;
     }
 
-    InletHandle BlockInlet::getInletHandle() const
+    OutletHandle FrameworkOutlet::getOutletHandle() const
     {
-        return m_InletHandle;
+        return m_OutletHandle;
     }
-    bool BlockInlet::isValid() const
+
+    bool FrameworkOutlet::isValid() const
     {
-        return m_InletHandle.isValid();
+        return m_OutletHandle.isValid();
     }
-    StringModel *BlockInlet::getDataType()
+
+    StringModel *FrameworkOutlet::getDataType()
     {
         if ( !m_DataType )
         {
@@ -59,7 +59,7 @@ namespace Uber {
         }
         if ( isValid() )
         {
-            _2Real::app::TypeMetainfo info = m_InletHandle.getType();
+            _2Real::app::TypeMetainfo info = m_OutletHandle.getType();
 
             std::pair< std::string, std::string > typeName = info.getTypename();
             StringObject *obj = new StringObject();
@@ -69,7 +69,7 @@ namespace Uber {
         return m_DataType;
     }
 
-    StringModel* BlockInlet::getDataTypeFields()
+    StringModel* FrameworkOutlet::getDataTypeFields()
     {
         if ( !m_ConnectionOptions )
         {
@@ -80,11 +80,11 @@ namespace Uber {
         }
         if ( isValid() )
         {
-            _2Real::app::TypeMetainfo info = m_InletHandle.getType();
-            _2Real::Fields fields;
-            info.getFieldInfo( fields );
+            _2Real::app::TypeMetainfo info = m_OutletHandle.getType();
+            _2Real::DataFields fields;
+            info.getDataFields( fields );
 
-            for ( _2Real::Fields::const_iterator it = fields.begin(); it != fields.end(); ++ it )
+            for ( _2Real::DataFields::const_iterator it = fields.begin(); it != fields.end(); ++ it )
             {
                 StringObject *obj = new StringObject();
                 std::string type = (*it)->getTypename().first + "::" + (*it)->getTypename().second;

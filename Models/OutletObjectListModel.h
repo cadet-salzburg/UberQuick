@@ -4,13 +4,13 @@
 
 
 namespace Uber {
-    class Outlet;
-    class OutletObjectListModel : public QObjectListModelT<Outlet*>
+    class BaseOutlet;
+    class OutletObjectListModel : public QObjectListModelT<BaseOutlet*>
     {
         Q_OBJECT
     public:
         OutletObjectListModel(QObject *parent = nullptr);
-        OutletObjectListModel(const QList<Outlet*> &objects, QObject *parent = 0);
+        OutletObjectListModel(const QList<BaseOutlet*> &objects, QObject *parent = 0);
         OutletObjectListModel(OutletObjectListModel *outletListModel, QObject *parent);
         virtual ~OutletObjectListModel();
     };

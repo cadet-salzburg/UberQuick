@@ -4,13 +4,13 @@
 #include "QObjectListModelT.h"
 
 namespace Uber {
-    class Inlet;
-    class InletObjectListModel : public QObjectListModelT<Inlet*>
+    class BaseInlet;
+    class InletObjectListModel : public QObjectListModelT<BaseInlet*>
     {
         Q_OBJECT
     public:
         InletObjectListModel(QObject *parent = nullptr);
-        InletObjectListModel(const QList<Inlet*> &objects, QObject *parent = 0);
+        InletObjectListModel(const QList<BaseInlet*> &objects, QObject *parent = 0);
         InletObjectListModel(InletObjectListModel *inletListModel, QObject *parent);
         virtual ~InletObjectListModel();
     };

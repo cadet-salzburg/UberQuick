@@ -1,19 +1,19 @@
 #ifndef INTERFACEOUTLET_H
 #define INTERFACEOUTLET_H
-#include "Outlet.h"
+#include "BaseOutlet.h"
 namespace Uber {
-    class InterfaceOutlet : public Outlet
+    class InterfaceOutlet : public BaseOutlet
     {
         Q_OBJECT
     public:
         InterfaceOutlet();
-        virtual ~InterfaceOutlet();
-        virtual inline bool     isValid() const
+        virtual         ~InterfaceOutlet();
+        inline bool     isValid() const
         {
             return true;
         }
     public slots:
-        void setValue(QVariant val)
+        void            setValue(QVariant val)
         {
             if ( val != m_Value )
             {
@@ -22,7 +22,7 @@ namespace Uber {
             }
         }
     private:
-        QVariant    m_Value;
+        QVariant        m_Value;
     };
 }
 #endif // INTERFACEOUTLET_H

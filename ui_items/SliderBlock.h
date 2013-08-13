@@ -1,9 +1,9 @@
-#ifndef SLIDER_H
-#define SLIDER_H
+#ifndef SLIDERBLOCK_H
+#define SLIDERBLOCK_H
 #include <QVariant>
-#include "InterfaceElement.h"
+#include "InterfaceBlock.h"
 namespace Uber {
-class Slider : public InterfaceElement
+class SliderBlock : public InterfaceBlock
 {
     Q_OBJECT
     Q_PROPERTY( float minimum READ getMinimum WRITE setMinimum NOTIFY minimumChanged )
@@ -11,8 +11,8 @@ class Slider : public InterfaceElement
     Q_PROPERTY( float step READ getStep WRITE setStep NOTIFY stepChanged )
     Q_PROPERTY( float value READ getValue WRITE setValue NOTIFY valueChanged )
 public:
-    Slider();
-    virtual         ~Slider();
+    SliderBlock();
+    virtual         ~SliderBlock();
     void            setMinimum( float m );
     float           getMinimum() const;
 
@@ -37,6 +37,6 @@ private:
 
     void            initialize();
 };
-    QDebug operator<<(QDebug dbg, const Slider &slider);
+    QDebug operator<<(QDebug dbg, const SliderBlock &slider);
 }
-#endif // SLIDER_H
+#endif // SLIDERBLOCK_H

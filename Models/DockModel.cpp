@@ -1,8 +1,8 @@
 #include "DockModel.h"
-#include "../items/Block.h"
-#include "../items/Slider.h"
-#include "../items/TextIO.h"
-#include "../items/Image.h"
+#include "../items/FrameworkBlock.h"
+#include "../ui_items/SliderBlock.h"
+#include "../ui_items/TextIO.h"
+#include "../ui_items/Image.h"
 #include <QStringListModel>
 
 namespace Uber {
@@ -95,13 +95,13 @@ namespace Uber {
             GridEntry entry = getEntry(row);
             if ( entry.typeIs(BlockType) )
             {
-                BlockHandle handle = entry.getBundleHandle().createBlockInstance(entry.getName().toUtf8().constData());
+                BlockHandle handle = entry.getBundleHandle().createFunctionBlockInstance(entry.getName().toUtf8().constData());
                 handle.setup();
                 handle.start();
-                item = new Block(handle, entry.getName());
+                item = new FrameworkBlock(handle, entry.getName());
             } else if ( entry.typeIs(SliderType) )
             {
-                item = new Slider();
+                item = new SliderBlock();
             } else if ( entry.typeIs(TextInputType) )
             {
                 item = new TextIO();

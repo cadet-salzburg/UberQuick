@@ -2,7 +2,7 @@
 #define IMAGE_H
 #include <memory>
 #include <QVariant>
-#include "InterfaceElement.h"
+#include "InterfaceBlock.h"
 #include "_2RealApplication.h"
 #include "_2RealDatatypes.h"
 
@@ -15,7 +15,7 @@ namespace Uber {
 }
 
 namespace Uber {
-    class Image : public InterfaceElement
+    class Image : public InterfaceBlock
     {
         Q_OBJECT
         Q_PROPERTY( int minWidth READ getMinWidth WRITE setMinWidth NOTIFY minWidthChanged )
@@ -43,12 +43,13 @@ namespace Uber {
         void            valueChanged();
     public slots:
         void            setImage(QVariant img);
+    protected:
+        void            initialize();
     private:
         qreal           m_AspectRatio;
         int             m_MinWidth;
         int             m_MaxWidth;
         ImageConstRef   m_Image, m_ImageKeep;
-        virtual void    initialize();
         int             cnt;
     };
 }

@@ -3,7 +3,7 @@
 #include "InterfaceOutlet.h"
 namespace Uber {
     TextIO::TextIO()
-    :InterfaceElement()
+    :InterfaceBlock()
     ,m_Value("")
     {
         initialize();
