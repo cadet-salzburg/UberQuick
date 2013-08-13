@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
     qRegisterMetaType<CustomTypeRef>("CustomTypeRef");
     Uber::System *system = Uber::System::getInstance();
     //QObject::connect(system->getWindow(), SIGNAL(clicked()), qApp, SLOT(quit()));
+    system->createWindows();
     system->loadBundles();
     system->loadInterfaceBlocks();
     system->registerQmlTypes();

@@ -92,8 +92,8 @@ namespace Uber {
 //        QObject::connect(m_CanvasWindow, SIGNAL(destroyed()), this, SLOT(cleanup()));
 
         m_DockWindow->setResizeMode(QQuickView::SizeRootObjectToView);
-        m_DockWindow->setGeometry(300,200, 400, 150);
-        m_DockWindow->setFormat(m_SurfaceFormat);
+        m_DockWindow->setGeometry(300, 200, 400, 150);
+        m_DockWindow->setFormat(surfaceFormat);
         m_DockWindow->setClearBeforeRendering(true);
         m_DockWindow->setColor(Qt::transparent);
         m_DockWindow->setFlags(Qt::SplashScreen );//| Qt::FramelessWindowHint );
@@ -365,15 +365,6 @@ namespace Uber {
         {
             // the framework did its part, but ubercode failed
             // this likely means something is very wrong, so shutdown?
-        }
-    }
-
-    void System::changedFocus(QObject *focusObject)
-    {
-        Q_UNUSED(focusObject)
-        if ( m_CanvasWindow->isActive() )
-        {
-            m_DockWindow->hide();
         }
     }
 

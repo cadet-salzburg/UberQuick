@@ -26,7 +26,6 @@ namespace Uber {
         m_BlockHandle.destroy(1000);
     }
 
-
     void FrameworkBlock::setBlockHandle( const BlockHandle& handle )
     {
         m_BlockHandle = handle;

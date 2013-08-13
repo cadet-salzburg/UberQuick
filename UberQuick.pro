@@ -82,7 +82,8 @@ models/QObjectListModelT.h \
     ui_items/Image.h \
     items/StringObject.h \
     items/BaseBlock.h \
-    items/FrameworkBlock.h
+    items/FrameworkBlock.h \
+    items/StringObject.h
 
 OTHER_FILES += \
     qml/Canvas/Tooltip.qml \

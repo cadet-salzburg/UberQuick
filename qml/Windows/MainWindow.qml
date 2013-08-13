@@ -61,9 +61,11 @@ GraphCanvas {
         id: grid
         model: ItemModel
         delegate: Loader {
-            source: ComplexDelegate.getDelegate(object.className)
+            //asynchronous: false
+            source: ComplexDelegate.getDelegate(object.getClassName())
         }
     }
+
 
     TaskBar {
         anchors.bottom: workbench.bottom
