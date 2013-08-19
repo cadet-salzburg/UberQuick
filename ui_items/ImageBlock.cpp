@@ -9,6 +9,7 @@ namespace Uber {
     :InterfaceBlock()
     ,m_Image(nullptr)
     {
+                qDebug() << " constructor image called";
         cnt = 0;
         initialize();
     }
@@ -82,5 +83,6 @@ namespace Uber {
         InterfaceInlet *currentInlet( new InterfaceInlet());
         appendInlet(currentInlet);
         connectSignals();
+        m_Classname = metaObject()->className();
     }
 }

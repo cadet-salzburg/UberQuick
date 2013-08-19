@@ -40,10 +40,10 @@ SOURCES += \
     qml_extensions/Circle.cpp \
     qml_extensions/Canvas.cpp \
     qml_extensions/BezierCurve.cpp \
-    ui_items/TextIO.cpp \
+    ui_items/TextBlock.cpp \
     ui_items/SliderBlock.cpp \
     ui_items/InterfaceBlock.cpp \
-    ui_items/Image.cpp \
+    ui_items/ImageBlock.cpp \
     items/BaseBlock.cpp \
     items/FrameworkBlock.cpp
 HEADERS += \
@@ -76,10 +76,10 @@ models/QObjectListModelT.h \
     qml_extensions/Circle.h \
     qml_extensions/Canvas.h \
     qml_extensions/BezierCurve.h \
-    ui_items/TextIO.h \
+    ui_items/TextBlock.h \
     ui_items/SliderBlock.h \
     ui_items/InterfaceBlock.h \
-    ui_items/Image.h \
+    ui_items/ImageBlock.h \
     items/StringObject.h \
     items/BaseBlock.h \
     items/FrameworkBlock.h \

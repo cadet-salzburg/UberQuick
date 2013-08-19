@@ -1,24 +1,24 @@
-#include "TextIO.h"
+#include "TextBlock.h"
 #include "InterfaceInlet.h"
 #include "InterfaceOutlet.h"
 namespace Uber {
-    TextIO::TextIO()
+    TextBlock::TextBlock()
     :InterfaceBlock()
     ,m_Value("")
     {
         initialize();
     }
 
-    TextIO::~TextIO()
+    TextBlock::~TextBlock()
     {
     }
 
-    QVariant TextIO::getValue() const
+    QVariant TextBlock::getValue() const
     {
         return m_Value;
     }
 
-    void TextIO::setValue(const QVariant &value)
+    void TextBlock::setValue(const QVariant &value)
     {
         if ( m_Value != value )
         {
@@ -27,7 +27,7 @@ namespace Uber {
         }
     }
 
-    void TextIO::initialize()
+    void TextBlock::initialize()
     {
         InterfaceInlet *currentInlet( new InterfaceInlet());
         appendInlet(currentInlet);
@@ -37,6 +37,7 @@ namespace Uber {
 
         QObject::connect(currentInlet, SIGNAL(valueChanged(QVariant)), this, SLOT(setValue(QVariant)));
         QObject::connect(this, SIGNAL(valueChanged(QVariant)), currentOutlet, SLOT(setValue(QVariant)));
+        m_Classname = metaObject()->className();
     }
 
 }

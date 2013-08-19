@@ -3,8 +3,8 @@
 #include "../Items/FrameworkBlock.h"
 #include "../Items/Link.h"
 #include "../ui_items//SliderBlock.h"
-#include "../ui_items/TextIO.h"
-#include "../ui_items/Image.h"
+#include "../ui_items/TextBlock.h"
+#include "../ui_items/ImageBlock.h"
 
 namespace Uber {
     ItemObjectListModel::ItemObjectListModel(QObject *parent)
@@ -55,12 +55,12 @@ namespace Uber {
             } else if ( obj->getClassName()== QString("Uber::SliderBlock") )
             {
                 return QVariant::fromValue(dynamic_cast<SliderBlock*>(obj));
-            }  else if ( obj->getClassName()== QString("Uber::TextIO") )
+            }  else if ( obj->getClassName()== QString("Uber::TextBlock") )
             {
-                return QVariant::fromValue(dynamic_cast<TextIO*>(obj));
-            } else if ( obj->getClassName()== QString("Uber::Image") )
+                return QVariant::fromValue(dynamic_cast<TextBlock*>(obj));
+            } else if ( obj->getClassName()== QString("Uber::ImageBlock") )
             {
-                return QVariant::fromValue(dynamic_cast<Image*>(obj));
+                return QVariant::fromValue(dynamic_cast<ImageBlock*>(obj));
             }
         }
         case Qt::DisplayRole:

@@ -1,8 +1,8 @@
 #include "DockModel.h"
 #include "../items/FrameworkBlock.h"
 #include "../ui_items/SliderBlock.h"
-#include "../ui_items/TextIO.h"
-#include "../ui_items/Image.h"
+#include "../ui_items/TextBlock.h"
+#include "../ui_items/ImageBlock.h"
 #include <QStringListModel>
 
 namespace Uber {
@@ -104,10 +104,10 @@ namespace Uber {
                 item = new SliderBlock();
             } else if ( entry.typeIs(TextInputType) )
             {
-                item = new TextIO();
+                item = new TextBlock();
             } else if ( entry.typeIs(ImageType) )
             {
-                item = new Image();
+                item = new ImageBlock();
             }
         }
         return item;

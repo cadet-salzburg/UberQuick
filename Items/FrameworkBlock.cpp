@@ -9,6 +9,7 @@ namespace Uber {
     FrameworkBlock::FrameworkBlock()
     :BaseBlock(0)
     {
+        qDebug() << " constructor called";
         initialize();
     }
 
@@ -69,5 +70,7 @@ namespace Uber {
                 m_OutletModel->append(currentOutlet);
             }
         }
+        m_Classname = metaObject()->className();
+        qDebug() << " a block was created of: " << m_Classname;
     }
 }

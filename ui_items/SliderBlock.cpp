@@ -8,6 +8,7 @@ namespace Uber {
     ,m_Maximum(5.f)
     ,m_Step(0.05f)
     {
+        setObjectName("Uber::SliderBlock");
         initialize();
     }
 
@@ -22,6 +23,7 @@ namespace Uber {
         appendOutlet(currentOutlet);
         QObject::connect(this, SIGNAL(valueChanged(QVariant)),
                          currentOutlet, SIGNAL(valueChanged(QVariant)));
+        m_Classname = metaObject()->className();
     }
 
     void    SliderBlock::setMinimum( float m )

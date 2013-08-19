@@ -10,7 +10,7 @@ namespace Uber {
     class Item : public QObject
     {
         Q_OBJECT
-        //Q_PROPERTY ( QString className READ getClassName CONSTANT )
+        Q_PROPERTY ( QString className READ getClassName CONSTANT )
         Q_PROPERTY( QPointF position READ getPosition WRITE setPosition NOTIFY positionChanged )
         Q_PROPERTY( float x READ x WRITE setX NOTIFY xChanged )
         Q_PROPERTY( float y READ y WRITE setY NOTIFY yChanged )
@@ -28,10 +28,10 @@ namespace Uber {
         QSizeF                  size() const;
         void                    setSize(const QSizeF &size);
 
-        Q_INVOKABLE QString     getClassName() const
+        QString                 getClassName() const
         {
-            qDebug() << "Should: " << metaObject()->className();
-            return QString( metaObject()->className());
+
+            return m_Classname;
         }
 
 
@@ -39,11 +39,10 @@ namespace Uber {
         virtual void            disconnectSignals(){}
 
     protected:
-
+        QString                 m_Classname;
     private:
         QPointF                 m_Position;
         QSizeF                  m_Size;
-
     signals:
         void                    killSelf();
         void                    positionChanged(QPointF);

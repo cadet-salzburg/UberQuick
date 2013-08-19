@@ -61,8 +61,11 @@ GraphCanvas {
         id: grid
         model: ItemModel
         delegate: Loader {
-            //asynchronous: false
-            source: ComplexDelegate.getDelegate(object.getClassName())
+            property string classname: object.className
+            source: ComplexDelegate.getDelegate(classname)
+            Component.onCompleted: {
+                print("The fucking clasname is: " + classname )
+            }
         }
     }
 

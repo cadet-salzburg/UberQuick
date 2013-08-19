@@ -16,6 +16,7 @@
 #include "../system/FileLoader.h"
 #include "../system/ConnectionManager.h"
 #include "../system/ComplexDelegate.h"
+
 #include "../models/DockModel.h"
 #include "../models/ItemObjectListModel.h"
 #include "../models/DockModel.h"
@@ -23,19 +24,24 @@
 #include "../models/OutletObjectListModel.h"
 #include "../models/ItemObjectListModel.h"
 #include "../models/StringModel.h"
+
+#include "../items/Link.h"
 #include "../items/Item.h"
+
 #include "../items/BaseInlet.h"
 #include "../items/BaseOutlet.h"
+#include "../items/BaseBlock.h"
 #include "../items/FrameworkBlock.h"
+
 #include "../qml_extensions/Canvas.h"
 #include "../qml_extensions/Circle.h"
 #include "../qml_extensions/BezierCurve.h"
 #include "../qml_extensions/PainterBezier.h"
-#include "../items/Link.h"
-#include "../ui_items/SliderBlock.h"
-#include "../ui_items/TextIO.h"
 #include "../qml_extensions/PixelView.h"
-#include "../ui_items/Image.h"
+
+#include "../ui_items/ImageBlock.h"
+#include "../ui_items/SliderBlock.h"
+#include "../ui_items/TextBlock.h"
 
 using namespace _2Real;
 using namespace _2Real::app;
@@ -102,20 +108,22 @@ namespace Uber {
 
     void System::registerQmlTypes()
     {
-        qmlRegisterType<SliderBlock>();
+
         qmlRegisterType<BaseInlet>();
         qmlRegisterType<BaseOutlet>();
         qmlRegisterType<InletObjectListModel>();
         qmlRegisterType<OutletObjectListModel>();
 
-        qmlRegisterType<FrameworkBlock>();
-
         qmlRegisterInterface<Item>("Item");
+        qmlRegisterInterface<BaseBlock>("BaseBlock");
+        qmlRegisterInterface<FrameworkBlock>("FrameworkBlock");
+
         qmlRegisterInterface<StringModel>("StringModel");
 
         qmlRegisterType<Link>();
-        qmlRegisterType<TextIO>();
-        qmlRegisterType<Image>();
+        qmlRegisterType<TextBlock>();
+        qmlRegisterType<SliderBlock>();
+        qmlRegisterType<ImageBlock>();
 
         qmlRegisterType<QStringListModel>();
         qmlRegisterType<QAbstractItemModel>();
@@ -269,13 +277,13 @@ namespace Uber {
         GridEntry textInput = GridEntry(TextInputType);
         QString textInputIconPath("qrc:///images/textedit-icon.png");
         textInput.setIconUrl(QUrl(textInputIconPath));
-        textInput.setName("TextInput");
+        textInput.setName("TextBlock");
         m_DockModel->addEntry(textInput);
         //
         GridEntry imageOutput = GridEntry(ImageType);
         QString imageOutputIconPath("qrc:///images/image-icon.png");
         imageOutput.setIconUrl(QUrl(imageOutputIconPath));
-        imageOutput.setName("Image");
+        imageOutput.setName("ImageBlock");
         m_DockModel->addEntry(imageOutput);
     }
 
@@ -284,8 +292,8 @@ namespace Uber {
         m_ComplexDelegate->addDelegate(QString("Uber::FrameworkBlock"),QUrl::fromLocalFile("qml/Canvas/UberBlock.qml"));
         m_ComplexDelegate->addDelegate(QString("Uber::Link"), QUrl::fromLocalFile("qml/Canvas/Link.qml"));
         m_ComplexDelegate->addDelegate(QString("Uber::SliderBlock"),QUrl::fromLocalFile("qml/Canvas/SliderBlock.qml"));
-        m_ComplexDelegate->addDelegate(QString("Uber::TextIO"),QUrl::fromLocalFile("qml/Canvas/TextBlock.qml"));
-        m_ComplexDelegate->addDelegate(QString("Uber::Image"),QUrl::fromLocalFile("qml/Canvas/ImageBlock.qml"));
+        m_ComplexDelegate->addDelegate(QString("Uber::TextBlock"),QUrl::fromLocalFile("qml/Canvas/TextBlock.qml"));
+        m_ComplexDelegate->addDelegate(QString("Uber::ImageBlock"),QUrl::fromLocalFile("qml/Canvas/ImageBlock.qml"));
     }
 
     DockModel* System::getDockModel()

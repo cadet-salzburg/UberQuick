@@ -64,13 +64,13 @@ namespace Uber {
         return m_Path;
     }
 
-    void PixelView::setImageProvider(Image *item)
+    void PixelView::setImageProvider(ImageBlock *item)
     {
         m_ImageItem = item;
         QObject::connect(m_ImageItem, SIGNAL(imageChanged(QVariant)), this, SLOT(setImage(QVariant)));
     }
 
-    Image *PixelView::getImageProvider()
+    ImageBlock *PixelView::getImageProvider()
     {
         return m_ImageItem;
     }
