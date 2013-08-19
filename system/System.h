@@ -83,7 +83,7 @@ namespace Uber {
         QStringList                         m_BundleFilenames;
         DockModel*                          m_DockModel;
         ItemObjectListModel*                m_ItemModel;
-        _2Real::app::Engine&                m_Engine;
+        _2Real::app::Engine&                m_2RealEngine;
         QQmlEngine*                         m_QmlEngine;
         ComplexDelegate*                    m_ComplexDelegate;
         QQuickView*                         m_Canvas;

@@ -95,7 +95,7 @@ namespace Uber {
             GridEntry entry = getEntry(row);
             if ( entry.typeIs(BlockType) )
             {
-                BlockHandle handle = entry.getBundleHandle().createBlockInstance(entry.getName().toUtf8().constData());
+                BlockHandle handle = entry.getBundleHandle().createFunctionBlockInstance(entry.getName().toUtf8().constData());
                 handle.setup();
                 handle.start();
                 item = new Block(handle, entry.getName());

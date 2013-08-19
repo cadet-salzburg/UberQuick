@@ -45,13 +45,13 @@ namespace Uber {
     ,m_DockModel(nullptr)
     ,m_ComplexDelegate(nullptr )
     ,m_ItemModel(nullptr)
-    ,m_Engine( Engine::instance())
     ,m_QmlEngine(nullptr)
     ,m_Dock(nullptr)
     ,m_Canvas(nullptr)
     ,mFileLoader( nullptr )
     ,m_CurrentLink(nullptr)
     ,m_ConnectionManager(nullptr)
+    ,m_2RealEngine( Engine::instance())
     {
         m_DockModel = new DockModel(0);
         m_ComplexDelegate = new ComplexDelegate(0);
@@ -103,7 +103,7 @@ namespace Uber {
         qmlRegisterType<OutletObjectListModel>();
         qmlRegisterType<QSortFilterProxyModel>();
         qmlRegisterType<Block>();
-        qmlRegisterType<Item>();
+        qmlRegisterInterface<Item>("Item");
         qmlRegisterType<Link>();
         qmlRegisterType<Slider>();
         qmlRegisterType<TextIO>();
@@ -200,7 +200,7 @@ namespace Uber {
                 try
                 {
                     QString path = fileInfoIter->canonicalPath();
-//                    qDebug() << path;
+// qDebug() << path;
                     QString filename = fileInfoIter->fileName();
                     QString delim("_32");
                     QStringList fileNameParts = filename.split(delim);
@@ -208,17 +208,18 @@ namespace Uber {
                     {
                         std::cout << "LOADING " << fileNameParts.front().toStdString() << std::endl;
                         QString file = path + QString("/") + *(fileNameParts.begin());
-                        BundleHandle bundleHandle = m_Engine.loadBundle(file.toStdString());
-                        BundleInfo bundleInfo = bundleHandle.getBundleInfo();
-                        BundleInfo::BlockInfos blocks = bundleInfo.exportedBlocks;
+                        BundleHandle bundleHandle = m_2RealEngine.loadBundle(file.toStdString());
+                        BundleMetainfo bundleInfo = bundleHandle.getBundleMetainfo();
+                        std::vector< BlockMetainfo > blocks;
+                        bundleInfo.getExportedBlocks(blocks);
 
-                        BundleInfo::BlockInfos::const_iterator iter = blocks.begin();
+                        std::vector< BlockMetainfo >::const_iterator iter = blocks.begin();
                         for ( ; iter!= blocks.end(); ++iter )
                         {
-                            QString blockName = QString::fromStdString( iter->name );
-                            if( blockName != "contextblock")		// don't show or use context blocks in ubercode
+                            if( !iter->isContext() )	// don't show or use context blocks in ubercode
                             {
                                 GridEntry entry;
+                                QString blockName = QString::fromStdString( iter->getName() );
                                 entry.setName(blockName);
                                 entry.setBundleHandle(bundleHandle);
                                 QFile file(bundleDir.filePath("icon.png"));
@@ -239,7 +240,7 @@ namespace Uber {
                 }
                 catch ( AlreadyExistsException& e)
                 {
-                    //std::cout << e.what()  << " " << e.message() << std::endl;
+                    //std::cout << e.what() << " " << e.message() << std::endl;
                 }
                 catch ( ... )
                 {

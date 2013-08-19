@@ -146,7 +146,8 @@ namespace Uber {
             BlockOutlet* outlet = qobject_cast<BlockOutlet*>(m_Outlet);
             InletHandle inHandle = inlet->getInletHandle();
             OutletHandle outHandle = outlet->getOutletHandle();
-            return inHandle.link(outHandle);
+            LinkHandle linkHandle =  inHandle.link(outHandle);
+            return linkHandle.isValid();
         } else if (  m_Inlet->getClassName() == "Uber::BlockInlet" && m_Outlet->getClassName() == "Uber::InterfaceOutlet")
         {
             return true;

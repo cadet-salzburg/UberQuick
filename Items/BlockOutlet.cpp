@@ -74,14 +74,14 @@ namespace Uber {
         if ( isValid() )
         {
             _2Real::app::TypeMetainfo info = m_OutletHandle.getType();
-            _2Real::Fields fields;
-            info.getFieldInfo( fields );
+            _2Real::DataFields fields;
+            info.getDataFields( fields );
 
-            for ( _2Real::Fields::const_iterator it = fields.begin(); it != fields.end(); ++ it )
+            for ( _2Real::DataFields::const_iterator it = fields.begin(); it != fields.end(); ++ it )
             {
                 StringObject *obj = new StringObject();
                 std::string type = (*it)->getTypename().first + "::" + (*it)->getTypename().second;
-//                std::string type = (*it)->getTypename();
+// std::string type = (*it)->getTypename();
                 obj->setString(QString::fromUtf8(type.c_str()));
                 m_ConnectionOptions->append(obj);
             }
